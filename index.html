@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>싱가포르 가족여행</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: one calm column, big type; sticky day buttons; each day is a time-rail itinerary. */
+:root{
+  --bg:#f3f7f5; --surface:#ffffff; --ink:#15302a; --muted:#4f6660; --line:#d5e2dd;
+  --green:#0f6b57; --green-soft:#dff0ea; --orchid:#b02f6e; --orchid-soft:#f8e4ee;
+  --sun:#9a5a00; --sun-soft:#fdf0d8;
+  --display:"Gowun Batang", "Noto Serif KR", serif;
+  --body:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
+  --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
+  --sun:#f2bd6b; --sun-soft:#3a2d17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
+  --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
+  --sun:#f2bd6b; --sun-soft:#3a2d17; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.3;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--green);font-weight:700}
+a:focus-visible,button:focus-visible{outline:3px solid var(--orchid);outline-offset:3px;border-radius:8px}
+
+/* hero */
+.hero{background:var(--green);color:#fff;padding-block:40px 34px}
+.hero .wrap{display:grid;gap:14px}
+.hero .eyebrow{font-size:17px;letter-spacing:.04em;opacity:.9}
+.hero h1{font-size:40px;color:#fff}
+.hero p{font-size:20px;opacity:.95}
+.hero .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.hero .facts span{background:rgba(255,255,255,.16);border-radius:999px;padding:6px 14px;font-size:17px;font-weight:500}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero{background:#123d33}}
+:root[data-theme="dark"] .hero{background:#123d33}
+
+/* sticky nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:17px;font-weight:700;line-height:1.2}
+nav a.today{background:var(--orchid);border-color:var(--orchid);color:#fff}
+
+main .wrap{display:grid;gap:44px;padding-block:32px 56px}
+section{display:grid;gap:16px}
+section > h2{font-size:30px}
+.lead{color:var(--muted);font-size:18px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.stack{display:grid;gap:12px}
+
+/* flights */
+.flight{display:grid;gap:10px}
+.flight .tag{font-size:16px;font-weight:700;color:var(--green)}
+.flight .route{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.flight .end{min-width:0}
+.flight .t{font-size:34px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.flight .d{font-size:16px;color:var(--muted)}
+.flight .arrow{font-size:24px;color:var(--muted)}
+.flight .end.r{text-align:right}
+.flight .note{font-size:17px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+
+/* hotel */
+.hotel h3{font-size:23px}
+.hotel .when{font-weight:700;color:var(--orchid)}
+.hotel ul{margin:6px 0 0;padding-left:1.1em;display:grid;gap:4px}
+.phone{font-variant-numeric:tabular-nums;font-weight:700;user-select:all}
+
+/* days */
+.day{display:grid;gap:14px}
+.dayhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.dayhead .date{font-family:var(--display);font-size:30px;font-weight:700}
+.dayhead .theme{font-size:18px;color:var(--muted)}
+.day.is-today .dayhead .date::after{content:"오늘";font-family:var(--body);font-size:15px;background:var(--orchid);color:#fff;border-radius:999px;padding:3px 10px;margin-left:10px;vertical-align:middle}
+.timeline{list-style:none;margin:0;padding:0;display:grid}
+.timeline li{display:grid;grid-template-columns:70px 1fr;gap:14px;position:relative;padding-bottom:18px}
+.timeline li::before{content:"";position:absolute;left:84px;top:12px;bottom:-4px;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline li::after{content:"";position:absolute;left:79px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--green)}
+.timeline li.meal::after{background:var(--orchid)}
+.timeline li.rest::after{background:var(--sun)}
+.timeline .time{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--green);text-align:right}
+.timeline .what{padding-left:16px;min-width:0}
+.timeline .what b{display:block;font-size:20px}
+.timeline .what small{display:block;font-size:17px;color:var(--muted);line-height:1.6}
+.pill{display:inline-block;font-size:14px;font-weight:700;border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:2px}
+.pill.meal{background:var(--orchid-soft);color:var(--orchid)}
+.pill.rest{background:var(--sun-soft);color:var(--sun)}
+.choice{background:var(--sun-soft);border-radius:12px;padding:10px 14px;margin-top:6px;font-size:17px}
+.rain{font-size:17px;background:var(--green-soft);border-radius:12px;padding:12px 16px}
+
+/* food */
+.food{display:grid;gap:4px}
+.food h3{font-size:22px}
+.food .meta{font-size:16px;font-weight:700;color:var(--orchid)}
+.food p{font-size:18px}
+
+/* lists */
+.check{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.check li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start}
+.check input{width:24px;height:24px;margin-top:5px;accent-color:var(--green)}
+.check label{cursor:pointer}
+.check small{display:block;color:var(--muted);font-size:16px}
+.must{color:var(--orchid);font-weight:800}
+
+.tips{display:grid;gap:12px}
+.tip{display:grid;gap:4px}
+.tip h3{font-size:21px;font-family:var(--body);font-weight:800}
+.tip p{font-size:18px}
+
+.sos{display:grid;gap:8px}
+.sos div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px}
+.sos div:last-child{border-bottom:0;padding-bottom:0}
+
+.maplink{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;background:var(--green-soft);border-radius:16px;padding:18px 20px;color:var(--ink)}
+.maplink span:last-child{font-size:26px;color:var(--green)}
+footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
+
+@media (max-width:420px){
+  body{font-size:18px}
+  .hero h1{font-size:34px}
+  .flight .t{font-size:28px}
+  .timeline li{grid-template-columns:58px 1fr;gap:10px}
+  .timeline li::before{left:68px}
+  .timeline li::after{left:63px}
+  .timeline .time{font-size:17px}
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">엄마 아빠와 함께하는</div>
+    <h1>싱가포르 가족여행</h1>
+    <p>2026년 12월 2일(수) 저녁 출발, 12월 6일(일) 새벽 도착</p>
+    <div class="facts">
+      <span>3박 4일</span><span>네 식구</span><span>낮 28~31도</span><span>한국보다 1시간 느려요</span>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="바로가기">
+  <div class="wrap">
+    <a href="#flight">비행기</a>
+    <a href="#hotel">호텔</a>
+    <a href="#d1203" data-date="2026-12-03">3일(목)</a>
+    <a href="#d1204" data-date="2026-12-04">4일(금)</a>
+    <a href="#d1205" data-date="2026-12-05">5일(토)</a>
+    <a href="#food">식당</a>
+    <a href="#pack">준비물</a>
+    <a href="#tips">알아두실 것</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <section id="flight">
+    <h2>비행기</h2>
+    <p class="lead">대한항공이에요. 시간은 모두 그 나라 시간이에요.</p>
+    <div class="card flight">
+      <div class="tag">가는 날 · KE645</div>
+      <div class="route">
+        <div class="end"><div class="t">18:35</div><div class="d">12/2(수) 인천 출발</div></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
+      </div>
+      <p class="note">인천공항 <b>제2터미널</b>에 오후 4시쯤까지 와 주세요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
+    </div>
+    <div class="card flight">
+      <div class="tag">오는 날 · KE644</div>
+      <div class="route">
+        <div class="end"><div class="t">22:30</div><div class="d">12/5(토) 싱가포르 출발</div></div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
+      </div>
+      <p class="note">밤 비행기라 기내에서 푹 주무시면 일요일 아침에 도착해요.</p>
+    </div>
+  </section>
+
+  <section id="hotel">
+    <h2>호텔</h2>
+    <div class="card hotel stack">
+      <span class="when">12/2(수) 밤 ~ 12/3(목) 아침 · 1박</span>
+      <h3>두짓타니 라구나 싱가포르</h3>
+      <ul>
+        <li>공항에서 차로 10분. 새벽 2시쯤 들어가서 자기만 하는 곳이에요.</li>
+        <li>방 2개, 침대 2개짜리 방이에요. 아침 식사 포함.</li>
+        <li>전화 <span class="phone">+65 6841 8888</span></li>
+      </ul>
+    </div>
+    <div class="card hotel stack">
+      <span class="when">12/3(목) ~ 12/5(토) · 2박</span>
+      <h3>더 풀러턴 호텔 싱가포르</h3>
+      <ul>
+        <li>마리나베이가 보이는 방 2개예요. 아침 식사 포함.</li>
+        <li><b>클럽 라운지</b>를 쓸 수 있어요. 오후에는 애프터눈티(케이크, 스콘, 차), 저녁에는 칵테일과 간단한 음식이 나와요.</li>
+        <li>체크인 오후 3시, 체크아웃 낮 12시. 짐은 언제든 맡길 수 있어요.</li>
+        <li>주소 1 Fullerton Square · 전화 <span class="phone">+65 6733 8388</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="d1203" class="day">
+    <div class="dayhead"><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 나이트사파리</span></div>
+    <ol class="timeline">
+      <li><span class="time">00:15</span><span class="what"><b>싱가포르 도착</b><small>입국 심사 후 택시로 두짓타니 호텔(10분), 새벽 2시쯤 잠자리에 들어요.</small></span></li>
+      <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
+      <li><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
+      <li><span class="time">09:15</span><span class="what"><b>머라이언 공원, 마리나베이 산책</b><small>호텔 바로 앞이에요. 헬릭스 다리를 건너며 사진 찍어요.</small></span></li>
+      <li><span class="time">10:15</span><span class="what"><b>가든스 바이 더 베이 돔 정원</b><small>플라워돔(꽃 정원)과 클라우드 포레스트(실내 폭포). 실내라 시원해요.</small></span></li>
+      <li class="meal"><span class="time">12:15</span><span class="what"><b>팜비치 시푸드 점심<span class="pill meal">식사</span></b><small>칠리크랩을 먹어요. 가든스에서 택시로 10분.</small></span></li>
+      <li class="rest"><span class="time">14:00</span><span class="what"><b>풀러턴 체크인, 쉬기<span class="pill rest">휴식</span></b><small>방에서 낮잠 주무시고, 오후에 라운지에서 애프터눈티를 즐겨요.</small></span></li>
+      <li><span class="time">18:00</span><span class="what"><b>나이트사파리로 출발</b><small>택시로 30~40분. 저녁은 사파리 안에서 간단히 먹어요.</small></span></li>
+      <li><span class="time">19:15</span><span class="what"><b>나이트사파리</b><small>밤에 움직이는 동물을 트램을 타고 구경해요. 많이 걷지 않아도 돼요.</small></span></li>
+      <li class="rest"><span class="time">22:30</span><span class="what"><b>호텔 도착</b></span></li>
+    </ol>
+  </section>
+
+  <section id="d1204" class="day">
+    <div class="dayhead"><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 크리스마스 불빛</span></div>
+    <ol class="timeline">
+      <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
+      <li><span class="time">09:30</span><span class="what"><b>케이블카 타고 센토사섬으로</b><small>바다 위를 지나가요. 경치가 정말 좋아요.</small></span></li>
+      <li><span class="time">10:00</span><span class="what"><b>스카이라인 루지</b><small>바퀴 달린 썰매를 타고 언덕을 내려와요. 속도는 손으로 조절해서 어렵지 않아요.</small></span></li>
+      <li><span class="time">11:30</span><span class="what"><b>메가짚</b><small>줄에 매달려 해변까지 날아가는 놀이예요. 하고 싶은 사람만 타고, 나머지는 해변에서 만나요.</small></span></li>
+      <li class="meal"><span class="time">12:30</span><span class="what"><b>실로소 해변 점심<span class="pill meal">식사</span></b><small>바다가 보이는 식당에서 먹어요.</small></span></li>
+      <li><span class="time">14:00</span><span class="what"><b>팔라완 해변, 흔들다리</b><small>섬 안 셔틀버스는 공짜예요. 작은 섬으로 이어진 흔들다리를 건너요.</small></span></li>
+      <li class="rest"><span class="time">15:30</span><span class="what"><b>비치클럽 그늘에서 쉬기<span class="pill rest">휴식</span></b><small>16시쯤 유니버설 스튜디오 지구본 앞에서 사진 한 장.</small></span></li>
+      <li class="rest"><span class="time">17:00</span><span class="what"><b>호텔에서 씻고 쉬기<span class="pill rest">휴식</span></b><small>라운지 저녁 칵테일 시간이에요.</small></span></li>
+      <li class="meal"><span class="time">19:00</span><span class="what"><b>점보 시푸드 저녁<span class="pill meal">식사</span></b><small>강가 리버사이드 포인트점. 호텔에서 택시로 10분.</small></span></li>
+      <li><span class="time">21:00</span><span class="what"><b>가든스 크리스마스 원더랜드</b><small>크리스마스 불빛 축제를 구경해요.</small></span></li>
+      <li><span class="time">21:35</span><span class="what"><b>가든 랩소디</b><small>큰 나무 모양 탑(슈퍼트리)에 음악과 함께 불이 켜지는 쇼예요. 15분쯤 해요.</small></span></li>
+      <li class="rest"><span class="time">22:30</span><span class="what"><b>호텔 도착</b></span></li>
+    </ol>
+    <p class="rain">비가 많이 오면 해변 대신 <b>오셔나리움</b>(큰 수족관)에 가요.</p>
+  </section>
+
+  <section id="d1205" class="day">
+    <div class="dayhead"><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쥬얼, 집으로</span></div>
+    <ol class="timeline">
+      <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>짐을 싸 주세요.</small></span></li>
+      <li><span class="time">10:00</span><span class="what"><b>체크아웃, 호텔에 짐 맡기기</b></span></li>
+      <li><span class="time">10:30</span><span class="what"><b>차이나타운, 불아사</b><small>부처님 치아 사리를 모신 큰 절이에요. 안이 화려하고 시원해요.</small></span></li>
+      <li class="meal"><span class="time">12:00</span><span class="what"><b>맥스웰 푸드센터 점심<span class="pill meal">식사</span></b><small>현지 사람들이 가는 큰 푸드코트. 유명한 치킨라이스를 먹어요.</small></span></li>
+      <li><span class="time">13:30</span><span class="what"><b>오후 구경</b>
+        <span class="choice">아직 고르는 중이에요. 알록달록한 골목 <b>하지레인</b>이나, 백화점 거리 <b>오차드</b>에서 쇼핑 중 하나로 갈 거예요.</span></span></li>
+      <li><span class="time">16:30</span><span class="what"><b>호텔에서 짐 찾아 공항으로</b></span></li>
+      <li class="meal"><span class="time">17:30</span><span class="what"><b>쥬얼 창이 구경, 저녁<span class="pill meal">식사</span></b><small>공항 안에 있는 세계에서 가장 큰 실내 폭포예요.</small></span></li>
+      <li><span class="time">19:30</span><span class="what"><b>비행기 체크인</b></span></li>
+      <li><span class="time">22:30</span><span class="what"><b>출발</b><small>일요일 새벽 5시 45분 인천 도착.</small></span></li>
+    </ol>
+  </section>
+
+  <a class="maplink" href="https://claude.ai/artifact/3VbdS3v3gLbeUyxntSBvby" target="_blank" rel="noopener">
+    <span><b>날짜별 이동 지도 보기</b><br><small style="color:var(--muted);font-weight:400">어디서 어디로 가는지 지도로 볼 수 있어요</small></span>
+    <span aria-hidden="true">→</span>
+  </a>
+
+  <section id="food">
+    <h2>먹으러 갈 곳</h2>
+    <div class="card stack">
+      <div class="food">
+        <span class="meta">12/3 점심</span>
+        <h3>팜비치 시푸드</h3>
+        <p>머라이언 공원 바로 옆. 매콤달콤한 <b>칠리크랩</b>과 후추 맛 <b>블랙페퍼크랩</b>이 대표 메뉴예요. 소스에 튀긴 빵(만터우)을 찍어 드세요.</p>
+      </div>
+      <div class="food">
+        <span class="meta">12/4 저녁</span>
+        <h3>점보 시푸드 리버사이드 포인트</h3>
+        <p>싱가포르에서 가장 유명한 칠리크랩 식당이에요. 강가 자리에서 야경을 보며 먹어요.</p>
+      </div>
+      <div class="food">
+        <span class="meta">12/5 점심</span>
+        <h3>맥스웰 푸드센터</h3>
+        <p>값싸고 맛있는 현지 음식이 모인 곳. 부드러운 닭고기 밥 <b>치킨라이스</b>가 유명해요. 에어컨이 없으니 짧게 먹고 나와요.</p>
+      </div>
+      <div class="food">
+        <span class="meta">호텔에서</span>
+        <h3>풀러턴 클럽 라운지</h3>
+        <p>오후 애프터눈티와 저녁 칵테일이 숙박에 포함돼 있어요. 따로 돈 내지 않으셔도 돼요.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pack">
+    <h2>챙길 것</h2>
+    <p class="lead">눌러서 체크해 보세요. 이 휴대폰에만 표시돼요.</p>
+    <div class="card">
+      <ul class="check" id="packlist">
+        <li><input type="checkbox" id="p1"><label for="p1"><span class="must">여권</span><small>남은 기간이 6개월 넘는지 확인해 주세요.</small></label></li>
+        <li><input type="checkbox" id="p2"><label for="p2"><span class="must">입국신고서(SG Arrival Card)</span><small>도착 3일 전부터 온라인으로 써요. 딸들이 대신 해 드릴게요.</small></label></li>
+        <li><input type="checkbox" id="p3"><label for="p3">반팔, 얇고 시원한 옷<small>한국은 겨울이니 공항까지 입을 겉옷은 따로.</small></label></li>
+        <li><input type="checkbox" id="p4"><label for="p4">얇은 가디건이나 긴팔 하나<small>실내와 비행기 안이 에어컨으로 추워요.</small></label></li>
+        <li><input type="checkbox" id="p5"><label for="p5">편한 운동화<small>매일 꽤 걸어요. 해변용 샌들도 있으면 좋아요.</small></label></li>
+        <li><input type="checkbox" id="p6"><label for="p6">접는 우산</label></li>
+        <li><input type="checkbox" id="p7"><label for="p7">모자, 선글라스, 선크림</label></li>
+        <li><input type="checkbox" id="p8"><label for="p8">평소 드시는 약, 소화제, 파스</label></li>
+        <li><input type="checkbox" id="p9"><label for="p9">충전기와 <b>영국식 3구 어댑터</b><small>싱가포르 콘센트는 우리나라와 모양이 달라요.</small></label></li>
+        <li><input type="checkbox" id="p10"><label for="p10">보조배터리<small>꼭 들고 타는 가방에. 부치는 짐에 넣으면 안 돼요.</small></label></li>
+        <li><input type="checkbox" id="p11"><label for="p11">해외에서 쓸 수 있는 카드, 약간의 현금</label></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="tips">
+    <h2>알아두실 것</h2>
+    <div class="card tips">
+      <div class="tip"><h3>덥고 습해요</h3><p>12월에도 낮에는 30도 안팎이에요. 물을 자주 드시고, 힘들면 바로 말씀해 주세요. 오후에는 호텔에서 쉬는 시간을 넣어 두었어요.</p></div>
+      <div class="tip"><h3>소나기가 자주 와요</h3><p>12월은 비가 많은 철이라 오후에 갑자기 쏟아지곤 해요. 대부분 30분~1시간이면 그쳐서, 잠깐 실내에 들어가 있으면 돼요.</p></div>
+      <div class="tip"><h3>센토사섬 안에서는 교통이 공짜</h3><p>섬 안 셔틀버스, 버스, 모노레일은 돈을 내지 않아요. 해변 사이를 걸을 필요 없이 타고 다녀요.</p></div>
+      <div class="tip"><h3>택시는 딸들이 불러요</h3><p>Grab이라는 앱으로 불러요. 혹시 길을 잃으시면 그 자리에서 전화 주세요.</p></div>
+      <div class="tip"><h3>벌금이 엄한 나라예요</h3><p>껌은 가져가지 마세요. 길에 쓰레기 버리기, 아무 데서나 담배 피우기, 지하철에서 음식 먹기는 벌금이 있어요.</p></div>
+      <div class="tip"><h3>수돗물은 마셔도 돼요</h3><p>호텔과 식당 물은 그냥 드셔도 괜찮아요.</p></div>
+    </div>
+    <div class="card sos">
+      <h3 style="font-family:var(--body);font-size:21px;font-weight:800">급할 때 연락처</h3>
+      <div><span>경찰</span><span class="phone">999</span></div>
+      <div><span>구급차, 소방</span><span class="phone">995</span></div>
+      <div><span>주싱가포르 한국대사관</span><span class="phone">+65 6256 1188</span></div>
+    </div>
+  </section>
+
+</div>
+</main>
+<footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
+
+<script>
+(function(){
+  // Highlight today's day (Singapore time) in the nav and on the day card.
+  try{
+    var d = new Date(Date.now() + 8*3600*1000).toISOString().slice(0,10);
+    document.querySelectorAll('nav a[data-date]').forEach(function(a){
+      if(a.dataset.date === d){
+        a.classList.add('today');
+        var sec = document.querySelector(a.getAttribute('href'));
+        if(sec) sec.classList.add('is-today');
+      }
+    });
+  }catch(e){}
+  // Remember packing checks on this device only.
+  var KEY='sg-trip-pack';
+  var saved={};
+  try{ saved = JSON.parse(localStorage.getItem(KEY)||'{}') || {}; }catch(e){}
+  document.querySelectorAll('#packlist input').forEach(function(cb){
+    if(saved[cb.id]) cb.checked = true;
+    cb.addEventListener('change', function(){
+      saved[cb.id] = cb.checked;
+      try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){}
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
