@@ -174,6 +174,31 @@ section > h2{font-size:30px}
 .ph figcaption{font-size:15px;font-weight:700;line-height:1.4}
 .ph figcaption a{font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
 .ph.wide img{aspect-ratio:16/9}
+/* day at a glance */
+.glance{background:var(--surface);border-radius:18px;padding:16px 16px 14px;box-shadow:0 1px 2px rgba(20,40,35,.06),0 6px 18px rgba(20,40,35,.06);border-top:5px solid var(--dac)}
+.glance h3{font-family:var(--body);font-size:16px;font-weight:800;letter-spacing:.04em;color:var(--dac);margin:0 0 8px}
+.glance ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.glance li{display:grid;grid-template-columns:3.1em 1.6em 1fr;align-items:baseline;gap:6px;padding:7px 0;border-bottom:1px solid var(--line)}
+.glance li:last-child{border-bottom:0}
+.glance .gk{font-size:15px;font-weight:800;color:var(--dac);background:var(--dbg);border-radius:8px;text-align:center;padding:2px 0}
+.glance .gi{font-size:20px;text-align:center}
+.glance .gt{font-size:19px;font-weight:700;line-height:1.5}
+.glance .gsleep{margin-top:8px;font-size:16px;color:var(--muted)}
+.glance .gsleep b{color:var(--ink)}
+/* readability polish */
+.card{box-shadow:0 1px 2px rgba(20,40,35,.05),0 4px 14px rgba(20,40,35,.05)}
+section > h2{font-size:31px;display:flex;align-items:center;gap:10px}
+section > h2::before{content:"";width:6px;height:1.05em;border-radius:3px;background:var(--green);flex:none}
+.timeline{background:var(--surface);border-radius:18px;padding:10px 12px 6px 4px;box-shadow:0 1px 2px rgba(20,40,35,.05)}
+.timeline .what b{font-size:21px;line-height:1.45}
+.timeline .what small{font-size:17px;margin-top:2px}
+.timeline li{padding-bottom:20px}
+.dayhead .date{font-size:30px}
+nav .days a:nth-child(1){background:var(--d1-bg);color:var(--d1-ac);border-color:transparent}
+nav .days a:nth-child(2){background:var(--d2-bg);color:var(--d2-ac);border-color:transparent}
+nav .days a:nth-child(3){background:var(--d3-bg);color:var(--d3-ac);border-color:transparent}
+nav .days a:nth-child(4){background:var(--d4-bg);color:var(--d4-ac);border-color:transparent}
+nav .days a.today{background:var(--orchid);color:#fff}
 [hidden]{display:none!important}
 .lmapcard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
 .lscopes{display:flex;gap:4px;padding:8px;overflow-x:auto}
@@ -431,6 +456,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
   <section id="d1202" class="day d1">
     <div class="dayhead"><span class="dnum">1일차</span><span class="date">12월 2일 수요일</span><span class="theme">출발하는 날</span></div>
+    <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🛫</span><span class="gt">인천공항 도착 (2~3시) → 라운지에서 식사</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">✈️</span><span class="gt">18:35 비행기 출발, 기내식 먹고 쉬기</span></li><li><span class="gk">밤</span><span class="gi" aria-hidden="true">🌙</span><span class="gt">00:15 싱가포르 도착 → 공항 옆 호텔에서 자기</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>두짓타니 라구나 (공항 옆)</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">🧥</span><span class="temp">서울 -1~7℃ <small>싱가포르 밤 25℃</small></span><p>한국은 겨울이라 공항까지는 두꺼운 겉옷을 입고, 싱가포르에 내리기 전에 벗어 가방에 넣어요.</p></div>
     <ol class="timeline">
       <li><span class="time">14:00</span><span class="what"><b>인천공항 제2터미널 도착 (2~3시)</b><small>대한항공 카운터에서 짐을 부치고 출국 심사를 해요.</small></span></li>
@@ -444,6 +470,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
   <section id="d1203" class="day d2">
     <div class="dayhead"><span class="dnum">2일차</span><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
+    <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🌳</span><span class="gt">보타닉 가든 (힘들면 빼요) → 머라이언 공원</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🦀</span><span class="gt">팜비치 시푸드 칠리크랩</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🌿</span><span class="gt">풀러턴 체크인·쉬기 → 가든스 바이 더 베이 돔</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🌃</span><span class="gt">라보 저녁 → 리버크루즈 → 크리스마스 불빛 쇼</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">⛅</span><span class="temp">24~31℃ <small>덥고 습함</small></span><p>낮에는 덥고 오후에 소나기가 올 수 있어요. 저녁 배·야외 쇼가 있어서 접는 우산을 챙겨요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg?width=900" alt="머라이언 공원" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>머라이언 공원 <a href="https://commons.wikimedia.org/wiki/File:Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg?width=900" alt="가든스 바이 더 베이와 마리나베이 샌즈" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>가든스 바이 더 베이와 마리나베이 샌즈 <a href="https://commons.wikimedia.org/wiki/File:View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
@@ -467,6 +494,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
   <section id="d1204" class="day d3">
     <div class="dayhead"><span class="dnum">3일차</span><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
+    <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🚡</span><span class="gt">케이블카 타고 센토사섬 → 루지 타기</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🍕</span><span class="gt">실로소 해변 트라피자</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🏖️</span><span class="gt">팔라완 해변·비치클럽 → 호텔에서 쉬기</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🦁</span><span class="gt">나이트사파리 → (원하면) 오차드 크리스마스 조명</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">☀️</span><span class="temp">24~31℃ <small>해변 햇볕 강함</small></span><p>바닷가라 햇볕이 세요. 모자, 선글라스, 선크림을 꼭 챙기고, 비가 많이 오면 실내로 바꿔요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg?width=900" alt="센토사 루지" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>센토사 루지 <a href="https://commons.wikimedia.org/wiki/File:Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg?width=900" alt="나이트사파리 입구" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>나이트사파리 입구 <a href="https://commons.wikimedia.org/wiki/File:Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
@@ -488,6 +516,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
   <section id="d1205" class="day d4">
     <div class="dayhead"><span class="dnum">4일차 · 마지막 날</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
+    <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🧳</span><span class="gt">체크아웃 → 차이나타운·불아사 → 송파 바쿠테</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🛍️</span><span class="gt">오차드로드 구경 → 점보 칠리크랩</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">✨</span><span class="gt">쥬얼 창이 팀호완 딤섬 → 눈 쇼</span></li><li><span class="gk">밤</span><span class="gi" aria-hidden="true">✈️</span><span class="gt">22:30 출발 → 12/6(일) 아침 5:45 인천 도착</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>비행기 안</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">24~31℃ <small>인천 도착 새벽 영하</small></span><p>싱가포르는 덥지만 일요일 새벽 인천은 영하예요. 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg?width=900" alt="차이나타운 불아사" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>차이나타운 불아사 <a href="https://commons.wikimedia.org/wiki/File:Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg?width=900" alt="쥬얼 실내 폭포" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>쥬얼 실내 폭포 <a href="https://commons.wikimedia.org/wiki/File:Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
