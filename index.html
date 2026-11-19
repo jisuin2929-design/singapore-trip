@@ -24,7 +24,7 @@
   --sun:#9a5a00; --sun-soft:#fdf0d8;
   --blue:#1a5bb0; --blue-soft:#e3eefc;
   --d1-bg:#e9ecf8; --d1-ac:#3b4a9c; --d2-bg:#e2f2eb; --d2-ac:#0f6b57;
-  --d3-bg:#dfeff8; --d3-ac:#0b5f86; --d4-bg:#fbe8ef; --d4-ac:#a3295f;
+  --d3-bg:#dfeff8; --d3-ac:#0b5f86; --d4-bg:#fbe8ef; --d4-ac:#a3295f; --d5-bg:#f3ede2; --d5-ac:#7a5418;
   --display:"Gowun Batang", "Noto Serif KR", serif;
   --body:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
@@ -34,7 +34,7 @@
   --sun:#f2bd6b; --sun-soft:#3a2d17;
   --blue:#8cbcff; --blue-soft:#18294a;
   --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
-  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
+  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4; --d5-bg:#30281a; --d5-ac:#e8c27e;
   color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
@@ -42,7 +42,7 @@
   --sun:#f2bd6b; --sun-soft:#3a2d17;
   --blue:#8cbcff; --blue-soft:#18294a;
   --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
-  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
+  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4; --d5-bg:#30281a; --d5-ac:#e8c27e;
   color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -147,6 +147,7 @@ section > h2{font-size:30px}
 .day.d2{--dbg:var(--d2-bg);--dac:var(--d2-ac)}
 .day.d3{--dbg:var(--d3-bg);--dac:var(--d3-ac)}
 .day.d4{--dbg:var(--d4-bg);--dac:var(--d4-ac)}
+.day.d5{--dbg:var(--d5-bg);--dac:var(--d5-ac)}
 .dayhead{position:sticky;top:calc((env(safe-area-inset-top,0px) + var(--navh,62px)) / var(--z,1));z-index:3;background:var(--dbg);border-radius:20px 20px 0 0;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding-block:14px 10px;border-bottom:2px solid var(--dac)}
 .dayhead .dnum{background:var(--dac);color:var(--dbg);font-weight:800;font-size:17px;border-radius:999px;padding:4px 12px;line-height:1.3}
 .dayhead .date{font-family:var(--display);font-size:28px;font-weight:700}
@@ -330,8 +331,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <div class="wrap">
     <div class="nrow">
       <a href="#flight">비행기</a>
-      <a href="#meals">먹는 것</a>
       <a href="#weather">날씨</a>
+      <a href="#meals">먹는 것</a>
       <a href="#hotel">호텔</a>
       <a href="#food">식당</a>
       <a href="#info">기본 정보</a>
@@ -353,6 +354,21 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="flight">
     <h2>비행기</h2>
     <p class="lead">대한항공이에요. 시간은 모두 그 나라 시간이에요.</p>
+    <details class="card park">
+      <summary><span class="pkt">🚗 인천공항 주차 <span class="okpill">예약 완료</span></span><span class="pkmore">눌러서 보기</span></summary>
+      <ul class="pk">
+        <li><b>어디</b> 제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></li>
+        <li><b>세우는 날</b> 12/2(수) 오후 4시 <small>(낮 12시~저녁 8시 사이에 들어가면 돼요)</small></li>
+        <li><b>빼는 날</b> 12/6(일) 아침 7시</li>
+        <li><b>돌아올 때</b> 인천 도착 후 짐을 찾고 <b>1층 입국장 5번 출구</b> 앞 정류장에서 <b>공항02번</b> 셔틀을 타요. <b>'제2터미널 예약주차장'</b>에서 내려 차를 빼면 돼요.</li>
+        <li><b>터미널까지</b> 주차장 앞에서 <b>공항02번</b> 무료 셔틀버스를 타요.</li>
+      </ul>
+      <p class="cancel">12/2 오후 4시 전까지 취소할 수 있어요.</p>
+      <div class="pkimgs">
+        <figure><img src="img/parking-map.jpg" alt="제2터미널 예약주차장 위치 지도" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
+        <figure><img src="img/parking-shuttle.jpg" alt="공항02번 셔틀버스 노선도" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
+      </div>
+    </details>
     <div class="card flight">
       <div class="tag">가는 날 · KE645</div>
       <div class="route">
@@ -367,20 +383,6 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/pr/26-c-pr-645.pdf" target="_blank" rel="noopener">가는 비행기 메뉴판 보기 (PDF) ›</a>
       </div>
     </div>
-    <details class="card park">
-      <summary><span class="pkt">🚗 인천공항 주차 <span class="okpill">예약 완료</span></span><span class="pkmore">눌러서 보기</span></summary>
-      <ul class="pk">
-        <li><b>어디</b> 제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></li>
-        <li><b>세우는 날</b> 12/2(수) 오후 4시 <small>(낮 12시~저녁 8시 사이에 들어가면 돼요)</small></li>
-        <li><b>빼는 날</b> 12/6(일) 아침 7시</li>
-        <li><b>터미널까지</b> 주차장 앞에서 <b>공항02번</b> 무료 셔틀버스를 타요.</li>
-      </ul>
-      <p class="cancel">12/2 오후 4시 전까지 취소할 수 있어요.</p>
-      <div class="pkimgs">
-        <figure><img src="img/parking-map.jpg" alt="제2터미널 예약주차장 위치 지도" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
-        <figure><img src="img/parking-shuttle.jpg" alt="공항02번 셔틀버스 노선도" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
-      </div>
-    </details>
     <div class="card flight">
       <div class="tag">오는 날 · KE644</div>
       <div class="route">
@@ -515,7 +517,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   </section>
 
   <section id="d1205" class="day d4">
-    <div class="dayhead"><span class="dnum">4일차 · 마지막 날</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
+    <div class="dayhead"><span class="dnum">4일차</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🧳</span><span class="gt">체크아웃 → 차이나타운·불아사 → 송파 바쿠테</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🛍️</span><span class="gt">오차드로드 구경 → 점보 칠리크랩</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">✨</span><span class="gt">쥬얼 창이 팀호완 딤섬 → 눈 쇼</span></li><li><span class="gk">밤</span><span class="gi" aria-hidden="true">✈️</span><span class="gt">22:30 출발 → 12/6(일) 아침 5:45 인천 도착</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>비행기 안</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">24~31℃ <small>인천 도착 새벽 영하</small></span><p>싱가포르는 덥지만 일요일 새벽 인천은 영하예요. 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg?width=900" alt="차이나타운 불아사" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>차이나타운 불아사 <a href="https://commons.wikimedia.org/wiki/File:Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg?width=900" alt="쥬얼 실내 폭포" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>쥬얼 실내 폭포 <a href="https://commons.wikimedia.org/wiki/File:Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
@@ -541,6 +543,17 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <span><b>날짜별 이동 지도 보기</b><br><small style="color:var(--muted);font-weight:400">어디서 어디로 가는지 지도로 볼 수 있어요</small></span>
     <span aria-hidden="true">→</span>
   </a>
+
+  <section id="d1206" class="day d5">
+    <div class="dayhead"><span class="dnum">5일차 · 집으로</span><span class="date">12월 6일 일요일</span><span class="theme">새벽에 인천 도착, 차 타고 집으로</span></div>
+    <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">새벽</span><span class="gi" aria-hidden="true">🛬</span><span class="gt">5:45 인천공항 제2터미널 도착 → 짐 찾기</span></li><li><span class="gk">아침</span><span class="gi" aria-hidden="true">🚌</span><span class="gt">공항02번 셔틀 → 예약주차장에서 차 빼기</span></li><li><span class="gk">아침</span><span class="gi" aria-hidden="true">🏠</span><span class="gt">7시 전 출차 → 집으로</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>우리 집</b></p></div>
+    <div class="wx"><span class="ico" aria-hidden="true">🥶</span><span class="temp">서울 -1~7℃ <small>새벽이라 더 추워요</small></span><p>내리기 전에 비행기 안에서 겉옷을 입어 두세요. 주차장까지 바깥을 잠깐 걸어요.</p></div>
+    <ol class="timeline">
+      <li><span class="time">05:45</span><span class="what"><b>인천공항 제2터미널 도착</b><small>입국 심사를 하고 짐 찾는 곳에서 캐리어를 찾아요.</small></span></li>
+      <li><span class="time">06:30</span><span class="what"><b>공항02번 셔틀 타기</b><small>1층 입국장 <strong>5번 출구</strong> 앞 정류장에서 타요. '제2터미널 예약주차장'에서 내려요. 무료예요.</small></span></li>
+      <li><span class="time">07:00</span><span class="what"><b>주차장에서 차 빼서 집으로</b><small>아침 7시까지 빼도록 예약해 뒀어요.</small></span></li>
+    </ol>
+  </section>
 
   <section id="food">
     <h2>먹으러 갈 곳</h2>
@@ -677,15 +690,15 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   }catch(e){}
   // Text size buttons: scale the page body (not the top buttons).
   try{
-    var Z=[0.9,1,1.15,1.3,1.45], zi=1, main=document.querySelector('main');
-    try{ var sv=parseInt(localStorage.getItem('sgTripZoom'),10); if(sv>=0&&sv<Z.length) zi=sv; }catch(e){}
+    var Z=[0.7,0.8,0.9,1,1.15,1.3,1.45], zi=3, main=document.querySelector('main');
+    try{ var sv=parseFloat(localStorage.getItem('sgTripZ')); if(Z.indexOf(sv)>=0) zi=Z.indexOf(sv); }catch(e){}
     var up=document.getElementById('fsUp'), dn=document.getElementById('fsDown');
     var applyZ=function(keep){
       var z=Z[zi], ratio=keep?window.scrollY/Math.max(1,document.documentElement.scrollHeight):0;
       main.style.zoom=z; document.documentElement.style.setProperty('--z', z);
       up.disabled=zi>=Z.length-1; dn.disabled=zi<=0;
       if(keep){ window.scrollTo(0, ratio*document.documentElement.scrollHeight); }
-      try{ localStorage.setItem('sgTripZoom', zi); }catch(e){}
+      try{ localStorage.setItem('sgTripZ', Z[zi]); }catch(e){}
       window.dispatchEvent(new Event('resize'));
     };
     up.onclick=function(){ if(zi<Z.length-1){ zi++; applyZ(true);} };
