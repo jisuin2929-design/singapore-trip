@@ -98,32 +98,45 @@ footer{color:var(--muted);font-size:.82rem;max-width:72ch}
 .pin .lbl{fill:var(--fg);font:600 12px var(--sans);text-anchor:start;paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
 .pin{cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+ 
+.mapcard{min-width:0;border:1px solid var(--line);background:white;border-radius:16px;overflow:hidden}
+.mapbox{border:0;border-radius:0;height:min(67vh,620px)}
+#scopes{display:flex;gap:4px;padding:8px;overflow:auto}
+#scopes button{font:600 14px var(--sans);white-space:nowrap;border:0;border-radius:8px;padding:8px 10px;background:transparent;color:#53625e;cursor:pointer}
+#scopes button[aria-pressed=true]{background:#dcefe9;color:#125845}
+.legend{position:static;border:0;gap:6px 16px;padding:9px 12px}
+.pin .lbl{font-size:13px;stroke-width:4px}
+.tab{border-radius:9px}.tab[aria-selected=true]{background:#184c40;border-color:#184c40}
+:root{--fg:#213b34;--hotel:#764598;--walk:#007d5d;--taxi:#245fc7}
+@media(max-width:860px){body{padding:14px 10px 32px}.wrap{gap:10px}.mapbox{height:54svh;min-height:340px}.tabs{flex-wrap:nowrap;overflow:auto;gap:5px}.tab{flex:1;justify-content:center;padding:8px 5px;white-space:nowrap}.tab small{display:none}.main{gap:10px}}
+#summary{padding:0 12px 8px;color:#405650;font-size:14px}
+@media(max-width:540px){.tab{min-height:44px;flex-direction:column;align-items:center;gap:0}.tab small{display:block;font-size:11px}.mapbox{height:48svh;min-height:290px;max-height:480px}#scopes{gap:0;padding:6px 3px;flex-wrap:wrap}#scopes button{font-size:13px;min-height:40px}.ctrl button{width:40px;height:40px}}
 </style>
-
+</head><body>
 <div class="wrap">
   <header>
-    <h1>싱가포르 가족여행 동선지도</h1>
-    <p class="sub">12월 2일~5일 · 4명 · 날짜를 누르면 그날 이동경로가 지도에 그려져요. 장소나 구간을 누르면 확대되고, 구글맵 길찾기 링크로 실제 경로를 볼 수 있어요.</p>
+    <h1>싱가포르 여행지도</h1>
+    <p class="sub">12월 2일–5일 · 가족 여행</p>
   </header>
   <nav class="tabs" role="tablist" id="tabs"></nav>
   <div class="main">
-    <div class="mapbox" id="mapbox">
+    <section class="mapcard"><div id="scopes" aria-label="표시할 일정"></div><div id="summary" aria-live="polite"></div><div class="mapbox" id="mapbox">
       <svg id="map" aria-label="이동경로 지도" role="img"></svg>
       <div class="ctrl">
         <button id="zin" aria-label="확대">+</button>
         <button id="zout" aria-label="축소">−</button>
-        <button id="zfit" class="fit" aria-label="공항·첫날 숙소까지 전체 보기">전체</button>
+        <button id="zfit" class="fit" aria-label="하루 전체 보기">전체</button>
       </div>
-      <div class="legend">
+    </div><div class="legend">
         <span><i style="border-color:var(--taxi)"></i>택시·Grab</span>
         <span><i style="border-color:var(--walk);border-top-style:dotted"></i>도보</span>
         <span><i style="border-color:var(--rail);border-top-style:dashed"></i>모노레일·셔틀</span>
         <span><i style="border-color:var(--hotel);border-top-style:dashed"></i>케이블카·짚라인</span>
       </div>
-    </div>
+    </section>
     <aside class="side" id="rail"></aside>
   </div>
-  <footer>지도는 해안선만 그린 약식 지도이고, 선은 실제 도로가 아니라 이동 순서를 보여주는 곡선이에요. 시간과 요금은 평소 교통 기준 추정치라 실제와 다를 수 있어요. 일정은 11월 19일 최종 확정안 기준이에요. 해안선 데이터 © OpenStreetMap 기여자.</footer>
+  <footer> 선은 실제 도로가 아니라 이동 순서를 보여주는 곡선이에요. 시간과 요금은 평소 교통 기준 추정치라 실제와 다를 수 있어요. 일정은 11월 19일 최종 확정안 기준이에요.</footer>
 </div>
 
 <script>
@@ -253,12 +266,37 @@ const AREAS = [["오차드",1.3065,103.8330],["캄퐁글람",1.3040,103.8610],["
 let view = {s:1, tx:0, ty:0}; // screen = world*s + t
 let day = DAYS[1], sel = null;
 
+let scope=0;
+function ranges(){
+  if(day.id==='d1') return [['공항 → 숙소',0,1]];
+  if(day.id==='d3') return [['하루 전체',0,11],['센토사 입도',0,2],['센토사 해변',2,7],['사파리·야경',7,11]];
+  if(day.id==='d4') return [['하루 전체',0,7],['시내 관광',0,5],['공항 이동',5,6],['쥬얼·출국',6,7]];
+  return day.id==='d2' ? [['하루 전체',0,11],['오전 이동',0,3],['베이 산책',3,7],['저녁·야경',7,11]] : [['주요 동선',0,day.stops.length-1],['하루 전체',0,day.stops.length-1]];
+}
+function selectScope(i){
+  scope=i; sel=null; markRail();
+  const options=ranges();
+  const [,first,last]=options[i];
+  document.querySelector('#summary').textContent=day.stops[first].t+' '+P[day.stops[first].p][2].split(' (')[0]+' → '+day.stops[last].t+' '+P[day.stops[last].p][2].split(' (')[0];
+  const activeModes=new Set(day.stops.slice(first+1,last+1).map(stop=>stop.leg.m));
+  document.querySelectorAll('.legend span').forEach((item,k)=>{
+    item.style.display=[['taxi'],['walk'],['rail','shuttle'],['zip','cable']][k].some(m=>activeModes.has(m))?'flex':'none';
+  });
+  document.querySelectorAll('#scopes button').forEach((b,j)=>b.setAttribute('aria-pressed',i===j));
+  {
+    const [,a,b]=options[i]; fit(day.stops.slice(a,b+1).map(s=>W(s.p)),220);
+  }
+}
+function buildScopes(){
+  const bar=document.getElementById('scopes'); bar.replaceChildren();
+  ranges().forEach(([label],i)=>{const b=document.createElement('button'); b.textContent=label; b.onclick=()=>selectScope(i);bar.append(b)});
+}
 function size(){ const r=svg.getBoundingClientRect(); return [r.width||600, r.height||400]; }
 function fit(pts, maxS){
   const [w,h]=size();
   let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
   pts.forEach(([x,y])=>{x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);});
-  const pl=Math.min(70,w*.12), pr=Math.min(190,w*.38), pt=50, pb=80, bw=Math.max(x1-x0,4), bh=Math.max(y1-y0,4);
+  const pl=Math.min(70,w*.12), pr=Math.min(65,w*.13), pt=50, pb=42, bw=Math.max(x1-x0,4), bh=Math.max(y1-y0,4);
   let s=Math.min((w-pl-pr)/bw,(h-pt-pb)/bh); s=Math.min(s,maxS||400); s=Math.max(s,.4);
   view={s, tx:pl+(w-pl-pr)/2-(x0+x1)/2*s, ty:pt+(h-pt-pb)/2-(y0+y1)/2*s};
   render();
@@ -282,7 +320,8 @@ function render(){
   AREAS.forEach(([n,la,lo])=>{ const [x,y]=S([wx(lo),wy(la)]); el('text',{x,y,class:'area'},gOver).textContent=n; });
   // legs
   const legs=[]; day.stops.forEach((s,i)=>{ if(i>0) legs.push({a:day.stops[i-1].p,b:s.p,m:s.leg.m,i}); });
-  legs.forEach(l=>{
+  const [,start,end]=ranges()[scope];
+  legs.filter(l=>l.i>start && l.i<=end).forEach(l=>{
     const a=S(W(l.a)), b=S(W(l.b)); if(Math.hypot(b[0]-a[0],b[1]-a[1])<3) return;
     const c=curve(a,b,l.i), dim = sel && sel.type==='leg' && sel.i!==l.i;
     el('path',{d:c.d,class:'route-halo'+(dim?' dim':'')},gOver);
@@ -292,7 +331,7 @@ function render(){
       const ar=el('path',{d:'M-6,-5L6,0L-6,5Z',class:`arrow ${l.m}`,transform:`translate(${p[0]},${p[1]}) rotate(${ang})`},gOver); if(dim) ar.setAttribute('opacity',.3); }
   });
   // pins grouped by place, then clustered when they overlap on screen
-  const groups={}; day.stops.forEach((s,i)=>{ (groups[s.p]=groups[s.p]||[]).push(i); });
+  const groups={}; day.stops.forEach((s,i)=>{ if(i>=start && i<=end) (groups[s.p]=groups[s.p]||[]).push(i); });
   const cl=[];
   Object.entries(groups).forEach(([p,idx])=>{ const xy=S(W(p));
     const c=cl.find(c=>Math.hypot(c.x-xy[0],c.y-xy[1])<30);
@@ -302,8 +341,8 @@ function render(){
   cl.forEach(c=>{
     const single=c.m.length===1, m0=c.m[0], hotel=single&&!!P[m0.p][4];
     const nums=c.m.flatMap(m=>m.idx).sort((a,b)=>a-b).map(i=>i+1);
-    const txt = single ? (hotel?'H':nums.join('·')) : nums.join('·');
-    const name = single ? P[m0.p][2] + (hotel?` (${nums.join('·')})`:'') : `${P[m0.p][2]} 외 ${c.m.length-1}곳 · 눌러서 확대`;
+    const txt = nums.join('·');
+    const name = P[m0.p][2].split(/ [·(]/)[0] + (single?'':` 외 ${c.m.length-1}곳`);
     const isSel = sel && sel.type==='stop' && c.m.some(m=>m.idx.includes(sel.i));
     const g=el('g',{class:'pin',transform:`translate(${c.x},${c.y})`,tabindex:0,role:'button','aria-label':name},gOver);
     const w = Math.max(26, txt.length*7.2+12), h=26, grow=isSel?4:0;
@@ -311,8 +350,15 @@ function render(){
     else el('rect',{x:-w/2-grow/2,y:-h/2-grow/2,width:w+grow,height:h+grow,rx:13,fill:c.m.some(m=>P[m.p][4])&&single?'var(--hotel)':'var(--fg)',stroke:'var(--panel)','stroke-width':2.5},g);
     el('text',{},g).textContent=txt;
     boxes.push([c.x-w/2,c.y-h/2,c.x+w/2,c.y+h/2]);
-    const lw=name.length*12.5, lx0=c.x+w/2+6;
-    if(!hit(lx0,c.y-9,lx0+lw,c.y+9)){ el('text',{x:w/2+6,y:0,class:'lbl','dominant-baseline':'central'},g).textContent=name; boxes.push([lx0,c.y-9,lx0+lw,c.y+9]); }
+    const label=el('text',{class:'lbl'},g);label.textContent=name;
+    const lw=label.getComputedTextLength(), [sw,sh]=size();
+    const offsets=[[w/2+5,0],[-w/2-5-lw,0],[-lw/2,-24],[-lw/2,24]];
+    const pos=offsets.find(([dx,dy])=>{
+      const x=c.x+dx,y=c.y+dy;
+      return x>=2 && x+lw<sw-2 && y>10 && y<sh-10 && !hit(x,y-9,x+lw,y+9) &&
+        !cl.some(pin=>pin!==c && pin.x+16>x && pin.x-16<x+lw && Math.abs(pin.y-y)<22);
+    });
+    if(pos){label.setAttribute('x',pos[0]);label.setAttribute('y',pos[1]);boxes.push([c.x+pos[0],c.y+pos[1]-9,c.x+pos[0]+lw,c.y+pos[1]+9]);}else label.remove();
     const act=()=>{ if(single) pickStop(m0.idx[0]); else { sel=null; markRail(); fit(c.m.map(m=>W(m.p)), 900); } };
     g.addEventListener('click',e=>{e.stopPropagation(); act();});
     g.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); act();} });
@@ -322,13 +368,18 @@ function render(){
   gOver.querySelectorAll('.pin text:not(.lbl)').forEach(t=>t.style.fill=fg.trim()||'#fff');
 }
 
+function ensureVisible(a,b){
+  const [,lo,hi]=ranges()[scope]; if(a<lo || b>hi) selectScope(0);
+}
+function revealMap(){if(innerWidth<=860) document.querySelector('.mapcard').scrollIntoView({block:'start'});}
 function pickStop(i){
-  sel={type:'stop',i}; const p=day.stops[i].p;
+  revealMap();
+  ensureVisible(i,i); sel={type:'stop',i}; const p=day.stops[i].p;
   const [w,h]=size(), [x,y]=W(p), s=Math.max(view.s, 60);
   view={s, tx:w/2-x*s, ty:h/2-y*s}; render(); markRail();
 }
 function pickLeg(i){
-  sel={type:'leg',i}; fit([W(day.stops[i-1].p),W(day.stops[i].p)], 220); markRail();
+  ensureVisible(i-1,i); revealMap(); sel={type:'leg',i}; fit([W(day.stops[i-1].p),W(day.stops[i].p)], 220); markRail();
 }
 
 function markRail(){
@@ -371,20 +422,20 @@ function buildRail(){
 function setDay(id){
   day=DAYS.find(d=>d.id===id)||DAYS[1]; sel=null;
   document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.id===day.id));
-  buildRail(); fitDay();
+  buildRail(); buildScopes(); selectScope(({d1:0,d2:2,d3:2,d4:1})[day.id]);
   try{ history.replaceState(null,'','#'+day.id); }catch(e){}
 }
 
 const tabs=document.getElementById('tabs');
 DAYS.forEach(d=>{ const b=document.createElement('button'); b.className='tab'; b.role='tab'; b.dataset.id=d.id;
-  b.innerHTML='<span></span><small></small>'; b.querySelector('span').textContent=d.tab; b.querySelector('small').textContent=d.sub;
+  b.innerHTML='<span></span><small></small>'; b.querySelector('span').textContent=d.tab; b.querySelector('small').textContent=({d1:'도착',d2:'마리나베이',d3:'센토사',d4:'시내·귀국'})[d.id];
   b.addEventListener('click',()=>setDay(d.id)); tabs.appendChild(b); });
 
 // pan & zoom
 function zoomAt(f,cx,cy){ const s=Math.min(Math.max(view.s*f,.4),900); f=s/view.s; view.tx=cx-(cx-view.tx)*f; view.ty=cy-(cy-view.ty)*f; view.s=s; render(); }
 svg.addEventListener('wheel',e=>{ e.preventDefault(); const r=svg.getBoundingClientRect(); zoomAt(Math.exp(-e.deltaY*0.0015),e.clientX-r.left,e.clientY-r.top); },{passive:false});
 const ptrs=new Map(); let last=null, pinch=null;
-svg.addEventListener('pointerdown',e=>{ ptrs.set(e.pointerId,[e.clientX,e.clientY]); svg.setPointerCapture(e.pointerId); svg.classList.add('drag'); last=[e.clientX,e.clientY];
+svg.addEventListener('pointerdown',e=>{ ptrs.set(e.pointerId,[e.clientX,e.clientY]); if(e.target===svg) svg.setPointerCapture(e.pointerId); svg.classList.add('drag'); last=[e.clientX,e.clientY];
   if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; pinch=Math.hypot(a[0]-b[0],a[1]-b[1]); } });
 svg.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
   if(ptrs.size===2 && pinch){ const [a,b]=[...ptrs.values()], d=Math.hypot(a[0]-b[0],a[1]-b[1]), r=svg.getBoundingClientRect();
@@ -394,8 +445,8 @@ const up=e=>{ ptrs.delete(e.pointerId); if(ptrs.size<2) pinch=null; if(!ptrs.siz
 svg.addEventListener('pointerup',up); svg.addEventListener('pointercancel',up);
 document.getElementById('zin').onclick=()=>{const [w,h]=size(); zoomAt(1.6,w/2,h/2);};
 document.getElementById('zout').onclick=()=>{const [w,h]=size(); zoomAt(1/1.6,w/2,h/2);};
-document.getElementById('zfit').onclick=()=>{ sel=null; markRail(); fitDay(true); };
-let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(()=>{ sel=null; markRail(); fitDay(); },150);});
+document.getElementById('zfit').onclick=()=>{ selectScope(0); };
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(()=>{ selectScope(scope); },150);});
 window.addEventListener('hashchange',()=>{ const id=location.hash.slice(1); if(id!==day.id && DAYS.some(d=>d.id===id)) setDay(id); });
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',render);
 
