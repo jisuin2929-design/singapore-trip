@@ -130,6 +130,17 @@ section > h2{font-size:30px}
 .wxday .ic span:nth-child(odd){font-size:30px;line-height:1.1}
 .wxday .t{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
 .wxday .r{font-size:14px;color:var(--muted);line-height:1.4}
+.meals{display:grid;gap:10px}
+.mealday{background:var(--dbg);border-radius:16px;padding:14px 16px;display:grid;gap:8px}
+.mealday.d2{--dbg:var(--d2-bg);--dac:var(--d2-ac)}
+.mealday.d3{--dbg:var(--d3-bg);--dac:var(--d3-ac)}
+.mealday.d4{--dbg:var(--d4-bg);--dac:var(--d4-ac)}
+.mealday h3{font-family:var(--body);font-size:18px;font-weight:800;color:var(--dac)}
+.mealday ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mealday li{display:grid;grid-template-columns:4.2em 1fr;gap:10px;align-items:baseline}
+.mealday .when{font-size:15px;font-weight:700;color:var(--muted)}
+.mealday .menu{font-size:19px;font-weight:700;min-width:0}
+.mealday .menu small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px}
 .wxnote{font-size:16px;color:var(--muted)}
 .wx{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;background:var(--surface);border-radius:14px;padding:12px 16px}
 .wx .ico{font-size:34px;line-height:1;grid-row:span 2}
@@ -269,6 +280,15 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
     </div>
     <p class="wxnote">12월 초 싱가포르는 보통 오전에 맑고 오후에 잠깐 소나기가 와요. 아직 예보가 나오기 전이라 예년 날씨로 적었고, 출발 며칠 전에 실제 예보로 바꿀게요.</p>
+  </section>
+
+  <section id="meals">
+    <h2>날짜별 먹는 것</h2>
+    <div class="meals">
+      <div class="mealday d2"><h3>12/3 목</h3><ul><li><span class="when">아침</span><span class="menu">호텔 조식 뷔페<small>두짓타니</small></span></li><li><span class="when">점심</span><span class="menu">칠리크랩, 블랙페퍼크랩<small>팜비치 시푸드</small></span></li><li><span class="when">간식</span><span class="menu">애프터눈티, 케이크<small>풀러턴 라운지</small></span></li><li><span class="when">저녁</span><span class="menu">파스타, 스테이크<small>라보 57층</small></span></li></ul></div>
+      <div class="mealday d3"><h3>12/4 금</h3><ul><li><span class="when">아침</span><span class="menu">호텔 조식 뷔페<small>풀러턴</small></span></li><li><span class="when">점심</span><span class="menu">화덕 피자, 파스타<small>트라피자</small></span></li><li><span class="when">간식</span><span class="menu">시원한 음료<small>탄중 비치클럽</small></span></li><li><span class="when">저녁</span><span class="menu">간단한 식사<small>나이트사파리 입구</small></span></li></ul></div>
+      <div class="mealday d4"><h3>12/5 토</h3><ul><li><span class="when">아침</span><span class="menu">호텔 조식 뷔페<small>풀러턴</small></span></li><li><span class="when">점심</span><span class="menu">바쿠테 (돼지갈비 후추탕)<small>송파 바쿠테</small></span></li><li><span class="when">늦은 점심</span><span class="menu">칠리크랩<small>점보 시푸드</small></span></li><li><span class="when">저녁</span><span class="menu">딤섬, 차슈번<small>팀호완</small></span></li></ul></div>
+    </div>
   </section>
 
   <section id="hotel">
