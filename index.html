@@ -13,20 +13,28 @@
   --bg:#f3f7f5; --surface:#ffffff; --ink:#15302a; --muted:#4f6660; --line:#d5e2dd;
   --green:#0f6b57; --green-soft:#dff0ea; --orchid:#b02f6e; --orchid-soft:#f8e4ee;
   --sun:#9a5a00; --sun-soft:#fdf0d8;
+  --d1-bg:#e9ecf8; --d1-ac:#3b4a9c; --d2-bg:#e2f2eb; --d2-ac:#0f6b57;
+  --d3-bg:#dfeff8; --d3-ac:#0b5f86; --d4-bg:#fbe8ef; --d4-ac:#a3295f;
   --display:"Gowun Batang", "Noto Serif KR", serif;
   --body:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
   --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
-  --sun:#f2bd6b; --sun-soft:#3a2d17; color-scheme:dark}}
+  --sun:#f2bd6b; --sun-soft:#3a2d17;
+  --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
+  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
+  color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
   --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
-  --sun:#f2bd6b; --sun-soft:#3a2d17; color-scheme:dark}
+  --sun:#f2bd6b; --sun-soft:#3a2d17;
+  --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
+  --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
+  color-scheme:dark}
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--navh,62px) + 8px)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
 .wrap{max-width:680px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
@@ -80,19 +88,25 @@ section > h2{font-size:30px}
 .phone{font-variant-numeric:tabular-nums;font-weight:700;user-select:all}
 
 /* days */
-.day{display:grid;gap:14px}
-.dayhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.dayhead .date{font-family:var(--display);font-size:30px;font-weight:700}
+.day{display:grid;gap:14px;background:var(--dbg);border-radius:20px;padding:0 16px 20px}
+.day.d1{--dbg:var(--d1-bg);--dac:var(--d1-ac)}
+.day.d2{--dbg:var(--d2-bg);--dac:var(--d2-ac)}
+.day.d3{--dbg:var(--d3-bg);--dac:var(--d3-ac)}
+.day.d4{--dbg:var(--d4-bg);--dac:var(--d4-ac)}
+.dayhead{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--navh,62px));z-index:3;background:var(--dbg);border-radius:20px 20px 0 0;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;padding-block:14px 10px;border-bottom:2px solid var(--dac)}
+.dayhead .dnum{background:var(--dac);color:var(--dbg);font-weight:800;font-size:17px;border-radius:999px;padding:4px 12px;line-height:1.3}
+.dayhead .date{font-family:var(--display);font-size:28px;font-weight:700}
+.dayhead .theme{flex-basis:100%}
 .dayhead .theme{font-size:18px;color:var(--muted)}
 .day.is-today .dayhead .date::after{content:"오늘";font-family:var(--body);font-size:15px;background:var(--orchid);color:#fff;border-radius:999px;padding:3px 10px;margin-left:10px;vertical-align:middle}
 .timeline{list-style:none;margin:0;padding:0;display:grid}
 .timeline li{display:grid;grid-template-columns:70px 1fr;gap:14px;position:relative;padding-bottom:18px}
-.timeline li::before{content:"";position:absolute;left:84px;top:12px;bottom:-4px;width:2px;background:var(--line)}
+.timeline li::before{content:"";position:absolute;left:84px;top:12px;bottom:-4px;width:2px;background:var(--dac,var(--line));opacity:.35}
 .timeline li:last-child::before{display:none}
-.timeline li::after{content:"";position:absolute;left:79px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--green)}
+.timeline li::after{content:"";position:absolute;left:79px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--dac,var(--green))}
 .timeline li.meal::after{background:var(--orchid)}
 .timeline li.rest::after{background:var(--sun)}
-.timeline .time{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--green);text-align:right}
+.timeline .time{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--dac,var(--green));text-align:right}
 .timeline .what{padding-left:16px;min-width:0}
 .timeline .what b{display:block;font-size:20px}
 .timeline .what small{display:block;font-size:17px;color:var(--muted);line-height:1.6}
@@ -100,7 +114,7 @@ section > h2{font-size:30px}
 .pill.meal{background:var(--orchid-soft);color:var(--orchid)}
 .pill.rest{background:var(--sun-soft);color:var(--sun)}
 .choice{background:var(--sun-soft);border-radius:12px;padding:10px 14px;margin-top:6px;font-size:17px}
-.rain{font-size:17px;background:var(--green-soft);border-radius:12px;padding:12px 16px}
+.rain{font-size:17px;background:var(--surface);border-radius:12px;padding:12px 16px}
 
 /* food */
 .food{display:grid;gap:4px}
@@ -130,6 +144,8 @@ section > h2{font-size:30px}
 footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 @media (max-width:420px){
+  .day{padding:0 12px 18px}
+  .dayhead .date{font-size:24px}
   body{font-size:18px}
   .hero h1{font-size:34px}
   .flight .t{font-size:28px}
@@ -158,9 +174,10 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <div class="wrap">
     <a href="#flight">비행기</a>
     <a href="#hotel">호텔</a>
-    <a href="#d1203" data-date="2026-12-03">3일(목)</a>
-    <a href="#d1204" data-date="2026-12-04">4일(금)</a>
-    <a href="#d1205" data-date="2026-12-05">5일(토)</a>
+    <a href="#d1202" data-date="2026-12-02">1일차 2일</a>
+    <a href="#d1203" data-date="2026-12-03">2일차 3일</a>
+    <a href="#d1204" data-date="2026-12-04">3일차 4일</a>
+    <a href="#d1205" data-date="2026-12-05">4일차 5일</a>
     <a href="#food">식당</a>
     <a href="#pack">준비물</a>
     <a href="#tips">알아두실 것</a>
@@ -216,10 +233,19 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     </div>
   </section>
 
-  <section id="d1203" class="day">
-    <div class="dayhead"><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
+  <section id="d1202" class="day d1">
+    <div class="dayhead"><span class="dnum">1일차</span><span class="date">12월 2일 수요일</span><span class="theme">출발하는 날</span></div>
     <ol class="timeline">
-      <li><span class="time">00:15</span><span class="what"><b>싱가포르 도착</b><small>입국 심사 후 택시로 두짓타니 호텔(10분), 새벽 2시쯤 잠자리에 들어요.</small></span></li>
+      <li><span class="time">16:00</span><span class="what"><b>인천공항 제2터미널 도착</b><small>대한항공 카운터에서 짐을 부치고 출국 심사를 해요.</small></span></li>
+      <li><span class="time">18:35</span><span class="what"><b>비행기 출발 (KE645)</b><small>6시간 40분쯤 날아가요. 기내식이 나와요.</small></span></li>
+      <li><span class="time">00:15</span><span class="what"><b>싱가포르 도착</b><small>싱가포르 시간이에요(한국은 새벽 1시 15분). 입국 심사 후 택시로 두짓타니 호텔까지 10분.</small></span></li>
+      <li class="rest"><span class="time">02:00</span><span class="what"><b>호텔에서 주무시기<span class="pill rest">휴식</span></b><small>두짓타니 라구나에서 하룻밤 자요.</small></span></li>
+    </ol>
+  </section>
+
+  <section id="d1203" class="day d2">
+    <div class="dayhead"><span class="dnum">2일차</span><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
+    <ol class="timeline">
       <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
       <li><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
       <li><span class="time">09:20</span><span class="what"><b>보타닉 가든, 내셔널 오키드 가든</b><small>시원한 아침에 큰 숲 정원을 걷고, 난초 정원을 구경해요.</small></span></li>
@@ -237,8 +263,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <p class="rain">피곤하시면 보타닉 가든은 빼고, 10시에 천천히 체크아웃한 뒤 바로 풀러턴과 머라이언 공원으로 가요.</p>
   </section>
 
-  <section id="d1204" class="day">
-    <div class="dayhead"><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
+  <section id="d1204" class="day d3">
+    <div class="dayhead"><span class="dnum">3일차</span><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
     <ol class="timeline">
       <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
       <li><span class="time">09:30</span><span class="what"><b>케이블카 타고 센토사섬으로</b><small>바다 위를 지나가요. 경치가 정말 좋아요.</small></span></li>
@@ -256,8 +282,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <p class="rain">비가 많이 오면 해변 대신 <b>오셔나리움</b>(큰 수족관)이나 <b>해리포터 전시</b>에 가요.</p>
   </section>
 
-  <section id="d1205" class="day">
-    <div class="dayhead"><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
+  <section id="d1205" class="day d4">
+    <div class="dayhead"><span class="dnum">4일차 · 마지막 날</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
     <ol class="timeline">
       <li class="meal"><span class="time">08:00</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>먹고 나서 방에서 쉬며 짐을 싸요.</small></span></li>
       <li><span class="time">10:30</span><span class="what"><b>체크아웃, 호텔에 짐 맡기기</b></span></li>
@@ -365,6 +391,12 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <script>
 (function(){
+  // Keep day headers just under the sticky nav.
+  try{
+    var nav=document.querySelector('nav');
+    var setH=function(){document.documentElement.style.setProperty('--navh', nav.offsetHeight+'px');};
+    setH(); window.addEventListener('resize', setH);
+  }catch(e){}
   // Highlight today's day (Singapore time) in the nav and on the day card.
   try{
     var d = new Date(Date.now() + 8*3600*1000).toISOString().slice(0,10);
