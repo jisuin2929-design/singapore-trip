@@ -63,9 +63,13 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--orchid);outline-off
 /* sticky nav */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:8px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
-nav .wrap::-webkit-scrollbar{display:none}
-nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:17px;font-weight:700;line-height:1.2}
+nav .wrap{display:grid;gap:6px;padding-block:8px}
+nav .nrow{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav .nrow::-webkit-scrollbar{display:none}
+nav .nrow.days{display:grid;grid-template-columns:repeat(4,1fr)}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:15px;font-weight:700;line-height:1.2;text-align:center;white-space:nowrap}
+nav .days a{padding:7px 4px}
+nav .days a small{font-size:14px;font-weight:600}
 nav a.today{background:var(--orchid);border-color:var(--orchid);color:#fff}
 
 main .wrap{display:grid;gap:44px;padding-block:32px 56px}
@@ -267,16 +271,22 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <nav aria-label="바로가기">
   <div class="wrap">
-    <a href="#flight">비행기</a>
-    <a href="#hotel">호텔</a>
-    <a href="#d1202" data-date="2026-12-02">1일차 12/2</a>
-    <a href="#d1203" data-date="2026-12-03">2일차 12/3</a>
-    <a href="#d1204" data-date="2026-12-04">3일차 12/4</a>
-    <a href="#d1205" data-date="2026-12-05">4일차 12/5</a>
-    <a href="#food">식당</a>
-    <a href="#info">기본 정보</a>
-    <a href="#pack">준비물</a>
-    <a href="#tips">알아두실 것</a>
+    <div class="nrow">
+      <a href="#flight">비행기</a>
+      <a href="#meals">먹는 것</a>
+      <a href="#weather">날씨</a>
+      <a href="#hotel">호텔</a>
+      <a href="#food">식당</a>
+      <a href="#info">기본 정보</a>
+      <a href="#pack">준비물</a>
+      <a href="#tips">알아두실 것</a>
+    </div>
+    <div class="nrow days">
+      <a href="#d1202" data-date="2026-12-02">1일차 <small>12/2</small></a>
+      <a href="#d1203" data-date="2026-12-03">2일차 <small>12/3</small></a>
+      <a href="#d1204" data-date="2026-12-04">3일차 <small>12/4</small></a>
+      <a href="#d1205" data-date="2026-12-05">4일차 <small>12/5</small></a>
+    </div>
   </div>
 </nav>
 
