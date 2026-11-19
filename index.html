@@ -105,6 +105,13 @@ section > h2{font-size:30px}
 .fsz button+button{border-left:1px solid var(--line)}
 .fsz button:disabled{opacity:.35}
 .fsz small{font-size:12px}
+.prep h3{font-size:21px;margin:0 0 10px}
+.prepitem{display:grid;gap:4px;padding:10px 0;border-top:1px dashed var(--line)}
+.prepitem > b{font-size:19px}
+.prepitem p{font-size:17px;color:var(--muted);line-height:1.6}
+.prepitem p b{color:var(--ink)}
+.appbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.appbtns a{display:inline-block;padding:9px 14px;border-radius:10px;background:var(--green);color:var(--surface);font-size:16px;font-weight:700;text-decoration:none}
 .park summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:19px;font-weight:700}
 .park summary::-webkit-details-marker{display:none}
 .park .pkmore{flex:none;font-size:15px;font-weight:600;color:#2a62b8}
@@ -354,6 +361,19 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="flight">
     <h2>비행기</h2>
     <p class="lead">대한항공이에요. 시간은 모두 그 나라 시간이에요.</p>
+    <div class="card prep">
+      <h3>✅ 출발 전에 꼭 해 두세요</h3>
+      <div class="prepitem">
+        <b>1. 인천공항 스마트패스 앱 깔기</b>
+        <p>여권과 얼굴을 미리 등록해 두면, 출국할 때 얼굴만 보고 빨리 통과해요. 4명 모두 각자 휴대폰에 깔고 등록해요.</p>
+        <div class="appbtns"><a href="https://play.google.com/store/search?q=%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8C%A8%EC%8A%A4&amp;c=apps" target="_blank" rel="noopener">갤럭시 (안드로이드)</a><a href="https://apps.apple.com/kr/app/id6443837919" target="_blank" rel="noopener">아이폰</a></div>
+      </div>
+      <div class="prepitem">
+        <b>2. 싱가포르 입국신고서 (SG Arrival Card) 내기</b>
+        <p><b>11/30(월)~12/2(수)</b> 사이에 인터넷으로 내요. 무료예요. 비자는 필요 없어요. 돈을 받는 비슷한 사이트는 가짜니 아래 공식 사이트로만 하세요.</p>
+        <div class="appbtns"><a href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener">공식 사이트에서 내기</a></div>
+      </div>
+    </div>
     <details class="card park">
       <summary><span class="pkt">🚗 인천공항 주차 <span class="okpill">예약 완료</span></span><span class="pkmore">눌러서 보기</span></summary>
       <ul class="pk">
