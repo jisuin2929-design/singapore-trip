@@ -129,8 +129,9 @@ section > h2{font-size:30px}
 .park[open] .pkmore::after{content:"접기 ▴";font-size:15px}
 .park .okpill{display:inline-block;font-size:14px;font-weight:700;background:var(--green);color:var(--surface);border-radius:999px;padding:1px 9px;vertical-align:3px;margin-left:4px}
 .park .pk{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-size:17px;line-height:1.5}
-.park .pk b:first-child{display:inline-block;min-width:76px;color:var(--muted);font-weight:700}
-.park .pk small{color:var(--muted);font-size:15px}
+.park .pk li{display:grid;grid-template-columns:5.6em minmax(0,1fr);gap:8px}
+.park .pk li > b{color:var(--muted);font-weight:700}
+.park .pk small{display:block;color:var(--muted);font-size:15px}
 .park .cancel{margin:8px 0 0;font-size:14px;color:#c62828;font-weight:600}
 .pkimgs{display:grid;gap:10px;margin-top:12px}
 .pkimgs figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
@@ -407,11 +408,11 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <details class="card park">
       <summary><span class="pkt">🚗 인천공항 주차 <span class="okpill">예약 완료</span></span><span class="pkmore">눌러서 보기</span></summary>
       <ul class="pk">
-        <li><b>어디</b> 제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></li>
-        <li><b>세우는 날</b> 12/2(수) 오후 4시 <small>(낮 12시~저녁 8시 사이에 들어가면 돼요)</small></li>
-        <li><b>빼는 날</b> 12/6(일) 아침 7시</li>
-        <li><b>돌아올 때</b> 인천 도착 후 짐을 찾고 <b>1층 입국장 5번 출구</b> 앞 정류장에서 <b>공항02번</b> 셔틀을 타요. <b>'제2터미널 예약주차장'</b>에서 내려 차를 빼면 돼요.</li>
-        <li><b>터미널까지</b> 주차장 앞에서 <b>공항02번</b> 무료 셔틀버스를 타요.</li>
+        <li><b>어디</b><span>제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></span></li>
+        <li><b>세우는 날</b><span>12/2(수) 오후 4시 <small>(낮 12시~저녁 8시 사이에 들어가면 돼요)</small></span></li>
+        <li><b>빼는 날</b><span>12/6(일) 아침 7시</span></li>
+        <li><b>돌아올 때</b><span>인천 도착 후 짐을 찾고 <b>1층 입국장 5번 출구</b> 앞 정류장에서 <b>공항02번</b> 셔틀을 타요. <b>'제2터미널 예약주차장'</b>에서 내려 차를 빼면 돼요.</span></li>
+        <li><b>터미널까지</b><span>주차장 앞에서 <b>공항02번</b> 무료 셔틀버스를 타요.</span></li>
       </ul>
       <p class="cancel">12/2 오후 4시 전까지 취소할 수 있어요.</p>
       <div class="pkimgs">
@@ -559,7 +560,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <ul>
         <li>공항에서 차로 10분. 새벽 2시쯤 들어가서 자기만 하는 곳이에요.</li>
         <li>방 2개, 침대 2개짜리 방이에요. 아침 식사 포함.</li>
-        <li><b>야외 수영장</b>이 있어요. 아침 먹고 체크아웃 전에 잠깐 수영해도 좋아요.</li>
+        <li><b>야외 수영장</b>이 있어요. <b>아침 8시~저녁 8시</b>에 열어요. 아침 먹고 체크아웃 전에 잠깐 수영해도 좋아요.</li>
         <li>전화 <span class="phone">+65 6841 8888</span></li>
       </ul>
     </div>
