@@ -1,0 +1,398 @@
+<title>싱가포르 가족여행 동선지도</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: map-first split view. Map (left/top) + day itinerary rail (right/below). Day tabs on top. */
+:root{
+  --bg:#f6f7f5; --panel:#ffffff; --fg:#1d2422; --muted:#5f6b67; --line:#dde2df;
+  --sea:#cfe2e8; --land:#eef1ea; --land-edge:#c3cdc4; --label:#7c8a84;
+  --taxi:#1f6feb; --walk:#0e8a5f; --rail:#b5530f; --hotel:#8a3ffc;
+  --chip:#eef2f0; --focus:#1f6feb;
+  --sans:"IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121615; --panel:#1a201e; --fg:#e7ecea; --muted:#9aa7a2; --line:#2c3532;
+  --sea:#13232b; --land:#232a27; --land-edge:#3a4541; --label:#82918b;
+  --taxi:#6ea8ff; --walk:#3fcf98; --rail:#f0914d; --hotel:#b68cff;
+  --chip:#242c29; --focus:#6ea8ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121615; --panel:#1a201e; --fg:#e7ecea; --muted:#9aa7a2; --line:#2c3532;
+  --sea:#13232b; --land:#232a27; --land-edge:#3a4541; --label:#82918b;
+  --taxi:#6ea8ff; --walk:#3fcf98; --rail:#f0914d; --hotel:#b68cff;
+  --chip:#242c29; --focus:#6ea8ff; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:16px}
+header{display:grid;gap:4px}
+h1{font-size:1.5rem;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:0;font-size:.92rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:999px;padding:7px 14px;cursor:pointer;display:flex;gap:6px;align-items:baseline}
+.tab small{color:var(--muted);font-size:.8rem}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.tab[aria-selected="true"] small{color:var(--bg);opacity:.75}
+.tab:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:minmax(0,1fr)}}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--sea);height:min(72vh,640px);min-height:380px;touch-action:none}
+@media (max-width:860px){.mapbox{height:58vh;min-height:360px}}
+.mapbox svg{display:block;width:100%;height:100%;cursor:grab;user-select:none}
+.mapbox svg.drag{cursor:grabbing}
+.ctrl{position:absolute;right:10px;top:10px;display:grid;gap:6px}
+.ctrl button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:600 18px var(--sans);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.ctrl button.fit{font-size:11px}
+.legend{position:absolute;left:10px;bottom:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:.78rem;display:flex;gap:12px;flex-wrap:wrap;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid}
+.side{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:12px;min-width:0}
+.dayhead h2{margin:0;font-size:1.15rem;text-wrap:balance}
+.dayhead p{margin:2px 0 8px;color:var(--muted);font-size:.88rem}
+.allroute{display:inline-block;font-size:.85rem;font-weight:600;color:var(--taxi);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:5px 10px}
+.allroute:hover{background:var(--chip)}
+ol.steps{list-style:none;margin:0;padding:0;display:grid}
+.stop{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start;padding:8px 6px;border-radius:10px;cursor:pointer}
+.stop:hover{background:var(--chip)}
+.stop.sel{background:var(--chip)}
+.badge{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.85rem;background:var(--fg)}
+.badge.h{background:var(--hotel)}
+.stop .t{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.stop .n{font-weight:600}
+.stop .d{font-size:.86rem;color:var(--muted)}
+.stop a{font-size:.8rem;color:var(--taxi);text-decoration:none}
+.stop a:hover{text-decoration:underline}
+.leg{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;padding:0 6px;cursor:pointer}
+.leg .bar{justify-self:center;width:0;border-left:3px solid var(--taxi);min-height:34px}
+.leg.walk .bar{border-left-style:dotted;border-color:var(--walk)}
+.leg.shuttle .bar,.leg.rail .bar{border-left-style:dashed;border-color:var(--rail)}
+.leg.zip .bar,.leg.cable .bar{border-left-style:dashed;border-color:var(--hotel)}
+.leg .info{font-size:.84rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;padding-block:6px}
+.mode{font-weight:600;color:var(--taxi)}
+.leg.walk .mode{color:var(--walk)} .leg.rail .mode{color:var(--rail)} .leg.cable .mode,.leg.zip .mode{color:var(--hotel)} .leg.shuttle .mode{color:var(--rail)}
+.leg a{color:var(--muted);font-size:.8rem}
+.leg.sel .info{color:var(--fg)}
+.notes{border-top:1px solid var(--line);padding-top:10px;font-size:.84rem;color:var(--muted);display:grid;gap:4px}
+.notes b{color:var(--fg);font-weight:600}
+footer{color:var(--muted);font-size:.82rem;max-width:72ch}
+/* map svg */
+.coast{fill:var(--land);stroke:var(--land-edge);stroke-width:1;vector-effect:non-scaling-stroke}
+.area{fill:var(--label);font:500 12px var(--sans);letter-spacing:.06em;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:var(--land);stroke-width:3px}
+.route{fill:none;stroke-width:4;stroke-linecap:round}
+.route.taxi{stroke:var(--taxi)}
+.route.walk{stroke:var(--walk);stroke-dasharray:1 8;stroke-width:5}
+.route.shuttle,.route.rail{stroke:var(--rail);stroke-dasharray:10 6}
+.route.zip,.route.cable{stroke:var(--hotel);stroke-dasharray:3 5;stroke-width:4}
+.route.dim{opacity:.28}
+.route-halo{fill:none;stroke:var(--panel);stroke-width:8;stroke-linecap:round;opacity:.9}
+.arrow.taxi{fill:var(--taxi)} .arrow.walk{fill:var(--walk)} .arrow.rail{fill:var(--rail)} .arrow.cable,.arrow.zip{fill:var(--hotel)} .arrow.shuttle{fill:var(--rail)}
+.pin circle{stroke:var(--panel);stroke-width:2.5}
+.pin:focus-visible{outline:none}.pin:focus-visible circle,.pin:focus-visible rect{stroke:var(--focus)}
+.pin text{fill:#fff;font:700 12px var(--sans);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.pin .lbl{fill:var(--fg);font:600 12px var(--sans);text-anchor:start;paint-order:stroke;stroke:var(--panel);stroke-width:4px;stroke-linejoin:round}
+.pin{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>싱가포르 가족여행 동선지도</h1>
+    <p class="sub">12월 2일~5일 · 4명 · 날짜를 누르면 그날 이동경로가 지도에 그려져요. 장소나 구간을 누르면 확대되고, 구글맵 길찾기 링크로 실제 경로를 볼 수 있어요.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <div class="main">
+    <div class="mapbox" id="mapbox">
+      <svg id="map" aria-label="이동경로 지도" role="img"></svg>
+      <div class="ctrl">
+        <button id="zin" aria-label="확대">+</button>
+        <button id="zout" aria-label="축소">−</button>
+        <button id="zfit" class="fit" aria-label="공항·첫날 숙소까지 전체 보기">전체</button>
+      </div>
+      <div class="legend">
+        <span><i style="border-color:var(--taxi)"></i>택시·Grab</span>
+        <span><i style="border-color:var(--walk);border-top-style:dotted"></i>도보</span>
+        <span><i style="border-color:var(--rail);border-top-style:dashed"></i>모노레일·셔틀</span>
+        <span><i style="border-color:var(--hotel);border-top-style:dashed"></i>케이블카·짚라인</span>
+      </div>
+    </div>
+    <aside class="side" id="rail"></aside>
+  </div>
+  <footer>지도는 해안선만 그린 약식 지도이고, 선은 실제 도로가 아니라 이동 순서를 보여주는 곡선이에요. 시간과 요금은 평소 교통 기준 추정치라 실제와 다를 수 있어요. 일정은 11월 19일 최종 확정안 기준이에요. 해안선 데이터 © OpenStreetMap 기여자.</footer>
+</div>
+
+<script>
+const COAST = [[[103.45,1.57],[103.4965,1.57],[104.2,1.57],[104.2,1.3371],[104.1966,1.3453],[104.1852,1.3492],[104.1819,1.3486],[104.1884,1.3469],[104.1876,1.3386],[104.1624,1.3417],[104.1573,1.3471],[104.1386,1.3412],[104.1376,1.3378],[104.1299,1.3547],[104.0882,1.3688],[104.0925,1.3775],[104.1126,1.3939],[104.1026,1.4173],[104.0875,1.435],[104.0589,1.4463],[104.0674,1.4609],[104.0628,1.4554],[104.0547,1.4529],[104.045,1.4575],[104.0401,1.4656],[104.0522,1.4754],[104.0566,1.4856],[104.0628,1.4888],[104.061,1.49],[104.0565,1.5008],[104.0405,1.4958],[104.0293,1.5319],[104.0333,1.5549],[104.0127,1.57],[103.9526,1.57],[103.9709,1.57],[103.9593,1.57],[103.9746,1.5686],[103.9793,1.57],[103.9951,1.57],[103.9968,1.5691],[103.9966,1.5693],[103.9898,1.5599],[104.0028,1.5599],[104.0094,1.5499],[104.0063,1.5352],[104.0071,1.537],[104.0104,1.5382],[104.0151,1.5246],[104.0031,1.5159],[104.0,1.5205],[104.0047,1.5314],[103.9987,1.5317],[103.9983,1.5369],[103.9971,1.5379],[104.0013,1.5379],[103.9966,1.5426],[103.9966,1.5383],[103.9965,1.5384],[103.991,1.5356],[103.9857,1.5406],[103.9823,1.5422],[103.9781,1.5411],[103.974,1.537],[103.9826,1.5417],[103.9915,1.5346],[103.9965,1.5375],[103.9972,1.5322],[104.0004,1.5274],[103.9975,1.5189],[104.0085,1.5033],[104.0061,1.494],[103.9958,1.494],[103.9966,1.4893],[104.0057,1.4926],[104.0028,1.4819],[104.0114,1.4718],[104.008,1.4584],[104.0107,1.4558],[104.0121,1.4587],[104.0113,1.4549],[104.0089,1.4559],[104.0055,1.4473],[103.9966,1.4392],[103.9978,1.4345],[103.9946,1.4367],[103.96,1.4264],[103.9526,1.4286],[103.9526,1.43],[103.9516,1.4289],[103.9241,1.4371],[103.9199,1.4363],[103.9206,1.4312],[103.8925,1.4353],[103.8688,1.4598],[103.8725,1.4629],[103.8658,1.4712],[103.8674,1.472],[103.8648,1.4776],[103.8648,1.4713],[103.8521,1.4714],[103.831,1.4829],[103.8019,1.4842],[103.7973,1.4891],[103.802,1.4979],[103.7948,1.4962],[103.7943,1.4825],[103.7749,1.4635],[103.7753,1.4594],[103.7616,1.4521],[103.7627,1.4552],[103.7321,1.4582],[103.7244,1.4651],[103.7225,1.4753],[103.7115,1.4814],[103.7017,1.4781],[103.7162,1.4748],[103.7165,1.472],[103.7059,1.472],[103.7109,1.4645],[103.7169,1.4684],[103.7171,1.4663],[103.6919,1.4568],[103.6973,1.4528],[103.6891,1.4429],[103.6845,1.4445],[103.6782,1.4396],[103.6747,1.4429],[103.6646,1.4176],[103.6596,1.4186],[103.6614,1.4231],[103.657,1.4206],[103.6611,1.4143],[103.6504,1.4064],[103.6497,1.4026],[103.6308,1.3799],[103.6418,1.3813],[103.6325,1.3676],[103.6029,1.3448],[103.5679,1.3489],[103.563,1.346],[103.5593,1.3502],[103.5632,1.3325],[103.5571,1.3327],[103.5571,1.3402],[103.5419,1.3402],[103.5512,1.3622],[103.5539,1.3823],[103.5352,1.3767],[103.5238,1.3622],[103.5352,1.3599],[103.5352,1.3402],[103.5333,1.3402],[103.5352,1.3324],[103.5448,1.332],[103.5248,1.3191],[103.5117,1.2976],[103.5118,1.2664],[103.5084,1.2665],[103.4662,1.3122],[103.45,1.325],[103.45,1.57]],[[103.8242,1.2601],[103.8361,1.2639],[103.8425,1.2579],[103.8364,1.2548],[103.8242,1.2601]],[[103.8576,1.4499],[103.8651,1.4415],[103.8651,1.4374],[103.8599,1.4435],[103.8576,1.4499]],[[103.7607,1.2324],[103.7599,1.2395],[103.7638,1.2407],[103.7791,1.2241],[103.7607,1.2324]],[[103.7937,1.2044],[103.7922,1.2108],[103.8014,1.2008],[103.7985,1.2015],[103.7937,1.2044]],[[103.6994,1.3009],[103.6957,1.2996],[103.6947,1.3053],[103.6938,1.3007],[103.6839,1.2991],[103.6814,1.31],[103.6819,1.298],[103.6778,1.2997],[103.6784,1.2966],[103.6727,1.3068],[103.6687,1.3063],[103.6744,1.2953],[103.6645,1.2869],[103.6648,1.2919],[103.6582,1.2972],[103.6549,1.2956],[103.6573,1.2979],[103.6518,1.2993],[103.6534,1.3026],[103.6498,1.3017],[103.657,1.3111],[103.6489,1.3038],[103.6462,1.309],[103.6518,1.3157],[103.6433,1.3113],[103.6376,1.3164],[103.6352,1.3109],[103.65,1.2825],[103.6404,1.2791],[103.6433,1.2635],[103.6252,1.2631],[103.6218,1.2579],[103.6291,1.2609],[103.6155,1.2543],[103.6209,1.2308],[103.6156,1.2305],[103.6155,1.2249],[103.6106,1.2209],[103.6441,1.2114],[103.609,1.2187],[103.6059,1.2216],[103.6056,1.2228],[103.6065,1.2248],[103.6095,1.2201],[103.6131,1.2254],[103.6117,1.2397],[103.6054,1.244],[103.6125,1.2453],[103.6082,1.2521],[103.614,1.2557],[103.6138,1.2677],[103.606,1.2626],[103.6124,1.2776],[103.62,1.2835],[103.6181,1.2971],[103.6365,1.3456],[103.6346,1.35],[103.6383,1.3504],[103.6583,1.3834],[103.667,1.3845],[103.6865,1.4061],[103.6731,1.4148],[103.6744,1.425],[103.6956,1.4349],[103.713,1.4494],[103.7291,1.4496],[103.7319,1.4468],[103.7366,1.4387],[103.7627,1.4379],[103.7677,1.4429],[103.7685,1.4542],[103.7709,1.4486],[103.8016,1.4684],[103.8076,1.4657],[103.8054,1.4697],[103.8183,1.4716],[103.8224,1.469],[103.8184,1.4639],[103.8221,1.4666],[103.8246,1.4633],[103.8276,1.4686],[103.8343,1.4647],[103.832,1.4605],[103.8364,1.4641],[103.8512,1.4547],[103.8481,1.4491],[103.8477,1.45],[103.8482,1.45],[103.8474,1.4507],[103.8459,1.4541],[103.8458,1.4519],[103.8428,1.4542],[103.8392,1.45],[103.8457,1.45],[103.8457,1.4479],[103.8548,1.4483],[103.8626,1.435],[103.8574,1.4253],[103.8696,1.4246],[103.8697,1.4286],[103.8771,1.432],[103.897,1.4206],[103.898,1.4147],[103.9125,1.4212],[103.926,1.4085],[103.9214,1.4061],[103.9307,1.3884],[103.9307,1.4042],[103.9378,1.39],[103.9531,1.3819],[103.9668,1.3802],[103.9716,1.3868],[103.9763,1.386],[103.9736,1.3892],[103.9768,1.3923],[103.9977,1.3896],[104.0088,1.3736],[104.0063,1.37],[104.028,1.3637],[104.0414,1.3548],[104.0431,1.3523],[104.0436,1.3494],[104.0348,1.3584],[104.0322,1.3533],[104.021,1.3282],[104.0323,1.3249],[104.0325,1.3159],[104.0229,1.32],[104.0224,1.3154],[104.0006,1.3103],[103.9839,1.3121],[103.9841,1.3167],[103.9704,1.316],[103.9172,1.3016],[103.8937,1.2935],[103.8867,1.288],[103.8867,1.2929],[103.8753,1.2815],[103.8737,1.2822],[103.8608,1.2647],[103.8516,1.2729],[103.8512,1.2607],[103.8397,1.2676],[103.8199,1.2619],[103.8175,1.2667],[103.8161,1.2638],[103.8067,1.2662],[103.8051,1.2623],[103.7953,1.2716],[103.7855,1.255],[103.7786,1.2592],[103.7866,1.2728],[103.7769,1.2787],[103.7707,1.2682],[103.7502,1.2805],[103.7565,1.2858],[103.7691,1.2784],[103.7723,1.2837],[103.7607,1.2906],[103.763,1.2948],[103.7577,1.3001],[103.7563,1.2994],[103.7549,1.3018],[103.7549,1.3248],[103.7318,1.3182],[103.7496,1.2985],[103.7478,1.2974],[103.7432,1.3012],[103.7279,1.3001],[103.7127,1.3089],[103.7219,1.2995],[103.7113,1.2972],[103.7108,1.3084],[103.7087,1.302],[103.6951,1.3078],[103.6948,1.306],[103.6968,1.3066],[103.6994,1.3009]],[[103.8237,1.2464],[103.8066,1.2598],[103.8416,1.2537],[103.841,1.25],[103.8484,1.2521],[103.8416,1.2423],[103.8407,1.2476],[103.837,1.2387],[103.8325,1.2379],[103.8237,1.2464]],[[104.0902,1.1429],[104.091,1.1482],[104.0949,1.147],[104.0886,1.1526],[104.0943,1.1567],[104.0852,1.155],[104.0708,1.1616],[104.0683,1.1734],[104.0731,1.188],[104.0862,1.1959],[104.0964,1.1941],[104.0966,1.1996],[104.1249,1.1828],[104.1391,1.1689],[104.1388,1.1623],[104.144,1.163],[104.1446,1.1594],[104.1405,1.1586],[104.1439,1.1514],[104.1406,1.1523],[104.1412,1.1486],[104.1494,1.1439],[104.1463,1.1268],[104.1492,1.1191],[104.1359,1.0928],[104.1345,1.0808],[104.1402,1.0814],[104.1345,1.0805],[104.134,1.0755],[104.1394,1.0737],[104.1343,1.0665],[104.1394,1.0544],[104.1368,1.05],[104.1064,1.05],[104.1064,1.0546],[104.1073,1.0546],[104.1064,1.0703],[104.0625,1.0781],[104.0235,1.0985],[104.0422,1.0546],[104.0625,1.05],[104.1014,1.05],[103.9098,1.05],[103.9086,1.0669],[103.9011,1.0724],[103.898,1.0828],[103.8927,1.0837],[103.8896,1.0942],[103.8898,1.0975],[103.8955,1.094],[103.8989,1.0985],[103.9052,1.0942],[103.9139,1.0988],[103.9103,1.0872],[103.9179,1.0836],[103.9202,1.0739],[103.9271,1.0722],[103.9326,1.0841],[103.9367,1.0832],[103.929,1.0998],[103.9295,1.1119],[103.9333,1.1073],[103.9377,1.1131],[103.9318,1.1144],[103.9319,1.1206],[103.9243,1.1257],[103.9184,1.1398],[103.9207,1.1433],[103.9307,1.1409],[103.9307,1.1387],[103.9324,1.1405],[103.9437,1.1377],[103.9442,1.135],[103.9449,1.1343],[103.9458,1.1339],[103.9485,1.1349],[103.947,1.1339],[103.947,1.1329],[103.9483,1.1316],[103.9492,1.1348],[103.9421,1.1393],[103.9444,1.1447],[103.9479,1.1459],[103.9513,1.1377],[103.9568,1.1367],[103.9607,1.1436],[103.9673,1.1384],[103.9661,1.1247],[103.9693,1.1341],[103.9771,1.134],[103.9779,1.1374],[103.9808,1.1278],[103.9815,1.1314],[103.9859,1.1298],[103.986,1.1235],[103.9895,1.131],[104.0003,1.1204],[104.0028,1.124],[103.9988,1.1226],[103.9865,1.1415],[104.0186,1.1386],[104.0224,1.1425],[104.0186,1.1623],[104.0186,1.1425],[103.9912,1.1425],[103.9928,1.1498],[104.0009,1.1469],[103.9939,1.1607],[104.0022,1.165],[103.9984,1.1715],[104.0033,1.1731],[103.9984,1.1739],[104.0011,1.1772],[103.9981,1.1784],[104.0031,1.1858],[104.0251,1.1917],[104.0242,1.1748],[104.0328,1.1725],[104.0413,1.1778],[104.0451,1.1705],[104.0533,1.167],[104.05,1.1601],[104.0587,1.1587],[104.057,1.1519],[104.0506,1.1495],[104.0478,1.1362],[104.054,1.1314],[104.073,1.1291],[104.075,1.1204],[104.085,1.1281],[104.0782,1.1357],[104.0791,1.1445],[104.0841,1.1468],[104.0845,1.1463],[104.0845,1.1364],[104.0906,1.1425],[104.0902,1.1429]],[[103.9859,1.1425],[103.9846,1.1444],[103.9888,1.1425],[103.9859,1.1425]],[[103.8954,1.1659],[103.8993,1.1644],[103.9052,1.1547],[103.8982,1.1567],[103.8954,1.1659]],[[103.879,1.1402],[103.8746,1.1432],[103.8766,1.1494],[103.884,1.1498],[103.8853,1.1578],[103.8906,1.1579],[103.8959,1.1484],[103.8919,1.1429],[103.879,1.1402]],[[103.8746,1.1279],[103.8852,1.1264],[103.8845,1.1229],[103.8747,1.1239],[103.8746,1.1279]],[[103.8405,1.1254],[103.8417,1.1213],[103.8362,1.1156],[103.8348,1.1204],[103.8405,1.1254]],[[103.9142,1.1178],[103.9172,1.1191],[103.9189,1.1141],[103.9107,1.11],[103.9142,1.1178]],[[103.9003,1.1057],[103.909,1.1104],[103.9133,1.1056],[103.9033,1.1006],[103.9003,1.1057]],[[103.9121,1.1076],[103.9199,1.1112],[103.9213,1.1059],[103.9156,1.105],[103.9121,1.1076]],[[103.7178,1.2025],[103.7071,1.2052],[103.7214,1.2137],[103.7292,1.2111],[103.7281,1.2078],[103.7337,1.2038],[103.7178,1.2025]],[[103.7189,1.1846],[103.7172,1.187],[103.7242,1.1913],[103.731,1.1891],[103.7194,1.18],[103.7189,1.1846]],[[103.7397,1.1676],[103.7338,1.1673],[103.7293,1.1744],[103.7415,1.1739],[103.7397,1.1676]],[[103.769,1.2082],[103.7749,1.2107],[103.7794,1.211],[103.7818,1.2048],[103.7807,1.1998],[103.7733,1.1914],[103.7689,1.1893],[103.7677,1.1906],[103.7712,1.1905],[103.775,1.1969],[103.7661,1.2024],[103.761,1.1972],[103.7599,1.1983],[103.7587,1.2178],[103.769,1.2082]],[[103.8755,1.1516],[103.8756,1.1484],[103.8715,1.1444],[103.8695,1.1534],[103.8755,1.1516]],[[103.7914,1.1089],[103.8113,1.0945],[103.8142,1.0852],[103.7998,1.0857],[103.7913,1.0978],[103.7914,1.1089]],[[103.8822,1.1582],[103.8771,1.1549],[103.8751,1.1573],[103.8788,1.1636],[103.8822,1.1582]],[[103.8634,1.1007],[103.869,1.1009],[103.8595,1.0955],[103.8593,1.0965],[103.8634,1.1007]],[[104.0531,1.4332],[104.0376,1.4373],[104.0193,1.4333],[104.0381,1.4409],[104.0531,1.4332]],[[103.7581,1.2549],[103.7508,1.2586],[103.7491,1.2604],[103.7547,1.2611],[103.7581,1.2549]],[[103.7398,1.2334],[103.7457,1.2373],[103.7574,1.2367],[103.76,1.231],[103.7708,1.2274],[103.7603,1.2254],[103.7398,1.2334]],[[103.8915,1.1205],[103.8896,1.1273],[103.8935,1.1303],[103.8942,1.1267],[103.8915,1.1205]],[[103.6631,1.245],[103.6541,1.273],[103.6839,1.2894],[103.6957,1.2902],[103.6841,1.2764],[103.6885,1.2723],[103.7042,1.291],[103.7113,1.2917],[103.7113,1.2966],[103.7125,1.2917],[103.7247,1.2894],[103.7402,1.2737],[103.7328,1.2692],[103.7254,1.2709],[103.7303,1.2636],[103.7233,1.2599],[103.7066,1.2688],[103.7047,1.2654],[103.7139,1.2588],[103.6962,1.251],[103.6936,1.2605],[103.685,1.2684],[103.6802,1.263],[103.6859,1.2577],[103.6903,1.2401],[103.6733,1.2226],[103.6716,1.2232],[103.6696,1.2284],[103.6719,1.2236],[103.6761,1.2279],[103.6631,1.245]],[[104.0837,1.3413],[104.0842,1.3402],[104.0839,1.3386],[104.0827,1.3376],[104.0814,1.3376],[104.0721,1.3455],[104.0836,1.3388],[104.0748,1.3558],[104.0743,1.3633],[104.0757,1.3709],[104.0798,1.3826],[104.0877,1.3972],[104.0871,1.4055],[104.0835,1.4064],[104.0789,1.3868],[104.0534,1.3759],[104.0381,1.3957],[104.0356,1.4056],[104.0196,1.3984],[104.0167,1.4011],[104.0262,1.3842],[104.0154,1.401],[104.0288,1.4029],[104.0303,1.4115],[104.0126,1.41],[104.0089,1.4207],[104.0143,1.4289],[104.0272,1.4128],[104.0311,1.4132],[104.0288,1.4252],[104.0375,1.425],[104.0428,1.4314],[104.0524,1.428],[104.0582,1.4319],[104.0816,1.4181],[104.0837,1.4071],[104.086,1.4065],[104.0878,1.4049],[104.0884,1.3991],[104.0869,1.3943],[104.0774,1.3755],[104.0746,1.3615],[104.0837,1.3413]],[[103.6536,1.1492],[103.6513,1.1521],[103.656,1.153],[103.6607,1.141],[103.6536,1.1492]],[[103.855,1.2315],[103.8535,1.2313],[103.8531,1.2317],[103.855,1.2315]],[[103.8518,1.2304],[103.8505,1.2297],[103.8527,1.2304],[103.8545,1.2304],[103.8541,1.2308],[103.8582,1.2321],[103.8533,1.2274],[103.8584,1.2182],[103.8525,1.2227],[103.8516,1.2134],[103.8432,1.2222],[103.8523,1.2228],[103.8522,1.2279],[103.847,1.2264],[103.8494,1.2296],[103.8483,1.2304],[103.8518,1.2304]],[[103.5872,1.343],[103.5999,1.3428],[103.6003,1.3417],[103.5901,1.331],[103.5872,1.343]],[[103.9742,1.418],[103.9897,1.4181],[103.9923,1.408],[103.9796,1.408],[103.9746,1.416],[103.9644,1.4061],[103.9674,1.4033],[103.9582,1.3994],[103.9536,1.4044],[103.9607,1.4061],[103.9526,1.4143],[103.9497,1.4086],[103.9486,1.4098],[103.9262,1.4224],[103.9343,1.4277],[103.9591,1.4166],[103.9742,1.418]],[[103.9526,1.4054],[103.952,1.4061],[103.9526,1.4061],[103.9526,1.4054]]];
+
+const P = { // [lat, lon, 한국어 이름, 구글맵 검색어, hotel?]
+  airport:["1.3570","103.9890","창이공항","Singapore Changi Airport"],
+  dusit:["1.3200","103.9630","두짓타니 라구나","Dusit Thani Laguna Singapore",1],
+  fullerton:["1.2863","103.8532","더 풀러턴 호텔","The Fullerton Hotel Singapore",1],
+  palm:["1.2857","103.8543","팜 비치 시푸드","Palm Beach Seafood Restaurant One Fullerton"],
+  merlion:["1.2868","103.8546","머라이언 파크","Merlion Park Singapore"],
+  ginger:["1.3022","103.8365","진저릴리 (힐튼 오차드)","Ginger Lily Hilton Singapore Orchard"],
+  ion:["1.3040","103.8319","오차드로드 크리스마스 조명","ION Orchard"],
+  lantern:["1.2838","103.8536","랜턴 루프탑바 (풀러턴 베이)","Lantern Rooftop Bar Fullerton Bay Hotel"],
+  luge:["1.2542","103.8167","스카이라인 루지","Skyline Luge Sentosa"],
+  zip:["1.2528","103.8138","메가짚","Mega Adventure Park Sentosa"],
+  weave:["1.2566","103.8213","WEAVE 점심 · 유니버설 지구본","Resorts World Sentosa WEAVE"],
+  ocean:["1.2586","103.8190","싱가포르 오셔나리움","Singapore Oceanarium Sentosa"],
+  jumbo:["1.2895","103.8455","점보 시푸드 리버사이드 포인트","JUMBO Seafood Riverside Point"],
+  gbtb:["1.2841","103.8648","가든스 바이 더 베이","Flower Dome Gardens by the Bay"],
+  maxwell:["1.2803","103.8449","맥스웰 푸드센터","Maxwell Food Centre"],
+  btr:["1.2815","103.8442","불아사 · 차이나타운","Buddha Tooth Relic Temple Singapore"],
+  jewel:["1.3602","103.9894","쥬얼 창이","Jewel Changi Airport"],
+  t4:["1.3383","103.9840","창이공항 터미널 4","Changi Airport Terminal 4"],
+  safari:["1.4022","103.7880","나이트사파리 (만다이)","Night Safari Singapore"],
+  faber:["1.2716","103.8195","마운트페이버 케이블카","Mount Faber Peak Singapore Cable Car"],
+  cablesentosa:["1.2551","103.8172","케이블카 센토사역","Singapore Cable Car Sentosa Station"],
+  supertree:["1.2816","103.8636","슈퍼트리 그로브 (가든 랩소디)","Supertree Grove Gardens by the Bay"],
+  lavo:["1.2843","103.8597","라보 (MBS 타워1)","LAVO Singapore Marina Bay Sands"],
+  cruise:["1.2830","103.8612","리버크루즈 (베이프런트 노스)","Water B Bayfront North Jetty"],
+  trapizza:["1.2556","103.8106","트라피자 (실로소)","Trapizza Siloso Beach"],
+  palawan:["1.2493","103.8216","팔라완 비치 · 흔들다리","Palawan Beach Suspension Bridge"],
+  botanic:["1.3116","103.8148","보타닉 가든 · 오키드 가든","National Orchid Garden Singapore Botanic Gardens"],
+  songfa:["1.2891","103.8467","송파 바쿠테 본점","Song Fa Bak Kut Teh 11 New Bridge Road"],
+  orchard:["1.3034","103.8350","오차드로드 (에메랄드 힐 · ION)","Emerald Hill Road Singapore"],
+  helix:["1.2876","103.8603","헬릭스 브리지","Helix Bridge Singapore"],
+  mbs:["1.2834","103.8607","MBS 스카이파크 전망대","Marina Bay Sands SkyPark Observation Deck"],
+  satay:["1.2818","103.8690","사테 바이 더 베이","Satay by the Bay"],
+  tanjong:["1.2440","103.8298","탄중 비치클럽","Tanjong Beach Club Sentosa"],
+  haji:["1.3008","103.8590","하지레인 (또는 오차드)","Haji Lane Singapore"],
+};
+
+const DAYS = [
+  { id:"d1", tab:"12/2 수", sub:"도착", title:"12월 2일(수) 밤 ~ 3일 새벽 · 도착",
+    note:"인천 18:35 출발(KE645) → 창이 00:15 도착. 입국심사와 짐 찾기 후 첫날 숙소로 이동해요.",
+    stops:[
+      {p:"airport", t:"00:15", d:"도착 · 입국심사, 짐 찾기"},
+      {p:"dusit", t:"02:00", d:"체크인 · 트윈룸 2개, 조식 포함", leg:{m:"taxi", min:"15분", cost:"S$20~30 (심야 할증)"}},
+    ],
+    tips:["택시는 공항 택시 승강장에서 바로 타면 돼요. 4명에 큰 짐이 많으면 Grab에서 6인승(GrabFamily/6-seater)을 부르세요."]
+  },
+  { id:"d2", tab:"12/3 목", sub:"마리나베이 · 가든스", title:"12월 3일(목) · 마리나베이와 가든스 바이 더 베이",
+    note:"보타닉 가든(선택) → 머라이언 파크 → 팜 비치 점심 → 체크인·라운지 티 → 헬릭스 브리지 → 가든스 돔 → 라보 저녁 → 리버크루즈 → 크리스마스 원더랜드·가든 랩소디.",
+    stops:[
+      {p:"dusit", t:"08:30", d:"07:30 조식 · 체크아웃"},
+      {p:"fullerton", t:"09:00", d:"짐 맡기기", leg:{m:"taxi", min:"20~25분", cost:"S$20~25"}},
+      {p:"botanic", t:"09:20", d:"보타닉 가든 · 내셔널 오키드 가든 (힘들면 생략)", leg:{m:"taxi", min:"15분", cost:"S$12~16"}},
+      {p:"merlion", t:"11:00", d:"11:00~12:15 · 사진 찍고 마리나베이 구경", leg:{m:"taxi", min:"15분", cost:"S$12~16"}},
+      {p:"palm", t:"12:30", d:"점심 · 칠리크랩 (예약 완료)", leg:{m:"walk", min:"3분"}},
+      {p:"fullerton", t:"14:00", d:"체크인 · 클럽 라운지 애프터눈티", leg:{m:"walk", min:"3분"}},
+      {p:"helix", t:"15:45", d:"헬릭스 브리지 건너기", leg:{m:"walk", min:"15~20분"}},
+      {p:"gbtb", t:"16:15", d:"클라우드 포레스트 · 플라워돔", leg:{m:"walk", min:"15분"}},
+      {p:"lavo", t:"18:15", d:"저녁 · 라보 (MBS 타워1 57층)", leg:{m:"walk", min:"10~15분"}},
+      {p:"cruise", t:"20:00", d:"리버크루즈 (Water B) · 배 위에서 스펙트라 쇼, 같은 곳에서 내림", leg:{m:"walk", min:"5분"}},
+      {p:"supertree", t:"21:00", d:"크리스마스 원더랜드 · 21:35 가든 랩소디", leg:{m:"walk", min:"10~15분"}},
+      {p:"fullerton", t:"22:15", d:"숙소 복귀", leg:{m:"taxi", min:"10분", cost:"S$10~14"}},
+    ],
+    tips:["보타닉 가든이 힘들면 빼고, 10:00에 체크아웃해서 풀러턴에 짐을 맡긴 뒤 11:00 머라이언 파크로 걸어가면 돼요.","라보는 MBS 타워1 57층이라 호텔 로비 쪽 전용 엘리베이터로 올라가요.","가든 랩소디가 끝나면 가든스 택시 승강장이 붐벼요. Grab은 끝나기 5~10분 전에 부르면 덜 기다려요."]
+  },
+  { id:"d3", tab:"12/4 금", sub:"센토사 · 나이트사파리", title:"12월 4일(금) · 센토사와 나이트사파리",
+    note:"케이블카로 센토사 → 루지 → 메가짚 → 트라피자 점심 → 팔라완 비치 → 탄중 비치클럽 → 호텔 휴식 → 나이트사파리 → (선택) 오차드 크리스마스 조명.",
+    stops:[
+      {p:"fullerton", t:"09:00", d:"조식 후 출발"},
+      {p:"faber", t:"09:30", d:"케이블카 탑승 (SkyPass)", leg:{m:"taxi", min:"15분", cost:"S$14~18"}},
+      {p:"cablesentosa", t:"09:50", d:"센토사 도착 · 임비아", leg:{m:"cable", min:"15~20분", cost:"SkyPass S$32.90~"}},
+      {p:"luge", t:"10:00", d:"루지 3~4회 (10~12시 할인)", leg:{m:"walk", min:"5분"}},
+      {p:"zip", t:"11:30", d:"메가짚 출발 · 실로소 비치에 착지", leg:{m:"walk", min:"5~10분"}},
+      {p:"trapizza", t:"12:30", d:"점심 · 트라피자 (실로소 비치)", leg:{m:"zip", min:"1~2분"}},
+      {p:"palawan", t:"14:00", d:"팔라완 비치 · 흔들다리, 아시아 대륙 최남단", leg:{m:"shuttle", min:"10~15분", cost:"비치 셔틀 무료"}},
+      {p:"tanjong", t:"15:00", d:"탄중 비치클럽 · 음료 한잔", leg:{m:"walk", min:"15분", cost:"셔틀도 있음"}},
+      {p:"fullerton", t:"17:00", d:"휴식 (16:30 Grab 출발)", leg:{m:"taxi", min:"20~25분", cost:"S$20~25"}},
+      {p:"safari", t:"19:15", d:"나이트사파리 · 입구 식당에서 저녁 (18:00 Grab 출발)", leg:{m:"taxi", min:"30~40분", cost:"S$25~35"}},
+      {p:"ion", t:"22:15", d:"(선택) ION 앞 아치 → 응안시티 크리스마스 빌리지까지 도보 15분 (21:45 Grab 출발)", leg:{m:"taxi", min:"25~30분", cost:"S$22~30"}},
+      {p:"fullerton", t:"23:00", d:"숙소 복귀 (22:45 Grab)", leg:{m:"taxi", min:"15분", cost:"S$12~16"}},
+    ],
+    tips:["메가짚은 실로소 비치에 착지해서 트라피자까지 바로 걸어가면 돼요. 안 타는 분은 루지 언덕에서 모노레일로 내려와 비치역에서 만나면 돼요.","만다이에서 나올 때는 택시 줄이 길 수 있어요. 나가기 10분 전에 Grab을 미리 부르세요.","힘들면 오차드는 빼고 나이트사파리에서 바로 호텔로 가면 돼요(택시 30분)."]
+  },
+  { id:"d4", tab:"12/5 토", sub:"차이나타운 · 오차드 · 귀국", title:"12월 5일(토) · 차이나타운, 오차드, 점보, 귀국",
+    note:"호텔에서 쉬다가 10:30 체크아웃 → 불아사 → 송파 바쿠테 → 오차드로드 → 점보 → 풀러턴에서 짐 싣고 쥬얼 → 팀호완 → 눈 쇼 → 셔틀로 T4 체크인 → 22:30 출발(KE644).",
+    stops:[
+      {p:"fullerton", t:"10:30", d:"08:00 조식 · 호텔 휴식 · 체크아웃, 짐 보관"},
+      {p:"btr", t:"10:45", d:"불아사 · 차이나타운 구경", leg:{m:"taxi", min:"10분", cost:"S$10~12"}},
+      {p:"songfa", t:"11:30", d:"송파 바쿠테 (뉴브리지로드 본점)", leg:{m:"taxi", min:"5분", cost:"S$8~10"}},
+      {p:"orchard", t:"12:30", d:"오차드로드 · 에메랄드 힐, ION", leg:{m:"taxi", min:"10~15분", cost:"S$10~14"}},
+      {p:"jumbo", t:"15:00", d:"점보 · 칠리크랩, 블랙페퍼크랩 (30 Merchant Rd)", leg:{m:"taxi", min:"10~15분", cost:"S$10~14"}},
+      {p:"fullerton", t:"16:30", d:"Grab 6인승으로 들러 짐 싣기", leg:{m:"taxi", min:"5분", cost:"공항까지 한 번에 S$30~40"}},
+      {p:"jewel", t:"17:30", d:"캐리어는 공항 카트에 싣고 다님 · 레인 보텍스 · 18:45 팀호완 딤섬 · 20:05 Forest Valley 크리스마스 트리 눈 쇼 'Let It Snow'", leg:{m:"taxi", min:"25분"}},
+      {p:"t4", t:"20:45", d:"체크인 (마감 21:30) · 출국심사 · 22:30 출발(KE644)", leg:{m:"shuttle", min:"10분 (20:30 탑승)", cost:"무료 · T1 출발층 Departure Central Kerbside, 7~9분 간격"}},
+    ],
+    tips:["T4는 쥬얼과 연결된 터미널(T1~T3)과 떨어져 있어요. 눈 쇼가 끝나면 카트를 밀고 T1 출발층으로 가서 무료 셔틀을 타면 돼요.","Grab 6인승은 점보 근처에서 불러 풀러턴을 들렀다 가는 걸로 경유지를 넣으면 한 번에 결제돼요."]
+  },
+];
+
+const MODE = {taxi:"택시", walk:"도보", rail:"모노레일", cable:"케이블카", zip:"짚라인", shuttle:"셔틀"};
+const GMODE = {taxi:"driving", walk:"walking", rail:"transit", cable:"transit", zip:"walking", shuttle:"transit"};
+const gq = s => encodeURIComponent(s);
+const gSearch = p => `https://www.google.com/maps/search/?api=1&query=${gq(P[p][3])}`;
+const gDir = (a,b,m) => `https://www.google.com/maps/dir/?api=1&origin=${gq(P[a][3])}&destination=${gq(P[b][3])}&travelmode=${GMODE[m]}`;
+
+// projection: lon/lat -> world units (equirectangular, cos lat)
+const K = 1000, CL = Math.cos(1.3*Math.PI/180);
+const wx = lon => (lon-103.55)*K*CL, wy = lat => (1.50-lat)*K;
+const W = p => [wx(+P[p][1]), wy(+P[p][0])];
+
+const svg = document.getElementById('map'), box = document.getElementById('mapbox');
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a={},parent) => { const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); parent&&parent.appendChild(e); return e; };
+
+const gWorld = el('g',{},svg), gOver = el('g',{},svg);
+let coastD = "";
+const chaikin = r => { let p=r; for(let k=0;k<2;k++){ const q=[]; for(let i=0;i<p.length;i++){ const a=p[i], b=p[(i+1)%p.length]; q.push([.75*a[0]+.25*b[0],.75*a[1]+.25*b[1]],[.25*a[0]+.75*b[0],.25*a[1]+.75*b[1]]); } p=q; } return p; };
+for (const r of COAST){ coastD += "M"+chaikin(r.map(([x,y])=>[wx(x),wy(y)])).map(([x,y])=>x.toFixed(2)+","+y.toFixed(2)).join("L")+"Z"; }
+el('path',{d:coastD,class:'coast','fill-rule':'evenodd'},gWorld);
+
+const AREAS = [["오차드",1.3065,103.8330],["캄퐁글람",1.3040,103.8610],["마리나베이",1.2800,103.8590],["차이나타운",1.2775,103.8420],["센토사",1.2475,103.8250],["창이",1.3700,103.9750],["탬피니스",1.3500,103.9450],["말레이시아 (조호르)",1.4600,103.7600],["싱가포르",1.3550,103.8200],["만다이",1.4120,103.7950]];
+
+let view = {s:1, tx:0, ty:0}; // screen = world*s + t
+let day = DAYS[1], sel = null;
+
+function size(){ const r=svg.getBoundingClientRect(); return [r.width||600, r.height||400]; }
+function fit(pts, maxS){
+  const [w,h]=size();
+  let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+  pts.forEach(([x,y])=>{x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);});
+  const pl=Math.min(70,w*.12), pr=Math.min(190,w*.38), pt=50, pb=80, bw=Math.max(x1-x0,4), bh=Math.max(y1-y0,4);
+  let s=Math.min((w-pl-pr)/bw,(h-pt-pb)/bh); s=Math.min(s,maxS||400); s=Math.max(s,.4);
+  view={s, tx:pl+(w-pl-pr)/2-(x0+x1)/2*s, ty:pt+(h-pt-pb)/2-(y0+y1)/2*s};
+  render();
+}
+const FAR = new Set(['dusit','airport','jewel','t4']);
+function fitDay(all){ const ps=[...new Set(day.stops.map(s=>s.p))]; const core=ps.filter(p=>!FAR.has(p));
+  fit((all||core.length<2?ps:core).map(W), 110); }
+
+function curve(a,b,i){
+  const [x0,y0]=a,[x1,y1]=b, dx=x1-x0, dy=y1-y0, L=Math.hypot(dx,dy)||1;
+  const k=(i%2?1:-1)*Math.min(.22, 40/L+.1);
+  const cx=(x0+x1)/2-dy*k, cy=(y0+y1)/2+dx*k;
+  return {d:`M${x0},${y0}Q${cx},${cy} ${x1},${y1}`, pt:t=>[(1-t)*(1-t)*x0+2*(1-t)*t*cx+t*t*x1,(1-t)*(1-t)*y0+2*(1-t)*t*cy+t*t*y1], L};
+}
+
+function render(){
+  gWorld.setAttribute('transform',`translate(${view.tx},${view.ty}) scale(${view.s})`);
+  gOver.textContent='';
+  const S=([x,y])=>[x*view.s+view.tx, y*view.s+view.ty];
+  // area labels
+  AREAS.forEach(([n,la,lo])=>{ const [x,y]=S([wx(lo),wy(la)]); el('text',{x,y,class:'area'},gOver).textContent=n; });
+  // legs
+  const legs=[]; day.stops.forEach((s,i)=>{ if(i>0) legs.push({a:day.stops[i-1].p,b:s.p,m:s.leg.m,i}); });
+  legs.forEach(l=>{
+    const a=S(W(l.a)), b=S(W(l.b)); if(Math.hypot(b[0]-a[0],b[1]-a[1])<3) return;
+    const c=curve(a,b,l.i), dim = sel && sel.type==='leg' && sel.i!==l.i;
+    el('path',{d:c.d,class:'route-halo'+(dim?' dim':'')},gOver);
+    const r=el('path',{d:c.d,class:`route ${l.m}${dim?' dim':''}`},gOver);
+    r.style.cursor='pointer'; r.addEventListener('click',()=>pickLeg(l.i));
+    if(c.L>60){ const p=c.pt(.55), q=c.pt(.58), ang=Math.atan2(q[1]-p[1],q[0]-p[0])*180/Math.PI;
+      const ar=el('path',{d:'M-6,-5L6,0L-6,5Z',class:`arrow ${l.m}`,transform:`translate(${p[0]},${p[1]}) rotate(${ang})`},gOver); if(dim) ar.setAttribute('opacity',.3); }
+  });
+  // pins grouped by place, then clustered when they overlap on screen
+  const groups={}; day.stops.forEach((s,i)=>{ (groups[s.p]=groups[s.p]||[]).push(i); });
+  const cl=[];
+  Object.entries(groups).forEach(([p,idx])=>{ const xy=S(W(p));
+    const c=cl.find(c=>Math.hypot(c.x-xy[0],c.y-xy[1])<30);
+    if(c){ c.m.push({p,idx}); } else cl.push({x:xy[0],y:xy[1],m:[{p,idx}]}); });
+  const boxes=[];
+  const hit=(x0,y0,x1,y1)=>boxes.some(b=>x0<b[2]&&x1>b[0]&&y0<b[3]&&y1>b[1]);
+  cl.forEach(c=>{
+    const single=c.m.length===1, m0=c.m[0], hotel=single&&!!P[m0.p][4];
+    const nums=c.m.flatMap(m=>m.idx).sort((a,b)=>a-b).map(i=>i+1);
+    const txt = single ? (hotel?'H':nums.join('·')) : nums.join('·');
+    const name = single ? P[m0.p][2] + (hotel?` (${nums.join('·')})`:'') : `${P[m0.p][2]} 외 ${c.m.length-1}곳 · 눌러서 확대`;
+    const isSel = sel && sel.type==='stop' && c.m.some(m=>m.idx.includes(sel.i));
+    const g=el('g',{class:'pin',transform:`translate(${c.x},${c.y})`,tabindex:0,role:'button','aria-label':name},gOver);
+    const w = Math.max(26, txt.length*7.2+12), h=26, grow=isSel?4:0;
+    if(w<=26) el('circle',{r:13+grow/2,fill:hotel?'var(--hotel)':'var(--fg)'},g);
+    else el('rect',{x:-w/2-grow/2,y:-h/2-grow/2,width:w+grow,height:h+grow,rx:13,fill:c.m.some(m=>P[m.p][4])&&single?'var(--hotel)':'var(--fg)',stroke:'var(--panel)','stroke-width':2.5},g);
+    el('text',{},g).textContent=txt;
+    boxes.push([c.x-w/2,c.y-h/2,c.x+w/2,c.y+h/2]);
+    const lw=name.length*12.5, lx0=c.x+w/2+6;
+    if(!hit(lx0,c.y-9,lx0+lw,c.y+9)){ el('text',{x:w/2+6,y:0,class:'lbl','dominant-baseline':'central'},g).textContent=name; boxes.push([lx0,c.y-9,lx0+lw,c.y+9]); }
+    const act=()=>{ if(single) pickStop(m0.idx[0]); else { sel=null; markRail(); fit(c.m.map(m=>W(m.p)), 900); } };
+    g.addEventListener('click',e=>{e.stopPropagation(); act();});
+    g.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault(); act();} });
+  });
+  // fill text color for pin numbers when fg is light (dark theme)
+  const fg=getComputedStyle(document.documentElement).getPropertyValue('--bg');
+  gOver.querySelectorAll('.pin text:not(.lbl)').forEach(t=>t.style.fill=fg.trim()||'#fff');
+}
+
+function pickStop(i){
+  sel={type:'stop',i}; const p=day.stops[i].p;
+  const [w,h]=size(), [x,y]=W(p), s=Math.max(view.s, 60);
+  view={s, tx:w/2-x*s, ty:h/2-y*s}; render(); markRail();
+}
+function pickLeg(i){
+  sel={type:'leg',i}; fit([W(day.stops[i-1].p),W(day.stops[i].p)], 220); markRail();
+}
+
+function markRail(){
+  document.querySelectorAll('.stop,.leg').forEach(e=>e.classList.remove('sel'));
+  if(!sel) return;
+  const n=document.querySelector(sel.type==='stop'?`.stop[data-i="${sel.i}"]`:`.leg[data-i="${sel.i}"]`);
+  n&&n.classList.add('sel');
+}
+
+function buildRail(){
+  const r=document.getElementById('rail'); r.textContent='';
+  const h=document.createElement('div'); h.className='dayhead';
+  h.innerHTML=`<h2></h2><p></p><a class="allroute" target="_blank" rel="noopener">구글맵에서 하루 경로 한 번에 열기 ↗</a>`; h.querySelector('h2').textContent=day.title; h.querySelector('p').textContent=day.note;
+  h.querySelector('a').href='https://www.google.com/maps/dir/'+day.stops.map(s=>encodeURIComponent(P[s.p][3]).replace(/%20/g,'+')).join('/'); r.appendChild(h);
+  const ol=document.createElement('ol'); ol.className='steps';
+  day.stops.forEach((s,i)=>{
+    if(i>0){
+      const l=s.leg, li=document.createElement('li'); li.className='leg '+l.m; li.dataset.i=i;
+      li.innerHTML=`<div class="bar"></div><div class="info"><span class="mode"></span><span class="min"></span><span class="cost"></span><a target="_blank" rel="noopener">구글맵 길찾기 ↗</a></div>`;
+      li.querySelector('.mode').textContent=MODE[l.m]; li.querySelector('.min').textContent=l.min; li.querySelector('.cost').textContent=l.cost||'';
+      li.querySelector('a').href=gDir(day.stops[i-1].p,s.p,l.m);
+      li.querySelector('a').addEventListener('click',e=>e.stopPropagation());
+      li.addEventListener('click',()=>pickLeg(i)); ol.appendChild(li);
+    }
+    const hotel=!!P[s.p][4], li=document.createElement('li'); li.className='stop'; li.dataset.i=i; li.tabIndex=0;
+    li.innerHTML=`<div class="badge${hotel?' h':''}"></div><div><div class="t"></div><div class="n"></div><div class="d"></div><a target="_blank" rel="noopener">구글맵에서 보기 ↗</a></div>`;
+    li.querySelector('.badge').textContent=i+1; li.querySelector('.t').textContent=s.t;
+    li.querySelector('.n').textContent=P[s.p][2]; li.querySelector('.d').textContent=s.d;
+    li.querySelector('a').href=gSearch(s.p); li.querySelector('a').addEventListener('click',e=>e.stopPropagation());
+    li.addEventListener('click',()=>pickStop(i));
+    li.addEventListener('keydown',e=>{ if(e.key==='Enter'){pickStop(i);} });
+    ol.appendChild(li);
+  });
+  r.appendChild(ol);
+  const n=document.createElement('div'); n.className='notes';
+  n.innerHTML='<b>참고</b>'; day.tips.forEach(t=>{const d=document.createElement('div'); d.textContent='· '+t; n.appendChild(d);});
+  r.appendChild(n);
+}
+
+function setDay(id){
+  day=DAYS.find(d=>d.id===id)||DAYS[1]; sel=null;
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.id===day.id));
+  buildRail(); fitDay();
+  try{ history.replaceState(null,'','#'+day.id); }catch(e){}
+}
+
+const tabs=document.getElementById('tabs');
+DAYS.forEach(d=>{ const b=document.createElement('button'); b.className='tab'; b.role='tab'; b.dataset.id=d.id;
+  b.innerHTML='<span></span><small></small>'; b.querySelector('span').textContent=d.tab; b.querySelector('small').textContent=d.sub;
+  b.addEventListener('click',()=>setDay(d.id)); tabs.appendChild(b); });
+
+// pan & zoom
+function zoomAt(f,cx,cy){ const s=Math.min(Math.max(view.s*f,.4),900); f=s/view.s; view.tx=cx-(cx-view.tx)*f; view.ty=cy-(cy-view.ty)*f; view.s=s; render(); }
+svg.addEventListener('wheel',e=>{ e.preventDefault(); const r=svg.getBoundingClientRect(); zoomAt(Math.exp(-e.deltaY*0.0015),e.clientX-r.left,e.clientY-r.top); },{passive:false});
+const ptrs=new Map(); let last=null, pinch=null;
+svg.addEventListener('pointerdown',e=>{ ptrs.set(e.pointerId,[e.clientX,e.clientY]); svg.setPointerCapture(e.pointerId); svg.classList.add('drag'); last=[e.clientX,e.clientY];
+  if(ptrs.size===2){ const [a,b]=[...ptrs.values()]; pinch=Math.hypot(a[0]-b[0],a[1]-b[1]); } });
+svg.addEventListener('pointermove',e=>{ if(!ptrs.has(e.pointerId)) return; ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+  if(ptrs.size===2 && pinch){ const [a,b]=[...ptrs.values()], d=Math.hypot(a[0]-b[0],a[1]-b[1]), r=svg.getBoundingClientRect();
+    zoomAt(d/pinch,(a[0]+b[0])/2-r.left,(a[1]+b[1])/2-r.top); pinch=d; return; }
+  if(ptrs.size===1 && last){ view.tx+=e.clientX-last[0]; view.ty+=e.clientY-last[1]; last=[e.clientX,e.clientY]; render(); } });
+const up=e=>{ ptrs.delete(e.pointerId); if(ptrs.size<2) pinch=null; if(!ptrs.size){ svg.classList.remove('drag'); last=null; } else last=[...ptrs.values()][0]; };
+svg.addEventListener('pointerup',up); svg.addEventListener('pointercancel',up);
+document.getElementById('zin').onclick=()=>{const [w,h]=size(); zoomAt(1.6,w/2,h/2);};
+document.getElementById('zout').onclick=()=>{const [w,h]=size(); zoomAt(1/1.6,w/2,h/2);};
+document.getElementById('zfit').onclick=()=>{ sel=null; markRail(); fitDay(true); };
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(()=>{ sel=null; markRail(); fitDay(); },150);});
+window.addEventListener('hashchange',()=>{ const id=location.hash.slice(1); if(id!==day.id && DAYS.some(d=>d.id===id)) setDay(id); });
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',render);
+
+setDay(DAYS.some(d=>d.id===location.hash.slice(1)) ? location.hash.slice(1) : 'd2');
+</script>

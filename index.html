@@ -122,6 +122,15 @@ section > h2{font-size:30px}
 .pill.meal{background:var(--orchid-soft);color:var(--orchid)}
 .pill.rest{background:var(--sun-soft);color:var(--sun)}
 .choice{background:var(--sun-soft);border-radius:12px;padding:10px 14px;margin-top:6px;font-size:17px}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ph{margin:0;display:grid;gap:4px;min-width:0}
+.ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:var(--line)}
+.ph figcaption{font-size:15px;font-weight:700;line-height:1.4}
+.ph figcaption a{font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
+.ph.wide img{aspect-ratio:16/9}
+.daymap{display:grid;gap:6px;text-decoration:none;color:inherit}
+.daymap img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
+.daymap span{font-size:16px;font-weight:700;color:var(--dac,var(--green))}
 .wxrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .wxday{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 8px;display:grid;justify-items:center;gap:6px;text-align:center;min-width:0}
 .wxday .d{font-weight:800;font-size:18px}
@@ -306,6 +315,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="card hotel stack">
       <div class="stay"><span class="nights">2박</span><span class="when">12/3(목) ~ 12/5(토)</span></div>
       <h3>더 풀러턴 호텔 싱가포르</h3>
+      <figure class="ph wide"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/The%20Fullerton%20Hotel%20seen%20from%20Merlion%20Park%20in%20Singapore%20%28cropped%29.jpg?width=900" alt="머라이언 공원에서 본 풀러턴 호텔" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>머라이언 공원에서 본 풀러턴 호텔 <a href="https://commons.wikimedia.org/wiki/File:The%20Fullerton%20Hotel%20seen%20from%20Merlion%20Park%20in%20Singapore%20%28cropped%29.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure>
       <ul>
         <li>마리나베이가 보이는 방 2개예요. 아침 식사 포함.</li>
         <li><b>야외 수영장</b>이 있어요. 강과 시내가 보이는 수영장이라 쉬는 시간에 들러요.</li>
@@ -325,11 +335,13 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <li><span class="time">00:15</span><span class="what"><b>싱가포르 도착</b><small>싱가포르 시간이에요(한국은 새벽 1시 15분). 입국 심사 후 택시로 두짓타니 호텔까지 10분.</small></span></li>
       <li class="rest"><span class="time">02:00</span><span class="what"><b>호텔에서 주무시기<span class="pill rest">휴식</span></b><small>두짓타니 라구나에서 하룻밤 자요.</small></span></li>
     </ol>
+    <a class="daymap" href="map.html#d1" target="_blank" rel="noopener"><img src="img/map-d1.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a>
   </section>
 
   <section id="d1203" class="day d2">
     <div class="dayhead"><span class="dnum">2일차</span><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
     <div class="wx"><span class="ico" aria-hidden="true">⛅</span><span class="temp">24~31℃ <small>덥고 습함</small></span><p>낮에는 덥고 오후에 소나기가 올 수 있어요. 저녁 배·야외 쇼가 있어서 접는 우산을 챙겨요.</p></div>
+    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg?width=900" alt="머라이언 공원" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>머라이언 공원 <a href="https://commons.wikimedia.org/wiki/File:Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg?width=900" alt="가든스 바이 더 베이와 마리나베이 샌즈" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>가든스 바이 더 베이와 마리나베이 샌즈 <a href="https://commons.wikimedia.org/wiki/File:View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
       <li><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
@@ -345,12 +357,14 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <li><span class="time">21:35</span><span class="what"><b>가든 랩소디</b><small>큰 나무 모양 탑(슈퍼트리)에 음악과 함께 불이 켜지고, 하늘에서 눈도 내려요.</small></span></li>
       <li class="rest"><span class="time">22:15</span><span class="what"><b>호텔 도착</b></span></li>
     </ol>
+    <a class="daymap" href="map.html#d2" target="_blank" rel="noopener"><img src="img/map-d2.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a>
     <p class="rain">피곤하시면 보타닉 가든은 빼고, 10시에 천천히 체크아웃한 뒤 바로 풀러턴과 머라이언 공원으로 가요.</p>
   </section>
 
   <section id="d1204" class="day d3">
     <div class="dayhead"><span class="dnum">3일차</span><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
     <div class="wx"><span class="ico" aria-hidden="true">☀️</span><span class="temp">24~31℃ <small>해변 햇볕 강함</small></span><p>바닷가라 햇볕이 세요. 모자, 선글라스, 선크림을 꼭 챙기고, 비가 많이 오면 실내로 바꿔요.</p></div>
+    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg?width=900" alt="센토사 루지" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>센토사 루지 <a href="https://commons.wikimedia.org/wiki/File:Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg?width=900" alt="나이트사파리 입구" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>나이트사파리 입구 <a href="https://commons.wikimedia.org/wiki/File:Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
       <li><span class="time">09:30</span><span class="what"><b>케이블카 타고 센토사섬으로</b><small>바다 위를 지나가요. 경치가 정말 좋아요.</small></span></li>
@@ -365,12 +379,14 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <li><span class="time">22:15</span><span class="what"><b>오차드로드 크리스마스 조명<span class="pill rest">선택</span></b><small>ION 오차드 앞에서 응안시티 크리스마스 마을까지 잠깐 걸으며 불빛을 봐요. 힘드시면 빼고 바로 호텔로 가요.</small></span></li>
       <li class="rest"><span class="time">23:00</span><span class="what"><b>호텔 도착</b></span></li>
     </ol>
+    <a class="daymap" href="map.html#d3" target="_blank" rel="noopener"><img src="img/map-d3.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a>
     <p class="rain">비가 많이 오면 해변 대신 <b>오셔나리움</b>(큰 수족관)이나 <b>해리포터 전시</b>에 가요.</p>
   </section>
 
   <section id="d1205" class="day d4">
     <div class="dayhead"><span class="dnum">4일차 · 마지막 날</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
     <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">24~31℃ <small>인천 도착 새벽 영하</small></span><p>싱가포르는 덥지만 일요일 새벽 인천은 영하예요. 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
+    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg?width=900" alt="차이나타운 불아사" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>차이나타운 불아사 <a href="https://commons.wikimedia.org/wiki/File:Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg?width=900" alt="쥬얼 실내 폭포" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>쥬얼 실내 폭포 <a href="https://commons.wikimedia.org/wiki/File:Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">08:00</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>먹고 나서 방에서 쉬며 짐을 싸요.</small></span></li>
       <li><span class="time">10:30</span><span class="what"><b>체크아웃, 호텔에 짐 맡기기</b></span></li>
@@ -386,9 +402,10 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <li><span class="time">20:45</span><span class="what"><b>4터미널 도착, 비행기 체크인</b><small>체크인은 밤 9시 30분에 마감돼요.</small></span></li>
       <li><span class="time">22:30</span><span class="what"><b>출발</b><small>일요일 새벽 5시 45분 인천 도착.</small></span></li>
     </ol>
+    <a class="daymap" href="map.html#d4" target="_blank" rel="noopener"><img src="img/map-d4.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a>
   </section>
 
-  <a class="maplink" href="https://claude.ai/artifact/3VbdS3v3gLbeUyxntSBvby" target="_blank" rel="noopener">
+  <a class="maplink" href="map.html#d2" target="_blank" rel="noopener">
     <span><b>날짜별 이동 지도 보기</b><br><small style="color:var(--muted);font-weight:400">어디서 어디로 가는지 지도로 볼 수 있어요</small></span>
     <span aria-hidden="true">→</span>
   </a>
