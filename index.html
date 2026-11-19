@@ -99,6 +99,15 @@ section > h2{font-size:30px}
 .flight .arrow{font-size:24px;color:var(--muted)}
 .flight .end.r{text-align:right}
 .flight .note{font-size:17px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.park .okpill{display:inline-block;font-size:14px;font-weight:700;background:var(--green);color:var(--surface);border-radius:999px;padding:1px 9px;vertical-align:3px;margin-left:4px}
+.park .pk{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-size:17px;line-height:1.5}
+.park .pk b:first-child{display:inline-block;min-width:76px;color:var(--muted);font-weight:700}
+.park .pk small{color:var(--muted);font-size:15px}
+.park .cancel{margin:8px 0 0;font-size:14px;color:#c62828;font-weight:600}
+.pkimgs{display:grid;gap:10px;margin-top:12px}
+.pkimgs figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.pkimgs img{display:block;width:100%;height:auto}
+.pkimgs figcaption{font-size:14px;color:#4f6660;padding:6px 10px;background:#f6f8f7}
 .meal{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
 .meal h3{margin:0 0 6px;font-size:17px}
 .meal ul{margin:0 0 10px;padding-left:22px;font-size:17px;line-height:1.6}
@@ -319,6 +328,20 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
         <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure></div>
         <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/pr/26-c-pr-645.pdf" target="_blank" rel="noopener">가는 비행기 메뉴판 보기 (PDF) ›</a>
+      </div>
+    </div>
+    <div class="card park">
+      <h3 style="margin:0;font-size:19px">🚗 인천공항 주차 <span class="okpill">예약 완료</span></h3>
+      <ul class="pk">
+        <li><b>어디</b> 제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></li>
+        <li><b>세우는 날</b> 12/2(수) 오후 4시</li>
+        <li><b>빼는 날</b> 12/6(일) 아침 7시</li>
+        <li><b>터미널까지</b> 주차장 앞에서 <b>공항02번</b> 무료 셔틀버스를 타요.</li>
+      </ul>
+      <p class="cancel">12/2 오후 4시 전까지 취소할 수 있어요.</p>
+      <div class="pkimgs">
+        <figure><img src="img/parking-map.jpg" alt="제2터미널 예약주차장 위치 지도" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
+        <figure><img src="img/parking-shuttle.jpg" alt="공항02번 셔틀버스 노선도" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
       </div>
     </div>
     <div class="card flight">
