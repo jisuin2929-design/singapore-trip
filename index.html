@@ -13,6 +13,7 @@
   --bg:#f3f7f5; --surface:#ffffff; --ink:#15302a; --muted:#4f6660; --line:#d5e2dd;
   --green:#0f6b57; --green-soft:#dff0ea; --orchid:#b02f6e; --orchid-soft:#f8e4ee;
   --sun:#9a5a00; --sun-soft:#fdf0d8;
+  --blue:#1a5bb0; --blue-soft:#e3eefc;
   --d1-bg:#e9ecf8; --d1-ac:#3b4a9c; --d2-bg:#e2f2eb; --d2-ac:#0f6b57;
   --d3-bg:#dfeff8; --d3-ac:#0b5f86; --d4-bg:#fbe8ef; --d4-ac:#a3295f;
   --display:"Gowun Batang", "Noto Serif KR", serif;
@@ -22,6 +23,7 @@
   --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
   --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
   --sun:#f2bd6b; --sun-soft:#3a2d17;
+  --blue:#8cbcff; --blue-soft:#18294a;
   --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
   --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
   color-scheme:dark}}
@@ -29,6 +31,7 @@
   --bg:#0f1a17; --surface:#16241f; --ink:#e8f1ee; --muted:#a9bdb6; --line:#2a3c36;
   --green:#5fd1b0; --green-soft:#1c3a31; --orchid:#f08cbb; --orchid-soft:#3a1f2c;
   --sun:#f2bd6b; --sun-soft:#3a2d17;
+  --blue:#8cbcff; --blue-soft:#18294a;
   --d1-bg:#1b2038; --d1-ac:#a9b6ff; --d2-bg:#15302a; --d2-ac:#5fd1b0;
   --d3-bg:#11283a; --d3-ac:#76c8f0; --d4-bg:#341b27; --d4-ac:#f29cc4;
   color-scheme:dark}
@@ -85,8 +88,10 @@ section > h2{font-size:30px}
 .flight .note{font-size:17px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
 
 /* hotel */
-.hotel h3{font-size:23px}
-.hotel .when{font-weight:700;color:var(--orchid)}
+.hotel h3{font-size:26px;color:var(--blue)}
+.hotel .stay{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hotel .nights{background:var(--blue);color:var(--surface);font-weight:800;font-size:22px;line-height:1.2;border-radius:12px;padding:6px 14px}
+.hotel .when{font-weight:700;font-size:18px;color:var(--muted)}
 .hotel ul{margin:6px 0 0;padding-left:1.1em;display:grid;gap:4px}
 .phone{font-variant-numeric:tabular-nums;font-weight:700;user-select:all}
 
@@ -269,19 +274,21 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="hotel">
     <h2>호텔</h2>
     <div class="card hotel stack">
-      <span class="when">12/2(수) 밤 ~ 12/3(목) 아침 · 1박</span>
+      <div class="stay"><span class="nights">1박</span><span class="when">12/2(수) 밤 ~ 12/3(목) 아침</span></div>
       <h3>두짓타니 라구나 싱가포르</h3>
       <ul>
         <li>공항에서 차로 10분. 새벽 2시쯤 들어가서 자기만 하는 곳이에요.</li>
         <li>방 2개, 침대 2개짜리 방이에요. 아침 식사 포함.</li>
+        <li><b>야외 수영장</b>이 있어요. 아침 먹고 체크아웃 전에 잠깐 수영해도 좋아요.</li>
         <li>전화 <span class="phone">+65 6841 8888</span></li>
       </ul>
     </div>
     <div class="card hotel stack">
-      <span class="when">12/3(목) ~ 12/5(토) · 2박</span>
+      <div class="stay"><span class="nights">2박</span><span class="when">12/3(목) ~ 12/5(토)</span></div>
       <h3>더 풀러턴 호텔 싱가포르</h3>
       <ul>
         <li>마리나베이가 보이는 방 2개예요. 아침 식사 포함.</li>
+        <li><b>야외 수영장</b>이 있어요. 강과 시내가 보이는 수영장이라 쉬는 시간에 들러요.</li>
         <li><b>클럽 라운지</b>를 쓸 수 있어요. 오후에는 애프터눈티(케이크, 스콘, 차), 저녁에는 칵테일과 간단한 음식이 나와요.</li>
         <li>체크인 오후 3시, 체크아웃 낮 12시. 짐은 언제든 맡길 수 있어요.</li>
         <li>주소 1 Fullerton Square · 전화 <span class="phone">+65 6733 8388</span></li>
@@ -448,6 +455,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <li><input type="checkbox" id="p3"><label for="p3">반팔, 얇고 시원한 옷<small>한국은 겨울이니 공항까지 입을 겉옷은 따로.</small></label></li>
         <li><input type="checkbox" id="p4"><label for="p4">얇은 가디건이나 긴팔 하나<small>실내와 비행기 안이 에어컨으로 추워요.</small></label></li>
         <li><input type="checkbox" id="p5"><label for="p5">편한 운동화<small>매일 꽤 걸어요. 해변용 샌들도 있으면 좋아요.</small></label></li>
+        <li><input type="checkbox" id="p12"><label for="p12">수영복<small>두 호텔 모두 수영장이 있고, 센토사 해변도 가요.</small></label></li>
         <li><input type="checkbox" id="p6"><label for="p6">접는 우산</label></li>
         <li><input type="checkbox" id="p7"><label for="p7">모자, 선글라스, 선크림</label></li>
         <li><input type="checkbox" id="p8"><label for="p8">평소 드시는 약, 소화제, 파스</label></li>
