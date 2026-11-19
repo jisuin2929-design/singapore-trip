@@ -146,6 +146,30 @@ section > h2{font-size:30px}
 .mslide figcaption{padding:8px 12px;font-size:17px;font-weight:700}
 .mslide figcaption small{font-weight:400;color:var(--muted);font-size:15px;margin-left:4px}
 .mhint{font-size:15px;color:var(--muted);margin:0 0 4px}
+.menubook{margin:4px 0 12px;border:1.5px solid var(--green);border-radius:14px;background:var(--surface);overflow:hidden}
+.menubook summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-size:18px;font-weight:800;color:var(--green);background:var(--green-soft)}
+.menubook summary::-webkit-details-marker{display:none}
+.menubook[open] .mbarrow{transform:rotate(180deg)}
+.mb{padding:4px 16px 16px;display:grid;gap:4px}
+.mbsec{padding:14px 0;border-bottom:1px dashed var(--line)}
+.mbsec h4{font-family:var(--display);font-size:22px;margin:0 0 10px;color:var(--ink)}
+.mbsec h4 small{font-family:var(--body);font-size:15px;font-weight:500;color:var(--muted);margin-left:6px}
+.course{margin:0;display:grid;gap:2px}
+.course dt{font-size:15px;font-weight:800;color:var(--green);margin-top:8px}
+.course dt small{font-weight:500;color:var(--muted)}
+.course dd{margin:0;font-size:18px;font-weight:600;line-height:1.6}
+.course dd small{font-size:15px;color:var(--muted);font-weight:500}
+.mains{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:10px}
+.mains li{background:var(--green-soft);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
+.mains b{font-size:18px}
+.mains .wine{font-size:14.5px;font-weight:500;color:var(--muted);line-height:1.5}
+.mbnote{font-size:15px;font-weight:500;color:var(--muted);margin-top:6px}
+.winecat{font-size:15px;font-weight:800;color:var(--green);margin:12px 0 4px}
+.wineitem{display:grid;gap:1px;padding:4px 0 8px}
+.wineitem b{font-size:17.5px;line-height:1.45}
+.wineitem .from{font-size:14.5px;color:var(--muted)}
+.wineitem p{font-size:16px;line-height:1.6;margin-top:2px}
+.mbclose{margin-top:12px;justify-self:center;border:0;border-radius:999px;background:var(--green);color:var(--surface);font:800 17px var(--body);padding:11px 26px;cursor:pointer}
 .mealbtn{display:inline-block;padding:9px 14px;border-radius:10px;background:var(--green-soft);color:var(--green);font-weight:700;font-size:16px;text-decoration:none}
 .wifi ol{margin:6px 0 0;padding-left:22px;font-size:17px;line-height:1.6}
 
@@ -411,6 +435,72 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
         <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure></div>
+        <details class="menubook" id="menubook645">
+          <summary><span>📖 기내식 메뉴판 펼쳐 보기</span><span class="mbarrow">▾</span></summary>
+          <div class="mb">
+            <div class="mbsec">
+              <h4>저녁 식사 <small>서울 → 싱가포르</small></h4>
+              <dl class="course">
+                <dt>아뮤즈 부슈 <small>(입맛 돋우는 한 입)</small></dt><dd>새우 솜땀</dd>
+                <dt>전채</dt><dd>리코타 치즈를 곁들인 토마토 샐러드</dd>
+                <dt>수프</dt><dd>감자 대파 수프</dd>
+                <dt>주요리 <small>(하나 골라요)</small></dt>
+                <dd>
+                  <ul class="mains">
+                    <li><b>버섯덮밥</b><span class="wine">추천 와인 · 스페리 발폴리첼라 클라시코 수페리오레 산뚜르바노 (레드)</span></li>
+                    <li><b>페퍼콘 소스의 소고기 안심 스테이크와 으깬 감자</b><span class="wine">추천 와인 · 단델리온 빈야즈 라이온하트 바로사 쉬라즈 (레드)</span></li>
+                    <li><b>토마토소스의 펜네 파스타와 조개 관자</b><span class="wine">추천 와인 · 드라이스가커 오가닉 드라이 리슬링 트로켄 (화이트)</span></li>
+                  </ul>
+                  <p class="mbnote">수프와 빵은 양식 주요리를 고른 분께 함께 드려요.</p>
+                </dd>
+                <dt>디저트</dt><dd>아이스크림</dd>
+                <dt>빵</dt><dd>각종 빵</dd>
+              </dl>
+            </div>
+            <div class="mbsec">
+              <h4>간식 <small>배고프면 언제든</small></h4>
+              <dl class="course"><dt>간식</dt><dd>칠면조 햄 치즈 샌드위치</dd></dl>
+            </div>
+            <div class="mbsec">
+              <h4>와인</h4>
+              <div class="winecat">샴페인</div>
+              <div class="wineitem"><b>샤를 미뇽 뀌베 꼼뜨 드 마른 브뤼</b><span class="from">프랑스 · 샴페인 (피노누아, 샤르도네)</span><p>오랜 숙성으로 거품이 아주 부드러워요. 노란 과일, 배, 아몬드, 꿀 향이 나고 맛은 우아하고 깔끔해요.</p></div>
+              <div class="winecat">화이트 와인</div>
+              <div class="wineitem"><b>데이비스 비넘 리버 웨스트 러시안 리버 밸리 샤르도네</b><span class="from">미국 · 러시안 리버 밸리 (샤르도네)</span><p>육두구, 스위트콘, 잘 익은 노란 사과와 파인애플 향. 풍부하고 크리미하면서도 산뜻해서 여운이 길어요.</p></div>
+              <div class="wineitem"><b>드라이스가커 오가닉 드라이 리슬링 트로켄</b><span class="from">독일 · 라인헤센 (리슬링)</span><p>감귤, 녹색 사과, 가벼운 향신료 향. 과일 맛과 산미가 균형 잡혀 있고 드라이하게 끝나요. 유기농 와인이에요.</p></div>
+              <div class="winecat">레드 와인</div>
+              <div class="wineitem"><b>스페리 발폴리첼라 클라시코 수페리오레 산뚜르바노</b><span class="from">이탈리아 · 베네토 (코르비나, 론디넬라, 몰리나라)</span><p>붉은 과일 맛에 끝이 은은하게 달콤하고 입안이 따뜻해져요. 파스타와 잘 어울리는 유기농 와인이에요.</p></div>
+              <div class="wineitem"><b>단델리온 빈야즈 라이온하트 바로사 쉬라즈</b><span class="from">호주 · 바로사 밸리 (쉬라즈)</span><p>오래된 포도나무로 만든 쉬라즈. 부드러운 탄닌에 블랙커런트, 시나몬, 초콜릿, 후추 향이 오래 남아요.</p></div>
+              <div class="winecat">디저트 와인 (포트)</div>
+              <div class="wineitem"><b>샌드맨 파운더스 리저브 포트</b><span class="from">포르투갈 · 도우루</span><p>식사 후 디저트와 곁들이는 달콤한 포트와인 한 잔.</p></div>
+            </div>
+            <div class="mbsec">
+              <h4>술</h4>
+              <dl class="course">
+                <dt>칵테일</dt><dd>진토닉 · 마티니 · 잭콕 · 위스키 하이볼 · 블러디 메리 · 스크류드라이버 · 키르 로얄 · 키르 · 캄파리 소다</dd>
+                <dt>식전주</dt><dd>캄파리 · 드라이 셰리 티오 페페 · 드라이 버무스</dd>
+                <dt>위스키 · 브랜디</dt><dd>시바스 리갈 18 · 조니워커 골드라벨 · 글렌피딕 퍼페추얼 컬렉션 뱃 1 싱글몰트 · 잭다니엘 · 레미 마틴 XO 꼬냑 · 앱솔루트 보드카 · 바카디 럼 · 비피터 진</dd>
+                <dt>리큐어</dt><dd>베일리스 아이리쉬 크림 · 크렘 드 카시스</dd>
+                <dt>맥주</dt><dd>카스 · 하이네켄 · 스텔라 아르투아 · 타이거 · 제주펠롱에일 · 크로넨버그 1664 블랑</dd>
+                <dt>무알코올 맥주</dt><dd>하이네켄 제로</dd>
+              </dl>
+            </div>
+            <div class="mbsec">
+              <h4>음료</h4>
+              <dl class="course">
+                <dt>탄산음료</dt><dd>콜라 · 콜라 제로 · 스프라이트 · 진저에일</dd>
+                <dt>주스</dt><dd>오렌지 · 파인애플 · 토마토 · 사과 · 구아바</dd>
+                <dt>물</dt><dd>생수 · 산펠레그리노 (탄산수)</dd>
+                <dt>홍차</dt><dd>다즐링 · 얼그레이</dd>
+                <dt>허브차</dt><dd>페퍼민트 · 캐모마일 · 루이보스 바닐라</dd>
+                <dt>전통차</dt><dd>녹차 (세작) · 홍삼차</dd>
+                <dt>커피</dt><dd>레귤러 커피 · 디카페인 커피 <small>(일리 커피)</small></dd>
+                <dt>그 밖에</dt><dd>우유 · 무지방 우유 · 핫초코</dd>
+              </dl>
+            </div>
+            <button type="button" class="mbclose" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'center'});">메뉴판 접기 ▴</button>
+          </div>
+        </details>
         <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/pr/26-c-pr-645.pdf" target="_blank" rel="noopener">가는 비행기 메뉴판 보기 (PDF) ›</a>
       </div>
     </div>
