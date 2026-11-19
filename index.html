@@ -43,16 +43,19 @@ p{margin:0}
 a{color:var(--green);font-weight:700}
 a:focus-visible,button:focus-visible{outline:3px solid var(--orchid);outline-offset:3px;border-radius:8px}
 
-/* hero */
-.hero{background:var(--green);color:#fff;padding-block:40px 34px}
-.hero .wrap{display:grid;gap:14px}
-.hero .eyebrow{font-size:17px;letter-spacing:.04em;opacity:.9}
-.hero h1{font-size:40px;color:#fff}
-.hero p{font-size:20px;opacity:.95}
-.hero .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.hero .facts span{background:rgba(255,255,255,.16);border-radius:999px;padding:6px 14px;font-size:17px;font-weight:500}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero{background:#123d33}}
-:root[data-theme="dark"] .hero{background:#123d33}
+/* hero: dusk over Marina Bay, one fixed look in both themes */
+.hero{position:relative;color:#fff;background:linear-gradient(180deg,#1c3557 0%,#4a4378 38%,#b9607a 68%,#f0956c 88%,#f7c07f 100%);overflow:hidden}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:10px;padding-block:34px 0;text-align:center;justify-items:center}
+.hero .eyebrow{font-size:18px;font-weight:500;letter-spacing:.08em;color:#ffe7d6}
+.hero h1{font-size:46px;color:#fff;line-height:1.2;text-shadow:0 2px 18px rgba(30,20,60,.35)}
+.hero h1 em{font-style:normal;display:block;font-size:.62em;letter-spacing:.06em;color:#ffd9b8;margin-bottom:4px}
+.hero .when{font-size:19px;font-weight:500;color:#fff;font-variant-numeric:tabular-nums}
+.hero .dday{display:inline-block;margin-top:4px;background:#fff;color:#a8405f;font-weight:800;font-size:20px;border-radius:999px;padding:6px 18px;box-shadow:0 6px 20px rgba(60,20,50,.25)}
+.hero .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:8px}
+.hero .chips span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 13px;font-size:16px;font-weight:500;color:#fff}
+.hero .sun{position:absolute;left:50%;bottom:52px;width:150px;height:150px;margin-left:-75px;border-radius:50%;background:radial-gradient(circle,#ffe2a8 0%,rgba(255,214,150,.55) 45%,rgba(255,200,140,0) 70%)}
+.hero .skyline{position:relative;z-index:1;display:block;width:100%;max-width:640px;height:auto;margin:18px auto 0}
+.hero .ground{position:relative;z-index:1;height:10px;background:#15233b}
 
 /* sticky nav */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
@@ -164,7 +167,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   .day{padding:0 12px 18px}
   .dayhead .date{font-size:24px}
   body{font-size:18px}
-  .hero h1{font-size:34px}
+  .hero h1{font-size:38px}
   .flight .t{font-size:28px}
   .timeline li{grid-template-columns:58px 1fr;gap:10px}
   .timeline li::before{left:68px}
@@ -177,14 +180,30 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 <body>
 
 <header class="hero">
+  <div class="sun" aria-hidden="true"></div>
   <div class="wrap">
     <div class="eyebrow">엄마 아빠와 함께하는</div>
-    <h1>싱가포르 가족여행</h1>
-    <p>2026년 12월 2일(수) 저녁 출발, 12월 6일(일) 새벽 도착</p>
-    <div class="facts">
-      <span>3박 4일</span><span>네 식구</span><span>낮 28~31도</span><span>한국보다 1시간 느려요</span><span>230V</span>
+    <h1><em>SINGAPORE</em>싱가포르 가족여행</h1>
+    <div class="when">2026. 12. 2 (수) ~ 12. 6 (일)</div>
+    <div class="dday" id="dday" hidden></div>
+    <div class="chips">
+      <span>3박 4일</span><span>네 식구</span><span>낮 24~31℃</span><span>한국보다 1시간 느려요</span><span>230V</span>
     </div>
   </div>
+  <svg class="skyline" viewBox="0 0 400 100" aria-hidden="true">
+    <g fill="#15233b">
+      <rect x="0" y="66" width="14" height="34"/><rect x="12" y="54" width="12" height="46"/><rect x="24" y="72" width="16" height="28"/>
+      <polygon points="55.8,100 57,65 59,65 60.2,100"/><polygon points="47,58 69,58 60,66 56,66"/><polygon points="75.8,100 77,53 79,53 80.2,100"/><polygon points="67,46 89,46 80,54 76,54"/><polygon points="95.8,100 97,67 99,67 100.2,100"/><polygon points="87,60 109,60 100,68 96,68"/><polygon points="115.8,100 117,57 119,57 120.2,100"/><polygon points="107,50 129,50 120,58 116,58"/>
+      <path d="M136 100 Q160 74 188 100 Z"/>
+      <polygon points="208,100 211,44 224,44 226,100"/><polygon points="232,100 235,44 248,44 250,100"/><polygon points="256,100 259,44 272,44 274,100"/>
+      <rect x="203" y="38" width="86" height="6" rx="3"/>
+      <circle cx="334" cy="56" r="27" fill="none" stroke="#15233b" stroke-width="3"/>
+      <path d="M334 56 L322 100 M334 56 L346 100" stroke="#15233b" stroke-width="3"/>
+      <rect x="366" y="60" width="14" height="40"/><rect x="380" y="48" width="20" height="52"/>
+      <rect x="0" y="96" width="400" height="4"/>
+    </g>
+  </svg>
+  <div class="ground"></div>
 </header>
 
 <nav aria-label="바로가기">
@@ -443,6 +462,16 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <script>
 (function(){
+  // D-day badge (Korea time).
+  try{
+    var el=document.getElementById('dday');
+    var kst=new Date(Date.now()+9*3600*1000); var today=Date.UTC(kst.getUTCFullYear(),kst.getUTCMonth(),kst.getUTCDate());
+    var dep=Date.UTC(2026,11,2), back=Date.UTC(2026,11,6);
+    var n=Math.round((dep-today)/86400000);
+    if(n>0){el.textContent='출발까지 D-'+n;el.hidden=false;}
+    else if(n===0){el.textContent='오늘 출발해요!';el.hidden=false;}
+    else if(today<=back){el.textContent='여행 중이에요';el.hidden=false;}
+  }catch(e){}
   // Keep day headers just under the sticky nav.
   try{
     var nav=document.querySelector('nav');
