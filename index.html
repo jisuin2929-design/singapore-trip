@@ -129,10 +129,18 @@ section > h2{font-size:30px}
 .ph figcaption a{font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
 .ph.wide img{aspect-ratio:16/9}
 [hidden]{display:none!important}
-.lmap{height:380px;border-radius:14px;border:1px solid var(--line);overflow:hidden;position:relative;z-index:0;isolation:isolate}
-.lpin{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#1d2b28;color:#fff;font:800 13px/1 var(--body);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.lmapcard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.lscopes{display:flex;gap:4px;padding:8px;overflow-x:auto}
+.lscopes button{font:700 15px var(--body);white-space:nowrap;border:0;border-radius:9px;padding:8px 11px;background:transparent;color:var(--muted);cursor:pointer}
+.lscopes button[aria-pressed="true"]{background:var(--dbg,var(--green-soft));color:var(--dac,var(--green))}
+.lsum{padding:0 14px 8px;font-size:15px;color:var(--muted)}
+.lmap{height:440px;position:relative;z-index:0;isolation:isolate}
+.lpin{display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border-radius:14px;background:#1f3b34;color:#fff;font:800 14px/1 var(--body);border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);white-space:nowrap;transform:translate(-50%,-50%);width:max-content}
 .lpin.h{background:#764598}
-.leaflet-tooltip.ltip{font:700 13px var(--body);padding:2px 6px;border-radius:6px}
+.leaflet-tooltip.ltip{background:transparent;border:0;box-shadow:none;font:800 15px var(--body);color:#1d2422;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 4px #fff,0 0 6px #fff;padding:0}
+.leaflet-tooltip.ltip::before{display:none}
+.lleg{display:flex;flex-wrap:wrap;gap:6px 16px;padding:9px 14px;font-size:15px;color:var(--muted)}
+.lleg i{display:inline-block;width:24px;height:0;border-top:4px solid;vertical-align:middle;margin-right:6px}
 .daymap{display:grid;gap:6px;text-decoration:none;color:inherit}
 .daymap img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--surface)}
 .daymap span{font-size:16px;font-weight:700;color:var(--dac,var(--green))}
@@ -573,31 +581,51 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 })();
 </script>
 <script>
-// Real street map on the public site (the Claude viewer blocks map tiles, so it keeps the picture).
+// Real street map (OneMap) on the public site; the Claude viewer blocks map tiles, so it keeps the picture.
 (function(){
   if(!/github\.io$/.test(location.hostname)) return;
-  var P={"airport": [1.357, 103.989, "창이공항", 0], "dusit": [1.32, 103.963, "두짓타니 라구나", 1], "fullerton": [1.2863, 103.8532, "더 풀러턴 호텔", 1], "palm": [1.2857, 103.8543, "팜 비치 시푸드", 0], "merlion": [1.2868, 103.8546, "머라이언 파크", 0], "ginger": [1.3022, 103.8365, "진저릴리", 0], "ion": [1.304, 103.8319, "오차드로드 크리스마스 조명", 0], "lantern": [1.2838, 103.8536, "랜턴 루프탑바", 0], "luge": [1.2542, 103.8167, "스카이라인 루지", 0], "zip": [1.2528, 103.8138, "메가짚", 0], "weave": [1.2566, 103.8213, "WEAVE 점심 · 유니버설 지구본", 0], "ocean": [1.2586, 103.819, "싱가포르 오셔나리움", 0], "jumbo": [1.2895, 103.8455, "점보 시푸드 리버사이드 포인트", 0], "gbtb": [1.2841, 103.8648, "가든스 바이 더 베이", 0], "maxwell": [1.2803, 103.8449, "맥스웰 푸드센터", 0], "btr": [1.2815, 103.8442, "불아사 · 차이나타운", 0], "jewel": [1.3602, 103.9894, "쥬얼 창이", 0], "t4": [1.3383, 103.984, "창이공항 터미널 4", 0], "safari": [1.4022, 103.788, "나이트사파리", 0], "faber": [1.2716, 103.8195, "마운트페이버 케이블카", 0], "cablesentosa": [1.2551, 103.8172, "케이블카 센토사역", 0], "supertree": [1.2816, 103.8636, "슈퍼트리 그로브", 0], "lavo": [1.2843, 103.8597, "라보", 0], "cruise": [1.283, 103.8612, "리버크루즈", 0], "trapizza": [1.2556, 103.8106, "트라피자", 0], "palawan": [1.2493, 103.8216, "팔라완 비치 · 흔들다리", 0], "botanic": [1.3116, 103.8148, "보타닉 가든 · 오키드 가든", 0], "songfa": [1.2891, 103.8467, "송파 바쿠테 본점", 0], "orchard": [1.3034, 103.835, "오차드로드", 0], "helix": [1.2876, 103.8603, "헬릭스 브리지", 0], "mbs": [1.2834, 103.8607, "MBS 스카이파크 전망대", 0], "satay": [1.2818, 103.869, "사테 바이 더 베이", 0], "tanjong": [1.244, 103.8298, "탄중 비치클럽", 0], "haji": [1.3008, 103.859, "하지레인", 0]}, DAYS={"d1": [["airport", null], ["dusit", "taxi"]], "d2": [["dusit", null], ["fullerton", "taxi"], ["botanic", "taxi"], ["merlion", "taxi"], ["palm", "walk"], ["fullerton", "walk"], ["helix", "walk"], ["gbtb", "walk"], ["lavo", "walk"], ["cruise", "walk"], ["supertree", "walk"], ["fullerton", "taxi"]], "d3": [["fullerton", null], ["faber", "taxi"], ["cablesentosa", "cable"], ["luge", "walk"], ["zip", "walk"], ["trapizza", "zip"], ["palawan", "shuttle"], ["tanjong", "walk"], ["fullerton", "taxi"], ["safari", "taxi"], ["ion", "taxi"], ["fullerton", "taxi"]], "d4": [["fullerton", null], ["btr", "taxi"], ["songfa", "taxi"], ["orchard", "taxi"], ["jumbo", "taxi"], ["fullerton", "taxi"], ["jewel", "taxi"], ["t4", "shuttle"]]}, COL={taxi:'#245fc7',walk:'#007d5d',rail:'#b5530f',shuttle:'#b5530f',cable:'#8a3ffc',zip:'#8a3ffc'};
+  var P={"airport": [1.357, 103.989, "창이공항", 0], "dusit": [1.32, 103.963, "두짓타니 라구나", 1], "fullerton": [1.2863, 103.8532, "더 풀러턴 호텔", 1], "palm": [1.2857, 103.8543, "팜 비치 시푸드", 0], "merlion": [1.2868, 103.8546, "머라이언 파크", 0], "ginger": [1.3022, 103.8365, "진저릴리", 0], "ion": [1.304, 103.8319, "오차드로드 크리스마스 조명", 0], "lantern": [1.2838, 103.8536, "랜턴 루프탑바", 0], "luge": [1.2542, 103.8167, "스카이라인 루지", 0], "zip": [1.2528, 103.8138, "메가짚", 0], "weave": [1.2566, 103.8213, "WEAVE 점심", 0], "ocean": [1.2586, 103.819, "싱가포르 오셔나리움", 0], "jumbo": [1.2895, 103.8455, "점보 시푸드 리버사이드 포인트", 0], "gbtb": [1.2841, 103.8648, "가든스 바이 더 베이", 0], "maxwell": [1.2803, 103.8449, "맥스웰 푸드센터", 0], "btr": [1.2815, 103.8442, "불아사", 0], "jewel": [1.3602, 103.9894, "쥬얼 창이", 0], "t4": [1.3383, 103.984, "창이공항 터미널 4", 0], "safari": [1.4022, 103.788, "나이트사파리", 0], "faber": [1.2716, 103.8195, "마운트페이버 케이블카", 0], "cablesentosa": [1.2551, 103.8172, "케이블카 센토사역", 0], "supertree": [1.2816, 103.8636, "슈퍼트리 그로브", 0], "lavo": [1.2843, 103.8597, "라보", 0], "cruise": [1.283, 103.8612, "리버크루즈", 0], "trapizza": [1.2556, 103.8106, "트라피자", 0], "palawan": [1.2493, 103.8216, "팔라완 비치", 0], "botanic": [1.3116, 103.8148, "보타닉 가든", 0], "songfa": [1.2891, 103.8467, "송파 바쿠테 본점", 0], "orchard": [1.3034, 103.835, "오차드로드", 0], "helix": [1.2876, 103.8603, "헬릭스 브리지", 0], "mbs": [1.2834, 103.8607, "MBS 스카이파크 전망대", 0], "satay": [1.2818, 103.869, "사테 바이 더 베이", 0], "tanjong": [1.244, 103.8298, "탄중 비치클럽", 0], "haji": [1.3008, 103.859, "하지레인", 0]}, DAYS={"d1": [["airport", null, "00:15"], ["dusit", "taxi", "02:00"]], "d2": [["dusit", null, "08:30"], ["fullerton", "taxi", "09:00"], ["botanic", "taxi", "09:20"], ["merlion", "taxi", "11:00"], ["palm", "walk", "12:30"], ["fullerton", "walk", "14:00"], ["helix", "walk", "15:45"], ["gbtb", "walk", "16:15"], ["lavo", "walk", "18:15"], ["cruise", "walk", "20:00"], ["supertree", "walk", "21:00"], ["fullerton", "taxi", "22:15"]], "d3": [["fullerton", null, "09:00"], ["faber", "taxi", "09:30"], ["cablesentosa", "cable", "09:50"], ["luge", "walk", "10:00"], ["zip", "walk", "11:30"], ["trapizza", "zip", "12:30"], ["palawan", "shuttle", "14:00"], ["tanjong", "walk", "15:00"], ["fullerton", "taxi", "17:00"], ["safari", "taxi", "19:15"], ["ion", "taxi", "22:15"], ["fullerton", "taxi", "23:00"]], "d4": [["fullerton", null, "10:30"], ["btr", "taxi", "10:45"], ["songfa", "taxi", "11:30"], ["orchard", "taxi", "12:30"], ["jumbo", "taxi", "15:00"], ["fullerton", "taxi", "16:30"], ["jewel", "taxi", "17:30"], ["t4", "shuttle", "20:45"]]}, R={"d1": [["공항 → 숙소", 0, 1]], "d2": [["하루 전체", 0, 11], ["오전 이동", 0, 3], ["베이 산책", 3, 7], ["저녁·야경", 7, 11]], "d3": [["하루 전체", 0, 11], ["센토사 입도", 0, 2], ["센토사 해변", 2, 7], ["사파리·야경", 7, 11]], "d4": [["하루 전체", 0, 7], ["시내 관광", 0, 5], ["공항 이동", 5, 6], ["쥬얼·출국", 6, 7]]}, DEF={"d1": 0, "d2": 2, "d3": 2, "d4": 1};
+  var DIR={palm:'bottom',fullerton:'left',cablesentosa:'top',zip:'bottom',trapizza:'bottom',jumbo:'top',songfa:'right',luge:'right'};
+  var OFF={right:[16,0],left:[-16,0],bottom:[0,14],top:[0,-14]};
+  var COL={taxi:'#245fc7',walk:'#007d5d',rail:'#b5530f',shuttle:'#b5530f',cable:'#8a3ffc',zip:'#8a3ffc'};
+  var MODE={taxi:'택시·Grab',walk:'도보',rail:'모노레일·셔틀',shuttle:'모노레일·셔틀',cable:'케이블카·짚라인',zip:'케이블카·짚라인'};
   var css=document.createElement('link'); css.rel='stylesheet'; css.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'; document.head.appendChild(css);
   var js=document.createElement('script'); js.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
   js.onload=function(){
     document.querySelectorAll('.daymap').forEach(function(a){
       var id=(a.getAttribute('href').split('#')[1]||''), stops=DAYS[id]; if(!stops) return;
-      var box=document.createElement('div'); box.className='lmap'; a.parentNode.insertBefore(box,a);
-      var img=a.querySelector('img'); if(img) img.hidden=true;
-      var map=L.map(box,{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false});
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(map);
-      var pts=[], seen={};
-      stops.forEach(function(st,i){
-        var p=P[st[0]]; if(!p) return; var ll=[p[0],p[1]]; pts.push(ll);
-        if(i>0){ var q=P[stops[i-1][0]]; L.polyline([[q[0],q[1]],ll],{color:COL[st[1]]||'#245fc7',weight:4,opacity:.85,dashArray:st[1]==='walk'?'2 8':(st[1]==='taxi'?null:'10 6')}).addTo(map); }
-        if(seen[st[0]]){ seen[st[0]].n.push(i+1); seen[st[0]].m.setIcon(L.divIcon({className:'',html:'<div class="lpin'+(p[3]?' h':'')+'" style="width:auto;padding:0 7px;border-radius:13px">'+seen[st[0]].n.join('·')+'</div>',iconSize:null,iconAnchor:[13,13]})); return; }
-        var m=L.marker(ll,{icon:L.divIcon({className:'',html:'<div class="lpin'+(p[3]?' h':'')+'">'+(i+1)+'</div>',iconSize:[26,26],iconAnchor:[13,13]})}).addTo(map);
-        m.bindTooltip(p[2],{permanent:true,direction:'right',offset:[14,0],className:'ltip'});
-        seen[st[0]]={m:m,n:[i+1]};
-      });
-      var far={airport:1,dusit:1,jewel:1,t4:1}, core=stops.filter(function(s){return !far[s[0]];}).map(function(s){var p=P[s[0]];return [p[0],p[1]];});
-      map.fitBounds(L.latLngBounds(core.length>1?core:pts).pad(0.15));
-      a.querySelector('span').textContent='두 손가락으로 확대해 보세요 · 자세한 지도 보기 →';
+      var card=document.createElement('div'); card.className='lmapcard';
+      var bar=document.createElement('div'); bar.className='lscopes'; var sum=document.createElement('div'); sum.className='lsum';
+      var box=document.createElement('div'); box.className='lmap'; var leg=document.createElement('div'); leg.className='lleg';
+      card.append(bar,sum,box,leg); a.parentNode.insertBefore(card,a); a.hidden=true;
+      var map=L.map(box,{zoomSnap:0.25,scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,minZoom:11,maxZoom:19,maxBounds:[[1.13,103.55],[1.50,104.15]]});
+      L.tileLayer('https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png',{detectRetina:true,maxZoom:19,minZoom:11,
+        attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> &copy; contributors | Singapore Land Authority'}).addTo(map);
+      var layer=L.layerGroup().addTo(map), btns=[];
+      function show(k){
+        var r=R[id][k], lo=r[1], hi=r[2]; layer.clearLayers();
+        btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===k);});
+        var groups={}, order=[], modes={};
+        for(var i=lo;i<=hi;i++){ var st=stops[i], p=P[st[0]];
+          if(i>lo){ var q=P[stops[i-1][0]]; modes[st[1]]=1;
+            L.polyline([[q[0],q[1]],[p[0],p[1]]],{color:'#fff',weight:8,opacity:.9}).addTo(layer);
+            L.polyline([[q[0],q[1]],[p[0],p[1]]],{color:COL[st[1]]||'#245fc7',weight:5,dashArray:st[1]==='walk'?'1 10':(st[1]==='taxi'?null:'10 7'),lineCap:'round'}).addTo(layer); }
+          if(!groups[st[0]]){groups[st[0]]=[];order.push(st[0]);} groups[st[0]].push(i+1);
+        }
+        var pts=[], mid=0; order.forEach(function(k2){mid+=P[k2][1]/order.length;}); var mx=Math.max.apply(null,order.map(function(k2){return P[k2][1];})), W=Math.max.apply(null,order.map(function(k2){return P[k2][1];}))-Math.min.apply(null,order.map(function(k2){return P[k2][1];}));
+        order.forEach(function(k2){ var p=P[k2]; pts.push([p[0],p[1]]); var dir=DIR[k2]||(W>0&&p[1]>mx-W*0.2?'left':'right'); if(dir==='left'&&W>0&&p[1]<mx-W*0.8) dir='top';
+          L.marker([p[0],p[1]],{icon:L.divIcon({className:'',html:'<div class="lpin'+(p[3]?' h':'')+'">'+groups[k2].join('·')+'</div>',iconSize:[0,0]})})
+           .bindTooltip(p[2],{permanent:true,direction:dir,offset:OFF[dir],className:'ltip'}).addTo(layer); });
+        sum.textContent=stops[lo][2]+' '+P[stops[lo][0]][2]+' → '+stops[hi][2]+' '+P[stops[hi][0]][2];
+        var seen={}; leg.innerHTML=''; Object.keys(modes).forEach(function(m){ if(seen[MODE[m]]) return; seen[MODE[m]]=1;
+          var sp=document.createElement('span'); sp.innerHTML='<i style="border-top-color:'+COL[m]+';border-top-style:'+(m==='taxi'?'solid':(m==='walk'?'dotted':'dashed'))+'"></i>'+MODE[m]; leg.appendChild(sp); });
+        map.invalidateSize();
+        if(pts.length>1) map.fitBounds(L.latLngBounds(pts),{paddingTopLeft:[64,40],paddingBottomRight:[40,64],maxZoom:17}); else map.setView(pts[0],15);
+      }
+      R[id].forEach(function(r,k){ var b=document.createElement('button'); b.type='button'; b.textContent=r[0]; b.onclick=function(){show(k);}; bar.appendChild(b); btns.push(b); });
+      if(R[id].length<2) bar.hidden=true;
+      show(DEF[id]); var cur=DEF[id]; btns.forEach(function(b,j){b.addEventListener('click',function(){cur=j;});});
+      window.addEventListener('load',function(){show(cur);});
     });
   };
   document.head.appendChild(js);
