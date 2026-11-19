@@ -81,8 +81,9 @@ nav .days a{padding:7px 4px}
 nav .days a small{font-size:14px;font-weight:600}
 nav a.today{background:var(--orchid);border-color:var(--orchid);color:#fff}
 
-main .wrap{display:grid;gap:44px;padding-block:32px 56px}
-section{display:grid;gap:16px}
+main .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:44px;padding-block:32px 56px}
+section>*,.day>*,.card>*{min-width:0}
+section{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 section > h2{font-size:30px}
 .lead{color:var(--muted);font-size:18px}
 
