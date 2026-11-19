@@ -112,6 +112,14 @@ section > h2{font-size:30px}
 .prepitem p b{color:var(--ink)}
 .appbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .appbtns a{display:inline-block;padding:9px 14px;border-radius:10px;background:var(--green);color:var(--surface);font-size:16px;font-weight:700;text-decoration:none}
+.store a{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:7px 18px 7px 10px;line-height:1.15;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.store a span{display:grid;text-align:left;font-size:16px}
+.store a small{font-size:12px;font-weight:600;opacity:.8}
+.store .lg{width:30px;height:30px;flex:none}
+.store a.droid{background:#eafaf1;color:#0b5a33;border:1.5px solid #3DDC84}
+.store a.droid .lg{background:#fff;border-radius:50%;padding:3px}
+.store a.ios{background:#111;color:#fff;border:1.5px solid #111}
+.store a.ios .lg{padding:2px}
 .park summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:19px;font-weight:700}
 .park summary::-webkit-details-marker{display:none}
 .park .pkmore{flex:none;font-size:15px;font-weight:600;color:#2a62b8}
@@ -366,7 +374,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="prepitem">
         <b>1. 인천공항 스마트패스 앱 깔기</b>
         <p>여권과 얼굴을 미리 등록해 두면, 출국할 때 얼굴만 보고 빨리 통과해요. 4명 모두 각자 휴대폰에 깔고 등록해요.</p>
-        <div class="appbtns"><a href="https://play.google.com/store/search?q=%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8C%A8%EC%8A%A4&amp;c=apps" target="_blank" rel="noopener">갤럭시 (안드로이드)</a><a href="https://apps.apple.com/kr/app/id6443837919" target="_blank" rel="noopener">아이폰</a></div>
+        <div class="appbtns store"><a class="droid" href="https://play.google.com/store/search?q=%EC%9D%B8%EC%B2%9C%EA%B3%B5%ED%95%AD%20%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8C%A8%EC%8A%A4&amp;c=apps" target="_blank" rel="noopener"><svg class="lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 6.6 5.6 4M16.8 6.6 18.4 4" stroke="#3DDC84" stroke-width="1.6" stroke-linecap="round"/><path fill="#3DDC84" d="M3 17.5a9 9 0 0 1 18 0z"/><circle cx="8.3" cy="13.4" r="1.15" fill="#fff"/><circle cx="15.7" cy="13.4" r="1.15" fill="#fff"/></svg><span>갤럭시<small>안드로이드</small></span></a><a class="ios" href="https://apps.apple.com/kr/app/id6443837919" target="_blank" rel="noopener"><svg class="lg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.6c-.02-2.3 1.88-3.4 1.97-3.46-1.07-1.57-2.74-1.78-3.33-1.8-1.42-.14-2.77.83-3.49.83-.72 0-1.83-.81-3.01-.79-1.55.02-2.98.9-3.78 2.29-1.61 2.8-.41 6.94 1.16 9.21.77 1.11 1.68 2.36 2.88 2.31 1.16-.05 1.59-.75 2.99-.75 1.4 0 1.79.75 3.01.72 1.24-.02 2.03-1.13 2.79-2.25.88-1.29 1.24-2.54 1.26-2.6-.03-.01-2.42-.93-2.45-3.71zM14.08 5.85c.64-.78 1.07-1.85.95-2.92-.92.04-2.03.61-2.69 1.38-.59.68-1.11 1.77-.97 2.82 1.03.08 2.07-.52 2.71-1.28z"/></svg><span>아이폰<small>iPhone</small></span></a></div>
       </div>
       <div class="prepitem">
         <b>2. 싱가포르 입국신고서 (SG Arrival Card)</b>
