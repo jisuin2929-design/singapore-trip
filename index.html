@@ -117,6 +117,15 @@ section > h2{font-size:30px}
 .pill.meal{background:var(--orchid-soft);color:var(--orchid)}
 .pill.rest{background:var(--sun-soft);color:var(--sun)}
 .choice{background:var(--sun-soft);border-radius:12px;padding:10px 14px;margin-top:6px;font-size:17px}
+.wxrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.wxday{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 8px;display:grid;justify-items:center;gap:6px;text-align:center;min-width:0}
+.wxday .d{font-weight:800;font-size:18px}
+.wxday .d small{display:block;font-size:14px;font-weight:500;color:var(--muted)}
+.wxday .ic{display:grid;grid-template-columns:auto auto;gap:2px 6px;align-items:center;font-size:15px;color:var(--muted)}
+.wxday .ic span:nth-child(odd){font-size:30px;line-height:1.1}
+.wxday .t{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
+.wxday .r{font-size:14px;color:var(--muted);line-height:1.4}
+.wxnote{font-size:16px;color:var(--muted)}
 .wx{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;background:var(--surface);border-radius:14px;padding:12px 16px}
 .wx .ico{font-size:34px;line-height:1;grid-row:span 2}
 .wx .temp{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--dac,var(--ink))}
@@ -245,6 +254,16 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <p class="note">밤 비행기라 기내에서 푹 주무시면 일요일 아침에 도착해요.</p>
     </div>
+  </section>
+
+  <section id="weather">
+    <h2>싱가포르 날씨</h2>
+    <div class="wxrow">
+      <div class="wxday"><span class="d">12/3<small>목요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
+      <div class="wxday"><span class="d">12/4<small>금요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
+      <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
+    </div>
+    <p class="wxnote">12월 초 싱가포르는 보통 오전에 맑고 오후에 잠깐 소나기가 와요. 아직 예보가 나오기 전이라 예년 날씨로 적었고, 출발 며칠 전에 실제 예보로 바꿀게요.</p>
   </section>
 
   <section id="hotel">
