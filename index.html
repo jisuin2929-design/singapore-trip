@@ -90,6 +90,12 @@ section > h2{font-size:30px}
 .meal h3{margin:0 0 6px;font-size:17px}
 .meal ul{margin:0 0 10px;padding-left:22px;font-size:17px;line-height:1.6}
 .meal ul small{color:var(--muted);font-size:15px}
+.mslide{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:4px -4px 10px;padding:0 4px 6px;-webkit-overflow-scrolling:touch}
+.mslide figure{flex:0 0 86%;scroll-snap-align:start;margin:0;border-radius:12px;overflow:hidden;background:var(--green-soft)}
+.mslide img{display:block;width:100%;aspect-ratio:720/449;object-fit:cover}
+.mslide figcaption{padding:8px 12px;font-size:17px;font-weight:700}
+.mslide figcaption small{font-weight:400;color:var(--muted);font-size:15px;margin-left:4px}
+.mhint{font-size:15px;color:var(--muted);margin:0 0 4px}
 .mealbtn{display:inline-block;padding:9px 14px;border-radius:10px;background:var(--green-soft);color:var(--green);font-weight:700;font-size:16px;text-decoration:none}
 .wifi ol{margin:6px 0 0;padding-left:22px;font-size:17px;line-height:1.6}
 
@@ -290,7 +296,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
-        <ul><li>버섯덮밥 <small>한식</small></li><li>안심 스테이크와 으깬 감자 <small>양식</small></li><li>토마토소스 펜네 파스타와 관자 <small>양식</small></li></ul>
+        <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure></div>
         <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/pr/26-c-pr-645.pdf" target="_blank" rel="noopener">가는 비행기 메뉴판 보기 (PDF) ›</a>
       </div>
     </div>
@@ -304,7 +310,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <p class="note">창이공항 <b>터미널 4</b>에서 출발해요. <b>밤 9시 30분</b>까지 짐 부치기를 마쳐야 해요. 밤 비행기라 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>에 도착해요.</p>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
-        <ul><li>비빔밥 <small>한식</small></li><li>시금치 치즈소스 닭고기 요리와 감자 <small>양식</small></li></ul>
+        <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-644-1.jpg" alt="비빔밥" loading="lazy"><figcaption>비빔밥<small>한식</small></figcaption></figure><figure><img src="img/meal-644-2.jpg" alt="시금치 치즈소스 닭고기 요리와 감자" loading="lazy"><figcaption>시금치 치즈소스 닭고기 요리와 감자<small>양식</small></figcaption></figure></div>
         <p style="margin:0 0 10px;font-size:16px;color:var(--muted)">내리기 2시간 20분 전쯤 간식과 음료가 한 번 더 나와요.</p>
         <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/ey/26-c-ey-644.pdf" target="_blank" rel="noopener">오는 비행기 메뉴판 보기 (PDF) ›</a>
       </div>
