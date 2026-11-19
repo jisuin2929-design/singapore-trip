@@ -83,6 +83,10 @@ ol.steps{list-style:none;margin:0;padding:0;display:grid}
 footer{color:var(--muted);font-size:.82rem;max-width:72ch}
 /* map svg */
 .coast{fill:var(--land);stroke:var(--land-edge);stroke-width:1;vector-effect:non-scaling-stroke}
+.tiles .area{display:none}
+#map.tiles + .mapattr{display:block}
+.mapattr{display:none;position:absolute;left:0;bottom:0;background:rgba(255,255,255,.8);font:11px var(--sans);color:#333;padding:1px 6px;border-top-right-radius:6px;pointer-events:auto}
+.mapattr a{color:#245fc7}
 .area{fill:var(--label);font:500 12px var(--sans);letter-spacing:.06em;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:var(--land);stroke-width:3px}
 .route{fill:none;stroke-width:4;stroke-linecap:round}
 .route.taxi{stroke:var(--taxi)}
@@ -122,6 +126,7 @@ footer{color:var(--muted);font-size:.82rem;max-width:72ch}
   <div class="main">
     <section class="mapcard"><div id="scopes" aria-label="표시할 일정"></div><div id="summary" aria-live="polite"></div><div class="mapbox" id="mapbox">
       <svg id="map" aria-label="이동경로 지도" role="img"></svg>
+      <div class="mapattr"><a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> © contributors | Singapore Land Authority</div>
       <div class="ctrl">
         <button id="zin" aria-label="확대">+</button>
         <button id="zout" aria-label="축소">−</button>
@@ -259,6 +264,31 @@ let coastD = "";
 const chaikin = r => { let p=r; for(let k=0;k<2;k++){ const q=[]; for(let i=0;i<p.length;i++){ const a=p[i], b=p[(i+1)%p.length]; q.push([.75*a[0]+.25*b[0],.75*a[1]+.25*b[1]],[.25*a[0]+.75*b[0],.25*a[1]+.75*b[1]]); } p=q; } return p; };
 for (const r of COAST){ coastD += "M"+chaikin(r.map(([x,y])=>[wx(x),wy(y)])).map(([x,y])=>x.toFixed(2)+","+y.toFixed(2)).join("L")+"Z"; }
 el('path',{d:coastD,class:'coast','fill-rule':'evenodd'},gWorld);
+// Street map tiles (Singapore government OneMap) under the routes; the coastline stays as a fallback.
+const gTiles = el('g',{},gWorld), tileZ = {}, tileImg = {};
+let tilesOK = false;
+const TURL = (z,x,y)=>`https://www.onemap.gov.sg/maps/tiles/Default/${z}/${x}/${y}.png`;
+const lon2t=(lon,z)=>(lon+180)/360*2**z, lat2t=(lat,z)=>(1-Math.log(Math.tan(lat*Math.PI/180)+1/Math.cos(lat*Math.PI/180))/Math.PI)/2*2**z;
+const t2lon=(x,z)=>x/2**z*360-180, t2lat=(y,z)=>Math.atan(Math.sinh(Math.PI*(1-2*y/2**z)))*180/Math.PI;
+function drawTiles(){
+  const [w,h]=size(), s=view.s, dpr=Math.min(window.devicePixelRatio||1,2);
+  const pxPerDeg=1000*CL*s;
+  let z=Math.round(Math.log2(pxPerDeg*dpr*360/256)); z=Math.max(11,Math.min(19,z));
+  const lon0=103.55+(-view.tx/s)/(1000*CL), lon1=103.55+((w-view.tx)/s)/(1000*CL);
+  const lat0=1.5-(-view.ty/s)/1000, lat1=1.5-((h-view.ty)/s)/1000;
+  const want=new Set();
+  [z-1,z].forEach(zz=>{ if(zz<11) return;
+    if(!tileZ[zz]){ tileZ[zz]=el('g',{},gTiles); Object.keys(tileZ).map(Number).sort((a,b)=>a-b).forEach(k=>gTiles.appendChild(tileZ[k])); }
+    const x0=Math.floor(lon2t(lon0,zz)), x1=Math.floor(lon2t(lon1,zz)), y0=Math.floor(lat2t(lat0,zz)), y1=Math.floor(lat2t(lat1,zz));
+    if((x1-x0+1)*(y1-y0+1)>80) return;
+    for(let x=x0;x<=x1;x++) for(let y=y0;y<=y1;y++){ const k=zz+'/'+x+'/'+y; want.add(k);
+      if(!tileImg[k]){ const L0=t2lon(x,zz), L1=t2lon(x+1,zz), A0=t2lat(y,zz), A1=t2lat(y+1,zz);
+        const X=wx(L0), Y=wy(A0), im=el('image',{x:X,y:Y,width:(wx(L1)-X)*1.004,height:(wy(A1)-Y)*1.004,preserveAspectRatio:'none'},tileZ[zz]);
+        im.addEventListener('load',()=>{ if(!tilesOK){ tilesOK=true; svg.classList.add('tiles'); } });
+        im.setAttribute('href',TURL(zz,x,y)); tileImg[k]=im; } }
+  });
+  for(const k in tileImg) tileImg[k].style.display=want.has(k)?'':'none';
+}
 
 const AREAS = [["오차드",1.3065,103.8330],["캄퐁글람",1.3040,103.8610],["마리나베이",1.2800,103.8590],["차이나타운",1.2775,103.8420],["센토사",1.2475,103.8250],["창이",1.3700,103.9750],["탬피니스",1.3500,103.9450],["말레이시아 (조호르)",1.4600,103.7600],["싱가포르",1.3550,103.8200],["만다이",1.4120,103.7950]];
 
@@ -313,6 +343,7 @@ function curve(a,b,i){
 
 function render(){
   gWorld.setAttribute('transform',`translate(${view.tx},${view.ty}) scale(${view.s})`);
+  drawTiles();
   gOver.textContent='';
   const S=([x,y])=>[x*view.s+view.tx, y*view.s+view.ty];
   // area labels
