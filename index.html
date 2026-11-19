@@ -170,6 +170,10 @@ section > h2{font-size:30px}
 .preord p{font-size:15px;margin:6px 0 4px;color:var(--muted)}
 .prepill{display:inline-block;font-size:14px;font-weight:800;color:#1f7a3a;background:#d9efdd;border-radius:999px;padding:2px 10px}
 .preord small{font-size:14px;color:var(--muted);font-weight:500}
+.meal h3 .who{font-size:15px;font-weight:700;color:var(--muted);margin-left:6px}
+.rmeal{margin:0 0 12px}
+.rmeal .mains small{font-size:14px;color:var(--muted);font-weight:600;margin-left:4px}
+#meal644kids{margin-top:12px}
 .mbnote{font-size:15px;font-weight:500;color:var(--muted);margin-top:6px}
 .winecat{font-size:15px;font-weight:800;color:var(--green);margin:12px 0 4px}
 .wineitem{display:grid;gap:1px;padding:4px 0 8px}
@@ -528,10 +532,22 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 출발해요. <b>밤 9시 30분</b>까지 짐 부치기를 마쳐야 해요. 밤 비행기라 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>에 도착해요.</p>
       <div class="meal">
-        <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
-        <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-644-1.jpg" alt="비빔밥" loading="lazy"><figcaption>비빔밥<small>한식</small></figcaption></figure><figure><img src="img/meal-644-2.jpg" alt="시금치 치즈소스 닭고기 요리와 감자" loading="lazy"><figcaption>시금치 치즈소스 닭고기 요리와 감자<small>양식</small></figcaption></figure></div>
-        <p style="margin:0 0 10px;font-size:16px;color:var(--muted)">내리기 2시간 20분 전쯤 간식과 음료가 한 번 더 나와요.</p>
-        <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/ey/26-c-ey-644.pdf" target="_blank" rel="noopener">오는 비행기 메뉴판 보기 (PDF) ›</a>
+        <h3>🍽️ 기내식 <small class="who">현호 · 경희</small></h3>
+        <dl class="course rmeal">
+          <dt>첫 번째 식사 <small>(이륙 후, 하나 골라요)</small></dt>
+          <dd><ul class="mains"><li><b>비빔밥</b> <small>한식</small></li><li><b>XO소스의 볶음새우와 마늘볶음</b> <small>양식</small></li></ul></dd>
+          <dt>두 번째 식사 <small>(내리기 전)</small></dt>
+          <dd><ul class="mains"><li><b>유럽식 아침 식사</b> <small>양식</small></li></ul></dd>
+        </dl>
+        <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/py/26-c-py-644.pdf" target="_blank" rel="noopener">현호 · 경희 메뉴판 보기 (PDF) ›</a>
+        <details class="menubook" id="meal644kids">
+          <summary><span>수인 · 혜인 기내식 보기</span><span class="mbarrow">▾</span></summary>
+          <div class="mb">
+            <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-644-1.jpg" alt="비빔밥" loading="lazy"><figcaption>비빔밥<small>한식</small></figcaption></figure><figure><img src="img/meal-644-2.jpg" alt="시금치 치즈소스 닭고기 요리와 감자" loading="lazy"><figcaption>시금치 치즈소스 닭고기 요리와 감자<small>양식</small></figcaption></figure></div>
+        <p style="margin:0 0 10px;font-size:16px;color:var(--muted)">이륙 직후 하나 고르고, 내리기 2시간 20분 전쯤 간식과 음료가 한 번 더 나와요.</p>
+            <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/ey/26-c-ey-644.pdf" target="_blank" rel="noopener">수인 · 혜인 메뉴판 보기 (PDF) ›</a>
+          </div>
+        </details>
       </div>
     </div>
     <div class="card wifi">
