@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>식당 메뉴와 추천 주문</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#f3f6f4;--surface:#fff;--ink:#1d2422;--muted:#5c6763;--line:#dfe6e2;--green:#0f6b52;--soft:#e3f1ea;--rec:#fff6e5;--recb:#f0c36a;--link:#2a62b8;
+  --d2:#0f6b52;--d3:#1f5f9e;--d4:#a5346b;--display:"Gowun Batang",serif;--body:"Noto Sans KR",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121715;--surface:#1b2220;--ink:#e8eeeb;--muted:#a3b0ab;--line:#2c3532;--green:#5fc4a1;--soft:#1f302a;--rec:#2a2418;--recb:#7a6230;--link:#8ab4f8;--d2:#5fc4a1;--d3:#7fb2ea;--d4:#ec8fb8}}
+:root[data-theme="dark"]{--bg:#121715;--surface:#1b2220;--ink:#e8eeeb;--muted:#a3b0ab;--line:#2c3532;--green:#5fc4a1;--soft:#1f302a;--rec:#2a2418;--recb:#7a6230;--link:#8ab4f8;--d2:#5fc4a1;--d3:#7fb2ea;--d4:#ec8fb8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 var(--body);-webkit-text-size-adjust:100%;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:760px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
+a.back{display:inline-block;color:var(--green);font-weight:700;text-decoration:none;margin-bottom:12px}
+h1{font-family:var(--display);font-size:32px;line-height:1.25;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 14px}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+.jump a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:15px;font-weight:700;color:var(--ink);text-decoration:none}
+.r{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--dc);border-radius:18px;padding:18px;margin-bottom:18px}
+.r.d2{--dc:var(--d2)}.r.d3{--dc:var(--d3)}.r.d4{--dc:var(--d4)}
+.r .when{font-size:15px;font-weight:800;color:var(--dc)}
+.r h2{font-size:23px;margin:2px 0 0;line-height:1.3}
+.r .en{font-size:14px;color:var(--muted);margin:0 0 10px}
+.rec{background:var(--rec);border:1.5px solid var(--recb);border-radius:14px;padding:12px 14px;margin:0 0 10px}
+.rec h3{font-size:17px;margin:0 0 6px}
+.rec ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.rec li{display:flex;justify-content:space-between;gap:10px;font-weight:700}
+.rec li span{font-weight:500;color:var(--muted);white-space:nowrap;font-size:15px}
+.rec .tot{margin:8px 0 0;padding-top:8px;border-top:1px dashed var(--recb);font-weight:800}
+.tip{font-size:16px;margin:0 0 12px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.btns a{display:inline-flex;align-items:center;gap:4px;border-radius:10px;padding:6px 12px;font-size:15px;font-weight:800;text-decoration:none;background:var(--soft);color:var(--green)}
+details.full{border-top:1px solid var(--line);margin-top:10px;padding-top:8px}
+details.full summary{cursor:pointer;font-weight:800;color:var(--green);list-style:none}
+details.full summary::-webkit-details-marker{display:none}
+details.full summary::after{content:" ▾"}
+details.full[open] summary::after{content:" ▴"}
+.mg h4{font-size:16px;margin:12px 0 4px;color:var(--muted)}
+.mg ul{list-style:none;margin:0;padding:0}
+.mg li{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid var(--line);font-size:16px}
+.mg li span{white-space:nowrap;color:var(--muted)}
+.mnote{font-size:14px;color:var(--muted);margin:8px 0 0}
+.foot{font-size:14px;color:var(--muted)}
+@media (min-width:1000px){
+  .wrap{max-width:1120px;padding:36px 32px 64px}
+  h1{font-size:40px}
+  .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+  .r{margin:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./#meals">← 여행 안내로 돌아가기</a>
+  <h1>식당 메뉴와 추천 주문</h1>
+  <p class="lead">우리 넷은 적게 먹으니 조금만 시키고, 모자라면 더 시켜요. 메뉴판 가격에 <b>봉사료 10%와 세금 9%</b>가 더 붙어요 (가격 뒤 "++" 표시). 1싱가포르달러 ≈ 1,030원.</p>
+  <ul class="jump"><li><a href="#palmbeach">12/3(목) 팜비치 시푸드</a></li><li><a href="#fullerton">12/3(목) 풀러턴 클럽 라운지 애프터눈티</a></li><li><a href="#lavo">12/3(목) 라보</a></li><li><a href="#trapizza">12/4(금) 트라피자</a></li><li><a href="#tanjong">12/4(금) 탄중 비치클럽</a></li><li><a href="#ulu">12/4(금) 울루울루</a></li><li><a href="#satay">12/4(금) 라우파삿 사테 거리</a></li><li><a href="#songfa">12/5(토) 송파 바쿠테</a></li><li><a href="#jumbo">12/5(토) 점보 시푸드</a></li><li><a href="#timhowan">12/5(토) 팀호완</a></li></ul>
+  <div class="list">
+<section class="r d2" id="palmbeach"><div class="when">12/3(목) 점심 12:30</div><h2>팜비치 시푸드</h2><p class="en">Palm Beach Seafood</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>블랙페퍼 크랩 1마리 (약 1kg)<span>시가 · 대략 S$110~140</span></li><li>은어 볶음밥 (Silver Fish Fried Rice) 작은 것<span>S$18</span></li><li>제철 채소볶음 작은 것<span>S$16</span></li><li>튀긴 꽈배기빵 (油条) 2개<span>S$8</span></li></ul><p class="tot">S$150~180 정도 → 봉사료·세금 붙으면 약 19~22만 원</p></div>
+<p class="tip">크랩은 무게로 값을 매겨요. 주문할 때 &quot;1kg 정도, 얼마예요?&quot; 하고 먼저 물어보세요. 칠리크랩은 12/5 점보에서 먹으니, 여기선 블랙페퍼로 다른 맛을 먹어 봐요. 칠리가 더 좋으면 바꿔도 돼요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Palm%20Beach%20Seafood%20Restaurant%20Singapore" target="_blank" rel="noopener">📍 구글 지도</a><a href="https://www.palmbeachseafood.com/Palm_Beach_Menu.pdf" target="_blank" rel="noopener">📄 팜비치 공식 메뉴판 (PDF)</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>크랩 (모두 시가)</h4><ul><li>시그니처 칠리크랩<span>시가</span></li><li>시그니처 블랙페퍼 크랩<span>시가</span></li><li>크리미 크랩 (버터 크림)<span>시가</span></li><li>골든 크랩 (짭짤한 달걀노른자)<span>시가</span></li><li>화조주 찜 크랩<span>시가</span></li></ul><h4>새우</h4><ul><li>아몬드 시리얼 새우<span>S$36 / 46 / 56</span></li><li>버터밀크 새우<span>S$25 / 35 / 45</span></li><li>마늘 찜 새우<span>S$30 / 40 / 50</span></li></ul><h4>밥·면</h4><ul><li>은어 볶음밥<span>S$18 / 26 / 34</span></li><li>해산물 볶음밥<span>S$18 / 26 / 34</span></li><li>팜비치 볶음면<span>S$18 / 26 / 34</span></li><li>해물 볶음 쌀국수 (호펀)<span>S$20 / 28 / 36</span></li></ul><h4>채소·기타</h4><ul><li>제철 채소볶음<span>S$16 / 24 / 32</span></li><li>매콤 공심채 볶음<span>S$20 / 30 / 40</span></li><li>두부 튀김 (6개)<span>S$20</span></li><li>꽈배기빵 (油条) 1개<span>S$4</span></li></ul></div><p class="mnote">크기: 작은 것 / 중간 / 큰 것. 우리는 작은 것이면 충분해요. 메뉴판 PDF에서 가격 줄이 일부 섞여 있어서 몇 개는 대략이에요.</p></details></section><section class="r d2" id="fullerton"><div class="when">12/3(목) 오후</div><h2>풀러턴 클럽 라운지 애프터눈티</h2><p class="en">The Fullerton Straits Club</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>따로 주문 안 해도 돼요<span>방값에 포함</span></li></ul><p class="tot">추가 비용 없음</p></div>
+<p class="tip">체크인하고 클럽 라운지에서 차와 작은 케이크·샌드위치를 먹어요. 점심을 많이 먹었으니 조금만 맛보고, 저녁 라보를 위해 배를 비워 두세요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">📍 구글 지도</a></div></section><section class="r d2" id="lavo"><div class="when">12/3(목) 저녁 18:15</div><h2>라보 (마리나베이샌즈 57층)</h2><p class="en">LAVO Italian Restaurant</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>미트볼 (500g, 나눠 먹는 큰 미트볼)<span>S$42</span></li><li>펜네 알라 보드카 (토마토 크림 파스타)<span>S$38</span></li><li>마르게리타 피자<span>S$35</span></li><li>(배 남으면) 20겹 초콜릿 케이크 — 3~4명이 나눠 먹는 크기<span>S$38</span></li></ul><p class="tot">S$115 (케이크까지 S$153) → 약 14~19만 원, 음료 별도</p></div>
+<p class="tip">라보는 양이 많아요. 미트볼 하나에 파스타·피자 하나씩이면 넷이 충분해요. 부족하면 그때 더 시켜요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=LAVO%20Singapore%20Marina%20Bay%20Sands" target="_blank" rel="noopener">📍 구글 지도</a><a href="https://taogroup.com/venues/lavo-italian-restaurant-singapore/menu" target="_blank" rel="noopener">📄 라보 공식 메뉴 (영어)</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>대표 메뉴</h4><ul><li>미트볼 (500g)<span>S$42</span></li><li>20겹 초콜릿 케이크 (3~4명용)<span>S$38</span></li></ul><h4>전채·샐러드</h4><ul><li>마늘빵<span>S$28</span></li><li>오징어 튀김<span>S$34</span></li><li>시저 샐러드<span>S$29</span></li><li>부라타 치즈 샐러드<span>S$32</span></li></ul><h4>화덕 피자</h4><ul><li>마르게리타<span>S$35</span></li><li>부라타<span>S$36</span></li><li>페퍼로니<span>S$36</span></li><li>블랙 트러플<span>S$38</span></li></ul><h4>파스타</h4><ul><li>토마토 바질 스파게티<span>S$32</span></li><li>펜네 알라 보드카<span>S$38</span></li><li>카르보나라<span>S$38</span></li><li>볼로네제<span>S$38</span></li><li>해산물 알프레도<span>S$46</span></li></ul><h4>메인</h4><ul><li>치킨 파르미자나<span>S$48</span></li><li>연어 구이<span>S$49</span></li><li>안심 스테이크 250g<span>S$89</span></li><li>립아이 350g<span>S$108</span></li></ul><h4>곁들임·디저트</h4><ul><li>버터 감자<span>S$17</span></li><li>트러플 감자튀김<span>S$22</span></li><li>티라미수<span>S$25</span></li><li>젤라토<span>S$12</span></li></ul></div><p class="mnote">가격에 봉사료 10%와 세금이 따로 붙어요.</p></details></section><section class="r d3" id="trapizza"><div class="when">12/4(금) 점심 12:00</div><h2>트라피자 (실로소 해변)</h2><p class="en">Trapizza</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>마르게리타 피자<span>S$23</span></li><li>카르보나라 스파게티<span>S$25</span></li><li>(더 먹고 싶으면) 오징어 튀김<span>S$19</span></li></ul><p class="tot">S$48 (오징어까지 S$67) → 약 6~8만 원, 음료 별도</p></div>
+<p class="tip">오후에 비치클럽에서 음료도 마시고, 밤엔 나이트사파리 저녁이 있어요. 피자 하나, 파스타 하나면 충분해요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Trapizza%20Sentosa" target="_blank" rel="noopener">📍 구글 지도</a><a href="https://sitecore-cd.shangri-la.com/-/media/Shangri-La/singapore_rasasentosaresort/dining/restaurants/Trapizza/202410_SEN_Trapizza_EN_FoodMenu.pdf" target="_blank" rel="noopener">📄 트라피자 공식 메뉴판 (PDF)</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>피자</h4><ul><li>마르게리타<span>S$23</span></li><li>알로하 (햄·파인애플)<span>S$25</span></li><li>페퍼로니<span>S$26</span></li><li>콰트로 포르마지 (치즈 4가지)<span>S$26</span></li><li>프로슈토 (햄·루콜라)<span>S$26</span></li><li>디 마레 (해산물)<span>S$29</span></li><li>가족용 피자 (3가지 맛)<span>S$48</span></li></ul><h4>파스타</h4><ul><li>알리오 올리오<span>S$21</span></li><li>볼로네제 펜네<span>S$23</span></li><li>카르보나라<span>S$25</span></li><li>트라피자 링귀니 (해산물)<span>S$29</span></li><li>미트볼 스파게티<span>S$30</span></li></ul><h4>전채</h4><ul><li>피자 마늘빵<span>S$11</span></li><li>치킨윙<span>S$18</span></li><li>오징어 튀김<span>S$19</span></li><li>부라타 치즈<span>S$23</span></li></ul><h4>디저트</h4><ul><li>젤라토 1스쿱 / 2스쿱<span>S$5 / 8</span></li><li>판나코타<span>S$12</span></li><li>티라미수<span>S$14</span></li></ul></div><p class="mnote">메뉴판 PDF에서 피자 몇 개는 가격 줄이 섞여 있어 대략이에요.</p></details></section><section class="r d3" id="tanjong"><div class="when">12/4(금) 오후 14:30</div><h2>탄중 비치클럽</h2><p class="en">Tanjong Beach Club</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>음료 4잔 (주스·목테일·코코넛 등)<span>한 잔 대략 S$10~25</span></li><li>(출출하면) 감자튀김 같은 간단한 안주 하나<span>메뉴판 확인</span></li></ul><p class="tot">음료 위주로 약 S$60~90 → 약 7~11만 원</p></div>
+<p class="tip">바닷가 쪽 일반 테이블(코스탈 테이블)은 최소 주문 금액이 없어요. 데이베드(누워 쉬는 침대)는 S$100~400 이상 써야 해서, 우리는 일반 테이블이 좋아요. 칵테일은 한 잔 S$23~25 정도예요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Tanjong%20Beach%20Club%20Sentosa" target="_blank" rel="noopener">📍 구글 지도</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>알려진 가격 (2025~2026 기사 기준)</h4><ul><li>칵테일<span>S$23~25</span></li><li>칵테일 한 주전자<span>S$85 (오후 6~8시 S$65)</span></li><li>구운 굴 3개<span>S$27</span></li><li>버섯 요리<span>S$16</span></li></ul></div><p class="mnote">공식 메뉴판을 찾지 못했어요. 가격은 기사에 나온 것만 적었어요.</p></details></section><section class="r d3" id="ulu"><div class="when">12/4(금) 저녁 18:30쯤</div><h2>울루울루 (나이트사파리 입구 푸드코트)</h2><p class="en">Ulu Ulu Safari Restaurant</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>로컬 볶음밥 또는 볶음국수 1개<span>한 접시 대략 S$12~18 (예상)</span></li><li>인도 카레 + 난 1개<span>대략 S$12~18 (예상)</span></li><li>음료 몇 잔<span>대략 S$4~6</span></li></ul><p class="tot">약 S$35~50 → 약 4~6만 원</p></div>
+<p class="tip">밤 10시 반쯤 라우파삿에서 사테를 또 먹으니, 여기선 두세 접시만 나눠 먹어요. 푸드코트라 먹고 싶은 가게에서 골라 계산하면 돼요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Ulu%20Ulu%20Safari%20Restaurant%20Mandai" target="_blank" rel="noopener">📍 구글 지도</a><a href="https://www.mandai.com/en/night-safari/things-to-do/dine/dining-outlets.html" target="_blank" rel="noopener">📄 만다이 식당 안내 (영어)</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>안에 있는 가게 (매일 18:00~23:00)</h4><ul><li>그릴 (사테·구이)<span>$$</span></li><li>인도 음식 (채식 가능)<span>$$</span></li><li>로컬·아시아 음식 (볶음밥·국수)<span>$$</span></li><li>벤앤제리스 아이스크림<span>$</span></li><li>음료·디저트 바<span>$</span></li></ul></div><p class="mnote">공식 안내에 가게 종류만 있고 메뉴별 가격은 없어요. 위 가격은 예상이에요.</p></details></section><section class="r d3" id="satay"><div class="when">12/4(금) 밤 22:35 야식</div><h2>라우파삿 사테 거리 (7·8번 가게)</h2><p class="en">Best Satay 7 & 8, Lau Pa Sat</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>세트 A — 닭 10개, 소고기 10개, 새우 6개<span>S$31.20</span></li></ul><p class="tot">S$31.20 → 약 3만 원대 후반, 음료 별도</p></div>
+<p class="tip">야식이라 세트 A 하나면 넷이 충분해요. 너무 많으면 &quot;닭 10개, 소고기 10개만&quot; 달라고 해도 돼요. 주문하면 진동벨을 줘요 (사람 많으면 30분쯤 기다려요). 사테 거리는 저녁 7시부터 새벽 3시까지 열어요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Best%20Satay%207%208%20Lau%20Pa%20Sat" target="_blank" rel="noopener">📍 구글 지도</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>사테 거리</h4><ul><li>세트 A (닭 10·소 10·새우 6)<span>S$31.20</span></li><li>꼬치 종류<span>닭, 소고기, 양고기, 새우</span></li></ul></div><p class="mnote">공식 메뉴판이 없어서 2026년 기사에 나온 가격을 적었어요.</p></details></section><section class="r d4" id="songfa"><div class="when">12/5(토) 점심 11:30</div><h2>송파 바쿠테 (뉴브리지로드 본점)</h2><p class="en">Song Fa Bak Kut Teh</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>돼지갈비탕 (바쿠테) 2그릇<span>1그릇 약 S$11</span></li><li>밥 2공기<span>1공기 약 S$2</span></li><li>꽈배기빵 (요우티아오) 1접시 — 국물에 찍어 먹어요<span>약 S$4.6</span></li><li>땅콩조림 1접시<span>약 S$3.9</span></li></ul><p class="tot">약 S$35~40 → 약 4~5만 원</p></div>
+<p class="tip">국물은 계속 더 부어 줘요. 3시에 점보에서 크랩을 먹으니 2그릇만 시켜 나눠 드세요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Song%20Fa%20Bak%20Kut%20Teh%2011%20New%20Bridge%20Road" target="_blank" rel="noopener">📍 구글 지도</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>국물</h4><ul><li>돼지갈비탕 (기본)<span>약 S$11</span></li><li>프라임 갈비탕 (큰 갈비)<span>약 S$16</span></li><li>돼지 안심탕<span>약 S$10.7</span></li><li>생선탕<span>약 S$12.3</span></li></ul><h4>조림·곁들임</h4><ul><li>족발 조림<span>약 S$10.8</span></li><li>삼겹살 조림<span>약 S$11.7</span></li><li>두부 조림<span>약 S$3</span></li><li>조림 달걀<span>약 S$2.3</span></li><li>짠지 (절인 채소)<span>약 S$4</span></li><li>땅콩조림<span>약 S$3.9</span></li><li>꽈배기빵<span>약 S$4.6</span></li><li>카이란 채소<span>약 S$9.7</span></li><li>밥<span>약 S$2</span></li></ul></div><p class="mnote">공식 메뉴판을 못 찾아서 배달앱(그랩) 가격을 적었어요. 매장 가격은 조금 더 쌀 수 있어요.</p></details></section><section class="r d4" id="jumbo"><div class="when">12/5(토) 늦은 점심 15:00</div><h2>점보 시푸드 (리버사이드 포인트)</h2><p class="en">JUMBO Seafood Riverside Point</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>칠리크랩 1마리 (약 1kg)<span>시가 · 대략 S$110~140</span></li><li>튀긴 번 (만터우) 4개 — 소스 찍어 먹기<span>1개 약 S$1</span></li><li>(배 남으면) 시리얼 새우 작은 것<span>메뉴판 확인</span></li></ul><p class="tot">약 S$120~150 → 약 15~19만 원</p></div>
+<p class="tip">저녁에 팀호완도 가니까 크랩 한 마리와 번이면 충분해요. 크랩 무게와 가격을 주문 전에 꼭 물어보세요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=JUMBO%20Seafood%20Riverside%20Point" target="_blank" rel="noopener">📍 구글 지도</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>알려진 메뉴</h4><ul><li>칠리크랩<span>시가 (예전 기사 1kg S$88~108)</span></li><li>블랙페퍼 크랩<span>시가</span></li><li>튀긴 번 (만터우)<span>1개 약 S$0.8~1</span></li><li>시리얼 새우<span>메뉴판 확인</span></li><li>바삭한 꼴뚜기 튀김<span>메뉴판 확인</span></li><li>게살 볶음밥<span>메뉴판 확인</span></li></ul></div><p class="mnote">최신 메뉴판을 찾지 못했어요. 메뉴판 사진이 있으면 보내 주세요.</p></details></section><section class="r d4" id="timhowan"><div class="when">12/5(토) 저녁 18:45</div><h2>팀호완 (쥬얼 창이)</h2><p class="en">Tim Ho Wan, Jewel</p>
+<div class="rec"><h3>👍 4명 추천 주문 (적게 먹는 기준)</h3><ul><li>차슈바오 (구운 돼지고기 빵) 3개<span>S$7</span></li><li>하가우 (새우 만두) 3개<span>S$6</span></li><li>시우마이 (돼지·새우 만두) 3개<span>S$5.5</span></li><li>차슈 창펀 (돼지고기 쌀전병) 3개<span>S$6.5</span></li></ul><p class="tot">S$25 → 약 3만 원</p></div>
+<p class="tip">한 접시에 3개씩 나와요. 넷이 한두 개씩 맛보기 좋아요. 비행기에서 아침이 나오니 가볍게 먹어요.</p><div class="btns"><a href="https://www.google.com/maps/search/?api=1&query=Tim%20Ho%20Wan%20Jewel%20Changi%20Airport" target="_blank" rel="noopener">📍 구글 지도</a><a href="https://zh.marinabaysands.com/content/dam/revamp/restaurants/restaurant-details/tim-ho-wan/menus/THW-MENU.pdf" target="_blank" rel="noopener">📄 팀호완 싱가포르 메뉴판 (PDF, 다른 지점)</a></div><details class="full"><summary>📖 메뉴판 펼쳐 보기</summary><div class="mg"><h4>찜</h4><ul><li>차슈바오 (3개)<span>S$7</span></li><li>하가우 (3개)<span>S$6</span></li><li>시우마이 (3개)<span>S$5.5</span></li><li>시금치 새우 만두 (3개)<span>S$5.5</span></li><li>연잎 찹쌀밥<span>S$7</span></li></ul><h4>창펀 (쌀전병)</h4><ul><li>차슈 창펀<span>S$6.5</span></li><li>새우 창펀<span>S$7.5</span></li><li>채소 창펀<span>S$6</span></li></ul><h4>죽·밥·면</h4><ul><li>홍콩식 죽<span>S$7</span></li><li>양저우 볶음밥<span>S$9.5</span></li><li>완탕면<span>S$8</span></li><li>소고기 국수<span>S$10.5</span></li></ul><h4>튀김·디저트</h4><ul><li>무떡 구이 (3개)<span>S$6</span></li><li>춘권 (3개)<span>S$6</span></li><li>에그타르트 (3개)<span>S$5</span></li><li>망고 사고<span>S$5.5</span></li></ul></div><p class="mnote">쥬얼 지점 메뉴판은 따로 없어서 다른 지점 메뉴판 가격이에요. 거의 같아요.</p></details></section>
+  </div>
+  <p class="foot">호텔 조식(두짓타니·풀러턴)은 뷔페라 따로 주문할 게 없어요. 메뉴와 가격은 2026년 11월에 찾은 메뉴판·기사 기준이라 현장과 조금 다를 수 있어요.</p>
+</div>
+</body>
+</html>

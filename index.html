@@ -233,6 +233,10 @@ button.st::before,button.st::after{background:var(--sc);filter:brightness(.8)}
 .lnk{color:#2a62b8;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 .pseat{display:flex;gap:10px;align-items:center;margin-top:10px;background:var(--surface);border-radius:12px;padding:8px}
 .pseat img{width:96px;height:auto;border-radius:8px;background:#fff;flex:none}
+.sgmore{margin-top:10px}
+.sgmore>summary{cursor:pointer;list-style:none;font-size:15px;font-weight:800;color:var(--cc);background:var(--surface);border-radius:10px;padding:7px 12px;display:inline-block}
+.sgmore>summary::-webkit-details-marker{display:none}
+.sgmore[open]>summary{margin-bottom:4px}
 .sgal{display:grid;gap:10px;margin:10px 0 4px}
 .sgal figure{margin:0;border-radius:10px;overflow:hidden;background:var(--surface)}
 .sgal img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
@@ -368,6 +372,7 @@ nav .days a.today{background:var(--orchid);color:#fff}
   .wxday .d small{display:inline;margin-left:4px}
 }
 .meals{display:grid;gap:10px}
+.mealsall{margin:-4px 0 12px}.mealsall a{font-weight:800;color:var(--green)}
 .mealday{background:var(--dbg);border-radius:16px;padding:14px 16px;display:grid;gap:8px}
 .mealday.d2{--dbg:var(--d2-bg);--dac:var(--d2-ac)}
 .mealday.d3{--dbg:var(--d3-bg);--dac:var(--d3-ac)}
@@ -378,6 +383,9 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .mealday .when{font-size:15px;font-weight:700;color:var(--muted)}
 .mealday .menu{font-size:19px;font-weight:700;min-width:0}
 .mealday .menu small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px}
+.mealday .mlinks{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.mealday .mlinks a{font-size:14px;font-weight:800;text-decoration:none;color:var(--dac);background:var(--surface);border-radius:8px;padding:2px 9px}
+.mealday div.menu small{display:block;margin:2px 0 0}
 .mealday a.menu{color:inherit;text-decoration:none}
 .mealday a.menu small{display:block;margin:2px 0 0;color:#2a62b8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 .wxnote{font-size:16px;color:var(--muted)}
@@ -819,8 +827,10 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
             <li>앞뒤 간격 190cm, 너비 53cm</li>
             <li>창가 자리도 옆 사람 안 거치고 바로 통로로 나가요</li>
             <li>46cm 큰 화면, 전원·USB, 와이파이</li></ul></div>
+          <details class="sgmore"><summary>📷 좌석 사진 더 보기</summary>
           <div class="sgal"><figure><img src="img/seat-pr-1.jpg" alt="창가에서도 바로 통로로" loading="lazy"><figcaption>창가에서도 바로 통로로</figcaption></figure><figure><img src="img/seat-pr-2.jpg" alt="다리 쭉 펴는 발 받침" loading="lazy"><figcaption>다리 쭉 펴는 발 받침</figcaption></figure><figure><img src="img/seat-pr-3.jpg" alt="높은 칸막이" loading="lazy"><figcaption>높은 칸막이</figcaption></figure><figure><img src="img/seat-pr-4.jpg" alt="큰 개인 화면" loading="lazy"><figcaption>큰 개인 화면</figcaption></figure><figure><img src="img/seat-pr-5.jpg" alt="터치 리모컨" loading="lazy"><figcaption>터치 리모컨</figcaption></figure><figure><img src="img/seat-pr-6.jpg" alt="개인 독서등" loading="lazy"><figcaption>개인 독서등</figcaption></figure><figure><img src="img/seat-pr-7.jpg" alt="넓은 수납공간" loading="lazy"><figcaption>넓은 수납공간</figcaption></figure><figure><img src="img/seat-pr-8.jpg" alt="좌석 조절 버튼" loading="lazy"><figcaption>좌석 조절 버튼</figcaption></figure></div>
           <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-277/prestige" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a></div>
+          </details>
         <div class="cl pm"><span class="who">오는 편 · 현호 · 경희</span><h4>프리미엄석</h4><ul>
           <li>모닝캄 카운터에서 빠르게 체크인</li>
           <li>스카이프라이어리티로 먼저 타요</li>
@@ -834,8 +844,10 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
             <li>앞뒤 간격 99~104cm, 너비 50cm</li>
             <li>39cm 큰 개인 화면</li>
             <li>USB-C 충전, 전원, 와이파이</li></ul></div>
+          <details class="sgmore"><summary>📷 좌석 사진 더 보기</summary>
           <div class="sgal"><figure><img src="img/seat-pm-1.jpg" alt="프리미엄석 객실" loading="lazy"><figcaption>프리미엄석 객실</figcaption></figure><figure><img src="img/seat-pm-2.jpg" alt="라운지 같은 편한 좌석" loading="lazy"><figcaption>라운지 같은 편한 좌석</figcaption></figure><figure><img src="img/seat-pm-3.jpg" alt="39cm 개인 화면" loading="lazy"><figcaption>39cm 개인 화면</figcaption></figure><figure><img src="img/seat-pm-4.jpg" alt="태블릿 놓는 테이블" loading="lazy"><figcaption>태블릿 놓는 테이블</figcaption></figure></div>
           <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-328/premium" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a></div>
+          </details>
         <div class="cl ec"><span class="who">오는 편 · 수인 · 혜인</span><h4>일반석</h4><ul>
           <li>제철 메뉴 기내식과 와인</li>
           <li>영화·TV·음악 (좌석 화면)</li>
@@ -874,10 +886,11 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
   <section id="meals">
     <h2>날짜별 먹는 것</h2>
+    <p class="mealsall"><a href="menu.html">📖 식당 메뉴와 4명 추천 주문 모아 보기 ›</a></p>
     <div class="meals">
-      <div class="mealday d2"><h3>12/3 목</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Dusit%20Thani%20Laguna%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>두짓타니 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Palm%20Beach%20Seafood%20Restaurant%20Singapore" target="_blank" rel="noopener">칠리크랩, 블랙페퍼크랩<small>팜비치 시푸드 · 지도·메뉴 ›</small></a></li><li><span class="when">간식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">애프터눈티, 케이크<small>풀러턴 라운지 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=LAVO%20Singapore%20Marina%20Bay%20Sands" target="_blank" rel="noopener">파스타, 스테이크<small>라보 57층 · 지도·메뉴 ›</small></a></li></ul></div>
-      <div class="mealday d3"><h3>12/4 금</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>풀러턴 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Trapizza%20Sentosa" target="_blank" rel="noopener">화덕 피자, 파스타<small>트라피자 · 지도·메뉴 ›</small></a></li><li><span class="when">간식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Tanjong%20Beach%20Club%20Sentosa" target="_blank" rel="noopener">시원한 음료<small>탄중 비치클럽 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Ulu%20Ulu%20Safari%20Restaurant%20Mandai" target="_blank" rel="noopener">볶음밥·국수, 인도 카레<small>나이트사파리 울루울루 푸드코트 · 지도·메뉴 ›</small></a></li><li><span class="when">야식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Lau%20Pa%20Sat%20Singapore" target="_blank" rel="noopener">사테 (꼬치구이)<small>라우파삿 · 지도·메뉴 ›</small></a></li></ul></div>
-      <div class="mealday d4"><h3>12/5 토</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>풀러턴 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Song%20Fa%20Bak%20Kut%20Teh%2011%20New%20Bridge%20Road" target="_blank" rel="noopener">바쿠테 (돼지갈비 후추탕)<small>송파 바쿠테 · 지도·메뉴 ›</small></a></li><li><span class="when">늦은 점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=JUMBO%20Seafood%20Riverside%20Point" target="_blank" rel="noopener">칠리크랩<small>점보 시푸드 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Tim%20Ho%20Wan%20Jewel%20Changi%20Airport" target="_blank" rel="noopener">딤섬, 차슈번<small>팀호완 · 지도·메뉴 ›</small></a></li></ul></div>
+      <div class="mealday d2"><h3>12/3 목</h3><ul><li><span class="when">아침</span><div class="menu">호텔 조식 뷔페<small>두짓타니</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Dusit%20Thani%20Laguna%20Singapore" target="_blank" rel="noopener">📍 지도</a></span></div></li><li><span class="when">점심</span><div class="menu">칠리크랩, 블랙페퍼크랩<small>팜비치 시푸드</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Palm%20Beach%20Seafood%20Restaurant%20Singapore" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#palmbeach">📖 메뉴·추천</a></span></div></li><li><span class="when">간식</span><div class="menu">애프터눈티, 케이크<small>풀러턴 라운지</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#fullerton">📖 메뉴·추천</a></span></div></li><li><span class="when">저녁</span><div class="menu">파스타, 스테이크<small>라보 57층</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=LAVO%20Singapore%20Marina%20Bay%20Sands" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#lavo">📖 메뉴·추천</a></span></div></li></ul></div>
+      <div class="mealday d3"><h3>12/4 금</h3><ul><li><span class="when">아침</span><div class="menu">호텔 조식 뷔페<small>풀러턴</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">📍 지도</a></span></div></li><li><span class="when">점심</span><div class="menu">화덕 피자, 파스타<small>트라피자</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Trapizza%20Sentosa" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#trapizza">📖 메뉴·추천</a></span></div></li><li><span class="when">간식</span><div class="menu">시원한 음료<small>탄중 비치클럽</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Tanjong%20Beach%20Club%20Sentosa" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#tanjong">📖 메뉴·추천</a></span></div></li><li><span class="when">저녁</span><div class="menu">볶음밥·국수, 인도 카레<small>나이트사파리 울루울루 푸드코트</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Ulu%20Ulu%20Safari%20Restaurant%20Mandai" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#ulu">📖 메뉴·추천</a></span></div></li><li><span class="when">야식</span><div class="menu">사테 (꼬치구이)<small>라우파삿</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Lau%20Pa%20Sat%20Singapore" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#satay">📖 메뉴·추천</a></span></div></li></ul></div>
+      <div class="mealday d4"><h3>12/5 토</h3><ul><li><span class="when">아침</span><div class="menu">호텔 조식 뷔페<small>풀러턴</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">📍 지도</a></span></div></li><li><span class="when">점심</span><div class="menu">바쿠테 (돼지갈비 후추탕)<small>송파 바쿠테</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Song%20Fa%20Bak%20Kut%20Teh%2011%20New%20Bridge%20Road" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#songfa">📖 메뉴·추천</a></span></div></li><li><span class="when">늦은 점심</span><div class="menu">칠리크랩<small>점보 시푸드</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=JUMBO%20Seafood%20Riverside%20Point" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#jumbo">📖 메뉴·추천</a></span></div></li><li><span class="when">저녁</span><div class="menu">딤섬, 차슈번<small>팀호완</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Tim%20Ho%20Wan%20Jewel%20Changi%20Airport" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#timhowan">📖 메뉴·추천</a></span></div></li></ul></div>
     </div>
   </section>
 
