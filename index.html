@@ -506,11 +506,20 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .loungebtn b{font-size:19px}.loungebtn small{font-size:14px;color:#cfe4f7}
 .loungebtn .go{font-size:28px;font-weight:700;color:#57bbeb}
 .hotel .hsub{list-style:none;margin:6px 0 0;padding:0 0 0 4px;display:grid;gap:4px;font-size:16px;color:var(--muted)}
+.souvs{display:grid;gap:0}
+.souv{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:14px 0;border-top:1px dashed var(--line)}
+.souv:first-child{border-top:0;padding-top:0}.souv:last-child{padding-bottom:0}
+.souv .si{font-size:30px;line-height:1.2}
+.souv h3{margin:0;font-size:19px}
+.souv .swhere{display:inline-block;font-size:13px;font-weight:700;color:var(--green);background:#e3f1ea;border-radius:999px;padding:1px 9px;margin-left:4px;vertical-align:2px}
+.souv p{margin:4px 0 0;font-size:16px;color:var(--muted);line-height:1.6}
+.souv .srec{color:var(--ink);font-weight:600;font-size:15px}
 #home,#gbar{display:none}
 @media (max-width:1079px){
   body.tabs-on nav{display:none}
   body.tabs-on main section{display:none}
   body.tabs-on main section.gshow{display:block}
+  body.tabs-on:not([data-g="plan"]) a.maplink{display:none}
   body.tabs-on main section.day.gshow{display:grid;gap:18px}
   body.tabs-on:not(.at-home) header.hero{display:none}
   body.tabs-on .hero .chips{display:none}
@@ -645,6 +654,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <a href="#info">기본 정보</a>
       <a href="#pack">준비물</a>
       <a href="#tips">알아두실 것</a>
+      <a href="#souvenir">기념품</a>
     </div>
     <div class="nrow days">
       <a href="#d1202" data-date="2026-12-02">1일차 <small>12/2</small></a>
@@ -657,7 +667,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <main>
 <div class="wrap">
-<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a></div>
+<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a></div>
 <div id="gbar"><a href="#home">← 처음 화면</a><b id="gtitle"></b></div>
 
   <section id="prep">
@@ -1221,6 +1231,12 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     </div>
   </section>
 
+  <section id="souvenir">
+    <h2>기념품</h2>
+    <p class="lead">마지막 날(12/5) 저녁 쥬얼과 창이공항에서 한꺼번에 사면 편해요. 차·커피·과자는 공항에 다 있어요.</p>
+    <div class="card souvs"><div class="souv"><span class="si" aria-hidden="true">🍵</span><div><h3>TWG 티 <span class="swhere">공항</span></h3><p>싱가포르에서 가장 유명한 차예요. 한국보다 종류가 많고 조금 싸요.</p><p class="srec">추천: 1837 블랙티, 그랜드 웨딩, 코튼 티백 세트</p></div></div><div class="souv"><span class="si" aria-hidden="true">☕</span><div><h3>바샤커피 <span class="swhere">공항</span></h3><p>주황색 상자가 예쁜 커피예요. 원두와 드립백을 한국보다 싸게 살 수 있어요. 선물용으로 인기예요.</p><p class="srec">추천: 밀라노 모닝, 1910</p></div></div><div class="souv"><span class="si" aria-hidden="true">🍪</span><div><h3>벵가완솔로 <span class="swhere">공항 (귀국 직전에)</span></h3><p>방부제 없이 만든 싱가포르 과자·케이크 가게예요. 유통기한이 아주 짧아요.</p><p class="srec">추천: 틴케이스 쿠키, 판단 시폰 케이크, 쿠에 라피스 (겹겹 케이크)</p></div></div><div class="souv"><span class="si" aria-hidden="true">👜</span><div><h3>찰스앤키스 <span class="swhere">시내·공항</span></h3><p>한국에도 있지만 싱가포르에서는 할인 매장이 많고 한국에 없는 가방·신발도 있어요.</p><p class="srec">공항에서는 면세가로 살 수 있어요.</p></div></div><div class="souv"><span class="si" aria-hidden="true">👞</span><div><h3>페드로 <span class="swhere">시내</span></h3><p>찰스앤키스가 만든 더 고급 가죽 브랜드예요. 한국보다 20~30% 싸요.</p><p class="srec">인기: 남녀 로퍼, 작은 가죽 가방</p></div></div><div class="souv"><span class="si" aria-hidden="true">👗</span><div><h3>러브보니토 <span class="swhere">시내</span></h3><p>싱가포르 1위 여성 옷 브랜드예요. 아시아 여성 체형에 잘 맞아요.</p><p class="srec">추천: 슬랙스, 원피스, 출근복</p></div></div><div class="souv"><span class="si" aria-hidden="true">💄</span><div><h3>어반디케이 (세포라) <span class="swhere">시내 세포라</span></h3><p>한국 세포라가 철수해서 구하기 어려운 화장품이에요. 싱가포르 세포라에 있어요.</p><p class="srec">추천: 메이크업 픽서, 네이키드 아이섀도 팔레트</p></div></div></div>
+  </section>
+
 </div>
 </main>
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
@@ -1233,7 +1249,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
   var gOf=function(sec){for(var k in G){if(G[k][1].indexOf(sec)>=0)return k;}return null;};
   function route(){
     var on=mq.matches; b.classList.toggle("tabs-on",on);
@@ -1242,7 +1258,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
     if(h.indexOf("g-")===0) g=h.slice(2);
     else if(h&&h!=="home"){var el=document.getElementById(h);if(el){var sec=el.closest("main section");if(sec){g=gOf(sec.id);target=el;}}}
     if(!G[g]) g=null;
-    b.classList.toggle("at-home",!g);
+    b.classList.toggle("at-home",!g); b.setAttribute("data-g",g||"");
     document.querySelectorAll("main section").forEach(function(s){s.classList.toggle("gshow",!!g&&G[g][1].indexOf(s.id)>=0);});
     if(g) document.getElementById("gtitle").textContent=G[g][0];
     window.dispatchEvent(new Event("resize")); fixH(); setTimeout(function(){window.dispatchEvent(new Event("sgshow"));},60);
