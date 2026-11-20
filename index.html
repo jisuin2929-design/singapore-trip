@@ -271,10 +271,19 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .wxday{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 8px;display:grid;justify-items:center;gap:6px;text-align:center;min-width:0}
 .wxday .d{font-weight:800;font-size:18px}
 .wxday .d small{display:block;font-size:14px;font-weight:500;color:var(--muted)}
-.wxday .ic{display:grid;grid-template-columns:auto auto;gap:2px 6px;align-items:center;font-size:15px;color:var(--muted)}
-.wxday .ic span:nth-child(odd){font-size:30px;line-height:1.1}
-.wxday .t{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
-.wxday .r{font-size:14px;color:var(--muted);line-height:1.4}
+.wxday .t{font-size:19px}
+.wxday .t .lo{color:#2a62b8}.wxday .t .hi{color:#c0462d}
+.wxday .tps{display:grid;gap:4px;width:100%}
+.wxday .tp{display:grid;grid-template-columns:2.4em 1.5em 1fr;align-items:center;gap:4px;font-size:14px;font-weight:600;text-align:left;background:var(--bg);border-radius:8px;padding:3px 6px}
+.wxday .tp small{font-size:13px;color:var(--muted);font-weight:700}
+.wxday .tp i{font-style:normal;font-size:18px}
+.wxday .sun{font-size:14px;color:var(--muted);line-height:1.6}
+@media (max-width:700px){
+  .wxrow{grid-template-columns:minmax(0,1fr)}
+  .wxday{grid-template-columns:6.2em minmax(0,1fr);grid-template-areas:"d tps" "t tps" "sun tps";justify-items:start;text-align:left;padding:12px 14px;column-gap:12px;align-items:center}
+  .wxday .d{grid-area:d}.wxday .t{grid-area:t;font-size:17px}.wxday .sun{grid-area:sun;font-size:13px}.wxday .tps{grid-area:tps}
+  .wxday .d small{display:inline;margin-left:4px}
+}
 .meals{display:grid;gap:10px}
 .mealday{background:var(--dbg);border-radius:16px;padding:14px 16px;display:grid;gap:8px}
 .mealday.d2{--dbg:var(--d2-bg);--dac:var(--d2-ac)}
@@ -293,6 +302,10 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .wx .ico{font-size:34px;line-height:1;grid-row:span 2}
 .wx .temp{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--dac,var(--ink))}
 .wx .temp small{font-size:16px;font-weight:500;color:var(--muted);margin-left:6px}
+.wx .ico{grid-row:auto}
+.wx p{grid-column:1 / -1}
+.wx p.wxparts{display:flex;flex-wrap:wrap;gap:6px;color:var(--ink);font-weight:700;font-size:15px}
+.wx p.wxparts span{background:var(--dbg,var(--bg));border-radius:8px;padding:2px 9px}
 .wx p{font-size:17px;color:var(--muted);line-height:1.55}
 .rain{font-size:17px;background:var(--surface);border-radius:12px;padding:12px 16px}
 
@@ -399,7 +412,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="when">2026. 12. 2 (수) ~ 12. 6 (일)</div>
     <div class="dday" id="dday" hidden></div>
     <div class="chips">
-      <span>3박 5일</span><span>네 식구</span><span>낮 24~31℃</span><span>한국보다 1시간 느려요</span><span>230V</span>
+      <span>3박 5일</span><span>네 식구</span><span>25~29℃ · 오후 소나기</span><span>한국보다 1시간 느려요</span><span>230V</span>
     </div>
   </div>
   <svg class="skyline" viewBox="0 0 400 100" aria-hidden="true">
@@ -657,11 +670,11 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="weather">
     <h2>싱가포르 날씨</h2>
     <div class="wxrow">
-      <div class="wxday"><span class="d">12/3<small>목요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
-      <div class="wxday"><span class="d">12/4<small>금요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
-      <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="ic"><span aria-hidden="true">☀️</span><span>오전</span><span aria-hidden="true">🌦️</span><span>오후</span></span><span class="t">24~31℃</span><span class="r">오전엔 맑고<br>오후에 소나기</span></div>
+      <div class="wxday"><span class="d">12/3<small>목요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">29℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">🌧️</i>소나기</span></span><span class="sun">🌅 해 뜸 06:53<br>🌇 해 짐 18:56</span></div>
+      <div class="wxday"><span class="d">12/4<small>금요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>천둥 번개</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span></div>
+      <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="t"><b class="lo">25℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span></div>
     </div>
-    <p class="wxnote">12월 초 싱가포르는 보통 오전에 맑고 오후에 잠깐 소나기가 와요. 아직 예보가 나오기 전이라 예년 날씨로 적었고, 출발 며칠 전에 실제 예보로 바꿀게요.</p>
+    <p class="wxnote">아큐웨더 12월 예보 기준이에요 (최저 ~ 최고 기온). 매일 흐리고 오후에 소나기나 천둥이 지나가요. 비는 보통 한두 시간이면 그치니 접는 우산만 챙기세요. 멀리 있는 예보라 출발 며칠 전에 다시 확인해서 고칠게요.</p>
   </section>
 
   <section id="meals">
@@ -717,7 +730,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="d1203" class="day d2">
     <div class="dayhead"><span class="dnum">2일차</span><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🌳</span><span class="gt">보타닉 가든 (힘들면 빼요) → 머라이언 공원 → 에스플러네이드 옥상</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🦀</span><span class="gt">팜비치 시푸드 칠리크랩</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🌿</span><span class="gt">풀러턴 체크인·쉬기 → 가든스 바이 더 베이 돔</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🌃</span><span class="gt">라보 저녁 → 리버크루즈 → 크리스마스 불빛 쇼</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
-    <div class="wx"><span class="ico" aria-hidden="true">⛅</span><span class="temp">24~31℃ <small>덥고 습함</small></span><p>낮에는 덥고 오후에 소나기가 올 수 있어요. 저녁 배·야외 쇼가 있어서 접는 우산을 챙겨요.</p></div>
+    <div class="wx"><span class="ico" aria-hidden="true">⛈️</span><span class="temp">26~29℃ <small>흐리고 오후 소나기</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 소나기·천둥</span><span>저녁 소나기</span></p><p>오후와 저녁에 소나기가 올 수 있어요. 저녁 배·야외 쇼가 있어서 접는 우산을 꼭 챙겨요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg?width=900" alt="머라이언 공원" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>머라이언 공원 <a href="https://commons.wikimedia.org/wiki/File:Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg?width=900" alt="가든스 바이 더 베이와 마리나베이 샌즈" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>가든스 바이 더 베이와 마리나베이 샌즈 <a href="https://commons.wikimedia.org/wiki/File:View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
@@ -743,7 +756,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="d1204" class="day d3">
     <div class="dayhead"><span class="dnum">3일차</span><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🚡</span><span class="gt">케이블카 타고 센토사섬 → 루지 타기</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🍕</span><span class="gt">실로소 해변 트라피자</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🏖️</span><span class="gt">팔라완 해변·비치클럽 → 호텔에서 쉬기</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🦁</span><span class="gt">나이트사파리 → 차로 오차드 조명 → 라우파삿 사테 야식</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
-    <div class="wx"><span class="ico" aria-hidden="true">☀️</span><span class="temp">24~31℃ <small>해변 햇볕 강함</small></span><p>바닷가라 햇볕이 세요. 모자, 선글라스, 선크림을 꼭 챙기고, 비가 많이 오면 실내로 바꿔요.</p></div>
+    <div class="wx"><span class="ico" aria-hidden="true">⛈️</span><span class="temp">26~28℃ <small>오후 천둥 번개</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 천둥 번개</span><span>저녁 흐림</span></p><p>해변은 오전이 좋아요. 천둥이 치면 바다에서 나와 실내로 피하고, 모자·선크림도 챙겨요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg?width=900" alt="센토사 루지" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>센토사 루지 <a href="https://commons.wikimedia.org/wiki/File:Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg?width=900" alt="나이트사파리 입구" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>나이트사파리 입구 <a href="https://commons.wikimedia.org/wiki/File:Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
@@ -766,7 +779,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="d1205" class="day d4">
     <div class="dayhead"><span class="dnum">4일차</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🧳</span><span class="gt">체크아웃 → 차이나타운·불아사 → 송파 바쿠테</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🛍️</span><span class="gt">오차드로드 구경 → 점보 칠리크랩</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">✨</span><span class="gt">쥬얼 창이 팀호완 딤섬 → 눈 쇼</span></li><li><span class="gk">밤</span><span class="gi" aria-hidden="true">✈️</span><span class="gt">22:30 출발 → 12/6(일) 아침 5:45 인천 도착</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>비행기 안</b></p></div>
-    <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">24~31℃ <small>인천 도착 새벽 영하</small></span><p>싱가포르는 덥지만 일요일 새벽 인천은 영하예요. 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
+    <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">25~28℃ <small>인천 도착 새벽 영하</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 소나기·천둥</span><span>저녁 흐림</span></p><p>오후에 소나기가 올 수 있어요. 일요일 새벽 인천은 영하라 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
     <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg?width=900" alt="차이나타운 불아사" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>차이나타운 불아사 <a href="https://commons.wikimedia.org/wiki/File:Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg?width=900" alt="쥬얼 실내 폭포" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>쥬얼 실내 폭포 <a href="https://commons.wikimedia.org/wiki/File:Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">08:00</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>먹고 나서 방에서 쉬며 짐을 싸요.</small></span></li>
