@@ -208,6 +208,19 @@ button.st.on{outline:3px solid var(--ink);outline-offset:1px}
 button.st{box-shadow:inset 0 9px 0 rgba(0,0,0,.18)}
 button.st::before,button.st::after{background:var(--sc);filter:brightness(.8)}
 .seatinfo{margin:8px 0 0;text-align:center;font-size:16px;font-weight:700}
+.plane.ret{max-width:380px;padding:16px 10px 10px}
+.sr.p8,.sr.e10{gap:4px 3px}
+.sr.p8{grid-template-columns:repeat(2,minmax(0,1fr)) 10px repeat(4,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr)) 1.5em}
+.sr.e10{grid-template-columns:repeat(3,minmax(0,1fr)) 8px repeat(4,minmax(0,1fr)) 8px repeat(3,minmax(0,1fr)) 1.5em}
+.sr.p8 > *,.sr.e10 > *{transform:none!important}
+.plane.ret .sr:not(.hd){margin:1px 0}
+.sr.e10 .st{height:30px}.sr.e10 button.st{font-size:11px;letter-spacing:-.5px}
+.plane.ret .st::before,.plane.ret .st::after{width:3px;height:14px}.plane.ret .st::before{left:-2px}.plane.ret .st::after{right:-2px}
+.cab{font-size:13px;font-weight:800;color:var(--muted);text-align:center;margin:2px 0}
+.pmid{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:6px;align-items:center;text-align:center;font-size:12px;font-weight:800;margin:6px 0}
+.pmid .ex{background:#d62828;color:#fff;border-radius:4px;padding:2px 6px}
+.pmid .wc{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:5px 2px;font-size:13px}
+.skip{text-align:center;color:var(--muted);font-size:13px;font-weight:700;line-height:1.2}
 .mhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
 .mhead h3{margin:0}
 .classes h3{font-size:19px;margin:0 0 10px}
@@ -218,6 +231,10 @@ button.st::before,button.st::after{background:var(--sc);filter:brightness(.8)}
 .cl h4{font-size:19px;margin:2px 0 6px}
 .cl ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:16px}
 .lnk{color:#2a62b8;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.pseat{display:flex;gap:10px;align-items:center;margin-top:10px;background:var(--surface);border-radius:12px;padding:8px}
+.pseat img{width:96px;height:auto;border-radius:8px;background:#fff;flex:none}
+.pslink{display:inline-block;margin-top:6px;font-size:14px;font-weight:700;color:var(--cc)}
+.pseat ul{font-size:15px;gap:2px}
 .clsrc{font-size:13px;color:var(--muted);margin:8px 0 0}
 .mwho{font-size:16px;font-weight:700;color:var(--green);margin-left:4px}
 .mswap{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:4px 11px;font:700 13px var(--body);cursor:pointer;margin-left:auto}
@@ -681,6 +698,21 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
+      <div class="seatmap">
+        <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
+        <div class="plane ret">
+          <div class="cab">프리미엄석</div>
+          <div class="sr p8 hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><b>F</b><b>G</b><i></i><b>H</b><b>J</b></div>
+          <div class="sr p8"><span class="rn">21</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">22</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">23</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#245fc7" data-info="23H · 현호 자리 (복도 쪽)">현호</button><button type="button" class="st me" style="--sc:#c2417a" data-info="23J · 경희 자리 (창가)">경희</button></div><div class="sr p8"><span class="rn">24</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">25</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div>
+          <div class="pmid"><span class="ex">⬅ 출구</span><span class="wc">🚻 화장실</span><span class="wc">🚻 화장실</span><span class="ex">출구 ➡</span></div>
+          <div class="cab">일반석</div>
+          <div class="sr e10 hd"><span class="rn"></span><b>A</b><b>B</b><b>C</b><i></i><b>D</b><b>E</b><b>F</b><b>G</b><i></i><b>H</b><b>J</b><b>K</b></div>
+          <div class="sr e10"><span class="rn">28</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div><div class="sr e10"><span class="rn">29</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div>
+          <div class="skip">⋮<br>30~36열<br>⋮</div>
+          <div class="sr e10"><span class="rn">37</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div><div class="sr e10"><span class="rn">38</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><button type="button" class="st me" style="--sc:#2f8a5a" data-info="38J · 혜인 자리 (가운데)">혜인</button><button type="button" class="st me" style="--sc:#b5651d" data-info="38K · 수인 자리 (창가)">수인</button></div>
+        </div>
+        <p class="seatinfo" aria-live="polite">23H 현호 · 23J 경희 (프리미엄석)<br>38J 혜인 · 38K 수인 (일반석)<br><small>모두 오른쪽 창가 쪽이에요. 화장실과 출구는 25열 바로 뒤에 있어요.</small></p>
+      </div>
       <div class="meal">
         <div class="mhead"><h3>🍽️ 기내식 <span class="mwho">현호 · 경희</span></h3><button type="button" class="mswap" data-a="mp644a" data-b="mp644b">수인 · 혜인 메뉴 ⇄</button></div>
         <div class="mpanel" id="mp644a">
@@ -766,10 +798,16 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
           <li>모닝캄 카운터에서 빠르게 체크인</li>
           <li>스카이프라이어리티로 먼저 타요</li>
           <li>인천 도착 후 짐을 빨리 찾아요</li>
-          <li>일반석보다 넓은 좌석</li>
+          <li>일반석보다 넓은 좌석 <small>(아래 사진)</small></li>
           <li>싱가포르 노선은 슬리퍼·칫솔 세트를 줘요</li>
           <li>국제선 이어폰 제공</li>
-          <li>창이공항 라운지는 이용할 수 없어요</li></ul></div>
+          <li>창이공항 라운지는 이용할 수 없어요</li></ul>
+          <div class="pseat"><img src="img/premium-seat.jpg" alt="프리미엄석 좌석 두 개" loading="lazy"><ul>
+            <li>뒤로 <b>130°</b>까지 젖혀져요</li>
+            <li>앞뒤 간격 99~104cm, 너비 50cm</li>
+            <li>39cm 큰 개인 화면</li>
+            <li>USB-C 충전, 전원, 와이파이</li></ul></div>
+          <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-328/premium" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a></div>
         <div class="cl ec"><span class="who">오는 편 · 수인 · 혜인</span><h4>일반석</h4><ul>
           <li>제철 메뉴 기내식과 와인</li>
           <li>영화·TV·음악 (좌석 화면)</li>
