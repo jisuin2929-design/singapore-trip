@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>인천공항 프레스티지 라운지</title>
+<title>대한항공 프레스티지 라운지</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
 <style>
-:root{--bg:#f3f6f4;--surface:#fff;--ink:#1d2422;--muted:#5c6763;--line:#dfe6e2;--green:#0f6b52;--soft:#e3f1ea;--pr:#5b3e8f;--prs:#f1ecf8;--warn:#b3261e;
-  --display:"Gowun Batang",serif;--body:"Noto Sans KR",system-ui,sans-serif}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121715;--surface:#1b2220;--ink:#e8eeeb;--muted:#a3b0ab;--line:#2c3532;--green:#5fc4a1;--soft:#1f302a;--pr:#c3a8ec;--prs:#2a2236;--warn:#ff8a80}}
-:root[data-theme="dark"]{--bg:#121715;--surface:#1b2220;--ink:#e8eeeb;--muted:#a3b0ab;--line:#2c3532;--green:#5fc4a1;--soft:#1f302a;--pr:#c3a8ec;--prs:#2a2236;--warn:#ff8a80}
+:root{--bg:#f4f6fa;--surface:#fff;--ink:#14213d;--muted:#5b6478;--line:#dbe1ea;--green:#0064de;--soft:#eaf2fc;--pr:#00256c;--prs:#e9eef8;--warn:#d6001c;--sky:#7fc4ec;--navy:#00256c;
+  --display:"Noto Sans KR",system-ui,sans-serif;--body:"Noto Sans KR",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0b1324;--surface:#121c33;--ink:#e8edf6;--muted:#a3adc2;--line:#25324d;--green:#6fb4ff;--soft:#16264a;--pr:#8fb3ff;--prs:#1a2747;--warn:#ff7a85;--sky:#7fc4ec;--navy:#0a1a40}}
+:root[data-theme="dark"]{--bg:#0b1324;--surface:#121c33;--ink:#e8edf6;--muted:#a3adc2;--line:#25324d;--green:#6fb4ff;--soft:#16264a;--pr:#8fb3ff;--prs:#1a2747;--warn:#ff7a85;--sky:#7fc4ec;--navy:#0a1a40}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 var(--body);-webkit-text-size-adjust:100%;word-break:keep-all;overflow-wrap:anywhere}
 .wrap{max-width:720px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 48px}
@@ -76,7 +76,29 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
 .lphotos figcaption b{display:block;font-size:17px}
 .lphotos figcaption small{font-size:14px;color:var(--muted)}
 .lphotos .nophoto div{aspect-ratio:3/2;display:grid;place-items:center;color:var(--muted);font-size:15px;background:var(--soft)}
+
+/* 대한항공 스타일 */
+.hero{background:linear-gradient(180deg,var(--navy) 0%,#0b3a8c 100%);color:#fff;border-bottom:6px solid var(--sky);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;border:28px solid rgba(127,196,236,.18);pointer-events:none}
+.hin{max-width:720px;margin:0 auto;padding:22px max(16px,env(safe-area-inset-left)) 26px;position:relative;z-index:1}
+.hero a.back{color:#bfe3f8}
+.hero h1{color:#fff;font-weight:800;letter-spacing:-.01em}
+.hero .lead{color:#d7e6f7;margin:0}
+.h1sub{display:block;font-size:.5em;font-weight:700;color:#bfe3f8;margin-top:6px;letter-spacing:0}
+.eyebrow{margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--sky)}
+.card{border-radius:10px;border-top:3px solid var(--navy);box-shadow:0 2px 10px rgba(0,37,108,.06)}
+.card h2{color:var(--pr);font-weight:800}
+.card.no{border-top-color:var(--warn)}
+.tag{border-radius:4px;background:var(--navy);color:#fff}
+.live{border:1px solid #c9dcf5;border-radius:8px}
+.svc li{border-radius:6px;color:var(--pr)}
+.lglist li,.lphotos figure{border-radius:8px}
+.cmp th{background:var(--navy);color:#fff}
+.badge{background:var(--warn)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag{background:#2a4a8f}:root:not([data-theme="light"]) .cmp th{background:#1b2d57}}
+:root[data-theme="dark"] .tag{background:#2a4a8f}:root[data-theme="dark"] .cmp th{background:#1b2d57}
 @media (min-width:1000px){
+  .hin{max-width:1120px;padding:34px 32px 36px}
   body{font-size:17px}
   .wrap{max-width:1120px;padding:36px 32px 64px}
   h1{font-size:40px}.lead{font-size:19px;margin-bottom:28px}
@@ -95,10 +117,13 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
 </style>
 </head>
 <body>
-<div class="wrap">
+<header class="hero"><div class="hin">
   <a class="back" href="./">← 여행 안내로 돌아가기</a>
-  <h1>인천공항 프레스티지 라운지</h1>
+  <p class="eyebrow">KE645 · PRESTIGE CLASS · ICN T2</p>
+  <h1>대한항공 프레스티지 라운지<small class="h1sub">인천공항 제2터미널 4층</small></h1>
   <p class="lead">12/2(수) 가는 날, 출국 심사를 마치고 비행기 타기 전까지 쉬는 곳이에요. 4명 모두 들어갈 수 있어요.</p>
+</div></header>
+<div class="wrap">
 
   <div class="grid">
   <div class="card">
@@ -120,7 +145,7 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
 
   <div class="card wide">
     <h2>라운지 위치 지도 (모두 4층)</h2>
-    <figure class="map"><svg class="lmapsvg" viewBox="0 0 600 520" role="img" aria-label="인천공항 제2터미널 4층 대한항공 라운지 위치. 위쪽 가로 통로 왼쪽 253번에 동편 좌·우, 오른쪽 248·249번에 서편과 일등석·마일러. 오른쪽 아래 218번에 가든 서편, 왼쪽 아래 281번에 가든 동편. 가운데 출국 심사 후 에스컬레이터로 올라와요."><path d="M112,480 L120,150 Q126,98 178,96 L422,96 Q474,98 480,150 L488,480" class="cc-out" fill="none" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/><path d="M112,480 L120,150 Q126,98 178,96 L422,96 Q474,98 480,150 L488,480" class="cc-in" fill="none" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/><text x="178" y="103" text-anchor="middle" class="gt gb">253</text><text x="222" y="103" text-anchor="middle" class="gt">252</text><text x="300" y="103" text-anchor="middle" class="gt">250</text><text x="352" y="103" text-anchor="middle" class="gt gb">249</text><text x="410" y="103" text-anchor="middle" class="gt gb">248</text><text x="119" y="176" text-anchor="middle" class="gt">274</text><text x="117" y="251" text-anchor="middle" class="gt">277</text><text x="116" y="316" text-anchor="middle" class="gt">279</text><text x="114" y="391" text-anchor="middle" class="gt gb">281</text><text x="112" y="461" text-anchor="middle" class="gt">286</text><text x="481" y="176" text-anchor="middle" class="gt">225</text><text x="483" y="251" text-anchor="middle" class="gt">222</text><text x="484" y="316" text-anchor="middle" class="gt">220</text><text x="486" y="391" text-anchor="middle" class="gt gb">218</text><text x="488" y="461" text-anchor="middle" class="gt">215</text><line x1="300" y1="122" x2="300" y2="196" class="esc-l"/><rect x="200" y="196" width="200" height="62" rx="14" class="esc"/><text x="300" y="222" text-anchor="middle" class="esc-t">⇡ 출국 심사 후</text><text x="300" y="246" text-anchor="middle" class="esc-t2">에스컬레이터로 4층</text><text x="300" y="330" text-anchor="middle" class="hall">출국장·면세점</text><g class="pin ok"><path d="M178,73 L150,56" class="pl" fill="none"/><circle cx="150" cy="38" r="18"/><text x="150" y="44" text-anchor="middle">2</text></g><g class="pin ok"><path d="M178,73 L200,56" class="pl" fill="none"/><circle cx="200" cy="38" r="18"/><text x="200" y="44" text-anchor="middle">3</text></g><g class="pin no"><path d="M352,73 L352,56" class="pl" fill="none"/><circle cx="352" cy="38" r="18"/><text x="352" y="44" text-anchor="middle">6</text></g><g class="pin ok"><path d="M410,73 L404,56" class="pl" fill="none"/><circle cx="404" cy="38" r="18"/><text x="404" y="44" text-anchor="middle">1</text></g><g class="pin no"><path d="M410,73 L456,56" class="pl" fill="none"/><circle cx="456" cy="38" r="18"/><text x="456" y="44" text-anchor="middle">7</text></g><g class="pin ok"><path d="M510,385 L534,385" class="pl" fill="none"/><circle cx="552" cy="385" r="18"/><text x="552" y="391" text-anchor="middle">4</text></g><g class="pin ok"><path d="M90,385 L66,385" class="pl" fill="none"/><circle cx="48" cy="385" r="18"/><text x="48" y="391" text-anchor="middle">5</text></g></svg><figcaption>보라색 1~5번이 우리가 갈 수 있는 프레스티지 라운지예요. 회색 6·7번(일등석·마일러 클럽)은 못 들어가요.</figcaption></figure>
+    <figure class="map"><svg class="lmapsvg" viewBox="0 0 600 520" role="img" aria-label="인천공항 제2터미널 4층 대한항공 라운지 위치. 위쪽 가로 통로 왼쪽 253번에 동편 좌·우, 오른쪽 248·249번에 서편과 일등석·마일러. 오른쪽 아래 218번에 가든 서편, 왼쪽 아래 281번에 가든 동편. 가운데 출국 심사 후 에스컬레이터로 올라와요."><path d="M112,480 L120,150 Q126,98 178,96 L422,96 Q474,98 480,150 L488,480" class="cc-out" fill="none" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/><path d="M112,480 L120,150 Q126,98 178,96 L422,96 Q474,98 480,150 L488,480" class="cc-in" fill="none" stroke-width="46" stroke-linecap="round" stroke-linejoin="round"/><text x="178" y="103" text-anchor="middle" class="gt gb">253</text><text x="222" y="103" text-anchor="middle" class="gt">252</text><text x="300" y="103" text-anchor="middle" class="gt">250</text><text x="352" y="103" text-anchor="middle" class="gt gb">249</text><text x="410" y="103" text-anchor="middle" class="gt gb">248</text><text x="119" y="176" text-anchor="middle" class="gt">274</text><text x="117" y="251" text-anchor="middle" class="gt">277</text><text x="116" y="316" text-anchor="middle" class="gt">279</text><text x="114" y="391" text-anchor="middle" class="gt gb">281</text><text x="112" y="461" text-anchor="middle" class="gt">286</text><text x="481" y="176" text-anchor="middle" class="gt">225</text><text x="483" y="251" text-anchor="middle" class="gt">222</text><text x="484" y="316" text-anchor="middle" class="gt">220</text><text x="486" y="391" text-anchor="middle" class="gt gb">218</text><text x="488" y="461" text-anchor="middle" class="gt">215</text><line x1="300" y1="122" x2="300" y2="196" class="esc-l"/><rect x="200" y="196" width="200" height="62" rx="14" class="esc"/><text x="300" y="222" text-anchor="middle" class="esc-t">⇡ 출국 심사 후</text><text x="300" y="246" text-anchor="middle" class="esc-t2">에스컬레이터로 4층</text><text x="300" y="330" text-anchor="middle" class="hall">출국장·면세점</text><g class="pin ok"><path d="M178,73 L150,56" class="pl" fill="none"/><circle cx="150" cy="38" r="18"/><text x="150" y="44" text-anchor="middle">2</text></g><g class="pin ok"><path d="M178,73 L200,56" class="pl" fill="none"/><circle cx="200" cy="38" r="18"/><text x="200" y="44" text-anchor="middle">3</text></g><g class="pin no"><path d="M352,73 L352,56" class="pl" fill="none"/><circle cx="352" cy="38" r="18"/><text x="352" y="44" text-anchor="middle">6</text></g><g class="pin ok"><path d="M410,73 L404,56" class="pl" fill="none"/><circle cx="404" cy="38" r="18"/><text x="404" y="44" text-anchor="middle">1</text></g><g class="pin no"><path d="M410,73 L456,56" class="pl" fill="none"/><circle cx="456" cy="38" r="18"/><text x="456" y="44" text-anchor="middle">7</text></g><g class="pin ok"><path d="M510,385 L534,385" class="pl" fill="none"/><circle cx="552" cy="385" r="18"/><text x="552" y="391" text-anchor="middle">4</text></g><g class="pin ok"><path d="M90,385 L66,385" class="pl" fill="none"/><circle cx="48" cy="385" r="18"/><text x="48" y="391" text-anchor="middle">5</text></g></svg><figcaption>짙은 파란색 1~5번이 우리가 갈 수 있는 프레스티지 라운지예요. 회색 6·7번(일등석·마일러 클럽)은 못 들어가요.</figcaption></figure>
     <ol class="lglist"><li class="ok"><span class="n">1</span><b>프레스티지 서편</b><small>248번 앞 · 4층</small></li><li class="ok"><span class="n">2</span><b>프레스티지 동편 (좌측)</b><small>253번 앞 · 4층</small></li><li class="ok"><span class="n">3</span><b>프레스티지 동편 (우측)</b><small>253번 앞 · 4층</small></li><li class="ok"><span class="n">4</span><b>프레스티지 가든 서편</b><small>218번 앞 · 4층</small></li><li class="ok"><span class="n">5</span><b>프레스티지 가든 동편</b><small>281번 앞 · 4층</small></li><li class="x"><span class="n">6</span><b>일등석 라운지</b><small>249번 앞 · 4층 · 우리는 못 들어가요</small></li><li class="x"><span class="n">7</span><b>마일러 클럽</b><small>248번 앞 · 4층 · 우리는 못 들어가요</small></li></ol>
   </div>
 
