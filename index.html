@@ -235,6 +235,7 @@ section > h2{font-size:30px}
 .ph figcaption{font-size:15px;font-weight:700;line-height:1.4}
 .ph figcaption a{font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
 .ph.wide img{aspect-ratio:16/9}
+.photos .span2{grid-column:1 / -1}
 /* day at a glance */
 .glance{background:var(--surface);border-radius:18px;padding:16px 16px 14px;box-shadow:0 1px 2px rgba(20,40,35,.06),0 6px 18px rgba(20,40,35,.06);border-top:5px solid var(--dac)}
 .glance h3{font-family:var(--body);font-size:16px;font-weight:800;letter-spacing:.04em;color:var(--dac);margin:0 0 8px}
@@ -359,6 +360,11 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .manners b{font-size:19px}
 .manners span{font-size:17px;color:var(--muted)}
 .manners .fine{color:var(--orchid);font-weight:700;font-size:15px}
+.prices{list-style:none;margin:8px 0;padding:0;display:grid;gap:2px}
+.prices li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:17px}
+.prices li:last-child{border-bottom:0}
+.prices b{font-variant-numeric:tabular-nums;text-align:right;flex:none}
+.prices small{display:block;font-weight:500;color:var(--muted);font-size:14px}
 .tips{display:grid;gap:12px}
 .tip{display:grid;gap:4px}
 .tip h3{font-size:21px;font-family:var(--body);font-weight:800}
@@ -761,7 +767,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="dayhead"><span class="dnum">2일차</span><span class="date">12월 3일 목요일</span><span class="theme">마리나베이와 크리스마스 불빛</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🌳</span><span class="gt">보타닉 가든 (힘들면 빼요) → 머라이언 공원 → 에스플러네이드 옥상</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🦀</span><span class="gt">팜비치 시푸드 칠리크랩</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🌿</span><span class="gt">풀러턴 체크인·쉬기 → 가든스 바이 더 베이 돔</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🌃</span><span class="gt">라보 저녁 → 리버크루즈 → 크리스마스 불빛 쇼</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">⛈️</span><span class="temp">26~29℃ <small>흐리고 오후 소나기</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 소나기·천둥</span><span>저녁 소나기</span></p><p>오후와 저녁에 소나기가 올 수 있어요. 저녁 배·야외 쇼가 있어서 접는 우산을 꼭 챙겨요.</p></div>
-    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg?width=900" alt="머라이언 공원" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>머라이언 공원 <a href="https://commons.wikimedia.org/wiki/File:Merlion%2C%20Merlion%20Park%2C%20Singapore%20-%2020130315-01.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg?width=900" alt="가든스 바이 더 베이와 마리나베이 샌즈" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>가든스 바이 더 베이와 마리나베이 샌즈 <a href="https://commons.wikimedia.org/wiki/File:View%20of%20Marina%20Bay%20Sands%20Hotel%20and%20the%20Supertree%20Grove%2C%20Gardens%20by%20the%20Bay%2C%20Singapore%2C%20at%20sunset%20-%2020140513.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
+    <div class="photos"><figure class="ph"><img src="img/sp-merlion.jpg" alt="머라이언 공원과 마리나베이 샌즈" loading="lazy"><figcaption>머라이언 공원</figcaption></figure><figure class="ph"><img src="img/sp-wonderland.jpg" alt="가든스 바이 더 베이 크리스마스 원더랜드" loading="lazy"><figcaption>크리스마스 원더랜드</figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
       <li><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
@@ -787,7 +793,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="dayhead"><span class="dnum">3일차</span><span class="date">12월 4일 금요일</span><span class="theme">센토사섬과 나이트사파리</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🚡</span><span class="gt">케이블카 타고 센토사섬 → 루지 타기</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🍕</span><span class="gt">실로소 해변 트라피자</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🏖️</span><span class="gt">팔라완 해변·비치클럽 → 호텔에서 쉬기</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🦁</span><span class="gt">나이트사파리 → 차로 오차드 조명 → 라우파삿 사테 야식</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">⛈️</span><span class="temp">26~28℃ <small>오후 천둥 번개</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 천둥 번개</span><span>저녁 흐림</span></p><p>해변은 오전이 좋아요. 천둥이 치면 바다에서 나와 실내로 피하고, 모자·선크림도 챙겨요.</p></div>
-    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg?width=900" alt="센토사 루지" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>센토사 루지 <a href="https://commons.wikimedia.org/wiki/File:Sentosa%20Luge%20and%20Skyride%2C%20Singapore%20-%2020140213.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg?width=900" alt="나이트사파리 입구" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>나이트사파리 입구 <a href="https://commons.wikimedia.org/wiki/File:Entrance%20of%20Night%20Safari%2C%20Singapore%2C%202012.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
+    <div class="photos"><figure class="ph"><img src="img/sp-luge.jpg" alt="센토사 루지와 스카이라이드" loading="lazy"><figcaption>센토사 루지·스카이라이드</figcaption></figure><figure class="ph"><img src="img/sp-nightsafari.jpg" alt="나이트사파리 트램" loading="lazy"><figcaption>나이트사파리</figcaption></figure><figure class="ph wide span2"><img src="img/sp-tanjong.jpg" alt="탄중 비치클럽 수영장과 해변" loading="lazy"><figcaption>탄중 비치클럽</figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
       <li><span class="time">09:30</span><span class="what"><b>케이블카 타고 센토사섬으로</b><small>바다 위를 지나가요. 경치가 정말 좋아요.</small></span></li>
@@ -810,7 +816,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="dayhead"><span class="dnum">4일차</span><span class="date">12월 5일 토요일</span><span class="theme">차이나타운과 쇼핑, 집으로</span></div>
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🧳</span><span class="gt">체크아웃 → 차이나타운·불아사 → 송파 바쿠테</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🛍️</span><span class="gt">오차드로드 구경 → 점보 칠리크랩</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">✨</span><span class="gt">쥬얼 창이 팀호완 딤섬 → 눈 쇼</span></li><li><span class="gk">밤</span><span class="gi" aria-hidden="true">✈️</span><span class="gt">22:30 출발 → 12/6(일) 아침 5:45 인천 도착</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>비행기 안</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">🌦️</span><span class="temp">25~28℃ <small>인천 도착 새벽 영하</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 소나기·천둥</span><span>저녁 흐림</span></p><p>오후에 소나기가 올 수 있어요. 일요일 새벽 인천은 영하라 비행기 타기 전에 겉옷을 손가방에 꺼내 두세요.</p></div>
-    <div class="photos"><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg?width=900" alt="차이나타운 불아사" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>차이나타운 불아사 <a href="https://commons.wikimedia.org/wiki/File:Buddha%20Tooth%20Relic%20Temple%20-%20Singapore%202016.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure><figure class="ph"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg?width=900" alt="쥬얼 실내 폭포" loading="lazy" onerror="this.closest('figure').hidden=true"><figcaption>쥬얼 실내 폭포 <a href="https://commons.wikimedia.org/wiki/File:Rain%20Vortex%2C%20Jewel%20Changi%20Airport.jpg" target="_blank" rel="noopener">사진 출처</a></figcaption></figure></div>
+    <div class="photos"><figure class="ph"><img src="img/sp-buddhatooth.jpg" alt="차이나타운 불아사" loading="lazy"><figcaption>차이나타운 불아사</figcaption></figure><figure class="ph"><img src="img/sp-jewel.jpg" alt="쥬얼 실내 폭포" loading="lazy"><figcaption>쥬얼 실내 폭포</figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">08:00</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>먹고 나서 방에서 쉬며 짐을 싸요.</small></span></li>
       <li><span class="time">10:30</span><span class="what"><b>체크아웃, 호텔에 짐 맡기기</b></span></li>
@@ -948,10 +954,22 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="tips">
     <h2>알아두실 것</h2>
     <div class="card tips">
-      <div class="tip"><h3>날씨는 예년 기준이에요</h3><p>날짜별 날씨는 매년 12월 초 평균이에요. 출발 며칠 전에 실제 예보로 다시 고쳐 둘게요.</p></div>
+      <div class="tip"><h3>날씨는 예보 기준이에요</h3><p>날씨 칸은 아큐웨더 12월 예보로 적었어요. 멀리 있는 예보라 출발 며칠 전에 다시 확인해서 고쳐 둘게요.</p></div>
       <div class="tip"><h3>덥고 습해요</h3><p>12월에도 낮에는 30도 안팎이에요. 물을 자주 드시고, 힘들면 바로 말씀해 주세요. 오후에는 호텔에서 쉬는 시간을 넣어 두었어요.</p></div>
       <div class="tip"><h3>소나기가 자주 와요</h3><p>12월은 비가 많은 철이라 오후에 갑자기 쏟아지곤 해요. 대부분 30분~1시간이면 그쳐서, 잠깐 실내에 들어가 있으면 돼요.</p></div>
       <div class="tip"><h3>센토사섬 안에서는 교통이 공짜</h3><p>섬 안 셔틀버스, 버스, 모노레일은 돈을 내지 않아요. 해변 사이를 걸을 필요 없이 타고 다녀요.</p></div>
+      <div class="tip"><h3>물가는 한국보다 조금 비싸요</h3><p>푸드코트(호커)는 싸고, 식당과 술은 한국보다 1.5배쯤 비싸요. 1 싱가포르 달러는 약 1,030원이에요.</p>
+        <ul class="prices">
+          <li><span>푸드코트 한 그릇</span><b>S$5~8<small>(5천~8천 원)</small></b></li>
+          <li><span>푸드코트 커피·음료</span><b>S$2~3<small>(2천~3천 원)</small></b></li>
+          <li><span>카페 커피</span><b>S$7~8<small>(7천~8천 원)</small></b></li>
+          <li><span>식당 메인 요리</span><b>S$25~40<small>(2만 5천~4만 원)</small></b></li>
+          <li><span>맥주 한 잔 (식당·바)</span><b>S$15~20<small>(1만 5천~2만 원)</small></b></li>
+          <li><span>생수 한 병 (편의점)</span><b>S$1.5~2<small>(1,500~2,000원)</small></b></li>
+          <li><span>지하철 한 번</span><b>S$1~2<small>(1천~2천 원)</small></b></li>
+          <li><span>택시 시내 짧게</span><b>S$12~20<small>(1만 2천~2만 원)</small></b></li>
+        </ul>
+        <p>식당 가격 옆에 "++"가 붙으면 봉사료와 세금으로 약 20%가 더 붙어요.</p></div>
       <div class="tip"><h3>택시는 딸들이 불러요</h3><p>Grab이라는 앱으로 불러요. 혹시 길을 잃으시면 그 자리에서 전화 주세요.</p></div>
     </div>
     <div class="card sos">
