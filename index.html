@@ -108,6 +108,7 @@ section > h2{font-size:30px}
 .fsz small{font-size:12px}
 .prep h3{font-size:21px;margin:0 0 10px}
 .prepitem.first{border-top:0;padding-top:0}
+#prep .prepitem.first{padding:14px;margin-bottom:6px}
 .prepitem{display:grid;gap:4px;padding:10px 0;border-top:1px dashed var(--line)}
 .prepitem > b{font-size:19px}
 .prepitem p{font-size:17px;color:var(--muted);line-height:1.6}
@@ -129,8 +130,9 @@ section > h2{font-size:30px}
 .park .pkmore::after{content:" ▾"}
 .park[open] .pkmore{font-size:0}
 .park[open] .pkmore::after{content:"접기 ▴";font-size:15px}
-.park .okpill{display:inline-block;font-size:14px;font-weight:700;background:var(--green);color:var(--surface);border-radius:999px;padding:1px 9px;vertical-align:3px;margin-left:4px}
-.park .pk{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-size:17px;line-height:1.5}
+.parkh{margin-top:28px}
+.parkh .okpill,.park .okpill{display:inline-block;font-size:14px;font-weight:700;background:var(--green);color:var(--surface);border-radius:999px;padding:1px 9px;vertical-align:3px;margin-left:4px}
+.park .pk{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:17px;line-height:1.5}
 .park .pk li{display:grid;grid-template-columns:5.6em minmax(0,1fr);gap:8px}
 .park .pk li > b{color:var(--muted);font-weight:700}
 .park .pk small{display:block;color:var(--muted);font-size:15px}
@@ -485,9 +487,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .pop::backdrop{background:rgba(10,20,30,.55)}
 .pop h2{margin:0 0 12px;font-size:22px}
 .pop .card{margin:0}
-.pop .prepitem.first{background:#fff7e0;border:2px solid #f0c64a;border-radius:14px;padding:14px;margin-bottom:6px;color:#2a2200}
-.pop .prepitem.first>b{font-size:21px}
-.pop .prepitem.first p{font-size:17px;color:#3a2c00}
+.pop .prepitem.first,#prep .prepitem.first{background:#fff7e0;border:2px solid #f0c64a;border-radius:14px;padding:14px;margin-bottom:6px;color:#2a2200}
+.pop .prepitem.first>b,#prep .prepitem.first>b{font-size:21px}
+.pop .prepitem.first p,#prep .prepitem.first p{font-size:17px;color:#3a2c00}
 .pop .prepitem:not(.first)>b{font-size:15px}
 .pop .prepitem:not(.first) p{font-size:14px;margin:2px 0 0}
 .pop .prepitem:not(.first){padding-top:8px;padding-bottom:8px}
@@ -661,8 +663,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <p><b>수인이가 준비할 거예요.</b> 따로 안 하셔도 돼요.</p>
       </div>
     </div>
-    <details class="card park">
-      <summary><span class="pkt">🚗 인천공항 주차 <span class="okpill">예약 완료</span></span><span class="pkmore">눌러서 보기</span></summary>
+    <h2 class="parkh">인천공항 주차 <span class="okpill">예약 완료</span></h2>
+    <div class="card park">
       <ul class="pk">
         <li><b>어디</b><span>제2터미널 <b>예약주차장</b> <small>(인천 중구 운서동 3233-51)</small></span></li>
         <li><b>세우는 날</b><span>12/2(수) 오후 4시 <small>(낮 12시~저녁 8시 사이에 들어가면 돼요)</small></span></li>
@@ -676,7 +678,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <figure><img src="img/parking-map.jpg" alt="제2터미널 예약주차장 위치 지도" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
         <figure><img src="img/parking-shuttle.jpg" alt="공항02번 셔틀버스 노선도" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
       </div>
-    </details>
+    </div>
   </section>
 
   <section id="flight">
@@ -1234,7 +1236,6 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 </div>
 </main>
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
-<script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
 <script>document.querySelectorAll(".seatmap").forEach(function(m){var info=m.querySelector(".seatinfo"),orig=info.innerHTML,h=m.querySelector("h3");
 function reset(){m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});info.innerHTML=orig;}
 h.style.cursor="pointer";h.addEventListener("click",reset);
