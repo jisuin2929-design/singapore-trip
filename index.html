@@ -569,6 +569,18 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 }
 @media (min-width:1080px) and (max-width:1339px){nav .wrap::before{content:"✈︎"}}
 
+.pop[open]{display:flex;flex-direction:column;max-height:calc(100dvh - 32px);padding:14px 14px 12px;overflow:hidden}
+.pop h2{font-size:19px;margin:0 0 8px}
+.pop .popbody{overflow:auto;min-height:0;flex:1;-webkit-overflow-scrolling:touch}
+.pop .card.prep{padding:10px 12px}
+.pop .prepitem.first{padding:10px 12px}
+.pop .prepitem.first>b{font-size:19px}
+.pop .prepitem.first p{font-size:15px;margin:4px 0 8px}
+.pop .appbtns{flex-wrap:nowrap;gap:8px}
+.pop .prepitem:not(.first){padding-top:6px;padding-bottom:6px}
+.pop .prepitem:not(.first) p{font-size:13px;line-height:1.45}
+.popbtns{flex:none;margin-top:10px}
+.popbtns button{padding:10px;font-size:16px}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
