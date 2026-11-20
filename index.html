@@ -500,6 +500,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   .home{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0 24px}
   .hbtn{display:flex;flex-direction:column;gap:2px;min-height:118px;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;text-decoration:none;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.05)}
   .hbtn .hi{font-size:34px;line-height:1.1}
+  .hbtn.wide{grid-column:1 / -1;min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:12px;background:#fff7e0;border-color:#f0d58a;color:#3a2c00}
+  .hbtn.wide small{color:#6b5a2a}
+  .hbtn.wide small{flex-basis:100%}
   .hbtn b{font-size:22px}
   .hbtn small{font-size:14px;color:var(--muted)}
   #gbar{position:sticky;top:0;z-index:20;align-items:center;gap:14px;background:var(--bg);margin:0 -16px 8px;padding:12px 16px;border-bottom:1px solid var(--line)}
@@ -614,7 +617,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <main>
 <div class="wrap">
-<div id="home" class="home"><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>먹는 것</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a></div>
+<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>먹는 것</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a></div>
 <div id="gbar"><a href="#home">← 처음 화면</a><b id="gtitle"></b></div>
 
   <section id="prep">
@@ -1217,7 +1220,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["먹는 것",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["먹는 것",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
   var gOf=function(sec){for(var k in G){if(G[k][1].indexOf(sec)>=0)return k;}return null;};
   function route(){
     var on=mq.matches; b.classList.toggle("tabs-on",on);
