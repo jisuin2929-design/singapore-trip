@@ -485,6 +485,13 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .pop::backdrop{background:rgba(10,20,30,.55)}
 .pop h2{margin:0 0 12px;font-size:22px}
 .pop .card{margin:0}
+.pop .prepitem.first{background:#fff7e0;border:2px solid #f0c64a;border-radius:14px;padding:14px;margin-bottom:6px;color:#2a2200}
+.pop .prepitem.first>b{font-size:21px}
+.pop .prepitem.first p{font-size:17px;color:#3a2c00}
+.pop .prepitem:not(.first)>b{font-size:15px}
+.pop .prepitem:not(.first) p{font-size:14px;margin:2px 0 0}
+.pop .prepitem:not(.first){padding-top:8px;padding-bottom:8px}
+.pop .prepitem:not(.first) .rate{font-size:12px}
 .popbtns{display:flex;gap:10px;margin-top:14px}
 .popbtns button{flex:1;font:inherit;font-weight:800;font-size:17px;border-radius:14px;padding:12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
 .popbtns .popclose{background:#245fc7;border-color:#245fc7;color:#fff}
@@ -1250,7 +1257,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <dialog id="prepPop" class="pop" aria-labelledby="popT">
   <h2 id="popT">출발 전에 꼭 해 두세요</h2>
   <div class="popbody"></div>
-  <div class="popbtns"><button type="button" class="popnever">다시 보지 않기</button><button type="button" class="popclose" autofocus>확인했어요</button></div>
+  <div class="popbtns"><button type="button" class="popnever">다시 보지 않기</button><button type="button" class="popclose">확인했어요</button></div>
 </dialog>
 <script>
 (function(){try{
@@ -1264,7 +1271,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
   d.querySelector(".popclose").onclick=function(){d.close();};
   d.querySelector(".popnever").onclick=function(){try{localStorage.setItem("sgPrepPop","no");}catch(e){} d.close();};
   d.addEventListener("click",function(e){if(e.target===d)d.close();});
-  d.showModal();
+  d.showModal(); try{d.querySelector(".popclose").focus({preventScroll:true});}catch(e){} d.scrollTop=0;
 }catch(e){}})();
 </script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
