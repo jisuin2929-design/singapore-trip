@@ -91,7 +91,7 @@ section > h2{font-size:30px}
 .stack{display:grid;gap:12px}
 
 /* flights */
-.flight{display:grid;gap:10px}
+.flight{display:grid;gap:10px;align-content:start}
 .flight .tag{font-size:16px;font-weight:700;color:var(--green)}
 .flight .route{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
 .flight .end{min-width:0}
@@ -382,6 +382,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   main .wrap{gap:72px;padding-block:56px 80px}
   section > h2{font-size:36px}
   #prep,#flight,#hotel,#tips{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px 24px}
+  #prep{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:stretch}
+  #prep .pkimgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
   #prep>h2,#flight>h2,#flight>.lead,#flight>.wifi,#hotel>h2,#tips>h2,#tips>.lead{grid-column:1 / -1}
   #flight>.card.flight{align-self:stretch}
   .meals{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -582,7 +584,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="arrow" aria-hidden="true">→</div>
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
       </div>
-      <p class="note">창이공항 <b>터미널 4</b>에서 출발해요. <b>밤 9시 30분</b>까지 짐 부치기를 마쳐야 해요. 밤 비행기라 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>에 도착해요.</p>
+      <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
       <div class="meal">
         <h3>🍽️ 기내식 <small class="who">현호 · 경희</small></h3>
         <dl class="course rmeal">
@@ -928,6 +930,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 </div>
 </main>
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
+<script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
