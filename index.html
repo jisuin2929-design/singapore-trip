@@ -179,6 +179,17 @@ section > h2{font-size:30px}
 .preord p{font-size:15px;margin:6px 0 4px;color:var(--muted)}
 .mslide .pre figcaption .snack{margin:2px 0 6px;font-size:17px}
 .snack small{display:block;font-size:15px;color:var(--muted)}
+.seatmap{border-top:1px dashed var(--line);padding-top:10px}
+.seatmap h3{font-size:18px;margin:0 0 8px}
+.seatmap h3 small{font-size:14px;font-weight:500;color:var(--muted)}
+.plane{background:var(--bg);border:1px solid var(--line);border-radius:40px 40px 16px 16px;padding:18px 10px 10px;display:grid;gap:6px;max-width:340px;margin:0 auto}
+.sr{display:grid;grid-template-columns:1.6em repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr));gap:4px;align-items:center}
+.sr .rn{font-size:13px;color:var(--muted);text-align:center;font-weight:700}
+.sr.hd b{font-size:13px;color:var(--muted);text-align:center}
+.st{height:34px;border-radius:8px 8px 5px 5px;border:1.5px solid var(--line);background:var(--surface)}
+button.st{font:800 13px var(--body);color:#fff;background:var(--sc);border-color:var(--sc);cursor:pointer;padding:0}
+button.st.on{outline:3px solid var(--ink);outline-offset:1px}
+.seatinfo{margin:8px 0 0;text-align:center;font-size:16px;font-weight:700}
 .prepill{display:block;width:max-content;margin-top:4px;font-size:12px;padding:1px 8px}
 .prepill{display:inline-block;font-size:14px;font-weight:800;color:#1f7a3a;background:#d9efdd;border-radius:999px;padding:2px 10px}
 .preord small{font-size:14px;color:var(--muted);font-weight:500}
@@ -536,6 +547,14 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
+      <div class="seatmap">
+        <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
+        <div class="plane">
+          <div class="sr hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><i></i><b>H</b><b>J</b></div>
+          <div class="sr"><span class="rn">8</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#245fc7" data-info="8H · 현호 자리 (복도 쪽)">현호</button><button type="button" class="st me" style="--sc:#c2417a" data-info="8J · 경희 자리 (창가)">경희</button></div><div class="sr"><span class="rn">9</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#2f8a5a" data-info="9H · 혜인 자리 (복도 쪽)">혜인</button><button type="button" class="st me" style="--sc:#b5651d" data-info="9J · 수인 자리 (창가)">수인</button></div><div class="sr"><span class="rn">10</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">11</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">12</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">14</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div>
+        </div>
+        <p class="seatinfo" aria-live="polite">8H 현호 · 8J 경희 · 9H 혜인 · 9J 수인 (오른쪽 창가 두 줄)</p>
+      </div>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
         <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure><figure class="pre"><img src="img/meal-645-pre1.jpg" alt="오리 콩피와 단호박 타르트" loading="lazy"><figcaption>오리 콩피와 단호박 타르트<small>양식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre2.jpg" alt="두부떡갈비와 채개장" loading="lazy"><figcaption>두부떡갈비와 채개장<small>채식 한식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre3.jpg" alt="토마토소스 옥수수 폴렌타" loading="lazy"><figcaption>토마토소스 옥수수 폴렌타<small>채식</small><span class="prepill">사전 주문 전용</span></figcaption></figure></div>
@@ -988,6 +1007,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 </main>
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
 <script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
+<script>document.querySelectorAll(".seatmap button.st").forEach(function(b){b.addEventListener("click",function(){var m=b.closest(".seatmap");m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});b.classList.add("on");m.querySelector(".seatinfo").textContent=b.dataset.info;});});</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
