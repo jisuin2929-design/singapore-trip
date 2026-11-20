@@ -395,7 +395,8 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .mealday .menu small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px}
 .mealday .mlinks{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .mealday .mlinks a{font-size:14px;font-weight:800;text-decoration:none;color:var(--dac);background:var(--surface);border-radius:8px;padding:2px 9px}
-.mealday div.menu small{display:block;margin:2px 0 0}
+.mealday div.menu small{display:block;margin:4px 0 0;font-size:17px;font-weight:800;color:#c2410c}
+.mealday div.menu small .bk{font-size:12px}
 .mealday a.menu{color:inherit;text-decoration:none}
 .mealday a.menu small{display:block;margin:2px 0 0;color:#2a62b8;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere}
 .wxnote{font-size:16px;color:var(--muted)}
@@ -631,7 +632,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <div class="nrow">
       <a href="#flight">비행기</a>
       <a href="#weather">날씨</a>
-      <a href="#meals">먹는 것</a>
+      <a href="#meals">식사 메뉴</a>
       <a href="#hotel">호텔</a>
       <a href="#docs">예약 확인서</a>
       <a href="#info">기본 정보</a>
@@ -649,7 +650,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 
 <main>
 <div class="wrap">
-<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>먹는 것</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a></div>
+<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a></div>
 <div id="gbar"><a href="#home">← 처음 화면</a><b id="gtitle"></b></div>
 
   <section id="prep">
@@ -963,7 +964,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   </section>
 
   <section id="meals">
-    <h2>날짜별 먹는 것·식당</h2>
+    <h2>날짜별 식사 메뉴</h2>
     <p class="mealsall"><a href="menu.html">📖 식당 메뉴와 4명 추천 주문 모아 보기 ›</a></p>
     <div class="meals">
       <div class="mealday d2"><h3>12/3 목</h3><ul><li><span class="when">아침</span><div class="menu">호텔 조식 뷔페<small>두짓타니</small><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Dusit%20Thani%20Laguna%20Singapore" target="_blank" rel="noopener">📍 지도</a></span></div></li><li><span class="when">점심</span><div class="menu">칠리크랩, 블랙페퍼크랩<small>팜비치 시푸드 <span class="bk">예약함</span></small><p class="mdesc">머라이언 공원 바로 옆. 매콤달콤한 <b>칠리크랩</b>과 후추 맛 <b>블랙페퍼크랩</b>이 대표 메뉴예요. 소스에 튀긴 빵(만터우)을 찍어 드세요.</p><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=Palm%20Beach%20Seafood%20Restaurant%20Singapore" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#palmbeach">📖 메뉴·추천</a></span></div></li><li><span class="when">간식</span><div class="menu">애프터눈티, 케이크<small>풀러턴 라운지</small><p class="mdesc">오후 애프터눈티와 저녁 칵테일이 숙박에 포함돼 있어요. 따로 돈 내지 않으셔도 돼요.</p><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#fullerton">📖 메뉴·추천</a></span></div></li><li><span class="when">저녁</span><div class="menu">파스타, 스테이크<small>라보 57층 <span class="bk">예약함</span></small><p class="mdesc">높은 곳에서 노을과 시내 야경을 보며 이탈리아 음식을 먹어요.</p><span class="mlinks"><a href="https://www.google.com/maps/search/?api=1&query=LAVO%20Singapore%20Marina%20Bay%20Sands" target="_blank" rel="noopener">📍 지도</a><a href="menu.html#lavo">📖 메뉴·추천</a></span></div></li></ul></div>
@@ -1215,7 +1216,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["먹는 것",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
   var gOf=function(sec){for(var k in G){if(G[k][1].indexOf(sec)>=0)return k;}return null;};
   function route(){
     var on=mq.matches; b.classList.toggle("tabs-on",on);
