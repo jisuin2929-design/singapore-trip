@@ -564,7 +564,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
-      <div class="seatmap">
+      <div class="seatmap" hidden>
         <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
         <div class="plane">
           <div class="pfront"><span class="wc">🚻 화장실</span><span class="gal">🍴 주방</span><span class="wc">🚻 화장실</span></div>
@@ -1028,6 +1028,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
 <script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
 <script>document.querySelectorAll(".seatmap button.st").forEach(function(b){b.addEventListener("click",function(){var m=b.closest(".seatmap");m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});b.classList.add("on");m.querySelector(".seatinfo").textContent=b.dataset.info;});});</script>
+<script>try{if(Date.now()>=Date.parse("2026-12-02T15:00:00+09:00")){document.querySelectorAll(".seatmap").forEach(function(e){e.hidden=false;});}}catch(e){}</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
