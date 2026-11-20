@@ -337,9 +337,9 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .money .msub{font-size:16px;color:var(--muted);margin:4px 0 10px}
 .money .msub b{color:var(--ink)}
 .notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:12px}
-.note{margin:0;display:grid;gap:6px}
-.note figcaption{font-size:16px;color:var(--muted)}
-.note figcaption b{color:var(--nc);font-size:19px;margin-right:4px}
+.bnote{margin:0;display:grid;gap:6px}
+.bnote figcaption{font-size:16px;color:var(--muted)}
+.bnote figcaption b{color:var(--nc);font-size:19px;margin-right:4px}
 .bill{position:relative;aspect-ratio:2/1;border-radius:8px;background:linear-gradient(135deg,var(--nb) 0%,#fff 55%,var(--nb) 100%);border:2px solid var(--nc);box-shadow:0 2px 6px rgba(0,0,0,.12);overflow:hidden;color:var(--nc)}
 .bill::before{content:"";position:absolute;inset:6px;border:1px dashed var(--nc);border-radius:5px;opacity:.5}
 .bill .nv{position:absolute;left:10px;top:6px;font:900 26px/1 var(--body)}
@@ -907,7 +907,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="card money">
       <h3>싱가포르 돈 생김새</h3>
       <p class="msub">색깔로 구분하면 쉬워요. 그림은 실제 돈을 단순하게 그린 거예요.</p>
-      <div class="notes"><figure class="note" style="--nc:#7d4fa6;--nb:#ece2f4"><div class="bill" aria-hidden="true"><span class="nv">2</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">2</span></div><figcaption><b>$2</b> 약 2,000원</figcaption></figure><figure class="note" style="--nc:#3f8f52;--nb:#e1f1e4"><div class="bill" aria-hidden="true"><span class="nv">5</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">5</span></div><figcaption><b>$5</b> 약 5,000원</figcaption></figure><figure class="note" style="--nc:#c23a46;--nb:#f8e1e3"><div class="bill" aria-hidden="true"><span class="nv">10</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">10</span></div><figcaption><b>$10</b> 약 1만 원</figcaption></figure><figure class="note" style="--nc:#2a66ad;--nb:#e0ebf7"><div class="bill" aria-hidden="true"><span class="nv">50</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">50</span></div><figcaption><b>$50</b> 약 5만 원</figcaption></figure><figure class="note" style="--nc:#d27a1c;--nb:#fbecd9"><div class="bill" aria-hidden="true"><span class="nv">100</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">100</span></div><figcaption><b>$100</b> 약 10만 원</figcaption></figure></div>
+      <div class="notes"><figure class="bnote" style="--nc:#7d4fa6;--nb:#ece2f4"><div class="bill" aria-hidden="true"><span class="nv">2</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">2</span></div><figcaption><b>$2</b> 약 2,000원</figcaption></figure><figure class="bnote" style="--nc:#3f8f52;--nb:#e1f1e4"><div class="bill" aria-hidden="true"><span class="nv">5</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">5</span></div><figcaption><b>$5</b> 약 5,000원</figcaption></figure><figure class="bnote" style="--nc:#c23a46;--nb:#f8e1e3"><div class="bill" aria-hidden="true"><span class="nv">10</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">10</span></div><figcaption><b>$10</b> 약 1만 원</figcaption></figure><figure class="bnote" style="--nc:#2a66ad;--nb:#e0ebf7"><div class="bill" aria-hidden="true"><span class="nv">50</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">50</span></div><figcaption><b>$50</b> 약 5만 원</figcaption></figure><figure class="bnote" style="--nc:#d27a1c;--nb:#fbecd9"><div class="bill" aria-hidden="true"><span class="nv">100</span><span class="nsg">SINGAPORE</span><span class="por"></span><span class="nv2">100</span></div><figcaption><b>$100</b> 약 10만 원</figcaption></figure></div>
       <p class="msub">동전: 5센트 · 10센트 · 20센트 · 50센트는 은색, <b>1달러는 금색</b>이에요. 100센트가 1달러예요.</p>
       <div class="coins"><span class="coin" style="--cc:#c9ccd1">5¢</span><span class="coin" style="--cc:#c9ccd1">10¢</span><span class="coin" style="--cc:#c9ccd1">20¢</span><span class="coin" style="--cc:#c9ccd1">50¢</span><span class="coin" style="--cc:#d9b44a">$1</span></div>
     </div>
