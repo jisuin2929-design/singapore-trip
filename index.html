@@ -189,6 +189,12 @@ section > h2{font-size:30px}
 .st{height:34px;border-radius:8px 8px 5px 5px;border:1.5px solid var(--line);background:var(--surface)}
 button.st{font:800 13px var(--body);color:#fff;background:var(--sc);border-color:var(--sc);cursor:pointer;padding:0}
 button.st.on{outline:3px solid var(--ink);outline-offset:1px}
+.pfront{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;font-size:13px;font-weight:700}
+.pfront span{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 2px}
+.pfront .gal{color:var(--muted)}
+.pexit{display:flex;justify-content:space-between;font-size:12px;font-weight:800}
+.pexit span{background:#d62828;color:#fff;border-radius:4px;padding:2px 7px}
+.seatinfo small{font-size:14px;font-weight:500;color:var(--muted)}
 .seatinfo{margin:8px 0 0;text-align:center;font-size:16px;font-weight:700}
 .prepill{display:block;width:max-content;margin-top:4px;font-size:12px;padding:1px 8px}
 .prepill{display:inline-block;font-size:14px;font-weight:800;color:#1f7a3a;background:#d9efdd;border-radius:999px;padding:2px 10px}
@@ -550,10 +556,13 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="seatmap">
         <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
         <div class="plane">
+          <div class="pfront"><span class="wc">🚻 화장실</span><span class="gal">🍴 주방</span><span class="wc">🚻 화장실</span></div>
+          <div class="pexit"><span>⬅ 출구</span><span>출구 ➡</span></div>
           <div class="sr hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><i></i><b>H</b><b>J</b></div>
           <div class="sr"><span class="rn">8</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#245fc7" data-info="8H · 현호 자리 (복도 쪽)">현호</button><button type="button" class="st me" style="--sc:#c2417a" data-info="8J · 경희 자리 (창가)">경희</button></div><div class="sr"><span class="rn">9</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#2f8a5a" data-info="9H · 혜인 자리 (복도 쪽)">혜인</button><button type="button" class="st me" style="--sc:#b5651d" data-info="9J · 수인 자리 (창가)">수인</button></div><div class="sr"><span class="rn">10</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">11</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">12</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">14</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div>
+          <div class="pexit"><span>⬅ 출구</span><span>출구 ➡</span></div>
         </div>
-        <p class="seatinfo" aria-live="polite">8H 현호 · 8J 경희 · 9H 혜인 · 9J 수인 (오른쪽 창가 두 줄)</p>
+        <p class="seatinfo" aria-live="polite">8H 현호 · 8J 경희 · 9H 혜인 · 9J 수인 (오른쪽 창가 두 줄)<br><small>화장실과 출구는 바로 앞쪽, 8열 앞에 있어요.</small></p>
       </div>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
