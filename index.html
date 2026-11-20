@@ -182,8 +182,8 @@ section > h2{font-size:30px}
 .seatmap{border-top:1px dashed var(--line);padding-top:10px}
 .seatmap h3{font-size:18px;margin:0 0 8px}
 .seatmap h3 small{font-size:14px;font-weight:500;color:var(--muted)}
-.plane{background:var(--bg);border:1px solid var(--line);border-radius:40px 40px 16px 16px;padding:18px 10px 10px;display:grid;gap:6px;max-width:340px;margin:0 auto}
-.sr{display:grid;grid-template-columns:1.6em repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr));gap:4px;align-items:center}
+.plane{background:var(--bg);border:1px solid var(--line);border-radius:40px 40px 16px 16px;padding:18px 14px 10px;display:grid;gap:6px;max-width:340px;margin:0 auto}
+.sr{display:grid;grid-template-columns:1.6em repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr)) 10px repeat(2,minmax(0,1fr));gap:4px 9px;align-items:center}
 .sr .rn{font-size:13px;color:var(--muted);text-align:center;font-weight:700}
 .sr.hd b{font-size:13px;color:var(--muted);text-align:center}
 .st{height:34px;border-radius:8px 8px 5px 5px;border:1.5px solid var(--line);background:var(--surface)}
@@ -195,6 +195,17 @@ button.st.on{outline:3px solid var(--ink);outline-offset:1px}
 .pexit{display:flex;justify-content:space-between;font-size:12px;font-weight:800}
 .pexit span{background:#d62828;color:#fff;border-radius:4px;padding:2px 7px}
 .seatinfo small{font-size:14px;font-weight:500;color:var(--muted)}
+.sr:not(.hd) > :nth-child(2),.sr:not(.hd) > :nth-child(9){transform:translateY(-7px)}
+.sr:not(.hd) > :nth-child(3),.sr:not(.hd) > :nth-child(8){transform:translateY(7px)}
+.sr:not(.hd) > :nth-child(5),.sr:not(.hd) > :nth-child(6){transform:translateY(3px)}
+.sr.hd > :nth-child(2),.sr.hd > :nth-child(9){transform:translateY(-4px)}
+.sr.hd > :nth-child(3),.sr.hd > :nth-child(8){transform:translateY(4px)}
+.plane .sr:not(.hd){margin:6px 0}
+.st{position:relative;height:38px;border-radius:9px 9px 6px 6px;box-shadow:inset 0 9px 0 rgba(0,0,0,.06)}
+.st::before,.st::after{content:"";position:absolute;bottom:2px;width:5px;height:20px;border-radius:3px;background:var(--line)}
+.st::before{left:-4px}.st::after{right:-4px}
+button.st{box-shadow:inset 0 9px 0 rgba(0,0,0,.18)}
+button.st::before,button.st::after{background:var(--sc);filter:brightness(.8)}
 .seatinfo{margin:8px 0 0;text-align:center;font-size:16px;font-weight:700}
 .prepill{display:block;width:max-content;margin-top:4px;font-size:12px;padding:1px 8px}
 .prepill{display:inline-block;font-size:14px;font-weight:800;color:#1f7a3a;background:#d9efdd;border-radius:999px;padding:2px 10px}
