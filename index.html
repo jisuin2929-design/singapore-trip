@@ -583,6 +583,15 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .pop .prepitem:not(.first) p{font-size:13px;line-height:1.45}
 .popbtns{flex:none;margin-top:10px}
 .popbtns button{padding:10px;font-size:16px}
+.pop .mpk{margin:4px 0 6px;font-weight:800;font-size:16px}
+.pop .mpk.pre{margin-top:12px;color:#b3261e}
+.pop .mpg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.pop .mpg figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pop .mpg.pre figure{border:2px solid #e57373}
+.pop .mpg img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.pop .mpg figcaption{font-size:12px;line-height:1.3;padding:4px 5px;font-weight:700}
+.pop .mpg small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.pop .mpnote{margin:12px 0 0;font-size:16px;background:#fdecea;border-radius:10px;padding:10px 12px}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1287,6 +1296,29 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
   d.addEventListener("click",function(e){if(e.target===d)d.close();});
   d.showModal(); try{d.querySelector(".popclose").focus({preventScroll:true});}catch(e){} d.scrollTop=0;
 }catch(e){}})();
+</script>
+<dialog id="mealPop" class="pop" aria-labelledby="mealT">
+  <h2 id="mealT">가는 비행기 기내식</h2>
+  <div class="popbody">
+    <p class="mpk">그냥 고르면 되는 메뉴</p>
+    <div class="mpg"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure></div>
+    <p class="mpk pre">미리 주문해야 하는 메뉴</p>
+    <div class="mpg pre"><figure><img src="img/meal-645-pre1.jpg" alt="오리 콩피와 단호박 타르트"><figcaption>오리 콩피와 단호박 타르트<small>양식</small></figcaption></figure><figure><img src="img/meal-645-pre2.jpg" alt="두부떡갈비와 채개장"><figcaption>두부떡갈비와 채개장<small>채식 한식</small></figcaption></figure><figure><img src="img/meal-645-pre3.jpg" alt="토마토소스 옥수수 폴렌타"><figcaption>토마토소스 옥수수 폴렌타<small>채식</small></figcaption></figure></div>
+    <p class="mpnote">아래 3가지 중에 드시고 싶은 게 있으면 <b>수인이에게 말해 주세요.</b> 출발 전에 미리 주문해 둘게요.</p>
+  </div>
+  <div class="popbtns"><button type="button" class="popclose">확인했어요</button></div>
+</dialog>
+<script>
+(function(){var d=document.getElementById("mealPop");if(!d||!d.showModal)return;
+  d.querySelector(".popclose").onclick=function(){d.close();};
+  d.addEventListener("click",function(e){if(e.target===d)d.close();});
+  window.addEventListener("hashchange",function(){
+    if(location.hash!=="#g-flight"||!document.body.classList.contains("tabs-on"))return;
+    try{if(sessionStorage.getItem("sgMealPop"))return;sessionStorage.setItem("sgMealPop","1");}catch(e){}
+    var o=document.getElementById("prepPop");if(o&&o.open)return;
+    d.showModal();try{d.querySelector(".popclose").focus({preventScroll:true});}catch(e){}d.querySelector(".popbody").scrollTop=0;
+  });
+})();
 </script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
