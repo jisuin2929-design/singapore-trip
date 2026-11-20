@@ -444,7 +444,7 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .fact p{font-size:16px;color:var(--muted);line-height:1.55}
 @media (max-width:520px){.facts{grid-template-columns:1fr}}
 .manners{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.manners li{display:grid;gap:2px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.manners li{display:grid;gap:2px;align-content:start;padding-bottom:14px;border-bottom:1px solid var(--line)}
 .manners li:last-child{border-bottom:0;padding-bottom:0}
 .manners b{font-size:19px}
 .manners span{font-size:17px;color:var(--muted)}
@@ -508,8 +508,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   .meals{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
   #food .card.stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
   .facts{grid-template-columns:repeat(4,minmax(0,1fr))}
-  #manners .card,#pack .card{column-count:2;column-gap:40px}
-  #manners .card>*,#pack .card>*{break-inside:avoid}
+  #manners .manners,#pack .check{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
+  #manners .manners li:nth-last-child(2):nth-child(odd){border-bottom:0;padding-bottom:0}
   .day{grid-template-columns:minmax(0,400px) minmax(0,1fr);grid-auto-flow:row dense;gap:18px 28px;padding:0 28px 28px;border-radius:28px}
   .day>.dayhead{grid-column:1 / -1;border-radius:28px 28px 0 0;padding-top:22px}
   .day>*:not(.dayhead):not(.timeline){grid-column:1}
