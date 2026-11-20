@@ -481,6 +481,13 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .hmap{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:2px;text-underline-offset:5px}
 
 /* ===== 데스크톱 (큰 화면) 전용 ===== */
+.pop{border:0;border-radius:20px;padding:20px 18px 16px;width:min(520px,calc(100vw - 24px));max-height:calc(100vh - 40px);overflow:auto;background:var(--bg);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.pop::backdrop{background:rgba(10,20,30,.55)}
+.pop h2{margin:0 0 12px;font-size:22px}
+.pop .card{margin:0}
+.popbtns{display:flex;gap:10px;margin-top:14px}
+.popbtns button{flex:1;font:inherit;font-weight:800;font-size:17px;border-radius:14px;padding:12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.popbtns .popclose{background:#245fc7;border-color:#245fc7;color:#fff}
 #home,#gbar{display:none}
 @media (max-width:1079px){
   body.tabs-on nav{display:none}
@@ -1231,6 +1238,26 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
   if(mq.addEventListener) mq.addEventListener("change",route);
   route();
 })();
+</script>
+<dialog id="prepPop" class="pop" aria-labelledby="popT">
+  <h2 id="popT">출발 전에 꼭 해 두세요</h2>
+  <div class="popbody"></div>
+  <div class="popbtns"><button type="button" class="popnever">다시 보지 않기</button><button type="button" class="popclose" autofocus>확인했어요</button></div>
+</dialog>
+<script>
+(function(){try{
+  var d=document.getElementById("prepPop"); if(!d||!d.showModal) return;
+  var kst=new Date(Date.now()+9*3600e3).toISOString().slice(0,10); if(kst>"2026-12-02") return;
+  try{if(localStorage.getItem("sgPrepPop")==="no") return;}catch(e){}
+  var h=(location.hash||"").slice(1); if(h&&h!=="home") return;
+  var src=document.querySelector("#prep .card.prep"); if(!src) return;
+  var c=src.cloneNode(true); c.querySelectorAll("[id]").forEach(function(e){e.removeAttribute("id");});
+  d.querySelector(".popbody").appendChild(c);
+  d.querySelector(".popclose").onclick=function(){d.close();};
+  d.querySelector(".popnever").onclick=function(){try{localStorage.setItem("sgPrepPop","no");}catch(e){} d.close();};
+  d.addEventListener("click",function(e){if(e.target===d)d.close();});
+  d.showModal();
+}catch(e){}})();
 </script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
