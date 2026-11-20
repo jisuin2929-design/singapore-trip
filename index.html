@@ -620,7 +620,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
       <div class="seatmap">
-        <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
+        <h3>💺 우리 자리 <small>(자리를 눌러 보세요)</small></h3>
         <div class="plane">
           <div class="pfront"><span class="wc">🚻 화장실</span><span class="gal">🍴 주방</span><span class="wc">🚻 화장실</span></div>
           <div class="pexit"><span>⬅ 출구</span><span>출구 ➡</span></div>
@@ -718,7 +718,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
       <div class="seatmap">
-        <h3>💺 우리 자리 <small>(눌러 보세요)</small></h3>
+        <h3>💺 우리 자리 <small>(자리를 눌러 보세요)</small></h3>
         <div class="plane ret">
           <div class="cab">프리미엄석</div>
           <div class="sr p8 hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><b>F</b><b>G</b><i></i><b>H</b><b>J</b></div>
@@ -1143,7 +1143,10 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 </main>
 <div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
 <script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
-<script>document.querySelectorAll(".seatmap button.st").forEach(function(b){b.addEventListener("click",function(){var m=b.closest(".seatmap");m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});b.classList.add("on");m.querySelector(".seatinfo").textContent=b.dataset.info;});});</script>
+<script>document.querySelectorAll(".seatmap").forEach(function(m){var info=m.querySelector(".seatinfo"),orig=info.innerHTML,h=m.querySelector("h3");
+function reset(){m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});info.innerHTML=orig;}
+h.style.cursor="pointer";h.addEventListener("click",reset);
+m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",function(){if(b.classList.contains("on")){reset();return;}reset();b.classList.add("on");info.textContent=b.dataset.info;});});});</script>
 <script>try{if(Date.now()>=Date.parse("2026-12-02T15:00:00+09:00")){document.querySelectorAll(".seatmap").forEach(function(e){e.hidden=false;});}}catch(e){}</script>
 <script>document.querySelectorAll(".mswap").forEach(function(b){b.addEventListener("click",function(){var a=document.getElementById(b.dataset.a),c=document.getElementById(b.dataset.b),kid=a.hidden;a.hidden=!kid;c.hidden=kid;b.closest(".mhead").querySelector(".mwho").textContent=kid?"현호 · 경희":"수인 · 혜인";b.textContent=kid?"수인 · 혜인 메뉴 ⇄":"현호 · 경희 메뉴 ⇄";});});</script>
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
