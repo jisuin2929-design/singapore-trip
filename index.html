@@ -97,7 +97,8 @@ section > h2{font-size:30px}
 .flight .end{min-width:0}
 .flight .t{font-size:34px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
 .flight .d{font-size:16px;color:var(--muted)}
-.flight .arrow{font-size:24px;color:var(--muted)}
+.flight .arrow{font-size:24px;color:var(--muted);position:relative;line-height:1.1}
+.flight .arrow .dur{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:13px;font-weight:700;color:var(--green);white-space:nowrap}
 .flight .end.r{text-align:right}
 .flight .note{font-size:17px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
 .fsz{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18);overflow:hidden}
@@ -560,7 +561,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="tag">가는 날 · KE645</div>
       <div class="route">
         <div class="end"><div class="t">18:35</div><div class="d">12/2(수) 인천 출발</div></div>
-        <div class="arrow" aria-hidden="true">→</div>
+        <div class="arrow"><span class="dur">6시간 40분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
@@ -658,7 +659,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       <div class="tag">오는 날 · KE644</div>
       <div class="route">
         <div class="end"><div class="t">22:30</div><div class="d">12/5(토) 싱가포르 출발</div></div>
-        <div class="arrow" aria-hidden="true">→</div>
+        <div class="arrow"><span class="dur">6시간 15분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
