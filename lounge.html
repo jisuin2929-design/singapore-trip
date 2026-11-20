@@ -67,6 +67,13 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
 .lglist li.x .n{background:#9aa3a0}
 .lglist b{font-size:16px;line-height:1.3}
 .lglist small{font-size:14px;color:var(--muted)}
+.lphotos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.lphotos figure{margin:0;border-radius:12px;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.lphotos img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.lphotos figcaption{padding:8px 12px}
+.lphotos figcaption b{display:block;font-size:17px}
+.lphotos figcaption small{font-size:14px;color:var(--muted)}
+.lphotos .nophoto div{aspect-ratio:3/2;display:grid;place-items:center;color:var(--muted);font-size:15px;background:var(--soft)}
 @media (min-width:1000px){
   body{font-size:17px}
   .wrap{max-width:1120px;padding:36px 32px 64px}
@@ -77,6 +84,7 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
   .card h2{font-size:23px}
   .lmapsvg{max-width:980px;margin:0 auto}
   .lglist{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .lphotos{grid-template-columns:repeat(3,minmax(0,1fr))}
   table.cmp{font-size:17px}.cmp th{font-size:15px}
   .tblwrap+.note,.note{font-size:16px}
   .src{margin-top:24px}
@@ -112,6 +120,11 @@ table.cmp{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;tex
     <h2>라운지 위치 지도 (모두 4층)</h2>
     <figure class="map"><svg class="lmapsvg" viewBox="0 25 900 322" role="img" aria-label="인천공항 제2터미널 대한항공 라운지 위치. 모두 4층. 가운데 출국 심사 후 올라오는 곳 근처에 248번 서편, 249번 일등석, 253번 동편 좌·우. 왼쪽 끝 218번 가든 서편, 오른쪽 끝 281번 가든 동편."><path d="M70,245 Q450,135 830,245" class="cc-out" fill="none" stroke-width="54" stroke-linecap="round"/><path d="M70,245 Q450,135 830,245" class="cc-in" fill="none" stroke-width="46" stroke-linecap="round"/><circle cx="70" cy="245" r="34" class="cc-out"/><circle cx="70" cy="245" r="29" class="cc-in"/><circle cx="830" cy="245" r="34" class="cc-out"/><circle cx="830" cy="245" r="29" class="cc-in"/><text x="70" y="251" class="gt" text-anchor="middle">201</text><text x="146" y="231" class="gt" text-anchor="middle">206</text><text x="222" y="216" class="gt gb" text-anchor="middle">218</text><text x="290" y="206" class="gt" text-anchor="middle">222</text><text x="359" y="199" class="gt" text-anchor="middle">230</text><text x="450" y="196" class="gt gb" text-anchor="middle">248</text><text x="496" y="197" class="gt gb" text-anchor="middle">249</text><text x="572" y="202" class="gt gb" text-anchor="middle">253</text><text x="663" y="213" class="gt" text-anchor="middle">261</text><text x="739" y="228" class="gt" text-anchor="middle">270</text><text x="830" y="251" class="gt gb" text-anchor="middle">281</text><line x1="473" y1="214" x2="473" y2="282" class="esc-l"/><rect x="381" y="282" width="184" height="52" rx="12" class="esc"/><text x="473" y="304" text-anchor="middle" class="esc-t">⇡ 출국 심사 후</text><text x="473" y="324" text-anchor="middle" class="esc-t2">에스컬레이터로 4층</text><g class="pin ok"><path d="M222,186 L222,146" class="pl" fill="none"/><circle cx="222" cy="130" r="16"/><text x="222" y="136" text-anchor="middle">6</text></g><g class="pin no"><path d="M450,166 L412,128" class="pl" fill="none"/><circle cx="412" cy="112" r="16"/><text x="412" y="118" text-anchor="middle">2</text></g><g class="pin ok"><path d="M450,166 L448,128" class="pl" fill="none"/><circle cx="448" cy="112" r="16"/><text x="448" y="118" text-anchor="middle">3</text></g><g class="pin no"><path d="M496,167 L506,129" class="pl" fill="none"/><circle cx="506" cy="113" r="16"/><text x="506" y="119" text-anchor="middle">1</text></g><g class="pin ok"><path d="M572,172 L564,134" class="pl" fill="none"/><circle cx="564" cy="118" r="16"/><text x="564" y="124" text-anchor="middle">4</text></g><g class="pin ok"><path d="M572,172 L600,134" class="pl" fill="none"/><circle cx="600" cy="118" r="16"/><text x="600" y="124" text-anchor="middle">5</text></g><g class="pin ok"><path d="M830,221 L830,181" class="pl" fill="none"/><circle cx="830" cy="165" r="16"/><text x="830" y="171" text-anchor="middle">7</text></g></svg><figcaption>보라색 3·4·5·6·7번이 우리가 갈 수 있는 프레스티지 라운지예요. 회색 1·2번(일등석·마일러 클럽)은 못 들어가요.</figcaption></figure>
     <ol class="lglist"><li class="x"><span class="n">1</span><b>일등석 라운지</b><small>249번 앞 · 4층 · 우리는 못 들어가요</small></li><li class="x"><span class="n">2</span><b>마일러 클럽</b><small>248번 앞 · 4층 · 우리는 못 들어가요</small></li><li class="ok"><span class="n">3</span><b>프레스티지 서편</b><small>248번 앞 · 4층</small></li><li class="ok"><span class="n">4</span><b>프레스티지 동편 (좌측)</b><small>253번 앞 · 4층</small></li><li class="ok"><span class="n">5</span><b>프레스티지 동편 (우측)</b><small>253번 앞 · 4층</small></li><li class="ok"><span class="n">6</span><b>프레스티지 가든 서편</b><small>218번 앞 · 4층</small></li><li class="ok"><span class="n">7</span><b>프레스티지 가든 동편</b><small>281번 앞 · 4층</small></li></ol>
+  </div>
+
+  <div class="card wide">
+    <h2>라운지 사진</h2>
+    <div class="lphotos"><figure><img src="img/lg-east-l.jpg" alt="프레스티지 동편 좌측 라운지" loading="lazy"><figcaption><b>동편 좌측</b><small>253번 · 라면 도서관, 오락실</small></figcaption></figure><figure><img src="img/lg-east-r.jpg" alt="프레스티지 동편 우측 라운지" loading="lazy"><figcaption><b>동편 우측</b><small>253번</small></figcaption></figure><figure><img src="img/lg-west.jpg" alt="프레스티지 서편 라운지" loading="lazy"><figcaption><b>서편</b><small>248번 · 밤 11시 30분까지</small></figcaption></figure><figure><img src="img/lg-garden-w.jpg" alt="프레스티지 가든 서편 라운지" loading="lazy"><figcaption><b>가든 서편</b><small>218번 · 창밖 대나무 정원</small></figcaption></figure><figure class="nophoto"><div>사진 준비 중</div><figcaption><b>가든 동편</b><small>281번 · 정원</small></figcaption></figure></div>
   </div>
 
   <div class="card">
