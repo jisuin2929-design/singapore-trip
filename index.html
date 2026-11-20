@@ -210,6 +210,16 @@ button.st::before,button.st::after{background:var(--sc);filter:brightness(.8)}
 .seatinfo{margin:8px 0 0;text-align:center;font-size:16px;font-weight:700}
 .mhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
 .mhead h3{margin:0}
+.classes h3{font-size:19px;margin:0 0 10px}
+.cls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.cl{border-radius:14px;padding:12px 14px;border-top:5px solid var(--cc)}
+.cl.pr{--cc:#5b3e8f;background:#f1ecf8}.cl.pm{--cc:#2a62b8;background:#e8f0fb}.cl.ec{--cc:#3f8f52;background:#e7f3ea}
+.cl .who{font-size:13px;font-weight:800;color:var(--cc)}
+.cl h4{font-size:19px;margin:2px 0 6px}
+.cl ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:16px}
+.clsrc{font-size:13px;color:var(--muted);margin:8px 0 0}
+.mwho{font-size:16px;font-weight:700;color:var(--green);margin-left:4px}
+.mswap{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:4px 11px;font:700 13px var(--body);cursor:pointer;margin-left:auto}
 .mtabs{display:inline-flex;gap:4px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
 .mtabs button{border:0;border-radius:999px;padding:7px 14px;font:800 15px var(--body);background:transparent;color:var(--muted);cursor:pointer}
 .mtabs button[aria-selected="true"]{background:var(--green);color:var(--surface)}
@@ -325,11 +335,12 @@ nav .days a.today{background:var(--orchid);color:#fff}
 .wxday .tp{display:grid;grid-template-columns:2.4em 1.5em 1fr;align-items:center;gap:4px;font-size:14px;font-weight:600;text-align:left;background:var(--bg);border-radius:8px;padding:3px 6px}
 .wxday .tp small{font-size:13px;color:var(--muted);font-weight:700}
 .wxday .tp i{font-style:normal;font-size:18px}
+.awlink{font-size:13px;font-weight:700;color:#2a62b8}
 .wxday .sun{font-size:14px;color:var(--muted);line-height:1.6}
 @media (max-width:700px){
   .wxrow{grid-template-columns:minmax(0,1fr)}
   .wxday{grid-template-columns:6.2em minmax(0,1fr);grid-template-areas:"d tps" "t tps" "sun tps";justify-items:start;text-align:left;padding:12px 14px;column-gap:12px;align-items:center}
-  .wxday .d{grid-area:d}.wxday .t{grid-area:t;font-size:17px}.wxday .sun{grid-area:sun;font-size:13px}.wxday .tps{grid-area:tps}
+  .wxday .d{grid-area:d}.wxday .awlink{grid-column:1 / -1;justify-self:end}.wxday .t{grid-area:t;font-size:17px}.wxday .sun{grid-area:sun;font-size:13px}.wxday .tps{grid-area:tps}
   .wxday .d small{display:inline;margin-left:4px}
 }
 .meals{display:grid;gap:10px}
@@ -452,7 +463,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   #prep,#flight,#hotel,#tips{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:20px 24px}
   #prep{grid-template-columns:minmax(0,1fr) minmax(0,2fr);align-items:stretch}
   #prep .pkimgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
-  #prep>h2,#flight>h2,#flight>.lead,#flight>.wifi,#hotel>h2,#tips>h2,#tips>.lead{grid-column:1 / -1}
+  #prep>h2,#flight>h2,#flight>.lead,#flight>.wifi,#flight>.classes,#hotel>h2,#tips>h2,#tips>.lead{grid-column:1 / -1}
   #flight>.card.flight{align-self:start}
   .meals{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
   #food .card.stack{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
@@ -670,7 +681,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
       <div class="meal">
-        <div class="mhead"><h3>🍽️ 기내식</h3><div class="mtabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-p="mp644a">현호 · 경희</button><button type="button" role="tab" aria-selected="false" data-p="mp644b">수인 · 혜인</button></div></div>
+        <div class="mhead"><h3>🍽️ 기내식 <span class="mwho">현호 · 경희</span></h3><button type="button" class="mswap" data-a="mp644a" data-b="mp644b">수인 · 혜인 메뉴 ⇄</button></div>
         <div class="mpanel" id="mp644a">
         <dl class="course rmeal">
           <dt>첫 번째 식사 <small>(이륙 후, 하나 골라요)</small></dt>
@@ -740,6 +751,29 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
           </div>
       </div>
     </div>
+    <div class="card classes">
+      <h3>✈️ 좌석 등급별 서비스</h3>
+      <div class="cls">
+        <div class="cl pr"><span class="who">가는 편 · 4명 모두</span><h4>프레스티지석</h4><ul>
+          <li>전용 체크인 카운터에서 빠르게 짐 부치기</li>
+          <li>출발 전 공항 라운지 (뷔페·음료)</li>
+          <li>먼저 타고, 내려서 짐도 먼저 나와요</li>
+          <li>타자마자 웰컴 드링크</li>
+          <li>코스 기내식과 좋은 와인</li>
+          <li>사전 주문 전용 메뉴 고를 수 있어요</li></ul></div>
+        <div class="cl pm"><span class="who">오는 편 · 현호 · 경희</span><h4>프리미엄석</h4><ul>
+          <li>모닝캄 카운터에서 빠르게 체크인</li>
+          <li>스카이프라이어리티로 먼저 타요</li>
+          <li>인천 도착 후 짐을 빨리 찾아요</li>
+          <li>일반석보다 넓은 좌석</li></ul></div>
+        <div class="cl ec"><span class="who">오는 편 · 수인 · 혜인</span><h4>일반석</h4><ul>
+          <li>제철 메뉴 기내식과 와인</li>
+          <li>영화·TV·음악 (좌석 화면)</li>
+          <li>싱가포르 노선은 슬리퍼를 줘요</li>
+          <li>국제선 이어폰 제공</li></ul></div>
+      </div>
+      <p class="clsrc">대한항공 <a href="https://www.koreanair.com/contents/plan-your-travel/service-by-class" target="_blank" rel="noopener">클래스별 서비스</a> 안내 기준</p>
+    </div>
     <div class="card wifi">
       <h3 style="margin:0;font-size:19px">📶 기내 와이파이 무료 (가는 날·오는 날 둘 다)</h3>
       <p style="margin:6px 0 0;font-size:17px">스타링크 와이파이라 카톡·영상도 돼요.</p>
@@ -755,9 +789,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   <section id="weather">
     <h2>싱가포르 날씨</h2>
     <div class="wxrow">
-      <div class="wxday"><span class="d">12/3<small>목요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">29℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">🌧️</i>소나기</span></span><span class="sun">🌅 해 뜸 06:53<br>🌇 해 짐 18:56</span></div>
-      <div class="wxday"><span class="d">12/4<small>금요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>천둥 번개</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span></div>
-      <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="t"><b class="lo">25℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span></div>
+      <div class="wxday"><span class="d">12/3<small>목요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">29℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">🌧️</i>소나기</span></span><span class="sun">🌅 해 뜸 06:53<br>🌇 해 짐 18:56</span><a class="awlink" data-wx="2026-12-03" href="https://www.accuweather.com/ko/sg/singapore/300597/december-weather/300597?year=2026" target="_blank" rel="noopener">아큐웨더에서 보기 ›</a></div>
+      <div class="wxday"><span class="d">12/4<small>금요일</small></span><span class="t"><b class="lo">26℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>천둥 번개</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span><a class="awlink" data-wx="2026-12-04" href="https://www.accuweather.com/ko/sg/singapore/300597/december-weather/300597?year=2026" target="_blank" rel="noopener">아큐웨더에서 보기 ›</a></div>
+      <div class="wxday"><span class="d">12/5<small>토요일</small></span><span class="t"><b class="lo">25℃</b> ~ <b class="hi">28℃</b></span><span class="tps"><span class="tp"><small>오전</small><i aria-hidden="true">☁️</i>흐림</span><span class="tp"><small>오후</small><i aria-hidden="true">⛈️</i>소나기·천둥</span><span class="tp"><small>저녁</small><i aria-hidden="true">☁️</i>흐림</span></span><span class="sun">🌅 해 뜸 06:54<br>🌇 해 짐 18:57</span><a class="awlink" data-wx="2026-12-05" href="https://www.accuweather.com/ko/sg/singapore/300597/december-weather/300597?year=2026" target="_blank" rel="noopener">아큐웨더에서 보기 ›</a></div>
     </div>
     <p class="wxnote">아큐웨더 12월 예보 기준이에요 (최저 ~ 최고 기온). 매일 흐리고 오후에 소나기나 천둥이 지나가요. 비는 보통 한두 시간이면 그치니 접는 우산만 챙기세요. 멀리 있는 예보라 출발 며칠 전에 다시 확인해서 고칠게요.</p>
   </section>
@@ -1035,7 +1069,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 <script>try{if(matchMedia("(min-width:1080px)").matches){var pk=document.querySelector("details.park");if(pk)pk.open=true;}}catch(e){}</script>
 <script>document.querySelectorAll(".seatmap button.st").forEach(function(b){b.addEventListener("click",function(){var m=b.closest(".seatmap");m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});b.classList.add("on");m.querySelector(".seatinfo").textContent=b.dataset.info;});});</script>
 <script>try{if(Date.now()>=Date.parse("2026-12-02T15:00:00+09:00")){document.querySelectorAll(".seatmap").forEach(function(e){e.hidden=false;});}}catch(e){}</script>
-<script>document.querySelectorAll(".mtabs").forEach(function(t){t.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){t.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-selected",x===b);var p=document.getElementById(x.dataset.p);if(p)p.hidden=(x!==b);});});});});</script>
+<script>document.querySelectorAll(".mswap").forEach(function(b){b.addEventListener("click",function(){var a=document.getElementById(b.dataset.a),c=document.getElementById(b.dataset.b),kid=a.hidden;a.hidden=!kid;c.hidden=kid;b.closest(".mhead").querySelector(".mwho").textContent=kid?"현호 · 경희":"수인 · 혜인";b.textContent=kid?"수인 · 혜인 메뉴 ⇄":"현호 · 경희 메뉴 ⇄";});});</script>
+<script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
