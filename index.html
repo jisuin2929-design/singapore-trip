@@ -150,11 +150,19 @@ section > h2{font-size:30px}
 .mslide figcaption small{font-weight:400;color:var(--muted);font-size:15px;margin-left:4px}
 .mhint{font-size:15px;color:var(--muted);margin:0 0 4px}
 .menubook{margin:4px 0 12px;border:1.5px solid var(--green);border-radius:14px;background:var(--surface);overflow:hidden}
-.menubook summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-size:18px;font-weight:800;color:var(--green);background:var(--green-soft)}
+.menubook > summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-size:18px;font-weight:800;color:var(--green);background:var(--green-soft)}
 .menubook summary::-webkit-details-marker{display:none}
-.menubook[open] .mbarrow{transform:rotate(180deg)}
+.menubook[open] > summary .mbarrow{transform:rotate(180deg)}
 .mb{padding:4px 16px 16px;display:grid;gap:4px}
 .mbsec{padding:14px 0;border-bottom:1px dashed var(--line)}
+.mbfold summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:4px 0}
+.mbfold summary h4::after{content:" 펼쳐 보기";font-family:var(--body);font-size:15px;font-weight:600;color:var(--green);margin-left:6px}
+.mbfold[open] summary h4::after{content:""}
+.mbfold summary::-webkit-details-marker{display:none}
+.mbfold summary h4{margin:0}
+.mbfold[open] summary{margin-bottom:10px}
+.mbfold[open] .mbarrow{transform:rotate(180deg)}
+.mbfold .mbarrow{color:var(--green);font-size:18px}
 .mbsec h4{font-family:var(--display);font-size:22px;margin:0 0 10px;color:var(--ink)}
 .mbsec h4 small{font-family:var(--body);font-size:15px;font-weight:500;color:var(--muted);margin-left:6px}
 .course{margin:0;display:grid;gap:2px}
@@ -554,8 +562,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
               <h4>간식 <small>배고프면 언제든</small></h4>
               <dl class="course"><dt>간식</dt><dd>칠면조 햄 치즈 샌드위치</dd></dl>
             </div>
-            <div class="mbsec">
-              <h4>와인</h4>
+            <details class="mbsec mbfold">
+              <summary><h4>와인</h4><span class="mbarrow">▾</span></summary>
               <div class="winecat">샴페인</div>
               <div class="wineitem"><b>샤를 미뇽 뀌베 꼼뜨 드 마른 브뤼</b><span class="from">프랑스 · 샴페인 (피노누아, 샤르도네)</span><p>오랜 숙성으로 거품이 아주 부드러워요. 노란 과일, 배, 아몬드, 꿀 향이 나고 맛은 우아하고 깔끔해요.</p></div>
               <div class="winecat">화이트 와인</div>
@@ -566,9 +574,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
               <div class="wineitem"><b>단델리온 빈야즈 라이온하트 바로사 쉬라즈</b><span class="from">호주 · 바로사 밸리 (쉬라즈)</span><p>오래된 포도나무로 만든 쉬라즈. 부드러운 탄닌에 블랙커런트, 시나몬, 초콜릿, 후추 향이 오래 남아요.</p></div>
               <div class="winecat">디저트 와인 (포트)</div>
               <div class="wineitem"><b>샌드맨 파운더스 리저브 포트</b><span class="from">포르투갈 · 도우루</span><p>식사 후 디저트와 곁들이는 달콤한 포트와인 한 잔.</p></div>
-            </div>
-            <div class="mbsec">
-              <h4>술</h4>
+            </details>
+            <details class="mbsec mbfold">
+              <summary><h4>술</h4><span class="mbarrow">▾</span></summary>
               <dl class="course">
                 <dt>칵테일</dt><dd>진토닉 · 마티니 · 잭콕 · 위스키 하이볼 · 블러디 메리 · 스크류드라이버 · 키르 로얄 · 키르 · 캄파리 소다</dd>
                 <dt>식전주</dt><dd>캄파리 · 드라이 셰리 티오 페페 · 드라이 버무스</dd>
@@ -577,9 +585,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
                 <dt>맥주</dt><dd>카스 · 하이네켄 · 스텔라 아르투아 · 타이거 · 제주펠롱에일 · 크로넨버그 1664 블랑</dd>
                 <dt>무알코올 맥주</dt><dd>하이네켄 제로</dd>
               </dl>
-            </div>
-            <div class="mbsec">
-              <h4>음료</h4>
+            </details>
+            <details class="mbsec mbfold">
+              <summary><h4>음료</h4><span class="mbarrow">▾</span></summary>
               <dl class="course">
                 <dt>탄산음료</dt><dd>콜라 · 콜라 제로 · 스프라이트 · 진저에일</dd>
                 <dt>주스</dt><dd>오렌지 · 파인애플 · 토마토 · 사과 · 구아바</dd>
@@ -590,7 +598,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
                 <dt>커피</dt><dd>레귤러 커피 · 디카페인 커피 <small>(일리 커피)</small></dd>
                 <dt>그 밖에</dt><dd>우유 · 무지방 우유 · 핫초코</dd>
               </dl>
-            </div>
+            </details>
             <button type="button" class="mbclose" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'center'});">메뉴판 접기 ▴</button>
           </div>
         </details>
@@ -636,22 +644,22 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
               <h4>아침 식사 <small>내리기 전</small></h4>
               <dl class="course"><dt>아침</dt><dd>유럽식 아침 식사 (빵, 과일, 요거트)</dd></dl>
             </div>
-            <div class="mbsec">
-              <h4>와인</h4>
+            <details class="mbsec mbfold">
+              <summary><h4>와인</h4><span class="mbarrow">▾</span></summary>
               <div class="winecat">화이트 와인</div>
               <div class="wineitem"><b>데이비스 비넘 리버 웨스트 러시안 리버 밸리 샤르도네</b><span class="from">미국 · 러시안 리버 밸리 (샤르도네)</span><p>육두구, 스위트콘, 잘 익은 노란 사과와 파인애플 향. 풍부하고 크리미하면서도 산뜻해서 여운이 길어요.</p></div>
               <div class="winecat">레드 와인</div>
               <div class="wineitem"><b>스페리 발폴리첼라 클라시코 수페리오레 산뚜르바노</b><span class="from">이탈리아 · 베네토 (코르비나, 론디넬라, 몰리나라)</span><p>붉은 과일 맛에 끝이 은은하게 달콤하고 입안이 따뜻해져요. 유기농 와인이에요.</p></div>
-            </div>
-            <div class="mbsec">
-              <h4>술</h4>
+            </details>
+            <details class="mbsec mbfold">
+              <summary><h4>술</h4><span class="mbarrow">▾</span></summary>
               <dl class="course">
                 <dt>위스키 · 브랜디</dt><dd>시바스 리갈 18 · 조니워커 골드라벨 · 글렌피딕 퍼페추얼 컬렉션 뱃 1 싱글몰트 · 잭다니엘 · 레미 마틴 XO 꼬냑 · 앱솔루트 보드카</dd>
                 <dt>맥주</dt><dd>카스 · 타이거</dd>
               </dl>
-            </div>
-            <div class="mbsec">
-              <h4>음료</h4>
+            </details>
+            <details class="mbsec mbfold">
+              <summary><h4>음료</h4><span class="mbarrow">▾</span></summary>
               <dl class="course">
                 <dt>탄산음료</dt><dd>콜라 · 콜라 제로 · 스프라이트</dd>
                 <dt>주스</dt><dd>오렌지 · 파인애플 · 토마토 · 사과 · 구아바</dd>
@@ -662,7 +670,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
                 <dt>커피</dt><dd>레귤러 커피 · 디카페인 커피</dd>
                 <dt>그 밖에</dt><dd>우유 · 저지방 우유 · 핫초코</dd>
               </dl>
-            </div>
+            </details>
             <button type="button" class="mbclose" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'center'});">메뉴판 접기 ▴</button>
           </div>
         </details>
@@ -703,7 +711,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
     <h2>날짜별 먹는 것</h2>
     <div class="meals">
       <div class="mealday d2"><h3>12/3 목</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Dusit%20Thani%20Laguna%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>두짓타니 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Palm%20Beach%20Seafood%20Restaurant%20Singapore" target="_blank" rel="noopener">칠리크랩, 블랙페퍼크랩<small>팜비치 시푸드 · 지도·메뉴 ›</small></a></li><li><span class="when">간식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">애프터눈티, 케이크<small>풀러턴 라운지 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=LAVO%20Singapore%20Marina%20Bay%20Sands" target="_blank" rel="noopener">파스타, 스테이크<small>라보 57층 · 지도·메뉴 ›</small></a></li></ul></div>
-      <div class="mealday d3"><h3>12/4 금</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>풀러턴 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Trapizza%20Sentosa" target="_blank" rel="noopener">화덕 피자, 파스타<small>트라피자 · 지도·메뉴 ›</small></a></li><li><span class="when">간식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Tanjong%20Beach%20Club%20Sentosa" target="_blank" rel="noopener">시원한 음료<small>탄중 비치클럽 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Ulu%20Ulu%20Safari%20Restaurant%20Mandai" target="_blank" rel="noopener">간단한 식사<small>나이트사파리 입구 · 지도·메뉴 ›</small></a></li><li><span class="when">야식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Lau%20Pa%20Sat%20Singapore" target="_blank" rel="noopener">사테 (꼬치구이)<small>라우파삿 · 지도·메뉴 ›</small></a></li></ul></div>
+      <div class="mealday d3"><h3>12/4 금</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>풀러턴 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Trapizza%20Sentosa" target="_blank" rel="noopener">화덕 피자, 파스타<small>트라피자 · 지도·메뉴 ›</small></a></li><li><span class="when">간식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Tanjong%20Beach%20Club%20Sentosa" target="_blank" rel="noopener">시원한 음료<small>탄중 비치클럽 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Ulu%20Ulu%20Safari%20Restaurant%20Mandai" target="_blank" rel="noopener">볶음밥·국수, 인도 카레<small>나이트사파리 울루울루 푸드코트 · 지도·메뉴 ›</small></a></li><li><span class="when">야식</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Lau%20Pa%20Sat%20Singapore" target="_blank" rel="noopener">사테 (꼬치구이)<small>라우파삿 · 지도·메뉴 ›</small></a></li></ul></div>
       <div class="mealday d4"><h3>12/5 토</h3><ul><li><span class="when">아침</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Town%20Restaurant%20The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">호텔 조식 뷔페<small>풀러턴 · 지도·메뉴 ›</small></a></li><li><span class="when">점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Song%20Fa%20Bak%20Kut%20Teh%2011%20New%20Bridge%20Road" target="_blank" rel="noopener">바쿠테 (돼지갈비 후추탕)<small>송파 바쿠테 · 지도·메뉴 ›</small></a></li><li><span class="when">늦은 점심</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=JUMBO%20Seafood%20Riverside%20Point" target="_blank" rel="noopener">칠리크랩<small>점보 시푸드 · 지도·메뉴 ›</small></a></li><li><span class="when">저녁</span><a class="menu" href="https://www.google.com/maps/search/?api=1&query=Tim%20Ho%20Wan%20Jewel%20Changi%20Airport" target="_blank" rel="noopener">딤섬, 차슈번<small>팀호완 · 지도·메뉴 ›</small></a></li></ul></div>
     </div>
   </section>
@@ -852,8 +860,8 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
       </div>
       <div class="food">
         <span class="meta">12/4 저녁</span>
-        <h3>나이트사파리 입구 식당</h3>
-        <p>사파리 들어가기 전에 입구 쪽 식당에서 간단히 먹어요.</p>
+        <h3>울루울루 사파리 레스토랑 (나이트사파리)</h3>
+        <p>입구 쪽 푸드코트예요. 현지 <b>볶음밥·국수</b>, <b>인도 카레</b>, 꼬치구이가 있고 디저트로 벤앤제리스 아이스크림도 있어요. 저녁 6시부터 열어요. 꼬치(사테)는 밤에 라우파삿에서 먹으니 여기선 다른 걸 골라요.</p>
       </div>
       <div class="food">
         <span class="meta">12/5 점심</span>
