@@ -615,6 +615,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{display:grid;gap:20px}
 #flight>.loungebtn,#flight2>.loungebtn{margin:0}#flight>.lead,#flight2>.lead{margin:0}
 @media (min-width:1080px){#flight,#flight2{row-gap:28px!important}}
+.mprep{aspect-ratio:720/449;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:var(--muted);background:var(--surface);border:2px dashed var(--line);border-radius:12px 12px 0 0;box-sizing:border-box}
+.mswrap{position:relative}.msarr{display:none}
+@media (hover:hover) and (pointer:fine){.msarr{display:flex;position:absolute;top:38%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:26px;line-height:1;align-items:center;justify-content:center;cursor:pointer}.msarr.l{left:6px}.msarr.r{right:6px}.msarr[disabled]{opacity:0;pointer-events:none}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1105,12 +1108,8 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
       <div class="fspec"><h3>💺 좌석</h3><ul><li>앞뒤 간격 99~104cm, 너비 50cm</li><li>39cm 큰 개인 화면</li><li>USB-C 충전, 전원, 와이파이</li></ul></div>
       <div class="meal">
         <h3>🍽️ 기내식</h3>
-        <dl class="course rmeal">
-          <dt>첫 번째 식사 <small>(이륙 후, 하나 골라요)</small></dt>
-          <dd><ul class="mains"><li><b>비빔밥</b> <small>한식</small></li><li><b>XO소스의 볶음새우와 마늘볶음</b> <small>양식</small></li><li><b>시금치 치즈소스 닭고기 요리와 감자</b> <small>양식</small></li></ul></dd>
-          <dt>두 번째 식사 <small>(내리기 전)</small></dt>
-          <dd><ul class="mains"><li><b>유럽식 아침 식사</b> <small>빵, 과일, 요거트</small></li></ul></dd>
-        </dl>
+        <p class="mhint">첫 번째 식사 (이륙 후, 하나 골라요) · 옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-644-1.jpg" alt="비빔밥" loading="lazy"><figcaption>비빔밥<small>한식</small></figcaption></figure><figure><div class="mprep">📷 사진 준비 중</div><figcaption>XO소스의 볶음새우와 마늘볶음<small>양식</small></figcaption></figure><figure><img src="img/meal-644-2.jpg" alt="시금치 치즈소스 닭고기 요리와 감자" loading="lazy"><figcaption>시금치 치즈소스 닭고기 요리와 감자<small>양식</small></figcaption></figure></div>
+        <p class="mhint">두 번째 식사 (내리기 전)</p><div class="mslide"><figure><div class="mprep">📷 사진 준비 중</div><figcaption>유럽식 아침 식사<small>빵, 과일, 요거트</small></figcaption></figure></div>
       </div>
     </div>
   </section>
@@ -1464,6 +1463,9 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 })();
 </script>
 <style>body:not(.tabs-on):not(.f2) #flight2,body.f2:not(.tabs-on) #flight{display:none}</style>
+<script>document.querySelectorAll(".mslide").forEach(function(m){if(m.children.length<2)return;var w=document.createElement("div");w.className="mswrap";m.parentNode.insertBefore(w,m);w.appendChild(m);
+["l","r"].forEach(function(d){var bt=document.createElement("button");bt.type="button";bt.className="msarr "+d;bt.setAttribute("aria-label",d=="l"?"이전 사진":"다음 사진");bt.textContent=d=="l"?"‹":"›";bt.onclick=function(){var f=m.querySelector("figure");m.scrollBy({left:(d=="l"?-1:1)*(f?f.offsetWidth+10:m.clientWidth),behavior:"smooth"});};w.appendChild(bt);});
+function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.disabled=m.scrollLeft<4;r.disabled=m.scrollLeft+m.clientWidth>=m.scrollWidth-4;}m.addEventListener("scroll",up);window.addEventListener("resize",up);window.addEventListener("sgshow",up);setTimeout(up,100);});</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
