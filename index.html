@@ -611,6 +611,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .pop .mpg figcaption{font-size:12px;line-height:1.3;padding:4px 5px;font-weight:700}
 .pop .mpg small{display:block;font-weight:500;color:var(--muted);font-size:11px}
 .pop .mpnote{margin:12px 0 0;font-size:16px;background:#fdecea;border-radius:10px;padding:10px 12px}
+.fspec{border-top:1px dashed var(--line);padding-top:10px}.fspec h3{margin:0 0 6px;font-size:18px}.fspec ul{margin:0;padding-left:20px;font-size:17px;line-height:1.6}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -972,6 +973,16 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
   </section>
   <section id="flight2">
     <h2>비행기</h2>
+    <div class="card wifi">
+      <h3 style="margin:0;font-size:19px">📶 기내 와이파이 무료 (가는 날·오는 날 둘 다)</h3>
+      <p style="margin:6px 0 0;font-size:17px">스타링크 와이파이라 카톡·영상도 돼요.</p>
+      <ol>
+        <li>휴대폰을 <b>비행기 모드</b>로 바꾸고 와이파이만 켜요.</li>
+        <li>와이파이 목록에서 <b>wifi.koreanair.com</b>을 눌러요.</li>
+        <li>뜨는 화면에서 <b>연결</b>(아이폰) 또는 <b>링크 복사</b>(갤럭시)를 눌러요. 안 뜨면 인터넷 주소창에 wifi.koreanair.com을 써요.</li>
+        <li><b>예약한 이름</b>과 <b>좌석번호</b>를 넣으면 끝이에요.</li>
+      </ol>
+    </div>
     <a class="loungebtn" href="lounge2.html"><span aria-hidden="true">🛋️</span><span><b>대한항공 라운지 이용 바로가기</b><small>12/2 출발 전 · 위치, 혼잡도, 사진</small></span><span class="go" aria-hidden="true">›</span></a>
     <p class="lead">대한항공이에요. 시간은 모두 그 나라 시간이에요.</p>
     <div class="card flight">
@@ -982,17 +993,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
-      <div class="seatmap">
-        <h3>💺 우리 자리 <small>(자리를 눌러 보세요)</small></h3>
-        <div class="plane">
-          <div class="pfront"><span class="wc">🚻 화장실</span><span class="gal">🍴 주방</span><span class="wc">🚻 화장실</span></div>
-          <div class="pexit"><span>⬅ 출구</span><span>출구 ➡</span></div>
-          <div class="sr hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><i></i><b>H</b><b>J</b></div>
-          <div class="sr"><span class="rn">8</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#245fc7" data-info="8H · 현호 자리 (복도 쪽)">현호</button><button type="button" class="st me" style="--sc:#c2417a" data-info="8J · 경희 자리 (창가)">경희</button></div><div class="sr"><span class="rn">9</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#2f8a5a" data-info="9H · 혜인 자리 (복도 쪽)">혜인</button><button type="button" class="st me" style="--sc:#b5651d" data-info="9J · 수인 자리 (창가)">수인</button></div><div class="sr"><span class="rn">10</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">11</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">12</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr"><span class="rn">14</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div>
-          <div class="pexit"><span>⬅ 출구</span><span>출구 ➡</span></div>
-        </div>
-        <p class="seatinfo" aria-live="polite">8H 현호 · 8J 경희 · 9H 혜인 · 9J 수인 (오른쪽 창가 두 줄)<br><small>화장실과 출구는 바로 앞쪽, 8열 앞에 있어요.</small></p>
-      </div>
+      <div class="fspec"><h3>💺 좌석</h3><ul><li>46cm 큰 화면, 전원·USB, 와이파이</li><li>앞뒤 간격 190cm, 너비 53cm</li></ul></div>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
         <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure><figure class="pre"><img src="img/meal-645-pre1.jpg" alt="오리 콩피와 단호박 타르트" loading="lazy"><figcaption>오리 콩피와 단호박 타르트<small>양식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre2.jpg" alt="두부떡갈비와 채개장" loading="lazy"><figcaption>두부떡갈비와 채개장<small>채식 한식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre3.jpg" alt="토마토소스 옥수수 폴렌타" loading="lazy"><figcaption>토마토소스 옥수수 폴렌타<small>채식</small><span class="prepill">사전 주문 전용</span></figcaption></figure></div>
@@ -1080,21 +1081,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
       </div>
       <p class="note">창이공항 <b>터미널 4</b>에서 <b>밤 9시 30분</b>까지 짐을 부쳐요. 기내에서 푹 주무시면 일요일 아침 인천 <b>제2터미널</b>이에요.</p>
-      <div class="seatmap">
-        <h3>💺 우리 자리 <small>(자리를 눌러 보세요)</small></h3>
-        <div class="plane ret">
-          <div class="cab">프리미엄석</div>
-          <div class="sr p8 hd"><span class="rn"></span><b>A</b><b>B</b><i></i><b>D</b><b>E</b><b>F</b><b>G</b><i></i><b>H</b><b>J</b></div>
-          <div class="sr p8"><span class="rn">21</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">22</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">23</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><button type="button" class="st me" style="--sc:#245fc7" data-info="23H · 현호 자리 (복도 쪽)">현호</button><button type="button" class="st me" style="--sc:#c2417a" data-info="23J · 경희 자리 (창가)">경희</button></div><div class="sr p8"><span class="rn">24</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div><div class="sr p8"><span class="rn">25</span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span></div>
-          <div class="pmid"><span class="ex">⬅ 출구</span><span class="wc">🚻 화장실</span><span class="wc">🚻 화장실</span><span class="ex">출구 ➡</span></div>
-          <div class="cab">일반석</div>
-          <div class="sr e10 hd"><span class="rn"></span><b>A</b><b>B</b><b>C</b><i></i><b>D</b><b>E</b><b>F</b><b>G</b><i></i><b>H</b><b>J</b><b>K</b></div>
-          <div class="sr e10"><span class="rn">28</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div><div class="sr e10"><span class="rn">29</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div>
-          <div class="skip">⋮<br>30~36열<br>⋮</div>
-          <div class="sr e10"><span class="rn">37</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span></div><div class="sr e10"><span class="rn">38</span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><i></i><span class="st"></span><button type="button" class="st me" style="--sc:#2f8a5a" data-info="38J · 혜인 자리 (가운데)">혜인</button><button type="button" class="st me" style="--sc:#b5651d" data-info="38K · 수인 자리 (창가)">수인</button></div>
-        </div>
-        <p class="seatinfo" aria-live="polite">23H 현호 · 23J 경희 (프리미엄석)<br>38J 혜인 · 38K 수인 (일반석)<br><small>모두 오른쪽 창가 쪽이에요. 화장실과 출구는 25열 바로 뒤에 있어요.</small></p>
-      </div>
+      <div class="fspec"><h3>💺 좌석</h3><ul><li>앞뒤 간격 99~104cm, 너비 50cm</li><li>39cm 큰 개인 화면</li><li>USB-C 충전, 전원, 와이파이</li></ul></div>
       <div class="meal">
         <div class="mhead"><h3>🍽️ 기내식 <span class="mwho">현호 · 경희</span></h3><button type="button" class="mswap" data-a="mp644a-2" data-b="mp644b-2">수인 · 혜인 메뉴 ⇄</button></div>
         <div class="mpanel" id="mp644a-2">
@@ -1165,69 +1152,6 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
             <a class="mealbtn" href="https://www.koreanair.com/content/dam/koreanair/ext/meal/menu-book/cyc-c/sea/ey/26-c-ey-644.pdf" target="_blank" rel="noopener">수인 · 혜인 메뉴판 보기 (PDF) ›</a>
           </div>
       </div>
-    </div>
-    <div class="card wifi">
-      <h3 style="margin:0;font-size:19px">📶 기내 와이파이 무료 (가는 날·오는 날 둘 다)</h3>
-      <p style="margin:6px 0 0;font-size:17px">스타링크 와이파이라 카톡·영상도 돼요.</p>
-      <ol>
-        <li>휴대폰을 <b>비행기 모드</b>로 바꾸고 와이파이만 켜요.</li>
-        <li>와이파이 목록에서 <b>wifi.koreanair.com</b>을 눌러요.</li>
-        <li>뜨는 화면에서 <b>연결</b>(아이폰) 또는 <b>링크 복사</b>(갤럭시)를 눌러요. 안 뜨면 인터넷 주소창에 wifi.koreanair.com을 써요.</li>
-        <li><b>예약한 이름</b>과 <b>좌석번호</b>를 넣으면 끝이에요.</li>
-      </ol>
-    </div>
-    <div class="card classes">
-      <h3>✈️ 좌석 등급별 서비스</h3>
-      <div class="cls">
-        <div class="cl pr"><span class="who">가는 편 · 4명 모두</span><h4>프레스티지석</h4><ul>
-          <li>전용 체크인 카운터에서 빠르게 짐 부치기</li>
-          <li><a class="lnk" href="lounge2.html" target="_blank" rel="noopener">출발 전 대한항공 라운지 (뷔페·술·샤워) 자세히 ›</a></li>
-          <li>먼저 타고, 내려서 짐도 먼저 나와요</li>
-          <li>타자마자 웰컴 드링크</li>
-          <li>코스 기내식과 좋은 와인</li>
-          <li>사전 주문 전용 메뉴 고를 수 있어요</li></ul>
-          <div class="pseat"><img src="img/prestige-seat.jpg" alt="프레스티지 스위트 좌석" loading="lazy"><ul>
-            <li><b>프레스티지 스위트</b></li>
-            <li><b>180°</b> 완전히 눕혀져 침대가 돼요 (185cm)</li>
-            <li>앞뒤 간격 190cm, 너비 53cm</li>
-            <li>창가 자리도 옆 사람 안 거치고 바로 통로로 나가요</li>
-            <li>46cm 큰 화면, 전원·USB, 와이파이</li></ul></div>
-          <details class="sgmore"><summary>📷 좌석 사진 더 보기</summary>
-          <div class="sgal"><figure><img src="img/seat-pr-1.jpg" alt="창가에서도 바로 통로로" loading="lazy"><figcaption>창가에서도 바로 통로로</figcaption></figure><figure><img src="img/seat-pr-2.jpg" alt="다리 쭉 펴는 발 받침" loading="lazy"><figcaption>다리 쭉 펴는 발 받침</figcaption></figure><figure><img src="img/seat-pr-3.jpg" alt="높은 칸막이" loading="lazy"><figcaption>높은 칸막이</figcaption></figure><figure><img src="img/seat-pr-4.jpg" alt="큰 개인 화면" loading="lazy"><figcaption>큰 개인 화면</figcaption></figure><figure><img src="img/seat-pr-5.jpg" alt="터치 리모컨" loading="lazy"><figcaption>터치 리모컨</figcaption></figure><figure><img src="img/seat-pr-6.jpg" alt="개인 독서등" loading="lazy"><figcaption>개인 독서등</figcaption></figure><figure><img src="img/seat-pr-7.jpg" alt="넓은 수납공간" loading="lazy"><figcaption>넓은 수납공간</figcaption></figure><figure><img src="img/seat-pr-8.jpg" alt="좌석 조절 버튼" loading="lazy"><figcaption>좌석 조절 버튼</figcaption></figure></div>
-          <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-277/prestige" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a>
-          <button type="button" class="sgclose" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'nearest'})">▴ 사진 접기</button>
-          </details></div>
-        <div class="cl pm"><span class="who">오는 편 · 현호 · 경희</span><h4>프리미엄석</h4><ul>
-          <li>모닝캄 카운터에서 빠르게 체크인</li>
-          <li>스카이프라이어리티로 먼저 타요</li>
-          <li>인천 도착 후 짐을 빨리 찾아요</li>
-          <li>일반석보다 넓은 좌석 <small>(아래 사진)</small></li>
-          <li>싱가포르 노선은 슬리퍼·칫솔 세트를 줘요</li>
-          <li>국제선 이어폰 제공</li>
-          <li>창이공항 라운지는 이용할 수 없어요</li></ul>
-          <div class="pseat"><img src="img/premium-seat.jpg" alt="프리미엄석 좌석 두 개" loading="lazy"><ul>
-            <li>뒤로 <b>130°</b>까지 젖혀져요</li>
-            <li>앞뒤 간격 99~104cm, 너비 50cm</li>
-            <li>39cm 큰 개인 화면</li>
-            <li>USB-C 충전, 전원, 와이파이</li></ul></div>
-          <details class="sgmore"><summary>📷 좌석 사진 더 보기</summary>
-          <div class="sgal"><figure><img src="img/seat-pm-1.jpg" alt="프리미엄석 객실" loading="lazy"><figcaption>프리미엄석 객실</figcaption></figure><figure><img src="img/seat-pm-2.jpg" alt="라운지 같은 편한 좌석" loading="lazy"><figcaption>라운지 같은 편한 좌석</figcaption></figure><figure><img src="img/seat-pm-3.jpg" alt="39cm 개인 화면" loading="lazy"><figcaption>39cm 개인 화면</figcaption></figure><figure><img src="img/seat-pm-4.jpg" alt="태블릿 놓는 테이블" loading="lazy"><figcaption>태블릿 놓는 테이블</figcaption></figure></div>
-          <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-328/premium" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a>
-          <button type="button" class="sgclose" onclick="var d=this.closest('details');d.open=false;d.scrollIntoView({block:'nearest'})">▴ 사진 접기</button>
-          </details></div>
-        <div class="cl ec"><span class="who">오는 편 · 수인 · 혜인</span><h4>일반석</h4><ul>
-          <li>제철 메뉴 기내식과 와인</li>
-          <li>영화·TV·음악 (좌석 화면)</li>
-          <li>싱가포르 노선은 슬리퍼·칫솔 세트를 줘요 (칫솔은 화장실에 있거나 승무원에게 달라고 해요)</li>
-          <li>국제선 이어폰 제공</li></ul>
-          <div class="pseat"><img src="img/economy-seat.jpg" alt="일반석 좌석 세 개" loading="lazy"><ul>
-            <li>뒤로 <b>118°</b>까지 젖혀져요</li>
-            <li>앞뒤 간격 84~86cm, 너비 43cm</li>
-            <li>33cm 개인 화면, 좌석마다 옷걸이</li>
-            <li>USB-C 충전 (3자리에 2개), 와이파이</li></ul></div>
-          <a class="pslink" href="https://www.koreanair.com/contents/plan-your-travel/in-flight-experience/fleet/b777/300er-328/economy" target="_blank" rel="noopener">좌석 자세히 보기 (대한항공) ›</a></div>
-      </div>
-      <p class="clsrc">대한항공 <a href="https://www.koreanair.com/contents/plan-your-travel/service-by-class" target="_blank" rel="noopener">클래스별 서비스</a> 안내 기준</p>
     </div>
   </section>
 
