@@ -1178,7 +1178,7 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
     <div class="wx"><span class="ico" aria-hidden="true">🧥</span><span class="temp">서울 -1~7℃ <small>싱가포르 밤 25℃</small></span><p>한국은 겨울이라 공항까지는 두꺼운 겉옷을 입고, 싱가포르에 내리기 전에 벗어 가방에 넣어요.</p></div>
     <ol class="timeline">
       <li><span class="time">14:00</span><span class="what"><b>인천공항 제2터미널 도착 (2~3시)</b><small>대한항공 카운터에서 짐을 부치고 출국 심사를 해요.</small></span></li>
-      <li class="meal"><span class="time">15:00</span><span class="what"><b>대한항공 라운지<span class="pill meal">식사</span></b><small>출국 심사 후 라운지에서 쉬어요. 4명 모두 들어가고, 음식과 술이 무제한이에요. <a class="lnk" href="lounge.html" target="_blank" rel="noopener">라운지 자세히 ›</a></small></span></li>
+      <li class="meal"><span class="time">15:00</span><span class="what"><b>대한항공 라운지<span class="pill meal">식사</span></b><small>출국 심사 후 라운지에서 쉬어요. 4명 모두 들어가고, 음식과 술이 무제한이에요. <a class="lnk" data-lounge href="lounge.html" target="_blank" rel="noopener">라운지 자세히 ›</a></small></span></li>
       <li><span class="time">18:35</span><span class="what"><b>비행기 출발 (KE645)</b><small>6시간 40분쯤 날아가요. 기내식이 나와요.</small></span></li>
       <li><span class="time">00:15</span><span class="what"><b>싱가포르 도착</b><small>싱가포르 시간이에요(한국은 새벽 1시 15분). 입국 심사 후 택시로 두짓타니 호텔까지 10분.</small></span></li>
       <li class="rest"><span class="time">02:00</span><span class="what"><b>호텔에서 주무시기<span class="pill rest">휴식</span></b><small>두짓타니 라구나에서 하룻밤 자요.</small></span></li>
@@ -1466,6 +1466,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>document.querySelectorAll(".mslide").forEach(function(m){if(m.children.length<2)return;var w=document.createElement("div");w.className="mswrap";m.parentNode.insertBefore(w,m);w.appendChild(m);
 ["l","r"].forEach(function(d){var bt=document.createElement("button");bt.type="button";bt.className="msarr "+d;bt.setAttribute("aria-label",d=="l"?"이전 사진":"다음 사진");bt.textContent=d=="l"?"‹":"›";bt.onclick=function(){var f=m.querySelector("figure");m.scrollBy({left:(d=="l"?-1:1)*(f?f.offsetWidth+10:m.clientWidth),behavior:"smooth"});};w.appendChild(bt);});
 function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.disabled=m.scrollLeft<4;r.disabled=m.scrollLeft+m.clientWidth>=m.scrollWidth-4;}m.addEventListener("scroll",up);window.addEventListener("resize",up);window.addEventListener("sgshow",up);setTimeout(up,100);});</script>
+<script>try{if(Date.now()<Date.parse("2026-12-02T14:00:00+09:00"))document.querySelectorAll("a[data-lounge]").forEach(function(a){a.href="lounge2.html";});}catch(e){}</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
