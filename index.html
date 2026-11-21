@@ -1438,6 +1438,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
   function setF(){var h=location.hash;var two=h==="#g-flight2"||h==="#flight2"?true:(h==="#g-flight"||h==="#flight"?false:F2);b.classList.toggle("f2",two);
     document.querySelectorAll('a[href="#g-flight"],a[href="#g-flight2"],nav a[href="#flight"],nav a[href="#flight2"]').forEach(function(x){if(x.closest("#flight,#flight2"))return;var g=x.getAttribute("href").indexOf("#g-")===0;x.setAttribute("href",(g?"#g-":"#")+(F2?"flight2":"flight"));});}
   setF(); window.addEventListener("hashchange",setF);
+  if(!mq.matches&&/^#g-flight2?$/.test(location.hash)){setTimeout(function(){var e=document.getElementById(location.hash.slice(3));if(e)e.scrollIntoView();},50);}
   var gOf=function(sec){for(var k in G){if(G[k][1].indexOf(sec)>=0)return k;}return null;};
   function route(){
     var on=mq.matches; b.classList.toggle("tabs-on",on);
