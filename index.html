@@ -783,6 +783,15 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
 @media (min-width:1080px){.day{row-gap:0!important}.day>*{margin-bottom:18px}.day>.lmapcard.lmapcard,.day>.daymap.daymap{margin-top:0}}
 /* no tree/gifts on inner pages */
 body.tabs-on:not(.at-home) .xdeco{display:none!important}
+/* image zoom popup */
+img.zoomable{cursor:zoom-in}
+#zbox{position:fixed;inset:0;z-index:1000;background:rgba(10,12,28,.92);display:none;touch-action:none;overflow:hidden;user-select:none}
+#zbox.on{display:block}
+#zbox img{position:absolute;left:50%;top:50%;max-width:94vw;max-height:84vh;transform-origin:center center;will-change:transform;border-radius:6px;cursor:grab}
+#zbox .zx{position:absolute;top:14px;right:14px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:#222;font-size:28px;line-height:48px;z-index:2;cursor:pointer}
+#zbox .zbar{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:10px;z-index:2}
+#zbox .zbar button{width:52px;height:48px;border-radius:14px;border:0;background:#fff;color:#222;font-size:24px;font-weight:800;cursor:pointer}
+#zbox .zcap{position:absolute;left:0;right:0;top:22px;text-align:center;color:#fff;font-size:16px;font-weight:700;padding:0 72px;pointer-events:none}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -876,8 +885,8 @@ body.tabs-on:not(.at-home) .xdeco{display:none!important}
       <p class="cancel">12/2 오후 4시 전까지 취소할 수 있어요.</p>
       <p class="valetnote">공항 발렛은 대기 예약 중인데, 안 될 가능성이 커요.</p>
       <div class="pkimgs">
-        <figure><img src="img/parking-map.jpg?v=3" alt="제2터미널 예약주차장 위치 지도" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
-        <figure><img src="img/parking-shuttle.jpg?v=4" alt="공항02번 셔틀버스 노선도" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
+        <figure><img src="img/parking-map.jpg?v=3" alt="제2터미널 예약주차장 위치 지도" class="zoomable" loading="lazy"><figcaption>주차장 위치 (오른쪽 위 '예약 주차장')</figcaption></figure>
+        <figure><img src="img/parking-shuttle.jpg?v=4" alt="공항02번 셔틀버스 노선도" class="zoomable" loading="lazy"><figcaption>공항02번 셔틀버스 노선</figcaption></figure>
       </div>
     </div>
   </section>
@@ -1807,6 +1816,31 @@ var lim=bar.getBoundingClientRect().bottom+4,cur=null;document.querySelectorAll(
 if(!cur){g.innerHTML="";return;}var n=cur.querySelector(".dnum").textContent,d=cur.querySelector(".date").textContent.replace(/(\d+)월 (\d+)일 (.)요일/,"$1/$2 ($3)");
 var c=getComputedStyle(cur).getPropertyValue("--dac");g.innerHTML="<i"+(c?' style="background:'+c.trim()+'"':"")+">"+n+"</i>"+d;}
 addEventListener("scroll",upd,{passive:true});addEventListener("hashchange",function(){setTimeout(upd,50)});setTimeout(upd,300);})();
+</script>
+<div id="zbox" role="dialog" aria-modal="true" aria-label="사진 크게 보기"><div class="zcap"></div><button class="zx" aria-label="닫기">×</button><img alt=""><div class="zbar"><button data-z="-1" aria-label="작게">−</button><button data-z="0" aria-label="원래 크기">⟲</button><button data-z="1" aria-label="크게">+</button></div></div>
+<script>
+(function(){var box=document.getElementById("zbox"),im=box.querySelector("img"),cap=box.querySelector(".zcap"),sc=1,tx=0,ty=0,pts={},start=null;
+function ap(){im.style.transform="translate(calc(-50% + "+tx+"px),calc(-50% + "+ty+"px)) scale("+sc+")";}
+function set(n){sc=Math.max(1,Math.min(6,n));if(sc===1){tx=0;ty=0;}ap();}
+function open(src,alt,c){im.src=src;im.alt=alt;cap.textContent=c||alt;sc=1;tx=0;ty=0;ap();box.classList.add("on");document.body.style.overflow="hidden";}
+function close(){box.classList.remove("on");document.body.style.overflow="";}
+document.addEventListener("click",function(e){var t=e.target.closest("img.zoomable");if(t){e.preventDefault();var fc=t.closest("figure");open(t.currentSrc||t.src,t.alt,fc&&fc.querySelector("figcaption")?fc.querySelector("figcaption").textContent:"");}});
+box.querySelector(".zx").onclick=close;
+box.addEventListener("click",function(e){if(e.target===box)close();});
+box.querySelectorAll(".zbar button").forEach(function(b){b.onclick=function(){var z=+b.dataset.z;set(z===0?1:sc*(z>0?1.5:1/1.5));};});
+document.addEventListener("keydown",function(e){if(box.classList.contains("on")&&e.key==="Escape")close();});
+box.addEventListener("wheel",function(e){e.preventDefault();set(sc*(e.deltaY<0?1.15:1/1.15));},{passive:false});
+im.addEventListener("dblclick",function(){set(sc>1?1:2.5);});
+var lastTap=0;
+im.addEventListener("pointerdown",function(e){im.setPointerCapture(e.pointerId);pts[e.pointerId]={x:e.clientX,y:e.clientY};var k=Object.keys(pts);
+ if(k.length===2){var a=pts[k[0]],b=pts[k[1]];start={d:Math.hypot(a.x-b.x,a.y-b.y),s:sc};}else{start={x:e.clientX,y:e.clientY,tx:tx,ty:ty};
+ if(e.pointerType==="touch"){var n=Date.now();if(n-lastTap<300)set(sc>1?1:2.5);lastTap=n;}}});
+im.addEventListener("pointermove",function(e){if(!pts[e.pointerId])return;pts[e.pointerId]={x:e.clientX,y:e.clientY};var k=Object.keys(pts);
+ if(k.length===2&&start&&start.d){var a=pts[k[0]],b=pts[k[1]];set(start.s*Math.hypot(a.x-b.x,a.y-b.y)/start.d);}
+ else if(k.length===1&&start&&start.x!==undefined&&sc>1){tx=start.tx+e.clientX-start.x;ty=start.ty+e.clientY-start.y;ap();}});
+function up(e){delete pts[e.pointerId];var k=Object.keys(pts);if(k.length===1){var p=pts[k[0]];start={x:p.x,y:p.y,tx:tx,ty:ty};}else if(!k.length)start=null;}
+im.addEventListener("pointerup",up);im.addEventListener("pointercancel",up);
+})();
 </script>
 
 </body>
