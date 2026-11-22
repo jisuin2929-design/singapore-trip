@@ -742,11 +742,11 @@ body.tabs-on:not(.at-home) main .card:nth-of-type(5n+3)::after{background-image:
 body.tabs-on:not(.at-home) main .card:nth-of-type(5n+4)::after{background-image:url(img/xmas/orn-flake.svg?v=3);animation-delay:-2.2s}
 body.tabs-on:not(.at-home) main .card:nth-of-type(5n)::after{background-image:url(img/xmas/orn-green.svg?v=3);animation-delay:-1.1s}
 @keyframes sgswing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}}
-body.tabs-on:not(.at-home) .xdeco{display:block}
+body.tabs-on:not(.at-home) .xdeco:not(.firs){display:block}
 .xdeco{display:none;position:fixed;bottom:0;z-index:0;pointer-events:none}
 .xdeco.tree{left:6px;width:130px;height:148px;background:url(img/xmas/tree.svg?v=4) bottom/contain no-repeat}
 .xdeco.gifts{right:96px;width:104px;height:72px;background:url(img/xmas/gifts.svg?v=3) bottom/contain no-repeat}
-@media (min-width:1080px){body.tabs-on.at-home .xdeco{display:block;z-index:2}body.tabs-on.at-home .xdeco.tree{left:auto;right:240px;width:180px;height:204px}body.tabs-on.at-home .xdeco.gifts{right:120px;width:130px;height:90px}}
+@media (min-width:1080px){body.tabs-on.at-home .xdeco{display:block;z-index:2}body.tabs-on.at-home .xdeco.tree{left:calc(43vw - 40px);right:auto;bottom:6px;width:170px;height:193px}body.tabs-on.at-home .xdeco.gifts{left:calc(43vw + 112px);right:auto;bottom:6px;width:120px;height:84px}body.tabs-on.at-home .xdeco.firs{left:46vw;right:0;width:auto;height:150px;bottom:0;z-index:1;background:url(img/xmas/firs.svg?v=1) bottom right/auto 150px repeat-x}}
 @media (max-width:1079px){body.tabs-on .xdeco{display:none}.hero .xgar{height:64px;background-size:auto 64px}.hero .wrap{padding-top:44px}}
 .hero .xgar{position:absolute;left:0;right:0;top:0;height:90px;z-index:2;pointer-events:none;background:url(img/xmas/lights.svg?v=3) repeat-x 0 0/auto 90px;animation:sgtw2 3.2s ease-in-out infinite alternate}
 .hero .xgar::after{content:"";position:absolute;inset:0;background:url(img/xmas/lights.svg?v=3) repeat-x 170px 6px/auto 70px;opacity:.6;animation:sgtw2 2.6s ease-in-out -1.3s infinite alternate}
@@ -1569,7 +1569,7 @@ body.tabs-on:not(.at-home) .xdeco{display:block}
 
 </div>
 </main>
-<i class="xdeco tree" aria-hidden="true"></i><i class="xdeco gifts" aria-hidden="true"></i><div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
+<i class="xdeco firs" aria-hidden="true"></i><i class="xdeco tree" aria-hidden="true"></i><i class="xdeco gifts" aria-hidden="true"></i><div class="fsz" role="group" aria-label="글씨 크기"><button type="button" id="fsDown" aria-label="글씨 작게"><small>가</small>−</button><button type="button" id="fsUp" aria-label="글씨 크게">가+</button></div>
 <script>document.querySelectorAll(".seatmap").forEach(function(m){var info=m.querySelector(".seatinfo"),orig=info.innerHTML,h=m.querySelector("h3");
 function reset(){m.querySelectorAll("button.st").forEach(function(x){x.classList.remove("on")});info.innerHTML=orig;}
 h.style.cursor="pointer";h.addEventListener("click",reset);
