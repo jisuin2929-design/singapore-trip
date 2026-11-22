@@ -792,6 +792,9 @@ img.zoomable{cursor:zoom-in}
 #zbox .zbar{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:10px;z-index:2}
 #zbox .zbar button{width:52px;height:48px;border-radius:14px;border:0;background:#fff;color:#222;font-size:24px;font-weight:800;cursor:pointer}
 #zbox .zcap{position:absolute;left:0;right:0;top:22px;text-align:center;color:#fff;font-size:16px;font-weight:700;padding:0 72px;pointer-events:none}
+/* 3일차: map under timeline in column 2 on PC */
+.tlcol{display:grid;gap:18px}
+@media (min-width:1080px){.day>.tlcol.tlcol.tlcol{grid-column:2;grid-row:2 / span 8;align-self:start}.tlcol>.timeline{padding:16px 20px 10px 8px}.tlcol>.daymap{width:100%;margin:0}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1445,7 +1448,7 @@ img.zoomable{cursor:zoom-in}
     <div class="glance"><h3>오늘 한눈에</h3><ul><li><span class="gk">오전</span><span class="gi" aria-hidden="true">🚡</span><span class="gt">케이블카 타고 센토사섬 → 루지 타기</span></li><li><span class="gk">점심</span><span class="gi" aria-hidden="true">🍕</span><span class="gt">실로소 해변 트라피자</span></li><li><span class="gk">오후</span><span class="gi" aria-hidden="true">🏖️</span><span class="gt">팔라완 해변·비치클럽 → 호텔에서 쉬기</span></li><li><span class="gk">저녁</span><span class="gi" aria-hidden="true">🦁</span><span class="gt">나이트사파리 → 차로 오차드 조명 → 라우파삿 사테 야식</span></li></ul><p class="gsleep">🛏️ 잠자는 곳 <b>더 풀러턴 호텔</b></p></div>
     <div class="wx"><span class="ico" aria-hidden="true">⛈️</span><span class="temp">26~28℃ <small>오후 천둥 번개</small></span><p class="wxparts"><span>오전 흐림</span><span>오후 천둥 번개</span><span>저녁 흐림</span></p><p>해변은 오전이 좋아요. 천둥이 치면 바다에서 나와 실내로 피하고, 모자·선크림도 챙겨요.</p></div>
     <div class="photos"><figure class="ph"><img src="img/sp-luge.jpg" alt="센토사 루지와 스카이라이드" loading="lazy"><figcaption>센토사 루지·스카이라이드</figcaption></figure><figure class="ph"><img src="img/sp-nightsafari.jpg" alt="나이트사파리 트램" loading="lazy"><figcaption>나이트사파리</figcaption></figure><figure class="ph wide span2"><img src="img/sp-tanjong.jpg" alt="탄중 비치클럽 수영장과 해변" loading="lazy"><figcaption>탄중 비치클럽</figcaption></figure></div>
-    <ol class="timeline">
+    <div class="tlcol"><ol class="timeline">
       <li class="meal"><span class="time">아침</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b></span></li>
       <li><span class="time">09:30</span><span class="what"><b>케이블카 타고 센토사섬으로</b><small>바다 위를 지나가요. 경치가 정말 좋아요.</small></span></li>
       <li><span class="time">10:00</span><span class="what"><b>스카이라인 루지</b><small>바퀴 달린 썰매를 타고 언덕을 내려와요. 속도는 손으로 조절해서 어렵지 않아요. 여러 번 타고, 마지막엔 실로소 해변 쪽으로 내려와요.</small></span></li>
@@ -1459,7 +1462,7 @@ img.zoomable{cursor:zoom-in}
       <li class="meal"><span class="time">22:35</span><span class="what"><b>라우파삿 사테 야식<span class="pill meal">식사</span></b><small>숯불 꼬치구이 사테를 땅콩소스에 찍어 먹어요. <a class="lnk" href="menu.html#satay">메뉴·추천 주문 ›</a></small></span></li>
       <li class="rest"><span class="time">23:30</span><span class="what"><b>호텔 도착</b><small>라우파삿에서 걸어서 10분이에요.</small></span></li>
     </ol>
-    <a class="daymap" href="map.html#d3" target="_blank" rel="noopener"><img src="img/map-d3.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a>
+    <a class="daymap" href="map.html#d3" target="_blank" rel="noopener"><img src="img/map-d3.png" alt="이 날 이동 지도" loading="lazy"><span>이 날 이동 지도 · 눌러서 크게 보기 →</span></a></div>
     <p class="rain">비가 많이 오면 해변 대신 <b>오셔나리움</b>(큰 수족관)이나 <b>해리포터 전시</b>에 가요.</p>
   </section>
 
