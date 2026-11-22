@@ -624,14 +624,17 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
   body.tabs-on.at-home header.hero{position:fixed;inset:0;width:auto;display:flex;flex-direction:column;z-index:0}
   body.tabs-on.at-home .hero .wrap{flex:1;align-content:center;margin:0;width:46vw;max-width:none;box-sizing:border-box;padding:32px 32px 0}
   body.tabs-on.at-home .hero .chips{max-width:520px}
-  body.tabs-on.at-home .hero .skyline{max-width:720px;margin:0 auto}
-  body.tabs-on.at-home .hero .sun{bottom:60px}
+  body.tabs-on.at-home .hero .skyline{width:40vw;max-width:40vw;margin:0 0 0 3vw}
+  body.tabs-on.at-home .hero .sun{left:23vw;bottom:5vw}
   body.tabs-on.at-home main,body.tabs-on.at-home footer{position:relative;z-index:1;background:transparent}
   body.tabs-on.at-home footer{display:none}
   body.tabs-on.at-home .wrap{max-width:820px}
   body.tabs-on.at-home .home{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:0}
   body.tabs-on.at-home main{padding-top:24px!important;margin-top:0!important}
-  body.tabs-on.at-home main>.wrap{padding-top:0!important}
+  body.tabs-on.at-home main>.wrap{padding-top:0!important;padding-bottom:0!important}
+  body.tabs-on.at-home main{min-height:calc(100vh / var(--z,1));display:flex;align-items:center;padding-top:0!important;padding-bottom:0!important;box-sizing:border-box}
+  body.tabs-on.at-home main>.wrap{width:100%}
+  body.tabs-on.at-home .home{margin:0!important}
   body.tabs-on.at-home .hbtn{min-height:104px;padding:14px 16px;box-shadow:0 6px 20px rgba(20,20,50,.18)}
   body.tabs-on.at-home .hbtn .hi{font-size:28px}
   body.tabs-on.at-home .hbtn b{font-size:19px}
