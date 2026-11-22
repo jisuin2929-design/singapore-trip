@@ -795,6 +795,18 @@ img.zoomable{cursor:zoom-in}
 /* 3일차: map under timeline in column 2 on PC */
 .tlcol{display:grid;gap:18px}
 @media (min-width:1080px){.day>.tlcol.tlcol.tlcol{grid-column:2;grid-row:2 / span 8;align-self:start}.tlcol>.timeline{padding:16px 20px 10px 8px}.tlcol>.daymap{width:100%;margin:0}}
+/* password-locked docs */
+#pwbox{position:fixed;inset:0;z-index:1001;background:rgba(10,12,28,.6);display:none;align-items:center;justify-content:center;padding:16px}
+#pwbox.on{display:flex}
+#pwbox form{background:#fff;color:#1d1b2e;border-radius:20px;padding:24px 22px 20px;width:100%;max-width:340px;box-shadow:0 20px 50px rgba(0,0,0,.3);text-align:center}
+#pwbox h3{margin:0 0 6px;font-size:20px}
+#pwbox p{margin:0 0 14px;font-size:15px;color:#5d5a72}
+#pwbox input{width:100%;box-sizing:border-box;font-size:28px;letter-spacing:.4em;text-align:center;padding:10px;border:2px solid #d9d4ea;border-radius:14px;outline:0}
+#pwbox input:focus{border-color:#7a5ea8}
+#pwbox .err{color:#c42f3a;font-size:15px;min-height:22px;margin:8px 0 4px}
+#pwbox .row{display:flex;gap:10px}
+#pwbox button{flex:1;font-size:17px;font-weight:700;padding:12px;border-radius:14px;border:0;cursor:pointer}
+#pwbox .ok{background:#4a4378;color:#fff}#pwbox .no{background:#eee;color:#333}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1378,7 +1390,7 @@ img.zoomable{cursor:zoom-in}
         <li><b>체크인</b> · 예약한 수인이 여권을 보여 주면 돼요. 새벽 2시쯤 도착한다고 호텔에 미리 말해 뒀어요.</li>
         <li><b>야외 수영장</b>이 있어요. <b>아침 8시~저녁 8시</b>에 열어요. 아침 먹고 체크아웃 전에 잠깐 수영해도 좋아요.</li>
         <li>전화 <span class="phone">+65 6841 8888</span></li>
-        <li><a class="lnk" href="docs/dusit-confirmation.pdf" target="_blank" rel="noopener">📎 예약 확인서 보기</a> · 체크인할 때 보여주면 돼요.</li>
+        <li><a class="lnk" href="#" data-doc="dusit-confirmation">📎 예약 확인서 보기</a> · 체크인할 때 보여주면 돼요.</li>
       </ul>
     </div>
     <div class="card hotel stack">
@@ -1398,7 +1410,7 @@ img.zoomable{cursor:zoom-in}
         <li><b>호텔 안 구경</b> · 1층 가운데 넓은 홀(코트야드)이 예뻐요. 오후에는 여기서 애프터눈티도 해요.</li>
         <li>체크인 오후 3시, 체크아웃 낮 12시. 짐은 언제든 맡길 수 있어요.</li>
         <li>주소 1 Fullerton Square · 전화 <span class="phone">+65 6733 8388</span></li>
-        <li><a class="lnk" href="docs/fullerton-confirmation.pdf" target="_blank" rel="noopener">📎 예약 확인서 보기</a> · 체크인할 때 보여주면 돼요.</li>
+        <li><a class="lnk" href="#" data-doc="fullerton-confirmation">📎 예약 확인서 보기</a> · 체크인할 때 보여주면 돼요.</li>
       </ul>
     </div>
   </section>
@@ -1429,11 +1441,11 @@ img.zoomable{cursor:zoom-in}
       <li><span class="time">11:00</span><span class="what"><b>머라이언 공원</b><small>풀러턴 호텔 바로 앞이에요. 사자상 앞에서 가족사진 찍고 산책해요.</small></span></li>
       <li><span class="time">11:30</span><span class="what"><b>에스플러네이드 옥상 정원</b><small>두리안처럼 생긴 공연장 건물 4층 옥상이에요. 무료로 마리나베이 경치를 볼 수 있어요.</small></span></li>
       <li class="move"><span class="time">12:20</span><span class="what"><b>걸어서 팜비치로</b><small>강변을 따라 천천히 걸어가요.</small></span></li>
-      <li class="meal"><span class="time">12:30</span><span class="what"><b>팜비치 시푸드 점심<span class="pill meal">식사</span></b><small>크랩을 먹어요. 예약해 뒀어요. <a class="lnk" href="menu.html#palmbeach">메뉴·추천 주문 ›</a> <a class="lnk" href="docs/palmbeach.pdf" target="_blank" rel="noopener">📎 예약 확인서 ›</a></small></span></li>
+      <li class="meal"><span class="time">12:30</span><span class="what"><b>팜비치 시푸드 점심<span class="pill meal">식사</span></b><small>크랩을 먹어요. 예약해 뒀어요. <a class="lnk" href="menu.html#palmbeach">메뉴·추천 주문 ›</a> <a class="lnk" href="#" data-doc="palmbeach">📎 예약 확인서 ›</a></small></span></li>
       <li class="rest"><span class="time">14:00</span><span class="what"><b>풀러턴 체크인, 쉬기<span class="pill rest">휴식</span></b><small>방에서 쉬시다가 라운지에서 애프터눈티를 즐겨요. <a class="lnk" href="menu.html#fullerton">안내 ›</a></small></span></li>
       <li><span class="time">15:45</span><span class="what"><b>헬릭스 다리 산책</b><small>마리나베이를 따라 걸어요.</small></span></li>
       <li><span class="time">16:15</span><span class="what"><b>가든스 바이 더 베이 돔 정원</b><small>클라우드 포레스트(실내 폭포, 공룡 전시)와 플라워돔(꽃 정원). 실내라 시원해요.</small></span></li>
-      <li class="meal"><span class="time">18:15</span><span class="what"><b>라보 저녁<span class="pill meal">식사</span></b><small>마리나베이 샌즈 57층 식당에서 노을을 보며 먹어요. 예약해 뒀어요. <a class="lnk" href="menu.html#lavo">메뉴·추천 주문 ›</a> <a class="lnk" href="docs/lavo.pdf" target="_blank" rel="noopener">📎 예약 확인서 ›</a></small></span></li>
+      <li class="meal"><span class="time">18:15</span><span class="what"><b>라보 저녁<span class="pill meal">식사</span></b><small>마리나베이 샌즈 57층 식당에서 노을을 보며 먹어요. 예약해 뒀어요. <a class="lnk" href="menu.html#lavo">메뉴·추천 주문 ›</a> <a class="lnk" href="#" data-doc="lavo">📎 예약 확인서 ›</a></small></span></li>
       <li><span class="time">20:00</span><span class="what"><b>리버크루즈</b><small>작은 배를 타고 강을 돌며 레이저쇼를 봐요.</small></span></li>
       <li><span class="time">21:00</span><span class="what"><b>가든스 크리스마스 원더랜드</b><small>크리스마스 불빛 축제를 구경해요.</small></span></li>
       <li><span class="time">21:35</span><span class="what"><b>가든 랩소디</b><small>큰 나무 모양 탑(슈퍼트리)에 음악과 함께 불이 켜지고, 하늘에서 눈도 내려요.</small></span></li>
@@ -1477,7 +1489,7 @@ img.zoomable{cursor:zoom-in}
       <li><span class="time">10:45</span><span class="what"><b>차이나타운, 불아사</b><small>부처님 치아 사리를 모신 큰 절이에요. 안이 화려하고 시원해요.</small></span></li>
       <li class="meal"><span class="time">11:30</span><span class="what"><b>송파 바쿠테<span class="pill meal">식사</span></b><small>돼지갈비를 후추 국물에 끓인 바쿠테를 먹어요. <a class="lnk" href="menu.html#songfa">메뉴·추천 주문 ›</a></small></span></li>
       <li><span class="time">12:30</span><span class="what"><b>오차드로드 구경</b><small>예쁜 옛날 집이 늘어선 에메랄드 힐을 걷고, 백화점 ION에서 쇼핑해요.</small></span></li>
-      <li class="meal"><span class="time">15:00</span><span class="what"><b>점보 시푸드 늦은 점심<span class="pill meal">식사</span></b><small>강가 리버사이드 포인트점에서 칠리크랩을 먹어요. <a class="lnk" href="menu.html#jumbo">메뉴·추천 주문 ›</a> <a class="lnk" href="docs/jumbo.pdf" target="_blank" rel="noopener">📎 예약 확인서 ›</a></small></span></li>
+      <li class="meal"><span class="time">15:00</span><span class="what"><b>점보 시푸드 늦은 점심<span class="pill meal">식사</span></b><small>강가 리버사이드 포인트점에서 칠리크랩을 먹어요. <a class="lnk" href="menu.html#jumbo">메뉴·추천 주문 ›</a> <a class="lnk" href="#" data-doc="jumbo">📎 예약 확인서 ›</a></small></span></li>
       <li class="move"><span class="time">16:30</span><span class="what"><b>호텔에서 짐 싣고 공항으로</b><small>짐이 많아서 6인승 큰 택시를 불러요.</small></span></li>
       <li><span class="time">17:30</span><span class="what"><b>쥬얼 창이 도착</b><small>캐리어는 1층 입구 근처 무료 카트에 싣고 다녀요. 세계에서 가장 큰 실내 폭포(레인 보텍스)를 봐요.</small></span></li>
       <li class="meal"><span class="time">18:45</span><span class="what"><b>팀호완 딤섬 저녁<span class="pill meal">식사</span></b><small><a class="lnk" href="menu.html#timhowan">메뉴·추천 주문 ›</a></small></span></li>
@@ -1509,11 +1521,11 @@ img.zoomable{cursor:zoom-in}
     <h2>예약 확인서</h2>
     <p class="docnote">호텔 체크인할 때나 식당에서 예약 확인할 때 이 화면을 보여주면 돼요. 누르면 확인서(PDF)가 열려요.</p>
     <div class="docgrid">
-      <a class="docbtn" href="docs/dusit-confirmation.pdf" target="_blank" rel="noopener"><span class="di" aria-hidden="true">🏨</span><span><b>두짓타니 라구나</b><small>12/2 밤 ~ 12/3 · 1박</small></span><span class="dgo" aria-hidden="true">›</span></a>
-      <a class="docbtn" href="docs/fullerton-confirmation.pdf" target="_blank" rel="noopener"><span class="di" aria-hidden="true">🏨</span><span><b>더 풀러턴 호텔</b><small>12/3 ~ 12/5 · 2박</small></span><span class="dgo" aria-hidden="true">›</span></a>
-      <a class="docbtn" href="docs/palmbeach.pdf" target="_blank" rel="noopener"><span class="di" aria-hidden="true">🦀</span><span><b>팜비치 시푸드</b><small>12/3(목) 12:30 · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
-      <a class="docbtn" href="docs/lavo.pdf" target="_blank" rel="noopener"><span class="di" aria-hidden="true">🍝</span><span><b>라보 (마리나베이 샌즈 57층)</b><small>12/3(목) 18:15 · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
-      <a class="docbtn" href="docs/jumbo.pdf" target="_blank" rel="noopener"><span class="di" aria-hidden="true">🦀</span><span><b>점보 시푸드 리버사이드</b><small>12/5(토) · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
+      <a class="docbtn" href="#" data-doc="dusit-confirmation"><span class="di" aria-hidden="true">🏨</span><span><b>두짓타니 라구나</b><small>12/2 밤 ~ 12/3 · 1박</small></span><span class="dgo" aria-hidden="true">›</span></a>
+      <a class="docbtn" href="#" data-doc="fullerton-confirmation"><span class="di" aria-hidden="true">🏨</span><span><b>더 풀러턴 호텔</b><small>12/3 ~ 12/5 · 2박</small></span><span class="dgo" aria-hidden="true">›</span></a>
+      <a class="docbtn" href="#" data-doc="palmbeach"><span class="di" aria-hidden="true">🦀</span><span><b>팜비치 시푸드</b><small>12/3(목) 12:30 · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
+      <a class="docbtn" href="#" data-doc="lavo"><span class="di" aria-hidden="true">🍝</span><span><b>라보 (마리나베이 샌즈 57층)</b><small>12/3(목) 18:15 · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
+      <a class="docbtn" href="#" data-doc="jumbo"><span class="di" aria-hidden="true">🦀</span><span><b>점보 시푸드 리버사이드</b><small>12/5(토) · 4명</small></span><span class="dgo" aria-hidden="true">›</span></a>
     </div>
   </section>
 
@@ -1843,6 +1855,24 @@ im.addEventListener("pointermove",function(e){if(!pts[e.pointerId])return;pts[e.
  else if(k.length===1&&start&&start.x!==undefined&&sc>1){tx=start.tx+e.clientX-start.x;ty=start.ty+e.clientY-start.y;ap();}});
 function up(e){delete pts[e.pointerId];var k=Object.keys(pts);if(k.length===1){var p=pts[k[0]];start={x:p.x,y:p.y,tx:tx,ty:ty};}else if(!k.length)start=null;}
 im.addEventListener("pointerup",up);im.addEventListener("pointercancel",up);
+})();
+</script>
+<div id="pwbox" role="dialog" aria-modal="true" aria-label="비밀번호 입력"><form><h3>🔒 예약 확인서</h3><p>비밀번호 4자리를 넣어 주세요.</p><input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="비밀번호"><div class="err" aria-live="polite"></div><div class="row"><button type="button" class="no">취소</button><button type="submit" class="ok">열기</button></div></form></div>
+<script>
+(function(){var box=document.getElementById("pwbox"),form=box.querySelector("form"),inp=box.querySelector("input"),err=box.querySelector(".err"),cur=null,pw=null;
+try{pw=sessionStorage.getItem("sgdocpw");}catch(e){}
+async function dec(name,p){var r=await fetch("docs/"+name+".enc",{cache:"no-store"});var b=new Uint8Array(await r.arrayBuffer());
+var km=await crypto.subtle.importKey("raw",new TextEncoder().encode(p),"PBKDF2",false,["deriveKey"]);
+var k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b.slice(0,16),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
+var pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b.slice(16,28)},k,b.slice(28));return URL.createObjectURL(new Blob([pt],{type:"application/pdf"}));}
+async function go(name,p,win){try{var u=await dec(name,p);try{sessionStorage.setItem("sgdocpw",p);}catch(e){}pw=p;close();if(win&&!win.closed)win.location.href=u;else location.href=u;return true;}catch(e){if(win&&!win.closed)win.close();return false;}}
+function close(){box.classList.remove("on");inp.value="";err.textContent="";}
+document.addEventListener("click",function(e){var a=e.target.closest("a[data-doc]");if(!a)return;e.preventDefault();cur=a.dataset.doc;
+ if(pw){var w=window.open("","_blank");go(cur,pw,w).then(function(ok){if(!ok){pw=null;box.classList.add("on");inp.focus();}});return;}
+ box.classList.add("on");setTimeout(function(){inp.focus();},50);});
+box.querySelector(".no").onclick=close;box.addEventListener("click",function(e){if(e.target===box)close();});
+form.addEventListener("submit",function(e){e.preventDefault();var p=inp.value.trim();if(!p)return;err.textContent="여는 중...";var w=window.open("","_blank");
+ go(cur,p,w).then(function(ok){if(!ok){err.textContent="비밀번호가 달라요. 다시 넣어 주세요.";inp.value="";inp.focus();}});});
 })();
 </script>
 
