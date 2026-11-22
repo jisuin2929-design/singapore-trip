@@ -739,18 +739,22 @@ body.tabs-on:not(.at-home) main section > .card,body.tabs-on:not(.at-home) main 
 body.tabs-on:not(.at-home) main .card::after{content:"";position:absolute;top:-3px;right:26px;width:32px;height:58px;pointer-events:none;background:url(img/xmas/orn-red.svg?v=3) top center/contain no-repeat;z-index:2;transform-origin:top center;animation:sgswing 3.6s ease-in-out infinite}
 body.tabs-on:not(.at-home) main .card:nth-of-type(5n+2)::after{background-image:url(img/xmas/orn-gold.svg?v=3);animation-delay:-.8s}
 body.tabs-on:not(.at-home) main .card:nth-of-type(5n+3)::after{background-image:url(img/xmas/orn-star.svg?v=3);animation-delay:-1.6s}
-body.tabs-on:not(.at-home) main .card:nth-of-type(5n+4)::after{background-image:url(img/xmas/orn-flake.svg?v=3);animation-delay:-2.2s}
+body.tabs-on:not(.at-home) main .card:nth-of-type(5n+4)::after{background-image:url(img/xmas/orn-gold.svg?v=3);animation-delay:-2.2s}
 body.tabs-on:not(.at-home) main .card:nth-of-type(5n)::after{background-image:url(img/xmas/orn-green.svg?v=3);animation-delay:-1.1s}
 @keyframes sgswing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}}
 body.tabs-on:not(.at-home) .xdeco:not(.firs){display:block}
 .xdeco{display:none;position:fixed;bottom:0;z-index:0;pointer-events:none}
-.xdeco.tree{left:6px;width:130px;height:148px;background:url(img/xmas/tree.svg?v=4) bottom/contain no-repeat}
+.xdeco.tree{left:6px;width:130px;height:148px;background:url(img/xmas/tree.svg?v=5) bottom/contain no-repeat}
 .xdeco.gifts{right:96px;width:104px;height:72px;background:url(img/xmas/gifts.svg?v=3) bottom/contain no-repeat}
 @media (min-width:1080px){body.tabs-on.at-home .xdeco{display:block;z-index:2}body.tabs-on.at-home .xdeco.tree{left:calc(43vw - 40px);right:auto;bottom:6px;width:170px;height:193px}body.tabs-on.at-home .xdeco.gifts{left:calc(43vw + 112px);right:auto;bottom:6px;width:120px;height:84px}body.tabs-on.at-home .xdeco.firs{left:46vw;right:0;width:auto;height:150px;bottom:0;z-index:1;background:url(img/xmas/firs.svg?v=1) bottom right/auto 150px repeat-x}}
 @media (max-width:1079px){body.tabs-on .xdeco{display:none}.hero .xgar{height:64px;background-size:auto 64px}.hero .wrap{padding-top:44px}}
 .hero .xgar{position:absolute;left:0;right:0;top:0;height:90px;z-index:2;pointer-events:none;background:url(img/xmas/lights.svg?v=3) repeat-x 0 0/auto 90px;animation:sgtw2 3.2s ease-in-out infinite alternate}
 .hero .xgar::after{content:"";position:absolute;inset:0;background:url(img/xmas/lights.svg?v=3) repeat-x 170px 6px/auto 70px;opacity:.6;animation:sgtw2 2.6s ease-in-out -1.3s infinite alternate}
 @keyframes sgtw2{from{opacity:.55}to{opacity:1}}
+/* no snow in Singapore */
+.hero::before,.hero::after,body.tabs-on:not(.at-home)::after{display:none!important;animation:none!important}
+body.tabs-on:not(.at-home)::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='%23e0b04a' opacity='.35'%3E%3Cpath d='M200 40l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Cpath d='M70 160l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z'/%3E%3C/g%3E%3C/svg%3E")}
+.card.flight .route{max-width:440px;width:100%;margin-left:auto;margin-right:auto}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1150,7 +1154,7 @@ body.tabs-on:not(.at-home) .xdeco:not(.firs){display:block}
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
       </div>
       <p class="note">인천공항 <b>제2터미널</b>에 <b>오후 2~3시</b>에 도착해요. 싱가포르에는 한밤중에 내려서 바로 공항 옆 호텔로 가서 자요.</p>
-      <div class="fspec"><h3>💺 좌석</h3><ul><li>46cm 큰 화면, 전원·USB, 와이파이</li><li>앞뒤 간격 190cm, 너비 53cm</li></ul></div>
+      <div class="fspec"><h3>💺 좌석</h3><ul><li>앞뒤 간격 190cm, 너비 53cm</li><li>46cm 큰 개인 화면</li><li>USB 충전, 전원, 와이파이</li></ul></div>
       <div class="meal">
         <h3>🍽️ 기내식 (이륙 직후, 하나 골라요)</h3>
         <p class="mhint">옆으로 밀어서 보세요 →</p><div class="mslide"><figure><img src="img/meal-645-1.jpg" alt="버섯덮밥" loading="lazy"><figcaption>버섯덮밥<small>한식</small></figcaption></figure><figure><img src="img/meal-645-2.jpg" alt="안심 스테이크와 으깬 감자" loading="lazy"><figcaption>안심 스테이크와 으깬 감자<small>양식</small></figcaption></figure><figure><img src="img/meal-645-3.jpg" alt="토마토소스 펜네 파스타와 관자" loading="lazy"><figcaption>토마토소스 펜네 파스타와 관자<small>양식</small></figcaption></figure><figure class="pre"><img src="img/meal-645-pre1.jpg" alt="오리 콩피와 단호박 타르트" loading="lazy"><figcaption>오리 콩피와 단호박 타르트<small>양식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre2.jpg" alt="두부떡갈비와 채개장" loading="lazy"><figcaption>두부떡갈비와 채개장<small>채식 한식</small><span class="prepill">사전 주문 전용</span></figcaption></figure><figure class="pre"><img src="img/meal-645-pre3.jpg" alt="토마토소스 옥수수 폴렌타" loading="lazy"><figcaption>토마토소스 옥수수 폴렌타<small>채식</small><span class="prepill">사전 주문 전용</span></figcaption></figure></div>
