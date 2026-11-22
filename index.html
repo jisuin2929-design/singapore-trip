@@ -672,7 +672,7 @@ body.tabs-on:not(.at-home) main>.wrap{padding-top:0!important}body.tabs-on:not(.
 .xlights{height:14px;margin:0;background:radial-gradient(circle at 7px 5px,#ffd45e 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 21px 9px,#ff6b6b 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 35px 5px,#7be0a6 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 49px 9px,#8fd0ff 3px,transparent 3.5px) 0 0/56px 14px repeat-x;filter:drop-shadow(0 0 3px rgba(255,220,120,.7));animation:sgtw 2.4s ease-in-out infinite alternate}
 @keyframes sgtw{from{opacity:.65}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.xlights{animation:none}}
-body.tabs-on #gbar{position:sticky;flex-wrap:nowrap}body.tabs-on #gbar b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media (max-width:600px){body.tabs-on #gbar b{font-size:17px}body.tabs-on #gbar::after{font-size:12px;padding:4px 9px}body.tabs-on #gbar{gap:10px}body.tabs-on #gbar a{padding:7px 11px;font-size:15px}}
+body.tabs-on #gbar{position:sticky;flex-wrap:nowrap}body.tabs-on #gbar b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media (max-width:600px){body.tabs-on #gbar b{font-size:17px}body.tabs-on #gbar{gap:10px}body.tabs-on #gbar a{padding:7px 11px;font-size:15px}}
 body.tabs-on #gbar .xlights{position:absolute;left:0;right:0;bottom:-7px;pointer-events:none}
 body.tabs-on #gbar b::after{content:" 🎄";font-size:.9em}
 .hero .dday::before{content:"🎄 "}
@@ -692,9 +692,43 @@ body.tabs-on[data-g="know"]{--sky:linear-gradient(120deg,#5c6fb8 0%,#e3a07a 55%,
 body.tabs-on[data-g="gift"]{--sky:linear-gradient(120deg,#4a4378 0%,#b9607a 55%,#f0956c 100%);--skytint:#f1e7f0;--skyt:"🌆 저녁 6시"}
 body.tabs-on #gbar{background:var(--sky,var(--sunset))}
 body.tabs-on:not(.at-home){background:linear-gradient(180deg,var(--skytint,#ece6f4) 0,var(--bg) 460px) no-repeat,var(--bg)}
-body.tabs-on #gbar::after{content:var(--skyt,"");margin-left:auto;font-size:15px;font-weight:700;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 12px;white-space:nowrap}
 body.tabs-on #gbar b{text-shadow:0 1px 6px rgba(0,0,0,.25)}
 section > h2::before{background:var(--sky,var(--sunbar))}
+/* ---- Whole-page Christmas ---- */
+body.tabs-on:not(.at-home) main{position:relative;z-index:1}
+body.tabs-on:not(.at-home)::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='none' stroke='%23b9a8d8' stroke-width='1.4' stroke-linecap='round' opacity='.45'%3E%3Cg transform='translate(40 50)'%3E%3Cpath d='M0-9V9M-8-4.5 8 4.5M-8 4.5 8-4.5'/%3E%3C/g%3E%3Cg transform='translate(180 140) scale(.7)'%3E%3Cpath d='M0-9V9M-8-4.5 8 4.5M-8 4.5 8-4.5'/%3E%3C/g%3E%3Cg transform='translate(110 210) scale(.55)'%3E%3Cpath d='M0-9V9M-8-4.5 8 4.5M-8 4.5 8-4.5'/%3E%3C/g%3E%3C/g%3E%3Cg fill='%23e0b04a' opacity='.35'%3E%3Cpath d='M200 40l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Cpath d='M70 160l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z'/%3E%3C/g%3E%3C/svg%3E");background-size:240px 240px}
+body.tabs-on:not(.at-home)::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.8;
+  background-image:radial-gradient(2.5px 2.5px at 30px 40px,var(--snow,#c8d3ec),transparent),radial-gradient(2px 2px at 140px 110px,var(--snow,#c8d3ec),transparent),radial-gradient(3px 3px at 220px 30px,var(--snow,#c8d3ec),transparent),radial-gradient(2px 2px at 90px 200px,var(--snow,#c8d3ec),transparent),radial-gradient(2.5px 2.5px at 250px 220px,var(--snow,#c8d3ec),transparent);
+  background-size:280px 280px;animation:sgsnow3 12s linear infinite}
+@keyframes sgsnow3{from{background-position:0 0}to{background-position:40px 280px}}
+section > h2::after{content:"";width:26px;height:26px;flex:none;margin-left:2px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cpath d='M9 15c-4-1-6 2-6 5 3 0 6-1 6-5zm8 0c4-1 6 2 6 5-3 0-6-1-6-5z' fill='%232f7a52'/%3E%3Ccircle cx='11' cy='13' r='3' fill='%23d23b45'/%3E%3Ccircle cx='15.5' cy='12' r='3' fill='%23e5484d'/%3E%3Ccircle cx='13' cy='16.5' r='3' fill='%23c42f3a'/%3E%3C/svg%3E") center/contain no-repeat}
+.card{position:relative}
+body.tabs-on:not(.at-home) .card::before{content:"";position:absolute;left:18px;right:18px;top:-1px;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,#c42f3a 0 33%,#e0b04a 33% 66%,#2f7a52 66%);opacity:.55}
+
+/* ---- 숙소: bright midday ---- */
+body.tabs-on[data-g="hotel"]{--bg:#f3f9ff;--skytint:#d7ecff;--line:#d7e6f4;--snow:#cfe3f7;
+  --sky:radial-gradient(circle at 88% 30%,#fffbe0 0 28px,rgba(255,240,170,.9) 34px,rgba(255,240,170,0) 90px),linear-gradient(120deg,#3c97ef 0%,#6fbcf7 55%,#bfe4ff 100%)}
+body.tabs-on[data-g="hotel"]:not(.at-home){background:radial-gradient(1200px 500px at 85% -120px,rgba(255,236,150,.55),transparent 70%),linear-gradient(180deg,#dcefff 0,#f3f9ff 520px) no-repeat,#f3f9ff}
+body.tabs-on[data-g="hotel"] .card{box-shadow:0 1px 2px rgba(30,90,160,.06),0 10px 28px rgba(40,120,200,.10)}
+
+/* ---- 기념품: night illumination ---- */
+body.tabs-on[data-g="gift"]{--bg:#0c1130;--surface:#151c45;--ink:#f4f1ff;--muted:#b9bde2;--line:#2b3470;--snow:#ffffff;
+  --green:#ffd66b;--green-soft:#2a2f5e;--orchid:#ff9fb8;--blue:#9ec3ff;--blue-soft:#1e2a5c;
+  --sky:linear-gradient(120deg,#060a22 0%,#1a1f52 55%,#3b2a62 100%)}
+body.tabs-on[data-g="gift"]:not(.at-home){background:
+  radial-gradient(circle at 12% 18%,rgba(255,200,90,.30),transparent 120px),radial-gradient(circle at 85% 12%,rgba(255,90,110,.22),transparent 140px),
+  radial-gradient(circle at 70% 60%,rgba(120,220,170,.16),transparent 160px),radial-gradient(circle at 20% 80%,rgba(140,180,255,.18),transparent 170px),
+  linear-gradient(180deg,#070b24,#0c1130 60%,#121a44) fixed;color:var(--ink)}
+body.tabs-on[data-g="gift"]::before{opacity:.0}
+body.tabs-on[data-g="gift"] .card{background:rgba(21,28,69,.82);border-color:rgba(255,214,107,.35);box-shadow:0 0 0 1px rgba(255,214,107,.08),0 10px 30px rgba(0,0,0,.45),0 0 26px rgba(255,200,90,.10);backdrop-filter:blur(3px)}
+body.tabs-on[data-g="gift"] .card::before{opacity:1;filter:drop-shadow(0 0 4px rgba(255,210,120,.8))}
+body.tabs-on[data-g="gift"] section > h2{color:#fff;text-shadow:0 0 18px rgba(255,214,107,.45)}
+body.tabs-on[data-g="gift"] .lead,body.tabs-on[data-g="gift"] p{color:var(--muted)}
+body.tabs-on[data-g="gift"] b,body.tabs-on[data-g="gift"] strong{color:var(--ink)}
+body.tabs-on[data-g="gift"] .fsz{background:#151c45;border-color:#2b3470}
+body.tabs-on[data-g="gift"] .fsz button{color:#fff}
+body.tabs-on[data-g="gift"] .swhere{background:rgba(255,214,107,.16)!important;color:#ffd66b!important;border:1px solid rgba(255,214,107,.4)}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
