@@ -665,9 +665,10 @@ body.tabs-on:not(.at-home) main>.wrap{padding-top:0!important}body.tabs-on:not(.
 /* ---- Christmas touches ---- */
 .hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.75;
   background-image:radial-gradient(2px 2px at 20px 30px,#fff,transparent),radial-gradient(1.5px 1.5px at 90px 80px,#fff,transparent),radial-gradient(2.5px 2.5px at 150px 20px,rgba(255,255,255,.9),transparent),radial-gradient(1.5px 1.5px at 60px 150px,#fff,transparent),radial-gradient(2px 2px at 180px 120px,rgba(255,255,255,.85),transparent),radial-gradient(1px 1px at 120px 180px,#fff,transparent);
-  background-size:200px 200px;animation:sgsnow 14s linear infinite}
-@keyframes sgsnow{from{background-position:0 0}to{background-position:40px 200px}}
-@media (prefers-reduced-motion:reduce){.hero::after{animation:none}}
+  background-size:200px 200px;animation:sgsnow 7s linear infinite!important}
+@keyframes sgsnow{from{background-position:0 0}to{background-position:30px 200px}}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;background-image:radial-gradient(3px 3px at 40px 60px,#fff,transparent),radial-gradient(2.5px 2.5px at 230px 140px,#fff,transparent),radial-gradient(3px 3px at 150px 250px,rgba(255,255,255,.9),transparent);background-size:300px 300px;animation:sgsnow2 11s linear infinite!important}
+@keyframes sgsnow2{from{background-position:0 0}to{background-position:-40px 300px}}
 .xlights{height:14px;margin:0;background:radial-gradient(circle at 7px 5px,#ffd45e 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 21px 9px,#ff6b6b 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 35px 5px,#7be0a6 3px,transparent 3.5px) 0 0/56px 14px repeat-x,radial-gradient(circle at 49px 9px,#8fd0ff 3px,transparent 3.5px) 0 0/56px 14px repeat-x;filter:drop-shadow(0 0 3px rgba(255,220,120,.7));animation:sgtw 2.4s ease-in-out infinite alternate}
 @keyframes sgtw{from{opacity:.65}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.xlights{animation:none}}
