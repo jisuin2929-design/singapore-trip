@@ -733,23 +733,23 @@ body.tabs-on[data-g="gift"] .swhere{background:rgba(255,214,107,.16)!important;c
 @media (min-width:1080px){.souvs{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:36px}.souvs .souv{padding:16px 0}.souvs .souv:nth-child(-n+2){border-top:0;padding-top:0}.souvs .souv:nth-last-child(-n+2){padding-bottom:0}}
 /* ---- Christmas ornaments ---- */
 body.tabs-on #gbar .xlights{display:none}
-body.tabs-on #gbar::before{content:"";position:absolute;left:0;right:0;bottom:-46px;height:60px;pointer-events:none;background:url(img/xmas/garland.svg) repeat-x 0 0/auto 60px;filter:drop-shadow(0 3px 3px rgba(0,0,0,.12));z-index:3}
-section > h2::after{width:150px;height:22px;background:url(img/xmas/divider.svg) left center/contain no-repeat;margin-left:6px}
+body.tabs-on #gbar::before{content:"";position:absolute;left:0;right:0;bottom:-46px;height:60px;pointer-events:none;background:url(img/xmas/garland.svg?v=3) repeat-x 0 0/auto 60px;filter:drop-shadow(0 3px 3px rgba(0,0,0,.12));z-index:3}
+section > h2::after{width:150px;height:22px;background:url(img/xmas/divider.svg?v=3) left center/contain no-repeat;margin-left:6px}
 body.tabs-on:not(.at-home) main section > .card,body.tabs-on:not(.at-home) main section .ftwrap > .card,body.tabs-on:not(.at-home) .hotel .card,body.tabs-on:not(.at-home) main .card.flight{overflow:visible}
-body.tabs-on:not(.at-home) main .card::after{content:"";position:absolute;top:-3px;right:26px;width:32px;height:58px;pointer-events:none;background:url(img/xmas/orn-red.svg) top center/contain no-repeat;z-index:2;transform-origin:top center;animation:sgswing 3.6s ease-in-out infinite}
-body.tabs-on:not(.at-home) main .card:nth-of-type(5n+2)::after{background-image:url(img/xmas/orn-gold.svg);animation-delay:-.8s}
-body.tabs-on:not(.at-home) main .card:nth-of-type(5n+3)::after{background-image:url(img/xmas/orn-star.svg);animation-delay:-1.6s}
-body.tabs-on:not(.at-home) main .card:nth-of-type(5n+4)::after{background-image:url(img/xmas/orn-flake.svg);animation-delay:-2.2s}
-body.tabs-on:not(.at-home) main .card:nth-of-type(5n)::after{background-image:url(img/xmas/orn-green.svg);animation-delay:-1.1s}
+body.tabs-on:not(.at-home) main .card::after{content:"";position:absolute;top:-3px;right:26px;width:32px;height:58px;pointer-events:none;background:url(img/xmas/orn-red.svg?v=3) top center/contain no-repeat;z-index:2;transform-origin:top center;animation:sgswing 3.6s ease-in-out infinite}
+body.tabs-on:not(.at-home) main .card:nth-of-type(5n+2)::after{background-image:url(img/xmas/orn-gold.svg?v=3);animation-delay:-.8s}
+body.tabs-on:not(.at-home) main .card:nth-of-type(5n+3)::after{background-image:url(img/xmas/orn-star.svg?v=3);animation-delay:-1.6s}
+body.tabs-on:not(.at-home) main .card:nth-of-type(5n+4)::after{background-image:url(img/xmas/orn-flake.svg?v=3);animation-delay:-2.2s}
+body.tabs-on:not(.at-home) main .card:nth-of-type(5n)::after{background-image:url(img/xmas/orn-green.svg?v=3);animation-delay:-1.1s}
 @keyframes sgswing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}}
 body.tabs-on:not(.at-home) .xdeco{display:block}
 .xdeco{display:none;position:fixed;bottom:0;z-index:0;pointer-events:none}
-.xdeco.tree{left:6px;width:130px;height:148px;background:url(img/xmas/tree.svg) bottom/contain no-repeat}
-.xdeco.gifts{right:96px;width:104px;height:72px;background:url(img/xmas/gifts.svg) bottom/contain no-repeat}
+.xdeco.tree{left:6px;width:130px;height:148px;background:url(img/xmas/tree.svg?v=3) bottom/contain no-repeat}
+.xdeco.gifts{right:96px;width:104px;height:72px;background:url(img/xmas/gifts.svg?v=3) bottom/contain no-repeat}
 @media (min-width:1080px){body.tabs-on.at-home .xdeco{display:block;z-index:2}body.tabs-on.at-home .xdeco.tree{left:auto;right:240px;width:180px;height:204px}body.tabs-on.at-home .xdeco.gifts{right:120px;width:130px;height:90px}}
 @media (max-width:1079px){body.tabs-on .xdeco{display:none}.hero .xgar{height:64px;background-size:auto 64px}.hero .wrap{padding-top:44px}}
-.hero .xgar{position:absolute;left:0;right:0;top:0;height:90px;z-index:2;pointer-events:none;background:url(img/xmas/lights.svg) repeat-x 0 0/auto 90px;animation:sgtw2 3.2s ease-in-out infinite alternate}
-.hero .xgar::after{content:"";position:absolute;inset:0;background:url(img/xmas/lights.svg) repeat-x 170px 6px/auto 70px;opacity:.6;animation:sgtw2 2.6s ease-in-out -1.3s infinite alternate}
+.hero .xgar{position:absolute;left:0;right:0;top:0;height:90px;z-index:2;pointer-events:none;background:url(img/xmas/lights.svg?v=3) repeat-x 0 0/auto 90px;animation:sgtw2 3.2s ease-in-out infinite alternate}
+.hero .xgar::after{content:"";position:absolute;inset:0;background:url(img/xmas/lights.svg?v=3) repeat-x 170px 6px/auto 70px;opacity:.6;animation:sgtw2 2.6s ease-in-out -1.3s infinite alternate}
 @keyframes sgtw2{from{opacity:.55}to{opacity:1}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
