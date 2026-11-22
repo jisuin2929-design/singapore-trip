@@ -761,6 +761,24 @@ body.tabs-on[data-g="plan"]:not(.at-home) #gday:not(:empty){display:inline-flex;
 #gday i{font-style:normal;background:var(--dac,#b9607a);color:#fff;border-radius:999px;padding:1px 8px;font-size:13px}
 body.tabs-on[data-g="plan"]:not(.at-home) .dayhead{position:relative;top:auto}
 body.tabs-on[data-g="plan"] #gbar::before{display:none}
+/* timeline readability */
+.timeline li.move .what b{font-weight:600;color:var(--muted)}
+.timeline li.move::after{background:var(--surface,#fff);border:2px solid var(--dac,var(--green));width:8px;height:8px;left:80px;top:10px}
+.timeline li.move .time{opacity:.7}
+@media (max-width:420px){.timeline li.move::after{left:63px}}
+@media (min-width:1080px){
+  .timeline .time{font-size:15px}
+  .timeline .what b{font-size:16px;line-height:1.4}
+  .timeline .what small{font-size:14px;line-height:1.55;margin-top:3px}
+  .timeline li{padding:10px 0 12px;border-bottom:1px solid rgba(0,0,0,.05)}
+  .timeline li:last-child{border-bottom:0}
+  .timeline li.move{padding:6px 0 8px}
+  .timeline li.move .what b{font-size:14px;display:inline}
+  .timeline li.move .what small{display:inline;font-size:13px;margin-left:8px}
+  .timeline li.move .time{font-size:13px}
+  .timeline li::after{top:15px}.timeline li.move::after{top:11px;left:79px}
+  .timeline li:not(.move) .what b{color:var(--ink)}
+}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1390,11 +1408,11 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
     <div class="photos"><figure class="ph"><img src="img/sp-merlion.jpg" alt="머라이언 공원과 마리나베이 샌즈" loading="lazy"><figcaption>머라이언 공원</figcaption></figure><figure class="ph"><img src="img/sp-wonderland.jpg" alt="가든스 바이 더 베이 크리스마스 원더랜드" loading="lazy"><figcaption>크리스마스 원더랜드</figcaption></figure></div>
     <ol class="timeline">
       <li class="meal"><span class="time">07:30</span><span class="what"><b>호텔 아침 식사<span class="pill meal">식사</span></b><small>8시 반에 체크아웃해요.</small></span></li>
-      <li><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
+      <li class="move"><span class="time">09:00</span><span class="what"><b>풀러턴 호텔에 짐 맡기기</b><small>택시로 25분쯤 걸려요.</small></span></li>
       <li><span class="time">09:20</span><span class="what"><b>보타닉 가든, 내셔널 오키드 가든</b><small>시원한 아침에 큰 숲 정원을 걷고, 난초 정원을 구경해요.</small></span></li>
       <li><span class="time">11:00</span><span class="what"><b>머라이언 공원</b><small>풀러턴 호텔 바로 앞이에요. 사자상 앞에서 가족사진 찍고 산책해요.</small></span></li>
       <li><span class="time">11:30</span><span class="what"><b>에스플러네이드 옥상 정원</b><small>두리안처럼 생긴 공연장 건물 4층 옥상이에요. 무료로 마리나베이 경치를 볼 수 있어요.</small></span></li>
-      <li><span class="time">12:20</span><span class="what"><b>걸어서 팜비치로</b><small>강변을 따라 천천히 걸어가요.</small></span></li>
+      <li class="move"><span class="time">12:20</span><span class="what"><b>걸어서 팜비치로</b><small>강변을 따라 천천히 걸어가요.</small></span></li>
       <li class="meal"><span class="time">12:30</span><span class="what"><b>팜비치 시푸드 점심<span class="pill meal">식사</span></b><small>크랩을 먹어요. 예약해 뒀어요. <a class="lnk" href="menu.html#palmbeach">메뉴·추천 주문 ›</a> <a class="lnk" href="docs/palmbeach.pdf" target="_blank" rel="noopener">📎 예약 확인서 ›</a></small></span></li>
       <li class="rest"><span class="time">14:00</span><span class="what"><b>풀러턴 체크인, 쉬기<span class="pill rest">휴식</span></b><small>방에서 쉬시다가 라운지에서 애프터눈티를 즐겨요. <a class="lnk" href="menu.html#fullerton">안내 ›</a></small></span></li>
       <li><span class="time">15:45</span><span class="what"><b>헬릭스 다리 산책</b><small>마리나베이를 따라 걸어요.</small></span></li>
@@ -1422,9 +1440,9 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
       <li><span class="time">14:00</span><span class="what"><b>팔라완 해변, 흔들다리</b><small>섬 안 셔틀버스는 공짜예요. 흔들다리를 건너면 아시아 대륙의 가장 남쪽 끝이에요.</small></span></li>
       <li class="rest"><span class="time">15:00</span><span class="what"><b>탄중 비치클럽에서 쉬기<span class="pill rest">휴식</span></b><small>바닷가 그늘 의자에서 시원한 음료 마시며 쉬고, 택시로 호텔에 가요. <a class="lnk" href="menu.html#tanjong">메뉴·추천 주문 ›</a></small></span></li>
       <li class="rest"><span class="time">17:00</span><span class="what"><b>호텔에서 씻고 쉬기<span class="pill rest">휴식</span></b><small>라운지에서 간단히 드시고 가요.</small></span></li>
-      <li><span class="time">18:00</span><span class="what"><b>나이트사파리로 출발</b><small>택시로 30~40분. 저녁은 사파리 입구 식당에서 먹어요(<a class="lnk" href="menu.html#ulu">메뉴·추천 ›</a>). 입구에 무료 크리스마스 장식이 있어서 들어가기 전에 구경해요.</small></span></li>
+      <li class="move"><span class="time">18:00</span><span class="what"><b>나이트사파리로 출발</b><small>택시로 30~40분. 저녁은 사파리 입구 식당에서 먹어요(<a class="lnk" href="menu.html#ulu">메뉴·추천 ›</a>). 입구에 무료 크리스마스 장식이 있어서 들어가기 전에 구경해요.</small></span></li>
       <li><span class="time">19:15</span><span class="what"><b>나이트사파리</b><small>밤에 움직이는 동물을 트램을 타고 구경해요. 많이 걷지 않아도 돼요.</small></span></li>
-      <li><span class="time">21:45</span><span class="what"><b>나이트사파리 출발</b><small>Grab을 타고 가는 길에 오차드로드를 지나며 차 안에서 크리스마스 조명을 봐요. (경유지에 ION 오차드를 넣어요.)</small></span></li>
+      <li class="move"><span class="time">21:45</span><span class="what"><b>나이트사파리 출발</b><small>Grab을 타고 가는 길에 오차드로드를 지나며 차 안에서 크리스마스 조명을 봐요. (경유지에 ION 오차드를 넣어요.)</small></span></li>
       <li class="meal"><span class="time">22:35</span><span class="what"><b>라우파삿 사테 야식<span class="pill meal">식사</span></b><small>숯불 꼬치구이 사테를 땅콩소스에 찍어 먹어요. <a class="lnk" href="menu.html#satay">메뉴·추천 주문 ›</a></small></span></li>
       <li class="rest"><span class="time">23:30</span><span class="what"><b>호텔 도착</b><small>라우파삿에서 걸어서 10분이에요.</small></span></li>
     </ol>
@@ -1444,11 +1462,11 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
       <li class="meal"><span class="time">11:30</span><span class="what"><b>송파 바쿠테<span class="pill meal">식사</span></b><small>돼지갈비를 후추 국물에 끓인 바쿠테를 먹어요. <a class="lnk" href="menu.html#songfa">메뉴·추천 주문 ›</a></small></span></li>
       <li><span class="time">12:30</span><span class="what"><b>오차드로드 구경</b><small>예쁜 옛날 집이 늘어선 에메랄드 힐을 걷고, 백화점 ION에서 쇼핑해요.</small></span></li>
       <li class="meal"><span class="time">15:00</span><span class="what"><b>점보 시푸드 늦은 점심<span class="pill meal">식사</span></b><small>강가 리버사이드 포인트점에서 칠리크랩을 먹어요. <a class="lnk" href="menu.html#jumbo">메뉴·추천 주문 ›</a> <a class="lnk" href="docs/jumbo.pdf" target="_blank" rel="noopener">📎 예약 확인서 ›</a></small></span></li>
-      <li><span class="time">16:30</span><span class="what"><b>호텔에서 짐 싣고 공항으로</b><small>짐이 많아서 6인승 큰 택시를 불러요.</small></span></li>
+      <li class="move"><span class="time">16:30</span><span class="what"><b>호텔에서 짐 싣고 공항으로</b><small>짐이 많아서 6인승 큰 택시를 불러요.</small></span></li>
       <li><span class="time">17:30</span><span class="what"><b>쥬얼 창이 도착</b><small>캐리어는 1층 입구 근처 무료 카트에 싣고 다녀요. 세계에서 가장 큰 실내 폭포(레인 보텍스)를 봐요.</small></span></li>
       <li class="meal"><span class="time">18:45</span><span class="what"><b>팀호완 딤섬 저녁<span class="pill meal">식사</span></b><small><a class="lnk" href="menu.html#timhowan">메뉴·추천 주문 ›</a></small></span></li>
       <li><span class="time">20:05</span><span class="what"><b>크리스마스 트리와 눈 쇼</b><small>실내 폭포 앞 16m 크리스마스 트리에서 인공 눈이 내리는 쇼를 봐요.</small></span></li>
-      <li><span class="time">20:30</span><span class="what"><b>무료 셔틀 타고 4터미널로</b><small>1터미널 출발층 가운데 승차장에서 타요. 10분 걸려요. 카트는 두고 캐리어만 들고 타요.</small></span></li>
+      <li class="move"><span class="time">20:30</span><span class="what"><b>무료 셔틀 타고 4터미널로</b><small>1터미널 출발층 가운데 승차장에서 타요. 10분 걸려요. 카트는 두고 캐리어만 들고 타요.</small></span></li>
       <li><span class="time">20:45</span><span class="what"><b>4터미널 도착, 비행기 체크인</b><small>체크인은 밤 9시 30분에 마감돼요.</small></span></li>
       <li><span class="time">22:30</span><span class="what"><b>출발</b><small>일요일 새벽 5시 45분 인천 도착.</small></span></li>
     </ol>
@@ -1466,8 +1484,8 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
     <div class="wx"><span class="ico" aria-hidden="true">🥶</span><span class="temp">서울 -1~7℃ <small>새벽이라 더 추워요</small></span><p>내리기 전에 비행기 안에서 겉옷을 입어 두세요. 주차장까지 바깥을 잠깐 걸어요.</p></div>
     <ol class="timeline">
       <li><span class="time">05:45</span><span class="what"><b>인천공항 제2터미널 도착</b><small>입국 심사를 하고 짐 찾는 곳에서 캐리어를 찾아요.</small></span></li>
-      <li><span class="time">06:30</span><span class="what"><b>공항02번 셔틀 타기</b><small>1층 입국장 <strong>5번 출구</strong> 앞 정류장에서 타요. '제2터미널 예약주차장'에서 내려요. 무료예요.</small></span></li>
-      <li><span class="time">07:00</span><span class="what"><b>주차장에서 차 빼서 집으로</b><small>아침 7시까지 빼도록 예약해 뒀어요.</small></span></li>
+      <li class="move"><span class="time">06:30</span><span class="what"><b>공항02번 셔틀 타기</b><small>1층 입국장 <strong>5번 출구</strong> 앞 정류장에서 타요. '제2터미널 예약주차장'에서 내려요. 무료예요.</small></span></li>
+      <li class="move"><span class="time">07:00</span><span class="what"><b>주차장에서 차 빼서 집으로</b><small>아침 7시까지 빼도록 예약해 뒀어요.</small></span></li>
     </ol>
   </section>
 
