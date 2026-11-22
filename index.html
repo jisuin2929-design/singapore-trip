@@ -747,8 +747,10 @@ body.tabs-on:not(.at-home) .xdeco{display:block}
 .xdeco.tree{left:8px;width:96px;height:122px;background:url(img/xmas/tree.svg) bottom/contain no-repeat}
 .xdeco.gifts{right:96px;width:104px;height:72px;background:url(img/xmas/gifts.svg) bottom/contain no-repeat}
 @media (min-width:1080px){body.tabs-on.at-home .xdeco{display:block;z-index:2}body.tabs-on.at-home .xdeco.tree{left:auto;right:250px;width:120px;height:152px}body.tabs-on.at-home .xdeco.gifts{right:120px;width:130px;height:90px}}
-@media (max-width:1079px){body.tabs-on .xdeco{display:none}.hero .xgar{height:48px;background-size:auto 48px}.hero .wrap{padding-top:44px}}
-.hero .xgar{position:absolute;left:0;right:0;top:-8px;height:64px;z-index:2;pointer-events:none;background:url(img/xmas/garland.svg) repeat-x 0 0/auto 64px;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25))}
+@media (max-width:1079px){body.tabs-on .xdeco{display:none}.hero .xgar{height:64px;background-size:auto 64px}.hero .wrap{padding-top:44px}}
+.hero .xgar{position:absolute;left:0;right:0;top:0;height:90px;z-index:2;pointer-events:none;background:url(img/xmas/lights.svg) repeat-x 0 0/auto 90px;animation:sgtw2 3.2s ease-in-out infinite alternate}
+.hero .xgar::after{content:"";position:absolute;inset:0;background:url(img/xmas/lights.svg) repeat-x 170px 6px/auto 70px;opacity:.6;animation:sgtw2 2.6s ease-in-out -1.3s infinite alternate}
+@keyframes sgtw2{from{opacity:.55}to{opacity:1}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
