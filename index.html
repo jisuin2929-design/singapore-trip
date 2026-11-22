@@ -813,6 +813,7 @@ img.zoomable{cursor:zoom-in}
 .hmaplink{display:block;padding:11px 14px;font-weight:700;font-size:16px;color:var(--blue,#245fc7);text-decoration:none}
 .hpin{width:max-content;transform:translate(-50%,-100%);font:800 14px/1 var(--body);color:#fff;background:#764598;border:2.5px solid #fff;border-radius:14px;padding:7px 10px;box-shadow:0 2px 6px rgba(0,0,0,.35);white-space:nowrap}
 .hpin.s{background:#1f3b34;font-size:13px;padding:5px 8px}
+.hnote{background:rgba(255,255,255,.9);color:#111;font:700 12px/1.3 var(--body);padding:4px 8px;border-radius:8px;margin:8px 8px 0 0!important;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .hlbl{width:max-content;transform:translate(-50%,-50%);font:800 14px/1 var(--body);color:#111;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff;white-space:nowrap}
 .hpin.xs{background:#764598;font-size:10px;padding:3px 6px;border-width:1.5px}
 @media (min-width:1080px){.hloc{height:300px}}
@@ -1893,6 +1894,7 @@ fullerton:{c:[1.2863,103.8532],n:"더 풀러턴 호텔",o:[[1.2868,103.8546,"머
 function draw(){document.querySelectorAll(".hloc[data-h]").forEach(function(el){if(el._m)return;var h=H[el.dataset.h];if(!h)return;el.style.display="block";
  var m=L.map(el,{scrollWheelZoom:!L.Browser.mobile,wheelPxPerZoomLevel:120,dragging:true,touchZoom:true,tap:false,minZoom:11,maxZoom:19,zoomControl:true});el._m=m;
  L.tileLayer("https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png",{detectRetina:true,maxZoom:19,minZoom:11,attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> | Singapore Land Authority'}).addTo(m);
+ var nt=L.control({position:"topright"});nt.onAdd=function(){var d=L.DomUtil.create("div","hnote");d.textContent="글씨가 써져 있는 곳이 싱가포르 전체예요!";return d;};nt.addTo(m);
  var pts=[h.c];h.o.forEach(function(p){if(p[3]!==3)pts.push([p[0],p[1]]);L.marker([p[0],p[1]],{icon:L.divIcon({className:"",html:'<div class="hpin '+(p[3]?"xs":"s")+'">'+p[2]+'</div>',iconSize:[0,0]})}).addTo(m);});
  if(el.dataset.h==="dusit")pts.push([1.2494,103.8303]);
  L.marker([1.2494,103.8303],{icon:L.divIcon({className:"",html:'<div class="hlbl">센토사섬</div>',iconSize:[0,0]})}).addTo(m);
