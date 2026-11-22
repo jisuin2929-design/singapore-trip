@@ -779,6 +779,10 @@ body.tabs-on[data-g="plan"] #gbar::before{display:none}
   .timeline li::after{top:15px}.timeline li.move::after{top:11px;left:79px}
   .timeline li:not(.move) .what b{color:var(--ink)}
 }
+/* PC plan: no empty rows above the map */
+@media (min-width:1080px){.day{row-gap:0!important}.day>*{margin-bottom:18px}.day>.lmapcard.lmapcard,.day>.daymap.daymap{margin-top:0}}
+/* no tree/gifts on inner pages */
+body.tabs-on:not(.at-home) .xdeco{display:none!important}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
