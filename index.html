@@ -831,6 +831,13 @@ img.zoomable{cursor:zoom-in}
 .hbtn.wide.half{grid-column:span 1}
 @media (min-width:1080px){body.tabs-on.at-home .home{grid-template-columns:repeat(6,minmax(0,1fr))}body.tabs-on.at-home .home>.hbtn{grid-column:span 2}body.tabs-on.at-home .home>.hbtn.wide.half{grid-column:span 3}}
 @media (min-width:1080px){body.tabs-on.at-home main{padding-bottom:3vw!important}}
+/* day 1 (12/2) PC layout */
+@media (min-width:1080px){
+  #d1202>.timeline{grid-row:2 / span 2!important;align-self:stretch!important}
+  #d1202>.lmapcard.lmapcard,#d1202>.daymap.daymap{max-width:none;justify-self:stretch}
+  #d1202>.lmapcard .lmap{height:auto!important;aspect-ratio:2.2/1}
+  #d1202>.daymap img{width:100%;aspect-ratio:2.2/1;object-fit:cover}
+}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
