@@ -1489,7 +1489,7 @@ function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.
   }catch(e){}
   // Text size buttons: scale the page body (not the top buttons).
   try{
-    var Z=[0.7,0.8,0.9,1,1.15,1.3,1.45], zi=3, main=document.querySelector('main');
+    var Z=[0.7,0.8,0.9,1,1.15,1.3,1.45], zi=matchMedia('(min-width:1080px)').matches?2:3, main=document.querySelector('main');
     try{ var sv=parseFloat(localStorage.getItem('sgTripZ')); if(Z.indexOf(sv)>=0) zi=Z.indexOf(sv); }catch(e){}
     var up=document.getElementById('fsUp'), dn=document.getElementById('fsDown');
     var applyZ=function(keep){
