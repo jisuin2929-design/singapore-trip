@@ -755,6 +755,12 @@ body.tabs-on:not(.at-home) .xdeco:not(.firs){display:block}
 .hero::before,.hero::after,body.tabs-on:not(.at-home)::after{display:none!important;animation:none!important}
 body.tabs-on:not(.at-home)::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='%23e0b04a' opacity='.35'%3E%3Cpath d='M200 40l2 5 5 2-5 2-2 5-2-5-5-2 5-2z'/%3E%3Cpath d='M70 160l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z'/%3E%3C/g%3E%3C/svg%3E")}
 .card.flight .route{max-width:440px;width:100%;margin-left:auto;margin-right:auto}
+/* plan: day label lives in the top bar */
+#gday{display:none}
+body.tabs-on[data-g="plan"]:not(.at-home) #gday:not(:empty){display:inline-flex;align-items:center;gap:6px;margin-left:auto;flex:none;background:rgba(255,255,255,.92);color:#2a2540;font-weight:800;font-size:15px;border-radius:999px;padding:5px 12px;white-space:nowrap}
+#gday i{font-style:normal;background:var(--dac,#b9607a);color:#fff;border-radius:999px;padding:1px 8px;font-size:13px}
+body.tabs-on[data-g="plan"]:not(.at-home) .dayhead{position:relative;top:auto}
+body.tabs-on[data-g="plan"] #gbar::before{display:none}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -812,7 +818,7 @@ body.tabs-on:not(.at-home)::before{background-image:url("data:image/svg+xml,%3Cs
 <main>
 <div class="wrap">
 <div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a></div>
-<div id="gbar"><span class="xlights" aria-hidden="true"></span><a href="#home">← 처음 화면</a><b id="gtitle"></b></div>
+<div id="gbar"><span class="xlights" aria-hidden="true"></span><a href="#home">← 처음 화면</a><b id="gtitle"></b><span id="gday" aria-live="polite"></span></div>
 
   <section id="prep">
     <h2>출발 전에 꼭 해 두세요</h2>
@@ -1772,6 +1778,14 @@ function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.
 })();
 </script>
 
+<script>
+(function(){var g=document.getElementById("gday"),bar=document.getElementById("gbar");if(!g)return;
+function upd(){if(document.body.getAttribute("data-g")!=="plan"||document.body.classList.contains("at-home")){g.innerHTML="";return;}
+var lim=bar.getBoundingClientRect().bottom+4,cur=null;document.querySelectorAll(".dayhead").forEach(function(h){if(h.offsetParent&&h.getBoundingClientRect().top<=lim)cur=h;});
+if(!cur){g.innerHTML="";return;}var n=cur.querySelector(".dnum").textContent,d=cur.querySelector(".date").textContent.replace(/(\d+)월 (\d+)일 (.)요일/,"$1/$2 ($3)");
+var c=getComputedStyle(cur).getPropertyValue("--dac");g.innerHTML="<i"+(c?' style="background:'+c.trim()+'"':"")+">"+n+"</i>"+d;}
+addEventListener("scroll",upd,{passive:true});addEventListener("hashchange",function(){setTimeout(upd,50)});setTimeout(upd,300);})();
+</script>
 
 </body>
 </html>
