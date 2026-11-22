@@ -611,7 +611,7 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .pop .mpg figcaption{font-size:12px;line-height:1.3;padding:4px 5px;font-weight:700}
 .pop .mpg small{display:block;font-weight:500;color:var(--muted);font-size:11px}
 .pop .mpnote{margin:12px 0 0;font-size:16px;background:#fdecea;border-radius:10px;padding:10px 12px}
-#flight>.ftimes,#flight2>.ftimes{grid-column:1 / -1}.ftimes .route+.tag{border-top:1px dashed var(--line);padding-top:12px;margin-top:4px}.fspec{border-top:1px dashed var(--line);padding-top:10px}.fspec h3{margin:0 0 6px;font-size:18px}.fspec ul{margin:0;padding-left:20px;font-size:17px;line-height:1.6}
+#flight>.ftwrap,#flight2>.ftwrap{grid-column:1 / -1}.ftimes .route+.tag{border-top:1px dashed var(--line);padding-top:12px;margin-top:4px}.fspec{border-top:1px dashed var(--line);padding-top:10px}.fspec h3{margin:0 0 6px;font-size:18px}.fspec ul{margin:0;padding-left:20px;font-size:17px;line-height:1.6}
 body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{display:grid;gap:20px}
 #flight>.loungebtn,#flight2>.loungebtn{margin:0}#flight>.lead,#flight2>.lead{margin:0}
 @media (min-width:1080px){#flight,#flight2{row-gap:28px!important}}
@@ -642,7 +642,8 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
   body.tabs-on.at-home .hbtn.wide{min-height:0;padding:12px 16px}
 }
 @media (min-width:1080px){#prep{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row}#prep>*{grid-column:auto}#prep>h2:not(.parkh){grid-column:1;grid-row:1}#prep>.card.prep{grid-column:1;grid-row:2}#prep>h2.parkh{grid-column:2;grid-row:1}#prep>.card.park{grid-column:2;grid-row:2}#prep>h2{margin-top:0}#prep>*:not(h2):not(.card){grid-column:1 / -1}}
-@media (min-width:1080px){.ftimes{grid-template-columns:1fr 1fr;column-gap:0;row-gap:10px;grid-auto-flow:column;grid-template-rows:auto auto}.ftimes>*{padding:0 28px}.ftimes>:nth-child(1),.ftimes>:nth-child(2){padding-left:0}.ftimes>:nth-child(3),.ftimes>:nth-child(4){border-left:1px dashed var(--line);padding-right:0}.ftimes .route+.tag{border-top:0!important;margin-top:0!important;padding-top:0!important}}
+.ftwrap{display:grid;gap:14px}.ftimes .route{max-width:440px}
+@media (min-width:1080px){.ftwrap{grid-template-columns:1fr 1fr;gap:20px}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -745,15 +746,15 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
   <section id="flight">
     <h2>비행기</h2>
     <a class="loungebtn" href="lounge.html"><span aria-hidden="true">🛋️</span><span><b>대한항공 라운지 이용 바로가기</b><small>12/2 출발 전 · 위치, 혼잡도, 사진</small></span><span class="go" aria-hidden="true">›</span></a>
-    <div class="card flight ftimes"><div class="tag">가는 날 · KE645</div><div class="route">
+    <div class="ftwrap"><div class="card flight ftimes"><div class="tag">가는 날 · KE645</div><div class="route">
         <div class="end"><div class="t">18:35</div><div class="d">12/2(수) 인천 출발</div></div>
         <div class="arrow"><span class="dur">6시간 40분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
-      </div><div class="tag">오는 날 · KE644</div><div class="route">
+      </div></div><div class="card flight ftimes"><div class="tag">오는 날 · KE644</div><div class="route">
         <div class="end"><div class="t">22:30</div><div class="d">12/5(토) 싱가포르 출발</div></div>
         <div class="arrow"><span class="dur">6시간 15분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
-      </div></div>
+      </div></div></div>
     <div class="card wifi">
       <h3 style="margin:0;font-size:19px">📶 기내 와이파이 무료 (가는 날·오는 날 둘 다)</h3>
       <p style="margin:6px 0 0;font-size:17px">스타링크 와이파이라 카톡·영상도 돼요.</p>
@@ -1014,15 +1015,15 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
   <section id="flight2">
     <h2>비행기</h2>
     <a class="loungebtn" href="lounge2.html"><span aria-hidden="true">🛋️</span><span><b>대한항공 라운지 이용 바로가기</b><small>12/2 출발 전 · 위치, 혼잡도, 사진</small></span><span class="go" aria-hidden="true">›</span></a>
-    <div class="card flight ftimes"><div class="tag">가는 날 · KE645</div><div class="route">
+    <div class="ftwrap"><div class="card flight ftimes"><div class="tag">가는 날 · KE645</div><div class="route">
         <div class="end"><div class="t">18:35</div><div class="d">12/2(수) 인천 출발</div></div>
         <div class="arrow"><span class="dur">6시간 40분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">00:15</div><div class="d">12/3(목) 싱가포르 도착</div></div>
-      </div><div class="tag">오는 날 · KE644</div><div class="route">
+      </div></div><div class="card flight ftimes"><div class="tag">오는 날 · KE644</div><div class="route">
         <div class="end"><div class="t">22:30</div><div class="d">12/5(토) 싱가포르 출발</div></div>
         <div class="arrow"><span class="dur">6시간 15분</span><span aria-hidden="true">→</span></div>
         <div class="end r"><div class="t">05:45</div><div class="d">12/6(일) 인천 도착</div></div>
-      </div></div>
+      </div></div></div>
     <div class="card wifi">
       <h3 style="margin:0;font-size:19px">📶 기내 와이파이 무료 (가는 날·오는 날 둘 다)</h3>
       <p style="margin:6px 0 0;font-size:17px">스타링크 와이파이라 카톡·영상도 돼요.</p>
