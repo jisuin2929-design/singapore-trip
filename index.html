@@ -620,14 +620,21 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
 @media (hover:hover) and (pointer:fine){.msarr{display:flex;position:absolute;top:38%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:26px;line-height:1;align-items:center;justify-content:center;cursor:pointer}.msarr.l{left:6px}.msarr.r{right:6px}.msarr[disabled]{opacity:0;pointer-events:none}}
 @media (min-width:1080px){.home{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}.hbtn{min-height:150px;padding:20px}.hbtn .hi{font-size:40px}.hbtn b{font-size:24px}.hbtn small{font-size:16px}#gbar{margin:0 0 12px}}
 @media (min-width:1080px){
-  body.tabs-on.at-home{padding-left:40vw}
-  body.tabs-on.at-home header.hero{position:fixed;left:0;top:0;bottom:0;width:40vw;display:flex;flex-direction:column;z-index:5}
-  body.tabs-on.at-home .hero .wrap{flex:1;align-content:center;padding:32px 32px 0}
+  body.tabs-on.at-home{padding-left:46vw;min-height:100vh}
+  body.tabs-on.at-home header.hero{position:fixed;inset:0;width:auto;display:flex;flex-direction:column;z-index:0}
+  body.tabs-on.at-home .hero .wrap{flex:1;align-content:center;margin:0;width:46vw;max-width:none;box-sizing:border-box;padding:32px 32px 0}
   body.tabs-on.at-home .hero .chips{max-width:520px}
-  body.tabs-on.at-home .hero .skyline{max-width:92%}
+  body.tabs-on.at-home .hero .skyline{max-width:720px;margin:0 auto}
   body.tabs-on.at-home .hero .sun{bottom:60px}
-  body.tabs-on.at-home .home{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:32px}
-  body.tabs-on.at-home .wrap{max-width:1100px}
+  body.tabs-on.at-home main,body.tabs-on.at-home footer{position:relative;z-index:1;background:transparent}
+  body.tabs-on.at-home footer{display:none}
+  body.tabs-on.at-home .wrap{max-width:820px}
+  body.tabs-on.at-home .home{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:max(40px,calc(50vh - 260px))}
+  body.tabs-on.at-home .hbtn{min-height:104px;padding:14px 16px;box-shadow:0 6px 20px rgba(20,20,50,.18)}
+  body.tabs-on.at-home .hbtn .hi{font-size:28px}
+  body.tabs-on.at-home .hbtn b{font-size:19px}
+  body.tabs-on.at-home .hbtn small{font-size:13px}
+  body.tabs-on.at-home .hbtn.wide{min-height:0;padding:12px 16px}
 }
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
