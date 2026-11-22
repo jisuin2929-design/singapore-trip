@@ -807,6 +807,13 @@ img.zoomable{cursor:zoom-in}
 #pwbox .row{display:flex;gap:10px}
 #pwbox button{flex:1;font-size:17px;font-weight:700;padding:12px;border-radius:14px;border:0;cursor:pointer}
 #pwbox .ok{background:#4a4378;color:#fff}#pwbox .no{background:#eee;color:#333}
+/* hotel location maps */
+.hmapcard{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);margin:10px 0 4px}
+.hloc{display:none;height:260px;position:relative;z-index:0;isolation:isolate;background:#eef1ee}
+.hmaplink{display:block;padding:11px 14px;font-weight:700;font-size:16px;color:var(--blue,#245fc7);text-decoration:none}
+.hpin{width:max-content;transform:translate(-50%,-100%);font:800 14px/1 var(--body);color:#fff;background:#764598;border:2.5px solid #fff;border-radius:14px;padding:7px 10px;box-shadow:0 2px 6px rgba(0,0,0,.35);white-space:nowrap}
+.hpin.s{background:#1f3b34;font-size:13px;padding:5px 8px}
+@media (min-width:1080px){.hloc{height:300px}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1383,6 +1390,7 @@ img.zoomable{cursor:zoom-in}
       <div class="stay"><span class="nights">1박</span><span class="when">12/2(수) 밤 ~ 12/3(목) 아침</span></div>
       <h3><a class="hmap" href="https://www.google.com/maps/search/?api=1&query=Dusit%20Thani%20Laguna%20Singapore" target="_blank" rel="noopener">두짓타니 라구나 싱가포르<span aria-hidden="true"> 📍</span></a></h3>
       <figure class="ph wide"><img src="img/hotel-dusit.jpg" alt="두짓타니 라구나 수영장과 건물" loading="lazy"></figure>
+      <div class="hmapcard"><div class="hloc" data-h="dusit"></div><a class="hmaplink" href="https://www.google.com/maps/search/?api=1&query=Dusit+Thani+Laguna+Singapore" target="_blank" rel="noopener">📍 구글 지도에서 위치 보기 ›</a></div>
       <ul>
         <li>공항에서 차로 10분. 새벽 2시쯤 들어가서 자기만 하는 곳이에요.</li>
         <li><b>방</b> · 디럭스 라구나 트윈(침대 2개) 방 2개예요. 아침 식사와 와이파이가 포함돼 있어요.</li>
@@ -1397,6 +1405,7 @@ img.zoomable{cursor:zoom-in}
       <div class="stay"><span class="nights">2박</span><span class="when">12/3(목) ~ 12/5(토)</span></div>
       <h3><a class="hmap" href="https://www.google.com/maps/search/?api=1&query=The%20Fullerton%20Hotel%20Singapore" target="_blank" rel="noopener">더 풀러턴 호텔 싱가포르<span aria-hidden="true"> 📍</span></a></h3>
       <figure class="ph wide"><img src="img/hotel-fullerton.jpg?v=3" alt="밤에 불이 켜진 더 풀러턴 호텔" loading="lazy"></figure>
+      <div class="hmapcard"><div class="hloc" data-h="fullerton"></div><a class="hmaplink" href="https://www.google.com/maps/search/?api=1&query=The+Fullerton+Hotel+Singapore" target="_blank" rel="noopener">📍 구글 지도에서 위치 보기 ›</a></div>
       <ul>
         <li><b>어떤 곳</b> · 1928년에 지은 옛 중앙우체국 건물(풀러턴 빌딩)을 고친 호텔이에요. 싱가포르강이 바다와 만나는 곳에 있어요.</li>
         <li><b>방</b> · 마리나베이가 보이는 클럽 킹룸 2개예요. 아침 식사 포함.</li>
@@ -1873,6 +1882,20 @@ document.addEventListener("click",function(e){var a=e.target.closest("a[data-doc
 box.querySelector(".no").onclick=close;box.addEventListener("click",function(e){if(e.target===box)close();});
 form.addEventListener("submit",function(e){e.preventDefault();var p=inp.value.trim();if(!p)return;err.textContent="여는 중...";var w=window.open("","_blank");
  go(cur,p,w).then(function(ok){if(!ok){err.textContent="비밀번호가 달라요. 다시 넣어 주세요.";inp.value="";inp.focus();}});});
+})();
+</script>
+<script>
+(function(){if(!/github\.io$/.test(location.hostname))return;
+var H={dusit:{c:[1.3200,103.9630],n:"두짓타니 라구나",o:[[1.3570,103.9890,"창이공항"],[1.3602,103.9894,"쥬얼"]]},
+fullerton:{c:[1.2863,103.8532],n:"더 풀러턴 호텔",o:[[1.2868,103.8546,"머라이언"],[1.2834,103.8607,"마리나베이 샌즈"],[1.2876,103.8603,"헬릭스 다리"]]}};
+function draw(){document.querySelectorAll(".hloc[data-h]").forEach(function(el){if(el._m)return;var h=H[el.dataset.h];if(!h)return;el.style.display="block";
+ var m=L.map(el,{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,minZoom:11,maxZoom:19,zoomControl:true});el._m=m;
+ L.tileLayer("https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png",{detectRetina:true,maxZoom:19,minZoom:11,attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> | Singapore Land Authority'}).addTo(m);
+ var pts=[h.c];h.o.forEach(function(p){pts.push([p[0],p[1]]);L.marker([p[0],p[1]],{icon:L.divIcon({className:"",html:'<div class="hpin s">'+p[2]+'</div>',iconSize:[0,0]})}).addTo(m);});
+ L.marker(h.c,{zIndexOffset:1000,icon:L.divIcon({className:"",html:'<div class="hpin">🏨 '+h.n+'</div>',iconSize:[0,0]})}).addTo(m);
+ m.fitBounds(L.latLngBounds(pts),{paddingTopLeft:[60,50],paddingBottomRight:[60,20],maxZoom:16});
+ new IntersectionObserver(function(e){if(e[0].isIntersecting){m.invalidateSize();m.fitBounds(L.latLngBounds(pts),{paddingTopLeft:[60,50],paddingBottomRight:[60,20],maxZoom:16});}}).observe(el);});}
+var t=0;(function w(){if(window.L&&L.map)return draw();if(++t===20&&!document.querySelector('script[src*="leaflet"]')){var c=document.createElement("link");c.rel="stylesheet";c.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css";document.head.appendChild(c);var j=document.createElement("script");j.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";document.head.appendChild(j);}if(t<200)setTimeout(w,100);})();
 })();
 </script>
 
