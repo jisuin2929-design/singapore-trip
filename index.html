@@ -515,10 +515,9 @@ footer{color:var(--muted);font-size:16px;text-align:center;padding-block:0 40px}
 .souv p{margin:4px 0 0;font-size:16px;color:var(--muted);line-height:1.6}
 .souv .srec{color:var(--ink);font-weight:600;font-size:15px}
 #home,#gbar{display:none}
-@media (max-width:1079px){
+@media all{
   body.tabs-on nav{display:none}
-  body.tabs-on main section{display:none}
-  body.tabs-on main section.gshow{display:block}
+  body.tabs-on main section:not(.gshow){display:none}
   body.tabs-on:not([data-g="plan"]) a.maplink{display:none}
   body.tabs-on main section.day.gshow{display:grid;gap:18px}
   body.tabs-on:not(.at-home) header.hero{display:none}
@@ -618,6 +617,7 @@ body.tabs-on main section#flight.gshow,body.tabs-on main section#flight2.gshow{d
 .mprep{aspect-ratio:720/449;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:var(--muted);background:var(--surface);border:2px dashed var(--line);border-radius:12px 12px 0 0;box-sizing:border-box}
 .mswrap{position:relative}.msarr{display:none}
 @media (hover:hover) and (pointer:fine){.msarr{display:flex;position:absolute;top:38%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:26px;line-height:1;align-items:center;justify-content:center;cursor:pointer}.msarr.l{left:6px}.msarr.r{right:6px}.msarr[disabled]{opacity:0;pointer-events:none}}
+@media (min-width:1080px){.home{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.hbtn{min-height:150px;padding:20px}.hbtn .hi{font-size:40px}.hbtn b{font-size:24px}.hbtn small{font-size:16px}#gbar{margin:0 0 12px}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -1392,7 +1392,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]]}, mq=matchMedia("(max-width:1079px)"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]]}, mq=matchMedia("all"), b=document.body;
   var F2=Date.now()<Date.parse("2026-12-02T14:00:00+09:00");
   function setF(){var h=location.hash;var two=h==="#g-flight2"||h==="#flight2"?true:(h==="#g-flight"||h==="#flight"?false:F2);b.classList.toggle("f2",two);
     document.querySelectorAll('a[href="#g-flight"],a[href="#g-flight2"],nav a[href="#flight"],nav a[href="#flight2"]').forEach(function(x){if(x.closest("#flight,#flight2"))return;var g=x.getAttribute("href").indexOf("#g-")===0;x.setAttribute("href",(g?"#g-":"#")+(F2?"flight2":"flight"));});}
