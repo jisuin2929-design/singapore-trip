@@ -1800,7 +1800,7 @@ function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.
       var bar=document.createElement('div'); bar.className='lscopes'; var sum=document.createElement('div'); sum.className='lsum';
       var box=document.createElement('div'); box.className='lmap'; var leg=document.createElement('div'); leg.className='lleg';
       card.append(bar,sum,box,leg); a.parentNode.insertBefore(card,a); a.hidden=true;
-      var map=L.map(box,{zoomSnap:0.25,scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,minZoom:11,maxZoom:19,maxBounds:[[1.13,103.55],[1.50,104.15]]});
+      var map=L.map(box,{zoomSnap:0.25,scrollWheelZoom:!L.Browser.mobile,wheelPxPerZoomLevel:120,dragging:!L.Browser.mobile,tap:false,minZoom:11,maxZoom:19,maxBounds:[[1.13,103.55],[1.50,104.15]]});
       L.tileLayer('https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png',{detectRetina:true,maxZoom:19,minZoom:11,
         attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> &copy; contributors | Singapore Land Authority'}).addTo(map);
       var layer=L.layerGroup().addTo(map), btns=[];
@@ -1891,7 +1891,7 @@ form.addEventListener("submit",function(e){e.preventDefault();var p=inp.value.tr
 var H={dusit:{c:[1.3200,103.9630],n:"두짓타니 라구나",o:[[1.3570,103.9890,"창이공항"],[1.3602,103.9894,"쥬얼"],[1.2863,103.8532,"풀러턴",2]]},
 fullerton:{c:[1.2863,103.8532],n:"더 풀러턴 호텔",o:[[1.2868,103.8546,"머라이언"],[1.2834,103.8607,"마리나베이 샌즈"],[1.2876,103.8603,"헬릭스 다리"],[1.3200,103.9630,"두짓타니",3]]}};
 function draw(){document.querySelectorAll(".hloc[data-h]").forEach(function(el){if(el._m)return;var h=H[el.dataset.h];if(!h)return;el.style.display="block";
- var m=L.map(el,{scrollWheelZoom:false,dragging:true,touchZoom:true,tap:false,minZoom:11,maxZoom:19,zoomControl:true});el._m=m;
+ var m=L.map(el,{scrollWheelZoom:!L.Browser.mobile,wheelPxPerZoomLevel:120,dragging:true,touchZoom:true,tap:false,minZoom:11,maxZoom:19,zoomControl:true});el._m=m;
  L.tileLayer("https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png",{detectRetina:true,maxZoom:19,minZoom:11,attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> | Singapore Land Authority'}).addTo(m);
  var pts=[h.c];h.o.forEach(function(p){if(p[3]!==3)pts.push([p[0],p[1]]);L.marker([p[0],p[1]],{icon:L.divIcon({className:"",html:'<div class="hpin '+(p[3]?"xs":"s")+'">'+p[2]+'</div>',iconSize:[0,0]})}).addTo(m);});
  if(el.dataset.h==="dusit")pts.push([1.2494,103.8303]);
