@@ -1894,6 +1894,7 @@ function draw(){document.querySelectorAll(".hloc[data-h]").forEach(function(el){
  var m=L.map(el,{scrollWheelZoom:false,dragging:!L.Browser.mobile,tap:false,minZoom:11,maxZoom:19,zoomControl:true});el._m=m;
  L.tileLayer("https://www.onemap.gov.sg/maps/tiles/Default/{z}/{x}/{y}.png",{detectRetina:true,maxZoom:19,minZoom:11,attribution:'<a href="https://www.onemap.gov.sg/" target="_blank" rel="noopener">OneMap</a> | Singapore Land Authority'}).addTo(m);
  var pts=[h.c];h.o.forEach(function(p){if(p[3]!==3)pts.push([p[0],p[1]]);L.marker([p[0],p[1]],{icon:L.divIcon({className:"",html:'<div class="hpin '+(p[3]?"xs":"s")+'">'+p[2]+'</div>',iconSize:[0,0]})}).addTo(m);});
+ if(el.dataset.h==="dusit")pts.push([1.2494,103.8303]);
  L.marker([1.2494,103.8303],{icon:L.divIcon({className:"",html:'<div class="hlbl">센토사섬</div>',iconSize:[0,0]})}).addTo(m);
  L.marker(h.c,{zIndexOffset:1000,icon:L.divIcon({className:"",html:'<div class="hpin">🏨 '+h.n+'</div>',iconSize:[0,0]})}).addTo(m);
  m.fitBounds(L.latLngBounds(pts),{paddingTopLeft:[60,50],paddingBottomRight:[60,20],maxZoom:16});
