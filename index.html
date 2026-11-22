@@ -817,6 +817,16 @@ img.zoomable{cursor:zoom-in}
 .hlbl{width:max-content;transform:translate(-50%,-50%);font:800 14px/1 var(--body);color:#111;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 5px #fff;white-space:nowrap}
 .hpin.xs{background:#764598;font-size:10px;padding:3px 6px;border-width:1.5px}
 @media (min-width:1080px){.hloc{height:300px}}
+/* intro page */
+.hbtn.wide.sgintro{background:#fdecee;border-color:#f3b9c0;color:#5a1620}.hbtn.wide.sgintro small{color:#8a3b46}
+.sgmap{padding:8px;margin:12px 0 16px}.sgmap img{display:block;width:100%;height:auto;border-radius:12px}.sgmap figcaption{font-size:14px;color:var(--muted);text-align:center;padding:8px 0 2px}
+.ih{font-size:21px;margin:22px 0 10px}
+.ilist ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}.ilist li{display:grid;gap:3px;padding-bottom:12px;border-bottom:1px solid var(--line)}.ilist li:last-child{border:0;padding:0}
+.ilist b{font-size:18px}.ilist span{font-size:16px;color:var(--muted);line-height:1.6}
+.lmk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lm{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:4px;align-content:start}
+.lm .le{font-size:30px}.lm b{font-size:17px}.lm small{font-size:14px;color:var(--muted);line-height:1.5}.lm em{font-style:normal;font-size:13px;font-weight:800;color:#0f6b57}
+@media (min-width:1080px){#intro.gshow{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0 28px;align-items:start}#intro>h2,#intro>.lead{grid-column:1 / -1}#intro>.sgmap{grid-column:1;grid-row:3 / span 4;margin-top:0}#intro>.facts{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr))}#intro>.ih,#intro>.ilist,#intro>.lmk{grid-column:1 / -1}.lmk{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
@@ -873,7 +883,7 @@ img.zoomable{cursor:zoom-in}
 
 <main>
 <div class="wrap">
-<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a></div>
+<div id="home" class="home"><a class="hbtn wide" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>출발 전 할 일·짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a><a class="hbtn wide sgintro" href="#g-intro"><span class="hi" aria-hidden="true">🇸🇬</span><b>싱가포르는 어떤 나라?</b><small>그림지도 · 독립 · 언어 · 중심지 · 랜드마크</small></a></div>
 <div id="gbar"><span class="xlights" aria-hidden="true"></span><a href="#home">← 처음 화면</a><b id="gtitle"></b><span id="gday" aria-live="polite"></span></div>
 
   <section id="prep">
@@ -1541,6 +1551,37 @@ img.zoomable{cursor:zoom-in}
     </div>
   </section>
 
+  <section id="intro">
+    <h2>싱가포르는 어떤 나라?</h2>
+    <p class="lead">말레이반도 맨 끝에 있는 작은 섬나라예요. 나라 전체가 도시 하나라서 <b>"도시 국가"</b>라고 불러요. 서울보다 조금 크고, 차로 동쪽 끝에서 서쪽 끝까지 1시간이면 가요.</p>
+    <figure class="card sgmap"><img class="zoomable" src="img/sg-map.svg?v=1" alt="싱가포르 전체 그림지도"><figcaption>싱가포르 전체 그림지도 · 누르면 크게 볼 수 있어요</figcaption></figure>
+    <div class="facts">
+      <div class="fact"><span class="k">독립</span><span class="v">1965년 8월 9일</span><p>오랫동안 영국 땅이었다가 1963년 말레이시아에 들어갔고, 2년 뒤 따로 떨어져 나와 독립했어요. 8월 9일이 국경일이에요.</p></div>
+      <div class="fact"><span class="k">말</span><span class="v">공용어가 4개</span><p><b>영어, 중국어, 말레이어, 타밀어</b>를 다 써요. 서로 다른 민족끼리는 영어로 말해요. 국가(애국가)는 말레이어로 불러요.</p></div>
+      <div class="fact"><span class="k">크기</span><span class="v">약 735㎢</span><p>서울(605㎢)보다 조금 커요. 섬 60여 개가 있는데 대부분 본섬에 살아요.</p></div>
+      <div class="fact"><span class="k">사람</span><span class="v">약 600만 명</span><p>중국계가 4명 중 3명꼴이고, 말레이계와 인도계가 그다음이에요.</p></div>
+      <div class="fact"><span class="k">수도</span><span class="v">나라 = 도시</span><p>나라 전체가 하나의 도시라서 따로 수도가 없어요.</p></div>
+      <div class="fact"><span class="k">이름 뜻</span><span class="v">사자의 도시</span><p>옛말 "싱아푸라"에서 왔어요. 그래서 상징이 사자 얼굴의 <b>머라이언</b>이에요.</p></div>
+    </div>
+    <h3 class="ih">📍 중심지는 어디예요?</h3>
+    <div class="card ilist"><ul>
+      <li><b>마리나베이 · 시내 중심</b><span>남쪽 바닷가예요. 은행 빌딩, 마리나베이 샌즈, 머라이언이 모여 있어요. 우리가 묵는 <b>풀러턴 호텔</b>이 바로 여기예요.</span></li>
+      <li><b>오차드로드</b><span>백화점과 쇼핑몰이 줄지어 있는 큰 쇼핑 거리예요. 12월엔 크리스마스 조명으로 유명해요.</span></li>
+      <li><b>차이나타운 · 리틀인디아 · 캄퐁글람</b><span>중국계, 인도계, 말레이계가 모여 살던 옛 동네예요. 음식과 사원이 볼거리예요.</span></li>
+      <li><b>센토사섬</b><span>남쪽에 붙은 놀이 섬이에요. 해변, 케이블카, 루지가 있어요.</span></li>
+    </ul></div>
+    <h3 class="ih">🏙️ 꼭 알아둘 랜드마크</h3>
+    <div class="lmk">
+      <div class="lm"><span class="le">🦁</span><b>머라이언</b><small>사자 머리 + 물고기 몸. 입에서 물을 뿜어요.</small><em>✓ 일정에 있어요</em></div>
+      <div class="lm"><span class="le">🏨</span><b>마리나베이 샌즈</b><small>빌딩 3개 위에 배가 얹힌 모양의 호텔이에요.</small><em>✓ 일정에 있어요</em></div>
+      <div class="lm"><span class="le">🌳</span><b>가든스 바이 더 베이</b><small>거대한 인공 나무(슈퍼트리)와 유리 온실 정원.</small><em>✓ 일정에 있어요</em></div>
+      <div class="lm"><span class="le">🎭</span><b>에스플러네이드</b><small>두리안 과일처럼 생긴 공연장이에요.</small><em>✓ 일정에 있어요</em></div>
+      <div class="lm"><span class="le">🎡</span><b>싱가포르 플라이어</b><small>마리나베이 옆 큰 대관람차예요.</small></div>
+      <div class="lm"><span class="le">🏛️</span><b>래플스 호텔</b><small>1887년에 문을 연 하얀 옛날 호텔이에요.</small></div>
+      <div class="lm"><span class="le">🏖️</span><b>센토사섬</b><small>해변과 놀거리가 모인 휴양 섬.</small><em>✓ 일정에 있어요</em></div>
+      <div class="lm"><span class="le">💧</span><b>쥬얼 창이</b><small>공항 옆 쇼핑몰 안에 세계에서 제일 큰 실내 폭포가 있어요.</small><em>✓ 일정에 있어요</em></div>
+    </div>
+  </section>
   <section id="info">
     <h2>싱가포르 기본 정보</h2>
     <div class="facts">
@@ -1647,7 +1688,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]]}, mq=matchMedia("all"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]],"intro":["싱가포르 소개",["intro"]]}, mq=matchMedia("all"), b=document.body;
   var F2=Date.now()<Date.parse("2026-12-02T14:00:00+09:00");
   function setF(){var h=location.hash;var two=h==="#g-flight2"||h==="#flight2"?true:(h==="#g-flight"||h==="#flight"?false:F2);b.classList.toggle("f2",two);
     document.querySelectorAll('a[href="#g-flight"],a[href="#g-flight2"],nav a[href="#flight"],nav a[href="#flight2"]').forEach(function(x){if(x.closest("#flight,#flight2"))return;var g=x.getAttribute("href").indexOf("#g-")===0;x.setAttribute("href",(g?"#g-":"#")+(F2?"flight2":"flight"));});}
