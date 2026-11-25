@@ -1708,7 +1708,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>
 (function(){
   var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["prep", "pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]],"intro":["싱가포르 소개",["intro"]]}, mq=matchMedia("all"), b=document.body;
-  var F2=Date.now()<Date.parse("2026-11-01T00:00:00+09:00")/*TEMP flight1; restore 2026-12-02T14:00:00+09:00*/;
+  var F2=Date.now()<Date.parse("2026-12-02T14:00:00+09:00");
   function setF(){var h=location.hash;var two=h==="#g-flight2"||h==="#flight2"?true:(h==="#g-flight"||h==="#flight"?false:F2);b.classList.toggle("f2",two);
     document.querySelectorAll('a[href="#g-flight"],a[href="#g-flight2"],nav a[href="#flight"],nav a[href="#flight2"]').forEach(function(x){if(x.closest("#flight,#flight2"))return;var g=x.getAttribute("href").indexOf("#g-")===0;x.setAttribute("href",(g?"#g-":"#")+(F2?"flight2":"flight"));});}
   setF(); window.addEventListener("hashchange",setF);
@@ -1781,7 +1781,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>document.querySelectorAll(".mslide").forEach(function(m){if(m.children.length<2)return;var w=document.createElement("div");w.className="mswrap";m.parentNode.insertBefore(w,m);w.appendChild(m);
 ["l","r"].forEach(function(d){var bt=document.createElement("button");bt.type="button";bt.className="msarr "+d;bt.setAttribute("aria-label",d=="l"?"이전 사진":"다음 사진");bt.textContent=d=="l"?"‹":"›";bt.onclick=function(){var f=m.querySelector("figure");m.scrollBy({left:(d=="l"?-1:1)*(f?f.offsetWidth+10:m.clientWidth),behavior:"smooth"});};w.appendChild(bt);});
 function up(){var l=w.querySelector(".msarr.l"),r=w.querySelector(".msarr.r");l.disabled=m.scrollLeft<4;r.disabled=m.scrollLeft+m.clientWidth>=m.scrollWidth-4;}m.addEventListener("scroll",up);window.addEventListener("resize",up);window.addEventListener("sgshow",up);setTimeout(up,100);});</script>
-<script>try{if(Date.now()<Date.parse("2026-11-01T00:00:00+09:00")/*TEMP flight1; restore 2026-12-02T14:00:00+09:00*/)document.querySelectorAll("a[data-lounge]").forEach(function(a){a.href="lounge2.html";});}catch(e){}</script>
+<script>try{if(Date.now()<Date.parse("2026-12-02T14:00:00+09:00"))document.querySelectorAll("a[data-lounge]").forEach(function(a){a.href="lounge2.html";});}catch(e){}</script>
 <footer><div class="wrap">일정은 조금씩 바뀔 수 있어요. 바뀌면 이 페이지도 고쳐 둘게요.</div></footer>
 
 <script>
