@@ -842,6 +842,8 @@ img.zoomable{cursor:zoom-in}
 .day .photos{grid-template-columns:minmax(0,1fr)!important}
 .day .photos .ph img,.day .photos .ph.wide img{aspect-ratio:16/9}
 .day .photos .span2{grid-column:auto}
+/* mobile: keep prep titles on one line */
+@media (max-width:700px){#prep>h2,#popT{white-space:nowrap;font-size:clamp(19px,6vw,26px)!important;letter-spacing:-.02em}#prep>h2::after{width:20px;height:20px}#prep>h2 .okpill{font-size:13px;padding:3px 8px}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
 </head>
