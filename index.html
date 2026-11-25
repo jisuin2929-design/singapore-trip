@@ -1688,6 +1688,10 @@ img.zoomable{cursor:zoom-in}
       <div><span>경찰</span><span class="phone">999</span></div>
       <div><span>구급차, 소방</span><span class="phone">995</span></div>
       <div><span>주싱가포르 한국대사관</span><span class="phone">+65 6256 1188</span></div>
+      <div><span>영사콜센터 (24시간, 한국어)</span><span class="phone">+82 2 3210 0404</span></div>
+      <div><span>두짓타니 호텔 (12/2 밤)</span><span class="phone">+65 6841 8888</span></div>
+      <div><span>풀러턴 호텔 (12/3~5)</span><span class="phone">+65 6733 8388</span></div>
+      <div><span>창이공항 안내</span><span class="phone">+65 6595 6868</span></div>
     </div>
   </section>
 
@@ -1966,6 +1970,14 @@ function draw(){document.querySelectorAll(".hloc[data-h]").forEach(function(el){
 var t=0;(function w(){if(window.L&&L.map)return draw();if(++t===20&&!document.querySelector('script[src*="leaflet"]')){var c=document.createElement("link");c.rel="stylesheet";c.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css";document.head.appendChild(c);var j=document.createElement("script");j.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";document.head.appendChild(j);}if(t<200)setTimeout(w,100);})();
 })();
 </script>
+<style>
+.tips{gap:14px!important}
+.tip{gap:2px!important;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.tip:last-child{border-bottom:0;padding-bottom:0}
+.tip h3,.manners b{font-size:19px!important;font-weight:800;line-height:1.45;margin:0}
+.tip p,.manners span{font-size:17px!important;line-height:1.6;color:var(--muted)}
+.manners .fine{font-size:15px!important}
+</style>
 
 </body>
 </html>
