@@ -1698,7 +1698,7 @@ img.zoomable{cursor:zoom-in}
 
   <section id="ledger">
     <h2>가계부</h2>
-    <p class="lead">여행하면서 쓴 돈과 미리 결제한 금액을 적어 두는 곳이에요.</p>
+    <p class="lead">여행하면서 쓴 돈과 미리 결제한 금액을 적어요. 싱가포르 달러로 적어도, 원으로 적어도 둘 다 보여요.</p>
     <div class="card lgcard" id="lgLock">
       <p>가계부는 비밀번호(예약 확인서와 같은 번호)를 넣어야 보여요.</p>
       <form id="lgPwForm" class="lgrow"><input id="lgPw" type="password" inputmode="numeric" placeholder="비밀번호" autocomplete="off"><button type="submit">열기</button></form>
@@ -1707,19 +1707,34 @@ img.zoomable{cursor:zoom-in}
     <div id="lgMain" hidden>
       <div class="lgsum" id="lgSum"></div>
       <p class="lgsync" id="lgSync"></p>
-      <form class="card lgcard lgform" id="lgForm">
-        <h3>새로 적기</h3>
-        <div class="lggrid">
-          <label>날짜<select name="day"><option>미리 결제</option><option>12/2</option><option selected>12/3</option><option>12/4</option><option>12/5</option><option>12/6</option></select></label>
-          <label>종류<select name="cat"><option>식사</option><option>교통</option><option>관광</option><option>쇼핑</option><option>숙소</option><option>항공</option><option>기타</option></select></label>
-          <label class="wide">무엇에<input name="item" required placeholder="예: 팜비치 칠리크랩" maxlength="60"></label>
-          <label>금액<input name="amt" required inputmode="decimal" placeholder="숫자만" maxlength="12"></label>
-          <label>돈 단위<select name="cur"><option value="SGD">싱가포르 달러 (S$)</option><option value="KRW">원 (₩)</option></select></label>
-          <label>누가 냈나요<select name="who"><option>현호</option><option>경희</option><option selected>수인</option><option>혜인</option></select></label>
+      <div class="lgtabs" role="tablist"><button type="button" class="on" data-t="a">📝 적기 · 내역</button><button type="button" data-t="b">📊 항목별 합계</button></div>
+      <div class="lgcols">
+        <div class="lgcol lgcolA">
+          <form class="card lgcard lgform" id="lgForm">
+            <h3>새로 적기</h3>
+            <div class="lggrid">
+              <label>날짜<select name="day"><option>미리 결제</option><option>12/2</option><option selected>12/3</option><option>12/4</option><option>12/5</option><option>12/6</option></select></label>
+              <label>시간 (싱가포르)<input name="time" type="time"></label>
+              <label class="wide">어디서<input name="place" list="lgPlaces" placeholder="예: 팜비치 시푸드, Grab" maxlength="40" required></label>
+              <label>항목<select name="cat"><option>식비</option><option>교통비</option><option>관광·입장료</option><option>기념품비</option><option>쇼핑</option><option>숙소</option><option>항공</option><option>기타</option><option value="__new">+ 새 항목 직접 쓰기</option></select></label>
+              <label class="lgnewcat" hidden>새 항목 이름<input name="newcat" placeholder="예: 약값, 병원비" maxlength="20"></label>
+              <label>누가 냈나요<select name="who"><option>현호</option><option>경희</option><option selected>수인</option><option>혜인</option></select></label>
+              <label>금액<input name="amt" required inputmode="decimal" placeholder="숫자만" maxlength="12"></label>
+              <label>돈 단위<select name="cur"><option value="SGD">싱가포르 달러 (S$)</option><option value="KRW">원 (₩)</option></select></label>
+              <label class="wide">메모 (선택)<input name="item" placeholder="예: 칠리크랩 1마리, 볶음밥" maxlength="60"></label>
+            </div>
+            <p class="lgconv" id="lgConv"></p>
+            <button type="submit" class="lgadd">저장하기</button>
+          </form>
+          <div class="card lgcard"><h3>적은 내역</h3><div id="lgList"></div></div>
+          <div class="card lgcard"><h3>날짜별 합계</h3><div id="lgDays"></div></div>
         </div>
-        <button type="submit" class="lgadd">저장하기</button>
-      </form>
-      <div class="card lgcard"><h3>적은 내역</h3><div id="lgList"></div></div>
+        <div class="lgcol lgcolB">
+          <div class="card lgcard"><h3>항목별 합계</h3><div id="lgCats"></div></div>
+          <div class="card lgcard"><h3>날짜별 · 항목별</h3><div id="lgGrid" class="lgtablewrap"></div></div>
+        </div>
+      </div>
+      <datalist id="lgPlaces"><option value="Grab"><option value="택시"><option value="두짓타니 라구나"><option value="더 풀러턴 호텔"><option value="팜비치 시푸드"><option value="라보"><option value="레벨33"><option value="리버크루즈"><option value="가든스 바이 더 베이"><option value="케이블카"><option value="스카이라인 루지"><option value="트라피자"><option value="탄중 비치클럽"><option value="나이트사파리"><option value="울루울루 푸드코트"><option value="라우파삿"><option value="송파 바쿠테"><option value="점보 시푸드"><option value="팀호완"><option value="쥬얼 짐 보관소"><option value="창이공항"><option value="편의점"></datalist>
     </div>
   </section>
 
@@ -2074,93 +2089,149 @@ var t=0;(function w(){if(window.L&&L.map)return draw();if(++t===20&&!document.qu
 @media (max-width:1079px){.home .hbtn.hide-all{display:none!important}}
 .home .hbtn.ledger{background:#e3f4ef;border-color:#8fd0bd;color:#0d4d40}
 .home .hbtn.ledger small{color:#2f6f60}
-@media (max-width:1079px){.home .hbtn.ledger{grid-column:1 / -1;min-height:0;flex-direction:row;align-items:center;column-gap:10px;padding:12px 16px}.home .hbtn.ledger .hi{font-size:28px}.home .hbtn.ledger b{font-size:20px}.home .hbtn.ledger small{flex-basis:100%}}
-.lgcard{display:grid;gap:10px}
+@media (max-width:1079px){.home .hbtn.ledger{grid-column:1 / -1;min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center;column-gap:10px;padding:12px 16px}.home .hbtn.ledger .hi{font-size:28px}.home .hbtn.ledger b{font-size:20px}}
+.lgcard{display:grid;gap:10px;margin-bottom:14px}
 .lgcard h3{font-family:var(--body);font-size:19px;font-weight:800;margin:0}
 .lgrow{display:flex;gap:8px;flex-wrap:wrap}
-#ledger input,#ledger select{font:inherit;font-size:17px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#1e2340;width:100%;box-sizing:border-box}
+#ledger input,#ledger select{font:inherit;font-size:17px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#1e2340;width:100%;box-sizing:border-box;min-width:0}
 .lgrow input{flex:1;min-width:140px;width:auto}
 #ledger button{font:inherit;font-weight:800;font-size:17px;border-radius:12px;padding:10px 16px;border:0;background:#1a7f5a;color:#fff;cursor:pointer}
 .lgerr{color:#c0392b;font-weight:700}
 .lggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .lggrid label{display:grid;gap:4px;font-size:15px;font-weight:700;color:var(--muted)}
 .lggrid label.wide{grid-column:1 / -1}
+.lggrid label[hidden]{display:none}
+.lgconv{margin:0;font-weight:800;color:#0d4d40;min-height:1.2em}
 .lgadd{width:100%}
 .lgsum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
 .lgsum .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
 .lgsum .box.main{background:#e3f4ef;border-color:#8fd0bd;color:#0d4d40}
 .lgsum .k{font-size:14px;font-weight:700;opacity:.8}
 .lgsum .v{font-size:21px;font-weight:800;font-variant-numeric:tabular-nums}
-.lgsum .s{font-size:13px;opacity:.75}
+.lgsum .s{font-size:14px;opacity:.8;font-variant-numeric:tabular-nums}
 .lgsync{font-size:14px;color:var(--muted);margin:0 0 10px}
-.lgday{font-weight:800;margin:10px 0 4px;font-size:16px}
+.lgtabs{display:flex;gap:8px;margin:0 0 12px}
+#ledger .lgtabs button{flex:1;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-size:16px}
+#ledger .lgtabs button.on{background:#1a7f5a;color:#fff;border-color:#1a7f5a}
+.lgcolB{display:none}
+.lgcols.showB .lgcolA{display:none}.lgcols.showB .lgcolB{display:block}
+.lgday{font-weight:800;margin:12px 0 2px;font-size:16px;display:flex;justify-content:space-between;gap:8px}
 .lgday:first-child{margin-top:0}
-.lgitem{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.lgitem{display:grid;grid-template-columns:3.2em 1fr auto auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.lgitem .tm{font-size:14px;font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
 .lgitem .t{font-size:16px;font-weight:700}
 .lgitem .m{font-size:13px;color:var(--muted)}
-.lgitem .a{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-.lgitem .a small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.lgmoney{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;line-height:1.3}
+.lgmoney small{display:block;font-weight:600;font-size:13px;color:var(--muted)}
 #ledger .lgdel{background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 9px;font-size:14px;border-radius:9px}
 #ledger .lgdel.sure{background:#c0392b;color:#fff;border-color:#c0392b}
 .lgempty{color:var(--muted)}
-@media (min-width:1080px){#ledger.gshow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;align-items:start}#ledger>h2,#ledger>.lead,#ledger>#lgLock{grid-column:1 / -1}#lgMain{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;align-items:start}#lgMain[hidden]{display:none}#lgMain>.lgsum,#lgMain>.lgsync{grid-column:1 / -1}.lggrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.lgt{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+.lgt th,.lgt td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.lgt th:first-child,.lgt td:first-child{text-align:left}
+.lgt thead th{font-size:13px;color:var(--muted)}
+.lgt tfoot td{font-weight:800;border-top:2px solid var(--ink);border-bottom:0}
+.lgt td small{display:block;color:var(--muted);font-size:12px}
+.lgtablewrap{overflow-x:auto}
+.lgbar{height:6px;border-radius:3px;background:#8fd0bd;margin-top:3px}
+@media (min-width:1080px){
+  .lgtabs{display:none}
+  .lgcols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:0 24px;align-items:start}
+  .lgcols .lgcolA,.lgcols .lgcolB,.lgcols.showB .lgcolA{display:block}
+  .lggrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .lggrid label.wide{grid-column:span 2}
+}
 </style>
 <script>
 (function(){
-  var SYNC_URL="https://script.google.com/macros/s/AKfycbx_Jihaf-paSnaIAstka5STh9g9t_F7Nu5GV3Wrg73kx4Pm1gVzjHOB8vc9w7XKFEkw/exec"; // Google Apps Script 웹앱 주소를 넣으면 모두 같이 저장돼요
-  var RATE=1030, KEY="sgLedger";
+  var SYNC_URL="https://script.google.com/macros/s/AKfycbx_Jihaf-paSnaIAstka5STh9g9t_F7Nu5GV3Wrg73kx4Pm1gVzjHOB8vc9w7XKFEkw/exec";
+  var RATE=1030, KEY="sgLedger", GOOD="0f152670cb49ba15131d115d54f5ebff316d9adfeec7e44c66eb860b343786e1";
   var pw=null, rows=[];
   var $=function(id){return document.getElementById(id);};
   if(!$("ledger")) return;
+  var OLD={"식사":"식비","교통":"교통비","관광":"관광·입장료"};
+  var CATS=["식비","교통비","관광·입장료","기념품비","쇼핑","숙소","항공","기타"];
+  var DAYS=["미리 결제","12/2","12/3","12/4","12/5","12/6"];
   function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");});}
-  var GOOD="0f152670cb49ba15131d115d54f5ebff316d9adfeec7e44c66eb860b343786e1";
   function load(){try{rows=JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){rows=[];}}
   function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(rows));}catch(e){}}
   function api(body){return fetch(SYNC_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({key:pw},body))}).then(function(r){return r.json();});}
   function pull(){
-    if(!SYNC_URL){$("lgSync").textContent="지금은 이 휴대폰(컴퓨터)에만 저장돼요.";render();return;}
+    if(!SYNC_URL){$("lgSync").textContent="지금은 이 기기에만 저장돼요.";render();return;}
     $("lgSync").textContent="불러오는 중…";
     api({action:"list"}).then(function(d){if(d&&d.rows){rows=d.rows;saveLocal();}$("lgSync").textContent="✓ 가족 모두 같이 보는 가계부예요. (마지막 불러오기 "+new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})+")";render();})
       .catch(function(){$("lgSync").textContent="⚠ 인터넷 연결을 확인해 주세요. 이 기기에 저장된 내용만 보여요.";render();});
   }
-  function won(r){var a=Number(r.amt)||0;return r.cur==="SGD"?a*RATE:a;}
-  function fmtW(n){return Math.round(n).toLocaleString("ko-KR")+"원";}
-  function fmtS(n){return "S$"+(Math.round(n*100)/100).toLocaleString("en-US");}
-  var DAYS=["미리 결제","12/2","12/3","12/4","12/5","12/6"];
-  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function cat(r){return OLD[r.cat]||r.cat||"기타";}
+  function W(r){var a=Number(r.amt)||0;return r.cur==="SGD"?a*RATE:a;}
+  function S(r){var a=Number(r.amt)||0;return r.cur==="SGD"?a:a/RATE;}
+  function fW(n){return Math.round(n).toLocaleString("ko-KR")+"원";}
+  function fS(n){return "S$"+(Math.round(n*100)/100).toLocaleString("en-US",{maximumFractionDigits:2});}
+  function both(s,w){return '<span class="lgmoney">'+fS(s)+'<small>'+fW(w)+'</small></span>';}
+  function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function sum(rs){return rs.reduce(function(a,r){a.s+=S(r);a.w+=W(r);return a;},{s:0,w:0});}
   function render(){
-    var tot=0,pre=0,trip=0,who={};
-    rows.forEach(function(r){var w=won(r);tot+=w;if(r.day==="미리 결제")pre+=w;else trip+=w;who[r.who]=(who[r.who]||0)+w;});
-    var h='<div class="box main"><div class="k">전체</div><div class="v">'+fmtW(tot)+'</div><div class="s">'+fmtS(tot/RATE)+'</div></div>'
-      +'<div class="box"><div class="k">미리 결제</div><div class="v">'+fmtW(pre)+'</div></div>'
-      +'<div class="box"><div class="k">여행 중</div><div class="v">'+fmtW(trip)+'</div><div class="s">'+fmtS(trip/RATE)+'</div></div>';
-    var wl=Object.keys(who).map(function(k){return k+" "+fmtW(who[k]);}).join(" · ");
-    if(wl) h+='<div class="box"><div class="k">누가 냈나요</div><div class="s" style="font-size:14px;opacity:1">'+esc(wl)+'</div></div>';
+    var all=sum(rows), pre=sum(rows.filter(function(r){return r.day==="미리 결제";})), trip=sum(rows.filter(function(r){return r.day!=="미리 결제";}));
+    var who={};rows.forEach(function(r){who[r.who]=(who[r.who]||0)+W(r);});
+    var h='<div class="box main"><div class="k">전체</div><div class="v">'+fW(all.w)+'</div><div class="s">'+fS(all.s)+'</div></div>'
+      +'<div class="box"><div class="k">미리 결제</div><div class="v">'+fW(pre.w)+'</div><div class="s">'+fS(pre.s)+'</div></div>'
+      +'<div class="box"><div class="k">여행 중</div><div class="v">'+fW(trip.w)+'</div><div class="s">'+fS(trip.s)+'</div></div>';
+    var wl=Object.keys(who).map(function(k){return esc(k)+" "+fW(who[k]);}).join(" · ");
+    if(wl) h+='<div class="box"><div class="k">누가 냈나요</div><div class="s">'+wl+'</div></div>';
     $("lgSum").innerHTML=h;
-    var L="";
-    DAYS.forEach(function(d){var rs=rows.filter(function(r){return r.day===d;});if(!rs.length)return;
-      var sub=rs.reduce(function(a,r){return a+won(r);},0);
-      L+='<div class="lgday">'+esc(d)+' · '+fmtW(sub)+'</div>';
-      rs.forEach(function(r){var a=r.cur==="SGD"?fmtS(Number(r.amt))+'<small>'+fmtW(won(r))+'</small>':fmtW(Number(r.amt));
-        L+='<div class="lgitem"><div><div class="t">'+esc(r.item)+'</div><div class="m">'+esc(r.cat)+' · '+esc(r.who)+'</div></div><div class="a">'+a+'</div><button type="button" class="lgdel" data-id="'+esc(r.id)+'">지우기</button></div>';});
+    // list
+    var L="", D='<table class="lgt"><thead><tr><th>날짜</th><th>싱가포르 달러</th><th>원</th></tr></thead><tbody>';
+    DAYS.forEach(function(d){var rs=rows.filter(function(r){return r.day===d;}).sort(function(a,b){return String(a.time||"99").localeCompare(String(b.time||"99"));});if(!rs.length)return;
+      var t=sum(rs);
+      L+='<div class="lgday"><span>'+esc(d)+'</span><span>'+fS(t.s)+' · '+fW(t.w)+'</span></div>';
+      rs.forEach(function(r){var title=r.place||r.item||"";var memo=[cat(r),r.place&&r.item?r.item:"",r.who].filter(Boolean).map(esc).join(" · ");
+        L+='<div class="lgitem"><span class="tm">'+esc(r.time||"")+'</span><div><div class="t">'+esc(title)+'</div><div class="m">'+memo+'</div></div>'+both(S(r),W(r))+'<button type="button" class="lgdel" data-id="'+esc(r.id)+'">지우기</button></div>';});
+      D+='<tr><td>'+esc(d)+'</td><td>'+fS(t.s)+'</td><td>'+fW(t.w)+'</td></tr>';
     });
+    D+='</tbody><tfoot><tr><td>합계</td><td>'+fS(all.s)+'</td><td>'+fW(all.w)+'</td></tr></tfoot></table>';
     $("lgList").innerHTML=L||'<p class="lgempty">아직 적은 내역이 없어요.</p>';
+    $("lgDays").innerHTML=rows.length?D:'<p class="lgempty">아직 없어요.</p>';
+    // categories
+    var cs=CATS.slice();rows.forEach(function(r){if(cs.indexOf(cat(r))<0)cs.push(cat(r));});
+    var used=cs.filter(function(c){return rows.some(function(r){return cat(r)===c;});});
+    var max=Math.max.apply(null,used.map(function(c){return sum(rows.filter(function(r){return cat(r)===c;})).w;}).concat([1]));
+    var C='<table class="lgt"><thead><tr><th>항목</th><th>싱가포르 달러</th><th>원</th></tr></thead><tbody>';
+    used.forEach(function(c){var t=sum(rows.filter(function(r){return cat(r)===c;}));C+='<tr><td>'+esc(c)+'<div class="lgbar" style="width:'+Math.max(4,Math.round(t.w/max*100))+'%"></div></td><td>'+fS(t.s)+'</td><td>'+fW(t.w)+'</td></tr>';});
+    C+='</tbody><tfoot><tr><td>합계</td><td>'+fS(all.s)+'</td><td>'+fW(all.w)+'</td></tr></tfoot></table>';
+    $("lgCats").innerHTML=used.length?C:'<p class="lgempty">아직 없어요.</p>';
+    var ds=DAYS.filter(function(d){return rows.some(function(r){return r.day===d;});});
+    var G='<table class="lgt"><thead><tr><th>항목</th>'+ds.map(function(d){return '<th>'+esc(d)+'</th>';}).join("")+'</tr></thead><tbody>';
+    used.forEach(function(c){G+='<tr><td>'+esc(c)+'</td>'+ds.map(function(d){var t=sum(rows.filter(function(r){return r.day===d&&cat(r)===c;}));return '<td>'+(t.w?fS(t.s)+'<small>'+fW(t.w)+'</small>':'-')+'</td>';}).join("")+'</tr>';});
+    G+='</tbody><tfoot><tr><td>합계</td>'+ds.map(function(d){var t=sum(rows.filter(function(r){return r.day===d;}));return '<td>'+fS(t.s)+'<small>'+fW(t.w)+'</small></td>';}).join("")+'</tr></tfoot></table>';
+    $("lgGrid").innerHTML=used.length?G:'<p class="lgempty">아직 없어요.</p>';
+    // custom categories into select
+    var sel=$("lgForm").cat;rows.forEach(function(r){var c=cat(r);if(CATS.indexOf(c)<0&&![].some.call(sel.options,function(o){return o.value===c;})){var o=document.createElement("option");o.textContent=c;sel.insertBefore(o,sel.querySelector('option[value="__new"]'));}});
   }
-  function open(p){pw=p;try{sessionStorage.setItem("sgdocpw",p);}catch(e){}$("lgLock").hidden=true;$("lgMain").hidden=false;load();pull();}
+  function sgNow(){var d=new Date(Date.now()+8*3600e3);return {day:(d.getUTCMonth()+1)+"/"+d.getUTCDate(),time:String(d.getUTCHours()).padStart(2,"0")+":"+String(d.getUTCMinutes()).padStart(2,"0")};}
+  function resetForm(){var f=$("lgForm"),n=sgNow();if(DAYS.indexOf(n.day)>0){f.day.value=n.day;f.time.value=n.time;}conv();}
+  function conv(){var f=$("lgForm"),a=Number(String(f.amt.value).replace(/[^0-9.]/g,""));if(!a){$("lgConv").textContent="";return;}
+    $("lgConv").textContent=f.cur.value==="SGD"?("= 약 "+fW(a*RATE)):("= 약 "+fS(a/RATE));}
+  function open(p){pw=p;try{sessionStorage.setItem("sgdocpw",p);}catch(e){}$("lgLock").hidden=true;$("lgMain").hidden=false;load();resetForm();pull();}
   function tryPw(p){return sha(p).then(function(h){return h===GOOD;});}
   $("lgPwForm").addEventListener("submit",function(e){e.preventDefault();var p=$("lgPw").value.trim();tryPw(p).then(function(ok){if(ok)open(p);else $("lgPwErr").hidden=false;});});
   try{var sp=sessionStorage.getItem("sgdocpw");if(sp)tryPw(sp).then(function(ok){if(ok)open(sp);});}catch(e){}
-  $("lgForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target;
-    var amt=String(f.amt.value).replace(/[^0-9.]/g,"");if(!amt){f.amt.focus();return;}
-    var r={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),day:f.day.value,cat:f.cat.value,item:f.item.value.trim(),amt:amt,cur:f.cur.value,who:f.who.value,ts:new Date().toISOString()};
-    rows.push(r);saveLocal();render();f.item.value="";f.amt.value="";
-    if(SYNC_URL) api({action:"add",row:r}).then(pull).catch(function(){$("lgSync").textContent="⚠ 저장이 서버에 안 됐어요. 인터넷 연결 후 다시 적어 주세요.";});
+  var F=$("lgForm");
+  F.amt.addEventListener("input",conv);F.cur.addEventListener("change",conv);
+  F.cat.addEventListener("change",function(){var on=F.cat.value==="__new";document.querySelector(".lgnewcat").hidden=!on;F.newcat.required=on;if(on)F.newcat.focus();});
+  F.addEventListener("submit",function(e){e.preventDefault();
+    var amt=String(F.amt.value).replace(/[^0-9.]/g,"");if(!amt){F.amt.focus();return;}
+    var c=F.cat.value==="__new"?F.newcat.value.trim():F.cat.value;if(!c){F.newcat.focus();return;}
+    var r={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),day:F.day.value,time:F.time.value,place:F.place.value.trim(),cat:c,item:F.item.value.trim(),amt:amt,cur:F.cur.value,who:F.who.value,ts:new Date().toISOString()};
+    rows.push(r);saveLocal();render();
+    F.item.value="";F.amt.value="";F.place.value="";F.newcat.value="";F.time.value=DAYS.indexOf(sgNow().day)>0?sgNow().time:"";if(F.cat.value==="__new"){F.cat.value=c;document.querySelector(".lgnewcat").hidden=true;F.newcat.required=false;}conv();
+    if(SYNC_URL) api({action:"add",row:r}).then(pull).catch(function(){$("lgSync").textContent="⚠ 서버에 저장이 안 됐어요. 인터넷 연결 후 다시 적어 주세요.";});
   });
   $("lgList").addEventListener("click",function(e){var b=e.target.closest(".lgdel");if(!b)return;
-    if(!b.classList.contains("sure")){b.classList.add("sure");b.textContent="정말 지울까요?";setTimeout(function(){if(b.isConnected){b.classList.remove("sure");b.textContent="지우기";}},3000);return;}
+    if(!b.classList.contains("sure")){b.classList.add("sure");b.textContent="정말?";setTimeout(function(){if(b.isConnected){b.classList.remove("sure");b.textContent="지우기";}},3000);return;}
     var id=b.dataset.id;rows=rows.filter(function(r){return r.id!==id;});saveLocal();render();
     if(SYNC_URL) api({action:"del",id:id}).then(pull).catch(function(){});
   });
+  document.querySelectorAll(".lgtabs button").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".lgtabs button").forEach(function(x){x.classList.toggle("on",x===b);});document.querySelector(".lgcols").classList.toggle("showB",b.dataset.t==="b");});});
   window.addEventListener("hashchange",function(){if(location.hash==="#g-money"&&pw)pull();});
 })();
 </script>
