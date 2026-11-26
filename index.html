@@ -900,7 +900,7 @@ img.zoomable{cursor:zoom-in}
 
 <main>
 <div class="wrap">
-<div id="home" class="home"><a class="hbtn wide half" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에<br class="mbr"> 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn wide half sgintro" href="#g-intro"><span class="hi" aria-hidden="true">🦁</span><b>싱가포르는<br class="mbr"> 어떤 나라?</b><small>그림지도 · 독립 · 언어 · 중심지 · 랜드마크</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn mobonly" href="#g-docsprep"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서 · 준비물</b><small>확인서 · 챙길 짐</small></a><a class="hbtn pconly" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn pconly" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>챙길 짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a></div>
+<div id="home" class="home"><a class="hbtn wide half" href="#g-before"><span class="hi" aria-hidden="true">✅</span><b>출발 전에<br class="mbr"> 확인할 것</b><small>스마트패스 앱 · 입국신고서 · 싱가포르 달러 · eSIM · 주차</small></a><a class="hbtn wide half sgintro" href="#g-intro"><span class="hi" aria-hidden="true">🦁</span><b>싱가포르는<br class="mbr"> 어떤 나라?</b><small>그림지도 · 독립 · 언어 · 중심지 · 랜드마크</small></a><a class="hbtn" href="#g-flight"><span class="hi" aria-hidden="true">✈️</span><b>비행기</b><small>항공편·좌석·라운지</small></a><a class="hbtn" href="#g-plan"><span class="hi" aria-hidden="true">📅</span><b>일정</b><small>날짜별 하루 계획</small></a><a class="hbtn" href="#g-hotel"><span class="hi" aria-hidden="true">🏨</span><b>숙소</b><small>두짓타니·풀러턴</small></a><a class="hbtn" href="#g-eat"><span class="hi" aria-hidden="true">🍽️</span><b>식사 메뉴</b><small>날짜별 식사·식당</small></a><a class="hbtn" href="#g-docsprep"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서 · 준비물</b><small>확인서 · 챙길 짐</small></a><a class="hbtn pconly hide-all" href="#g-docs"><span class="hi" aria-hidden="true">📎</span><b>예약 확인서</b><small>호텔·식당 확인서</small></a><a class="hbtn" href="#g-weather"><span class="hi" aria-hidden="true">☀️</span><b>날씨</b><small>싱가포르 날씨</small></a><a class="hbtn pconly hide-all" href="#g-prep"><span class="hi" aria-hidden="true">🧳</span><b>준비물</b><small>챙길 짐</small></a><a class="hbtn" href="#g-know"><span class="hi" aria-hidden="true">💡</span><b>알아둘 것</b><small>기본 정보·예절·팁</small></a><a class="hbtn" href="#g-gift"><span class="hi" aria-hidden="true">🎁</span><b>기념품</b><small>사 오면 좋은 것</small></a><a class="hbtn ledger" href="#g-money"><span class="hi" aria-hidden="true">💰</span><b>가계부</b><small>쓴 돈 · 미리 낸 돈 적기</small></a></div>
 <div id="gbar"><span class="xlights" aria-hidden="true"></span><a href="#home">← 처음 화면</a><b id="gtitle"></b><span id="gday" aria-live="polite"></span></div>
 
   <section id="prep">
@@ -1696,6 +1696,33 @@ img.zoomable{cursor:zoom-in}
     </div>
   </section>
 
+  <section id="ledger">
+    <h2>가계부</h2>
+    <p class="lead">여행하면서 쓴 돈과 미리 결제한 금액을 적어 두는 곳이에요.</p>
+    <div class="card lgcard" id="lgLock">
+      <p>가계부는 비밀번호(예약 확인서와 같은 번호)를 넣어야 보여요.</p>
+      <form id="lgPwForm" class="lgrow"><input id="lgPw" type="password" inputmode="numeric" placeholder="비밀번호" autocomplete="off"><button type="submit">열기</button></form>
+      <p class="lgerr" id="lgPwErr" hidden>비밀번호가 맞지 않아요.</p>
+    </div>
+    <div id="lgMain" hidden>
+      <div class="lgsum" id="lgSum"></div>
+      <p class="lgsync" id="lgSync"></p>
+      <form class="card lgcard lgform" id="lgForm">
+        <h3>새로 적기</h3>
+        <div class="lggrid">
+          <label>날짜<select name="day"><option>미리 결제</option><option>12/2</option><option selected>12/3</option><option>12/4</option><option>12/5</option><option>12/6</option></select></label>
+          <label>종류<select name="cat"><option>식사</option><option>교통</option><option>관광</option><option>쇼핑</option><option>숙소</option><option>항공</option><option>기타</option></select></label>
+          <label class="wide">무엇에<input name="item" required placeholder="예: 팜비치 칠리크랩" maxlength="60"></label>
+          <label>금액<input name="amt" required inputmode="decimal" placeholder="숫자만" maxlength="12"></label>
+          <label>돈 단위<select name="cur"><option value="SGD">싱가포르 달러 (S$)</option><option value="KRW">원 (₩)</option></select></label>
+          <label>누가 냈나요<select name="who"><option>현호</option><option>경희</option><option selected>수인</option><option>혜인</option></select></label>
+        </div>
+        <button type="submit" class="lgadd">저장하기</button>
+      </form>
+      <div class="card lgcard"><h3>적은 내역</h3><div id="lgList"></div></div>
+    </div>
+  </section>
+
   <section id="souvenir">
     <h2>기념품</h2>
     <p class="lead">일정에 맞춰 들르는 곳마다 살 수 있는 것을 모았어요. 무거운 건 마지막 날 공항에서 사면 편해요.</p>
@@ -1718,7 +1745,7 @@ m.querySelectorAll("button.st").forEach(function(b){b.addEventListener("click",f
 <script>try{var sg=new Date(Date.now()+8*3600e3);var t0=Date.UTC(sg.getUTCFullYear(),sg.getUTCMonth(),sg.getUTCDate());document.querySelectorAll("a[data-wx]").forEach(function(a){var p=a.dataset.wx.split("-");var n=Math.round((Date.UTC(+p[0],p[1]-1,+p[2])-t0)/864e5)+1;if(n>=1&&n<=45)a.href="https://www.accuweather.com/ko/sg/singapore/300597/daily-weather-forecast/300597?day="+n;});}catch(e){}</script>
 <script>
 (function(){
-  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["pack"]],"docsprep":["예약 확인서 · 준비물",["docs","pack"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]],"intro":["싱가포르 소개",["intro"]]}, mq=matchMedia("all"), b=document.body;
+  var G={"before":["출발 전에 확인할 것",["prep"]],"flight":["비행기",["flight"]],"flight2":["비행기",["flight2"]],"plan":["일정",["d1202", "d1203", "d1204", "d1205", "d1206"]],"hotel":["숙소",["hotel"]],"eat":["식사 메뉴",["meals", "food"]],"docs":["예약 확인서",["docs"]],"weather":["날씨",["weather"]],"prep":["준비물",["pack"]],"docsprep":["예약 확인서 · 준비물",["docs","pack"]],"money":["가계부",["ledger"]],"know":["알아둘 것",["info", "manners", "tips"]],"gift":["기념품",["souvenir"]],"intro":["싱가포르 소개",["intro"]]}, mq=matchMedia("all"), b=document.body;
   var F2=Date.now()<Date.parse("2026-12-02T14:00:00+09:00");
   function setF(){var h=location.hash;var two=h==="#g-flight2"||h==="#flight2"?true:(h==="#g-flight"||h==="#flight"?false:F2);b.classList.toggle("f2",two);
     document.querySelectorAll('a[href="#g-flight"],a[href="#g-flight2"],nav a[href="#flight"],nav a[href="#flight2"]').forEach(function(x){if(x.closest("#flight,#flight2"))return;var g=x.getAttribute("href").indexOf("#g-")===0;x.setAttribute("href",(g?"#g-":"#")+(F2?"flight2":"flight"));});}
@@ -2042,6 +2069,101 @@ var t=0;(function w(){if(window.L&&L.map)return draw();if(++t===20&&!document.qu
 <style>.hinfo{display:inline-block;font-weight:800;color:#6b3f93;text-decoration:none;white-space:nowrap}.gsleep .hinfo{white-space:normal}.gsleep .hinfo b{color:inherit}#hotelPop .card{padding:12px}#hotelPop .ph img{width:100%;height:auto;border-radius:12px}</style>
 <style>.timeline .what small .leg{display:block;width:max-content;max-width:100%;font-weight:800;color:#0f6f6a;background:#e3f4f1;border-radius:8px;padding:1px 8px;margin:2px 0 3px;font-size:.92em}</style>
 <style>@media (min-width:1080px){#prepPop{width:min(1300px,calc(100vw - 48px))}}</style>
+<style>
+@media (min-width:1080px){.home .hbtn.hide-all{display:none!important}}
+@media (max-width:1079px){.home .hbtn.hide-all{display:none!important}}
+.home .hbtn.ledger{background:#e3f4ef;border-color:#8fd0bd;color:#0d4d40}
+.home .hbtn.ledger small{color:#2f6f60}
+@media (max-width:1079px){.home .hbtn.ledger{grid-column:1 / -1;min-height:0;flex-direction:row;align-items:center;column-gap:10px;padding:12px 16px}.home .hbtn.ledger .hi{font-size:28px}.home .hbtn.ledger b{font-size:20px}.home .hbtn.ledger small{flex-basis:100%}}
+.lgcard{display:grid;gap:10px}
+.lgcard h3{font-family:var(--body);font-size:19px;font-weight:800;margin:0}
+.lgrow{display:flex;gap:8px;flex-wrap:wrap}
+#ledger input,#ledger select{font:inherit;font-size:17px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#1e2340;width:100%;box-sizing:border-box}
+.lgrow input{flex:1;min-width:140px;width:auto}
+#ledger button{font:inherit;font-weight:800;font-size:17px;border-radius:12px;padding:10px 16px;border:0;background:#1a7f5a;color:#fff;cursor:pointer}
+.lgerr{color:#c0392b;font-weight:700}
+.lggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.lggrid label{display:grid;gap:4px;font-size:15px;font-weight:700;color:var(--muted)}
+.lggrid label.wide{grid-column:1 / -1}
+.lgadd{width:100%}
+.lgsum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+.lgsum .box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.lgsum .box.main{background:#e3f4ef;border-color:#8fd0bd;color:#0d4d40}
+.lgsum .k{font-size:14px;font-weight:700;opacity:.8}
+.lgsum .v{font-size:21px;font-weight:800;font-variant-numeric:tabular-nums}
+.lgsum .s{font-size:13px;opacity:.75}
+.lgsync{font-size:14px;color:var(--muted);margin:0 0 10px}
+.lgday{font-weight:800;margin:10px 0 4px;font-size:16px}
+.lgday:first-child{margin-top:0}
+.lgitem{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.lgitem .t{font-size:16px;font-weight:700}
+.lgitem .m{font-size:13px;color:var(--muted)}
+.lgitem .a{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.lgitem .a small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+#ledger .lgdel{background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 9px;font-size:14px;border-radius:9px}
+#ledger .lgdel.sure{background:#c0392b;color:#fff;border-color:#c0392b}
+.lgempty{color:var(--muted)}
+@media (min-width:1080px){#ledger.gshow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;align-items:start}#ledger>h2,#ledger>.lead,#ledger>#lgLock{grid-column:1 / -1}#lgMain{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 24px;align-items:start}#lgMain[hidden]{display:none}#lgMain>.lgsum,#lgMain>.lgsync{grid-column:1 / -1}.lggrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+<script>
+(function(){
+  var SYNC_URL=""; // Google Apps Script 웹앱 주소를 넣으면 모두 같이 저장돼요
+  var RATE=1030, KEY="sgLedger";
+  var pw=null, rows=[];
+  var $=function(id){return document.getElementById(id);};
+  if(!$("ledger")) return;
+  function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0");}).join("");});}
+  var GOOD="0f152670cb49ba15131d115d54f5ebff316d9adfeec7e44c66eb860b343786e1";
+  function load(){try{rows=JSON.parse(localStorage.getItem(KEY)||"[]");}catch(e){rows=[];}}
+  function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(rows));}catch(e){}}
+  function api(body){return fetch(SYNC_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({key:pw},body))}).then(function(r){return r.json();});}
+  function pull(){
+    if(!SYNC_URL){$("lgSync").textContent="지금은 이 휴대폰(컴퓨터)에만 저장돼요.";render();return;}
+    $("lgSync").textContent="불러오는 중…";
+    api({action:"list"}).then(function(d){if(d&&d.rows){rows=d.rows;saveLocal();}$("lgSync").textContent="✓ 가족 모두 같이 보는 가계부예요. (마지막 불러오기 "+new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})+")";render();})
+      .catch(function(){$("lgSync").textContent="⚠ 인터넷 연결을 확인해 주세요. 이 기기에 저장된 내용만 보여요.";render();});
+  }
+  function won(r){var a=Number(r.amt)||0;return r.cur==="SGD"?a*RATE:a;}
+  function fmtW(n){return Math.round(n).toLocaleString("ko-KR")+"원";}
+  function fmtS(n){return "S$"+(Math.round(n*100)/100).toLocaleString("en-US");}
+  var DAYS=["미리 결제","12/2","12/3","12/4","12/5","12/6"];
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+  function render(){
+    var tot=0,pre=0,trip=0,who={};
+    rows.forEach(function(r){var w=won(r);tot+=w;if(r.day==="미리 결제")pre+=w;else trip+=w;who[r.who]=(who[r.who]||0)+w;});
+    var h='<div class="box main"><div class="k">전체</div><div class="v">'+fmtW(tot)+'</div><div class="s">'+fmtS(tot/RATE)+'</div></div>'
+      +'<div class="box"><div class="k">미리 결제</div><div class="v">'+fmtW(pre)+'</div></div>'
+      +'<div class="box"><div class="k">여행 중</div><div class="v">'+fmtW(trip)+'</div><div class="s">'+fmtS(trip/RATE)+'</div></div>';
+    var wl=Object.keys(who).map(function(k){return k+" "+fmtW(who[k]);}).join(" · ");
+    if(wl) h+='<div class="box"><div class="k">누가 냈나요</div><div class="s" style="font-size:14px;opacity:1">'+esc(wl)+'</div></div>';
+    $("lgSum").innerHTML=h;
+    var L="";
+    DAYS.forEach(function(d){var rs=rows.filter(function(r){return r.day===d;});if(!rs.length)return;
+      var sub=rs.reduce(function(a,r){return a+won(r);},0);
+      L+='<div class="lgday">'+esc(d)+' · '+fmtW(sub)+'</div>';
+      rs.forEach(function(r){var a=r.cur==="SGD"?fmtS(Number(r.amt))+'<small>'+fmtW(won(r))+'</small>':fmtW(Number(r.amt));
+        L+='<div class="lgitem"><div><div class="t">'+esc(r.item)+'</div><div class="m">'+esc(r.cat)+' · '+esc(r.who)+'</div></div><div class="a">'+a+'</div><button type="button" class="lgdel" data-id="'+esc(r.id)+'">지우기</button></div>';});
+    });
+    $("lgList").innerHTML=L||'<p class="lgempty">아직 적은 내역이 없어요.</p>';
+  }
+  function open(p){pw=p;try{sessionStorage.setItem("sgdocpw",p);}catch(e){}$("lgLock").hidden=true;$("lgMain").hidden=false;load();pull();}
+  function tryPw(p){return sha(p).then(function(h){return h===GOOD;});}
+  $("lgPwForm").addEventListener("submit",function(e){e.preventDefault();var p=$("lgPw").value.trim();tryPw(p).then(function(ok){if(ok)open(p);else $("lgPwErr").hidden=false;});});
+  try{var sp=sessionStorage.getItem("sgdocpw");if(sp)tryPw(sp).then(function(ok){if(ok)open(sp);});}catch(e){}
+  $("lgForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target;
+    var amt=String(f.amt.value).replace(/[^0-9.]/g,"");if(!amt){f.amt.focus();return;}
+    var r={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),day:f.day.value,cat:f.cat.value,item:f.item.value.trim(),amt:amt,cur:f.cur.value,who:f.who.value,ts:new Date().toISOString()};
+    rows.push(r);saveLocal();render();f.item.value="";f.amt.value="";
+    if(SYNC_URL) api({action:"add",row:r}).then(pull).catch(function(){$("lgSync").textContent="⚠ 저장이 서버에 안 됐어요. 인터넷 연결 후 다시 적어 주세요.";});
+  });
+  $("lgList").addEventListener("click",function(e){var b=e.target.closest(".lgdel");if(!b)return;
+    if(!b.classList.contains("sure")){b.classList.add("sure");b.textContent="정말 지울까요?";setTimeout(function(){if(b.isConnected){b.classList.remove("sure");b.textContent="지우기";}},3000);return;}
+    var id=b.dataset.id;rows=rows.filter(function(r){return r.id!==id;});saveLocal();render();
+    if(SYNC_URL) api({action:"del",id:id}).then(pull).catch(function(){});
+  });
+  window.addEventListener("hashchange",function(){if(location.hash==="#g-money"&&pw)pull();});
+})();
+</script>
 
 </body>
 </html>
