@@ -2164,6 +2164,18 @@ var t=0;(function w(){if(window.L&&L.map)return draw();if(++t===20&&!document.qu
   window.addEventListener("hashchange",function(){if(location.hash==="#g-money"&&pw)pull();});
 })();
 </script>
+<dialog id="qrPop" class="pop" aria-labelledby="qrT">
+  <h2 id="qrT">휴대폰으로 찍어 주세요</h2>
+  <div class="popbody qrbody"><img id="qrImg" alt="앱 설치 QR 코드" width="240" height="240"><p>휴대폰 카메라로 이 QR 코드를 찍으면 <b id="qrStore">앱 설치 화면</b>이 열려요.</p><a id="qrOpen" class="lnk" target="_blank" rel="noopener">컴퓨터에서 바로 열기 ›</a></div>
+  <div class="popbtns"><button type="button" class="popclose">닫기</button></div>
+</dialog>
+<script>
+(function(){var d=document.getElementById("qrPop");if(!d||!d.showModal)return;var pc=matchMedia("(min-width:1080px)");
+document.addEventListener("click",function(e){var a=e.target.closest("a.droid,a.ios");if(!a||!pc.matches)return;e.preventDefault();var ios=a.classList.contains("ios");
+document.getElementById("qrImg").src="img/qr-"+(ios?"ios":"droid")+".svg";document.getElementById("qrStore").textContent=ios?"아이폰 앱스토어":"갤럭시 플레이스토어";document.getElementById("qrOpen").href=a.href;d.showModal();});
+d.querySelector(".popclose").addEventListener("click",function(){d.close();});d.addEventListener("click",function(e){if(e.target===d)d.close();});})();
+</script>
+<style>@media (min-width:1080px){#prepPop{width:min(870px,calc(100vw - 48px))}}#qrPop{width:min(360px,calc(100vw - 24px))}#qrPop .qrbody{text-align:center;display:grid;gap:10px;justify-items:center}#qrPop img{width:240px;height:240px;background:#fff;border-radius:12px;padding:6px}</style>
 
 </body>
 </html>
