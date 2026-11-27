@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>여행 준비물</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#f3f7f5;--surface:#fff;--ink:#15302a;--muted:#4f6660;--line:#d5e2dd;--green:#0f6b57;--green-soft:#dff0ea;--orchid:#b02f6e;--orchid-soft:#f8e4ee;--sun:#9a5a00;--sun-soft:#fdf0d8;
+  --display:"Gowun Batang","Noto Serif KR",serif;--body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1a17;--surface:#16241f;--ink:#e8f1ee;--muted:#a9bdb6;--line:#2a3c36;--green:#5fd1b0;--green-soft:#1c3a31;--orchid:#f08cbb;--orchid-soft:#3a1f2c;--sun:#f2bd6b;--sun-soft:#3a2d17;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1a17;--surface:#16241f;--ink:#e8f1ee;--muted:#a9bdb6;--line:#2a3c36;--green:#5fd1b0;--green-soft:#1c3a31;--orchid:#f08cbb;--orchid-soft:#3a1f2c;--sun:#f2bd6b;--sun-soft:#3a2d17;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 var(--body);-webkit-text-size-adjust:100%;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:760px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) 64px}
+a.back{display:inline-block;color:var(--green);font-weight:700;text-decoration:none;margin-bottom:12px}
+h1{font-family:var(--display);font-size:32px;line-height:1.25;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 16px}
+.prog{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px;margin-bottom:6px}
+.prog .row{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:800}
+.prog .row button{font:700 15px var(--body);color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px;cursor:pointer}
+.bar{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px}
+.card h2{font-size:21px;margin:0 0 4px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.card h2 .cnt{font-size:15px;color:var(--muted);font-weight:700;white-space:nowrap}
+.card h2 .cnt.done{color:var(--green)}
+.card .sub{color:var(--muted);font-size:15px;margin:0 0 10px}
+.check{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.check li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start}
+.check input{width:24px;height:24px;margin-top:4px;accent-color:var(--green)}
+.check label{cursor:pointer}
+.check input:checked + label{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.check input:checked + label small{text-decoration:none}
+.check small{display:block;color:var(--muted);font-size:16px}
+.must{color:var(--orchid);font-weight:800}
+.when{display:inline-block;font-size:13px;font-weight:800;color:var(--sun);background:var(--sun-soft);border-radius:999px;padding:0 8px;margin-left:4px;vertical-align:2px}
+.no{border-left:5px solid var(--orchid)}
+.no h2{color:var(--orchid)}
+.no ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.no li small{display:block;color:var(--muted);font-size:16px}
+.bl{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bl li{background:var(--green-soft);border-radius:12px;padding:8px 12px}
+.bl b{display:block}.bl span{font-size:16px}
+.src{font-size:14px;color:var(--muted)}
+@media (min-width:900px){.wrap{max-width:1040px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.grid .card{margin:0}.grid{margin-bottom:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="./">← 여행 안내로 돌아가기</a>
+  <h1>여행 준비물</h1>
+  <p class="lead">12월 2일 출발 전에 하나씩 눌러서 체크해 보세요. 체크한 건 이 휴대폰에만 저장돼요.</p>
+
+  <div class="prog"><div class="row"><span id="ptxt">0 / 0 챙겼어요</span><button type="button" id="reset">모두 지우기</button></div><div class="bar"><i id="pbar"></i></div></div>
+
+  <div class="card bags">
+    <h2>캐리어는 큰 것 2개 + 빈 가방 1개</h2>
+    <p class="sub">방이 엄마·아빠 방, 수인·혜인 방 두 개라서 방마다 큰 캐리어 하나씩 써요.</p>
+    <ul class="bl">
+      <li><b>🧳 엄마·아빠 방</b><span>큰 캐리어(26~28인치) 1개. 두 분 옷, 약, 신발.</span></li>
+      <li><b>🧳 수인·혜인 방</b><span>큰 캐리어(26~28인치) 1개. 두 사람 옷, 어댑터, 해변 물건.</span></li>
+      <li><b>👜 기념품용</b><span>접는 보스턴백이나 작은 캐리어 1개를 큰 캐리어 안에 넣어 가요. 올 때 펴서 기념품을 담아요.</span></li>
+      <li><b>🎒 각자 백팩이나 작은 가방</b><span>들고 타는 가방. 여권, 약, 보조배터리.</span></li>
+    </ul>
+    <p class="sub" style="margin-top:10px"><b>왜 이렇게?</b> 갈 때는 넉넉하지만, 올 때는 일반석이라 한 사람에 23kg 1개씩, 4명이 최대 4개까지 부칠 수 있어요. 올 때 3개면 여유가 있어요. 또 캐리어가 4개면 보통 택시에 4명이 다 못 타고, 12/5 쥬얼 짐 보관도 개당 S$11~16이라 적을수록 편해요.</p>
+    <p class="sub"><b>짐 쌀 때</b> 갈 때 캐리어를 절반쯤만 채워요. 카야잼·소스 같은 병은 옷으로 싸서 부치는 짐에 넣고, 23kg이 넘지 않게 호텔에서 들어 보며 나눠 담아요.</p>
+  </div>
+
+  <div id="lists"></div>
+
+  <div class="card no">
+    <h2>이건 가져가면 안 돼요</h2>
+    <ul>
+      <li><b>전자담배</b><small>싱가포르는 전자담배를 갖고만 있어도 벌금이에요. 집에 두고 가요.</small></li>
+      <li><b>껌</b><small>싱가포르에는 껌을 들고 들어갈 수 없어요.</small></li>
+      <li><b>보조배터리·라이터를 부치는 짐에</b><small>꼭 들고 타는 가방에 넣어요. 라이터는 한 사람에 하나만 돼요.</small></li>
+      <li><b>100ml 넘는 물, 화장품을 들고 타는 가방에</b><small>로션, 선크림, 치약도 100ml가 넘으면 부치는 짐에 넣어요.</small></li>
+      <li><b>담배</b><small>싱가포르는 담배 면세가 없어서, 한 갑이라도 들고 가면 신고하고 세금을 내야 해요.</small></li>
+    </ul>
+  </div>
+
+  <p class="src">대한항공·싱가포르 이민국(ICA) 안내 기준. 날씨는 아큐웨더 예보(12/3 비·천둥, 25~31℃)로 적었어요.</p>
+</div>
+
+<script>
+var GROUPS=[
+ {id:"todo",t:"출발 전에 할 일",s:"딸들이 챙길게요. 끝나면 체크해 주세요.",items:[
+  ["입국신고서(SG Arrival Card) 4명 모두",'싱가포르 이민국 사이트나 MyICA 앱에서 무료로 써요. 돈 받는 대행 사이트는 쓰지 않아요.',"11/30~12/2",1],
+  ["대한항공 온라인 체크인",'출발 48시간 전부터 열려요. 4명 좌석을 다시 확인해요.',"11/30~"],
+  ["해외 데이터(eSIM이나 로밍) 준비",'eSIM은 미리 설치만 해 두고, 싱가포르 도착하면 켜요.',"12/1까지"],
+  ["예약 확인서 휴대폰에 저장",'호텔, 식당, 나이트사파리 표를 인터넷 없이도 열리게 저장해요.',"12/1까지"],
+  ["Grab 앱 깔고 카드 등록",'싱가포르에서 택시를 부를 때 써요.',""],
+  ["여행자 보험",'4명 모두 들었는지 확인해요.',""],
+  ["날씨 다시 확인",'출발 2~3일 전 예보를 보고 옷을 정해요.',"11/29~"]
+ ]},
+ {id:"docs",t:"꼭 챙길 것",s:"이것만 있으면 나머지는 가서 사도 돼요.",items:[
+  ["여권",'남은 기간이 2027년 6월 2일 이후까지인지 확인해 주세요.',"",1],
+  ["휴대폰과 충전기",'',"",1],
+  ["해외에서 쓸 수 있는 카드",'싱가포르는 거의 다 카드가 돼요. 트래블카드도 좋아요.',"",1],
+  ["싱가포르 달러 약간",'호커센터나 작은 가게용으로 한 사람 S$50 정도면 충분해요.',""],
+  ["운전면허증, 주차 예약 화면",'인천공항 주차장(T2 예약주차)에서 차를 찾을 때 필요해요.',""]
+ ]},
+ {id:"cloth",t:"옷과 신발",s:"낮 25~31℃에 습하고, 실내는 에어컨이 세요.",items:[
+  ["반팔, 얇고 시원한 옷 (3일치)",'땀이 많이 나서 하루 한 벌 넉넉히.',""],
+  ["얇은 가디건이나 긴팔 하나",'비행기, 식당, 쇼핑몰 안이 꽤 추워요.',""],
+  ["얇은 긴바지",'나이트사파리(모기)와 12/5 불아사(무릎 가리기)에 입어요.',""],
+  ["얇은 숄이나 스카프",'불아사에서 어깨를 가려요.',""],
+  ["편한 운동화",'매일 많이 걸어요. 비에 젖어도 괜찮은 걸로.',"",1],
+  ["앞이 막힌 구두나 깔끔한 신발",'12/3 저녁 레벨33·라보는 슬리퍼, 샌들이 안 돼요. 아빠는 꼭 앞이 막힌 신발로.',"12/3 저녁",1],
+  ["조금 차려입을 옷 한 벌",'12/3 저녁 레벨33·라보. 정장까진 아니고 깔끔한 정도면 돼요.',"12/3 저녁"],
+  ["슬리퍼나 샌들",'센토사 해변, 호텔 수영장, 방에서 신어요.',"12/4"],
+  ["잠옷, 속옷, 양말",'',""],
+  ["기념품 담을 접는 가방",'큰 캐리어 안에 넣어 가요.',""],
+  ["한국 겨울 외투는 차에 두기",'갈 때 차에 벗어 두고, 12/6 새벽에 돌아와서 다시 입어요.',""]
+ ]},
+ {id:"beach",t:"수영장과 해변",s:"12/4 센토사 해변과 풀러턴 인피니티 풀에 가요.",items:[
+  ["수영복",'두 호텔 모두 수영장이 있어요.',"12/4"],
+  ["래시가드나 얇은 겉옷",'햇볕이 아주 세요.',""],
+  ["방수 휴대폰 주머니",'해변, 루지 탈 때 편해요.',""],
+  ["젖은 옷 넣을 비닐봉투",'',""]
+ ]},
+ {id:"rain",t:"비와 더위",s:"12월은 비가 잦아요. 소나기는 보통 30분~1시간이면 그쳐요.",items:[
+  ["접는 우산이나 우비",'우비는 나이트사파리에서 편해요.',"",1],
+  ["모자, 선글라스",'',""],
+  ["선크림",'100ml 넘으면 부치는 짐에.',""],
+  ["모기 기피제",'나이트사파리와 보타닉가든에서 써요. 가서 사도 돼요.',"12/4 밤"],
+  ["손선풍기",'',""],
+  ["물티슈, 휴지",'호커센터에는 휴지가 없을 때가 많아요.',""]
+ ]},
+ {id:"elec",t:"전자기기",s:"",items:[
+  ["영국식 3구 어댑터 (G타입)",'싱가포르 콘센트는 우리나라와 모양이 달라요. 방마다 2개면 넉넉해요.',"",1],
+  ["보조배터리",'들고 타는 가방에만. 사진을 많이 찍어서 꼭 필요해요.',""],
+  ["멀티탭 (작은 것)",'어댑터 하나로 여러 개를 충전할 수 있어요.',""],
+  ["이어폰",'비행기에서 영화 볼 때.',""]
+ ]},
+ {id:"med",t:"약과 세면도구",s:"",items:[
+  ["평소 드시는 약",'날짜 수보다 2~3일치 더. 들고 타는 가방에 넣어요.',"",1],
+  ["소화제, 두통약, 지사제",'',""],
+  ["파스, 밴드",'많이 걸어서 발에 물집이 생길 수 있어요.',""],
+  ["멀미약",'케이블카, 루지 탈 때 혹시 몰라서.',""],
+  ["칫솔, 치약",'호텔에 있지만 쓰던 게 편해요.',""],
+  ["화장품, 로션",'',""]
+ ]},
+ {id:"bag",t:"들고 타는 가방",s:"비행기 안에서 바로 꺼낼 것들이에요.",items:[
+  ["여권, 휴대폰, 지갑",'',"",1],
+  ["보조배터리",'',""],
+  ["평소 드시는 약",'',""],
+  ["가디건",'비행기가 추워요.',""],
+  ["목베개, 안대",'밤 비행기라 자면서 가요.',""],
+  ["작은 볼펜",'',""]
+ ]}
+];
+(function(){
+  var KEY='sg-trip-packpage', saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var html='',half=Math.ceil(GROUPS.length/2);
+  GROUPS.forEach(function(g,gi){
+    if(gi===1)html+='<div class="grid">';
+    html+='<div class="card" data-g="'+g.id+'"><h2>'+esc(g.t)+'<span class="cnt"></span></h2>'+(g.s?'<p class="sub">'+esc(g.s)+'</p>':'')+'<ul class="check">';
+    g.items.forEach(function(it,i){
+      var id=g.id+i;
+      html+='<li><input type="checkbox" id="'+id+'"'+(saved[id]?' checked':'')+'><label for="'+id+'">'+(it[3]?'<span class="must">'+esc(it[0])+'</span>':esc(it[0]))+(it[2]?'<span class="when">'+esc(it[2])+'</span>':'')+(it[1]?'<small>'+esc(it[1])+'</small>':'')+'</label></li>';
+    });
+    html+='</ul></div>';
+    if(gi===GROUPS.length-1)html+='</div>';
+  });
+  var box=document.getElementById('lists'); box.innerHTML=html;
+  var all=box.querySelectorAll('input');
+  function update(){
+    var n=0; all.forEach(function(c){if(c.checked)n++;});
+    document.getElementById('ptxt').textContent=n+' / '+all.length+(n===all.length?' 다 챙겼어요 🎉':' 챙겼어요');
+    document.getElementById('pbar').style.width=(all.length?n/all.length*100:0)+'%';
+    box.querySelectorAll('.card').forEach(function(c){
+      var cs=c.querySelectorAll('input'),k=0; cs.forEach(function(x){if(x.checked)k++;});
+      var el=c.querySelector('.cnt'); el.textContent=k===cs.length?'✓ 완료':k+'/'+cs.length; el.className='cnt'+(k===cs.length?' done':'');
+    });
+  }
+  all.forEach(function(c){c.addEventListener('change',function(){saved[c.id]=c.checked;try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}update();});});
+  document.getElementById('reset').addEventListener('click',function(){
+    if(!document.getElementById('reset').dataset.sure){document.getElementById('reset').dataset.sure=1;document.getElementById('reset').textContent='한 번 더 누르면 지워요';return;}
+    saved={};try{localStorage.removeItem(KEY);}catch(e){}all.forEach(function(c){c.checked=false;});
+    delete document.getElementById('reset').dataset.sure;document.getElementById('reset').textContent='모두 지우기';update();
+  });
+  update();
+})();
+</script>
+</body>
+</html>
