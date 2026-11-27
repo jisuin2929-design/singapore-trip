@@ -2372,6 +2372,22 @@ d.querySelector(".popclose").addEventListener("click",function(){d.close();});d.
 </style>
 <style>.packall{margin:0 0 12px}</style>
 <style>@media (min-width:1080px){body.tabs-on.at-home{padding-left:42vw}body.tabs-on.at-home .hero .wrap{width:42vw}body.tabs-on.at-home .wrap{max-width:900px}}</style>
+<div id="updBar" hidden><span>✨ 새 내용이 올라왔어요</span><button type="button">새로 보기</button></div>
+<style>#updBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;background:#1e2340;color:#fff;border-radius:999px;padding:10px 12px 10px 20px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,.3);max-width:calc(100vw - 32px)}#updBar[hidden]{display:none}#updBar button{font:inherit;border:0;border-radius:999px;padding:8px 16px;background:#f0c64a;color:#2a2200;cursor:pointer}</style>
+<script>
+(function(){
+  var V="f88cedf26e"; if(V.indexOf("BUILD")>=0||location.protocol==="file:") return;
+  var bar=document.getElementById("updBar"), K="sgUpdScroll";
+  try{var sv=JSON.parse(sessionStorage.getItem(K)||"null");if(sv&&sv.h===location.hash){sessionStorage.removeItem(K);addEventListener("load",function(){setTimeout(function(){scrollTo(0,sv.y);},150);});}}catch(e){}
+  function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return true;if(document.querySelector("dialog[open]"))return true;var f=document.getElementById("lgForm");if(f&&(f.amt.value||f.place.value||f.item.value))return true;return false;}
+  function reload(){try{sessionStorage.setItem(K,JSON.stringify({h:location.hash,y:scrollY}));}catch(e){}location.reload();}
+  bar.querySelector("button").addEventListener("click",reload);
+  var found=false;
+  function check(auto){fetch("version.txt?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.text():"";}).then(function(t){t=t.trim();if(!t||t===V)return;found=true;if(auto&&!busy())reload();else bar.hidden=false;}).catch(function(){});}
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")check(true);});
+  setInterval(function(){if(document.visibilityState==="visible")check(false);},3*60*1000);
+})();
+</script>
 
 </body>
 </html>
