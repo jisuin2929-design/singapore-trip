@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 860" font-family="'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <defs>
+    <pattern id="tree" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#5f9e5a"/><circle cx="4" cy="4" r="3.2" fill="#4c8a48"/><circle cx="11" cy="10" r="3.2" fill="#4c8a48"/></pattern>
+    <pattern id="orch" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#f6d3e4"/><circle cx="6" cy="6" r="2" fill="#e88bb6"/></pattern>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="400" height="860" fill="#f3efe4"/>
+  <!-- roads -->
+  <path d="M0 58 H400" stroke="#d9cfb8" stroke-width="20"/>
+  <text x="392" y="63" text-anchor="end" font-size="12" fill="#7a6d52">부킷티마 로드</text>
+  <path d="M0 812 C120 800 260 806 400 790" stroke="#d9cfb8" stroke-width="20" fill="none"/>
+  <text x="392" y="816" text-anchor="end" font-size="12" fill="#7a6d52">홀랜드 로드</text>
+  <path d="M352 120 C362 300 370 520 356 790" stroke="#e6dcc6" stroke-width="12" fill="none"/>
+  <text x="374" y="470" font-size="11" fill="#7a6d52" transform="rotate(90 374 470)">클루니 로드</text>
+  <!-- park -->
+  <path d="M60 72 L318 72 L330 150 L312 270 L338 390 L322 520 L300 640 L262 748 L170 776 L96 744 L72 610 L46 470 L60 330 L44 190 Z" fill="#cfe6c4" stroke="#8fbf86" stroke-width="3"/>
+  <!-- areas -->
+  <path d="M70 180 C60 230 80 290 150 292 C190 290 196 230 172 196 C150 168 92 160 70 180 Z" fill="url(#tree)" opacity=".9"/>
+  <path d="M230 500 C250 470 312 480 318 530 C322 580 290 610 250 600 C220 590 214 530 230 500 Z" fill="url(#tree)" opacity=".9"/>
+  <rect x="64" y="330" width="108" height="78" rx="18" fill="url(#orch)" stroke="#d76ea0" stroke-width="2"/>
+  <ellipse cx="128" cy="452" rx="36" ry="20" fill="#e7f0c0" stroke="#b8c873"/>
+  <ellipse cx="234" cy="410" rx="62" ry="46" fill="#e4f2d9" stroke="#a9cf98" stroke-dasharray="4 3"/>
+  <rect x="242" y="86" width="72" height="44" rx="12" fill="#fde7b3" stroke="#e8b84d"/>
+  <!-- lakes -->
+  <ellipse cx="190" cy="128" rx="62" ry="24" fill="#a9d6ef" stroke="#6eb1d6" stroke-width="2"/>
+  <ellipse cx="292" cy="448" rx="26" ry="16" fill="#a9d6ef" stroke="#6eb1d6" stroke-width="2"/>
+  <path d="M164 688 C176 664 236 664 244 690 C250 712 214 726 192 722 C172 718 158 706 164 688 Z" fill="#a9d6ef" stroke="#6eb1d6" stroke-width="2"/>
+  <!-- labels (areas) -->
+  <g font-weight="700" fill="#2f4a2b" font-size="14">
+    <text x="234" y="140" text-anchor="middle" fill="#1f5878" font-size="13">에코 레이크</text>
+    <text x="278" y="106" text-anchor="middle" font-size="12" fill="#7a5a10">어린이 정원</text>
+    <text x="278" y="122" text-anchor="middle" font-size="10" fill="#7a5a10">(제이콥 발라스)</text>
+    <text x="112" y="236" text-anchor="middle" fill="#fff" font-size="15">러닝</text><text x="112" y="254" text-anchor="middle" fill="#fff" font-size="15">포레스트</text>
+    <text x="112" y="270" text-anchor="middle" fill="#eef7ea" font-size="11">숲 데크길</text>
+    <text x="112" y="364" text-anchor="middle" fill="#8a1d52" font-size="15">내셔널</text>
+    <text x="112" y="382" text-anchor="middle" fill="#8a1d52" font-size="15">오키드 가든</text>
+    <text x="112" y="399" text-anchor="middle" fill="#8a1d52" font-size="11">S$15 · 쿨하우스</text>
+    <text x="128" y="457" text-anchor="middle" font-size="12" fill="#5b6420">진저 가든</text>
+    <text x="240" y="392" text-anchor="middle" fill="#3e6b30">팜 밸리</text>
+    <text x="244" y="408" text-anchor="middle" font-size="11" fill="#3e6b30">(넓은 잔디밭)</text>
+    <text x="300" y="480" text-anchor="middle" font-size="12" fill="#1f5878">심포니 레이크</text>
+    <text x="282" y="566" text-anchor="middle" fill="#fff">열대우림</text>
+    <text x="212" y="698" text-anchor="middle" fill="#1f5878" font-size="13">스완 레이크</text>
+  </g>
+  <!-- small icons -->
+  <g font-size="16">
+    <text x="214" y="96">☕</text><text x="232" y="96">🚻</text>
+    <text x="64" y="326">🚻</text>
+    <text x="96" y="486">☕</text>
+    <text x="214" y="768">🚻</text><text x="232" y="768">🍽️</text>
+    <text x="283" y="436" font-size="13">🎵</text>
+    <text x="80" y="590" font-size="14">🏛️</text>
+  </g>
+  <!-- gates -->
+  <g font-weight="800" font-size="12" fill="#5a3c12">
+    <rect x="140" y="48" width="76" height="20" rx="4" fill="#8a5a1e"/><text x="178" y="62" text-anchor="middle" fill="#fff" font-size="11">부킷티마 입구</text>
+    <rect x="22" y="352" width="22" height="34" rx="4" fill="#8a5a1e"/><text x="33" y="400" text-anchor="middle" font-size="11">타이어설</text><text x="33" y="414" text-anchor="middle" font-size="11">입구</text>
+    <rect x="332" y="404" width="22" height="34" rx="4" fill="#8a5a1e"/><text x="340" y="398" text-anchor="middle" font-size="11">나심 입구</text>
+    <rect x="160" y="770" width="64" height="18" rx="4" fill="#8a5a1e"/><text x="192" y="783" text-anchor="middle" fill="#fff" font-size="11">탕린 입구</text>
+    <text x="192" y="806" text-anchor="middle" font-size="11" fill="#5a3c12">보태니 센터 (화장실·식당)</text>
+  </g>
+  <!-- MRT -->
+  <g font-size="12" font-weight="800">
+    <rect x="40" y="20" width="22" height="22" rx="6" fill="#d8262d"/><text x="51" y="35" text-anchor="middle" fill="#fff" font-size="11">M</text>
+    <text x="68" y="36" fill="#7a1a1e">보타닉가든역</text>
+    <rect x="300" y="830" width="22" height="22" rx="6" fill="#d8262d"/><text x="311" y="845" text-anchor="middle" fill="#fff" font-size="11">M</text>
+    <text x="294" y="846" text-anchor="end" fill="#7a1a1e">나피어역</text>
+  </g>
+  <!-- route -->
+  <path d="M178 82 C186 120 200 160 198 212 C196 260 186 300 184 350 C182 400 196 430 230 446 C250 454 262 454 262 454 C250 500 232 530 214 560 C196 590 176 600 172 616 C166 640 150 660 150 684 C150 720 186 740 192 770" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M178 82 C186 120 200 160 198 212 C196 260 186 300 184 350 C182 400 196 430 230 446 C250 454 262 454 262 454 C250 500 232 530 214 560 C196 590 176 600 172 616 C166 640 150 660 150 684 C150 720 186 740 192 770" fill="none" stroke="#e0503a" stroke-width="5" stroke-dasharray="2 9" stroke-linecap="round"/>
+  <!-- stops -->
+  <g font-weight="800" font-size="15" filter="url(#sh)">
+    <circle cx="178" cy="92" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="178" y="97" text-anchor="middle" fill="#fff">1</text>
+    <circle cx="198" cy="212" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="198" y="217" text-anchor="middle" fill="#fff">2</text>
+    <circle cx="184" cy="350" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="184" y="355" text-anchor="middle" fill="#fff">3</text>
+    <circle cx="262" cy="454" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="262" y="459" text-anchor="middle" fill="#fff">4</text>
+    <circle cx="172" cy="616" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="172" y="621" text-anchor="middle" fill="#fff">5</text>
+    <circle cx="150" cy="684" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="150" y="689" text-anchor="middle" fill="#fff">6</text>
+    <circle cx="192" cy="748" r="14" fill="#e0503a" stroke="#fff" stroke-width="3"/><text x="192" y="753" text-anchor="middle" fill="#fff">7</text>
+  </g>
+  <g font-size="12" font-weight="700" fill="#2b2b2b">
+    <text x="152" y="608" text-anchor="end">밴드스탠드</text>
+    <text x="152" y="622" text-anchor="end" font-size="10" fill="#666">(하얀 정자)</text>
+  </g>
+  <!-- compass -->
+  <g transform="translate(350 128)">
+    <circle r="22" fill="#fff" stroke="#b9b09a"/>
+    <path d="M0 -17 L6 4 L0 0 L-6 4 Z" fill="#e0503a"/>
+    <path d="M0 17 L6 -4 L0 0 L-6 -4 Z" fill="#b9b09a"/>
+    <text y="-26" text-anchor="middle" font-size="12" font-weight="800" fill="#e0503a">북</text>
+  </g>
+  <!-- legend -->
+  <g transform="translate(14 640)" font-size="11" fill="#333">
+    <rect width="60" height="118" rx="8" fill="#fff" opacity=".92" stroke="#d6ccb4"/>
+    <circle cx="12" cy="16" r="6" fill="#e0503a"/><text x="22" y="20">걷는 길</text>
+    <rect x="6" y="30" width="12" height="10" fill="#5f9e5a"/><text x="22" y="40">숲</text>
+    <rect x="6" y="48" width="12" height="10" fill="#a9d6ef"/><text x="22" y="58">호수</text>
+    <rect x="6" y="66" width="12" height="10" fill="#8a5a1e"/><text x="22" y="76">입구</text>
+    <text x="4" y="96">🚻 화장실</text>
+    <text x="4" y="112">☕ 카페</text>
+  </g>
+  <!-- title -->
+  <g transform="translate(280 836)">
+    <text x="-276" y="0" font-size="14" font-weight="800" fill="#2f4a2b">싱가포르 보타닉 가든</text>
+    <text x="-276" y="16" font-size="12" fill="#5f6b55">북 → 남 · 약 2.5km · 2시간</text>
+  </g>
+</svg>

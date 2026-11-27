@@ -1974,8 +1974,8 @@ addEventListener("scroll",upd,{passive:true});addEventListener("hashchange",func
 (function(){var box=document.getElementById("zbox"),im=box.querySelector("img"),cap=box.querySelector(".zcap"),sc=1,tx=0,ty=0,pts={},start=null;
 function ap(){im.style.transform="translate(calc(-50% + "+tx+"px),calc(-50% + "+ty+"px)) scale("+sc+")";}
 function set(n){sc=Math.max(1,Math.min(6,n));if(sc===1){tx=0;ty=0;}ap();}
-function open(src,alt,c){im.src=src;im.alt=alt;cap.textContent=c||alt;sc=1;tx=0;ty=0;ap();box.classList.add("on");document.body.style.overflow="hidden";}
-function close(){box.classList.remove("on");document.body.style.overflow="";}
+function open(src,alt,c){var dl=document.querySelector("dialog[open]");(dl||document.body).appendChild(box);im.src=src;im.alt=alt;cap.textContent=c||alt;sc=1;tx=0;ty=0;ap();box.classList.add("on");document.body.style.overflow="hidden";}
+function close(){box.classList.remove("on");document.body.style.overflow="";if(box.parentNode!==document.body)document.body.appendChild(box);}
 document.addEventListener("click",function(e){var t=e.target.closest("img.zoomable");if(t){e.preventDefault();var fc=t.closest("figure");open(t.currentSrc||t.src,t.alt,fc&&fc.querySelector("figcaption")?fc.querySelector("figcaption").textContent:"");}});
 box.querySelector(".zx").onclick=close;
 box.addEventListener("click",function(e){if(e.target===box)close();});
@@ -2285,29 +2285,7 @@ d.querySelector(".popclose").addEventListener("click",function(){d.close();});d.
         <li><b>스완 레이크</b> · 백조 호수</li>
         <li><b>탕린 입구</b> (보태니 센터, 화장실·식당)에서 택시 타기</li>
       </ol>
-      <svg class="sbgmap" viewBox="0 0 320 430" role="img" aria-label="보타닉 가든 간단 지도: 위쪽 부킷티마 입구에서 아래쪽 탕린 입구까지 1번부터 7번 순서">
-        <rect x="6" y="6" width="308" height="418" rx="22" fill="#e6f2e3" stroke="#9cc79a"/>
-        <text x="160" y="28" text-anchor="middle" font-size="12" fill="#4a6b48">▲ 북쪽</text>
-        <rect x="20" y="40" width="280" height="110" rx="14" fill="#d3ead0"/>
-        <rect x="20" y="160" width="280" height="130" rx="14" fill="#dcefd9"/>
-        <rect x="20" y="300" width="280" height="112" rx="14" fill="#d3ead0"/>
-        <ellipse cx="250" cy="130" rx="38" ry="14" fill="#bfe0f0"/><text x="250" y="134" text-anchor="middle" font-size="11" fill="#2d5d78">에코 레이크</text>
-        <ellipse cx="235" cy="240" rx="40" ry="18" fill="#bfe0f0"/>
-        <ellipse cx="225" cy="370" rx="34" ry="16" fill="#bfe0f0"/>
-        <text x="100" y="250" font-size="11" fill="#4a6b48" text-anchor="middle">진저 가든 ☕</text>
-        <text x="235" y="200" font-size="11" fill="#4a6b48" text-anchor="middle">팜 밸리</text>
-        <polyline points="160,58 110,110 90,200 230,240 120,340 225,370 160,400" fill="none" stroke="#1a7f5a" stroke-width="3" stroke-dasharray="6 6"/>
-        <g font-size="13" font-weight="800">
-          <circle cx="160" cy="58" r="13" fill="#1a7f5a"/><text x="160" y="63" fill="#fff" text-anchor="middle">1</text><text x="180" y="62" fill="#1e2340">부킷티마 입구</text>
-          <circle cx="110" cy="110" r="13" fill="#1a7f5a"/><text x="110" y="115" fill="#fff" text-anchor="middle">2</text><text x="128" y="114" fill="#1e2340">러닝 포레스트</text>
-          <circle cx="90" cy="200" r="13" fill="#c2185b"/><text x="90" y="205" fill="#fff" text-anchor="middle">3</text><text x="30" y="180" fill="#1e2340">오키드 가든</text>
-          <circle cx="230" cy="240" r="13" fill="#1a7f5a"/><text x="230" y="245" fill="#fff" text-anchor="middle">4</text><text x="190" y="275" fill="#1e2340">심포니 레이크</text>
-          <circle cx="120" cy="340" r="13" fill="#1a7f5a"/><text x="120" y="345" fill="#fff" text-anchor="middle">5</text><text x="34" y="322" fill="#1e2340">밴드스탠드</text>
-          <circle cx="225" cy="370" r="13" fill="#1a7f5a"/><text x="225" y="375" fill="#fff" text-anchor="middle">6</text><text x="246" y="352" fill="#1e2340">스완 레이크</text>
-          <circle cx="160" cy="400" r="13" fill="#1a7f5a"/><text x="160" y="405" fill="#fff" text-anchor="middle">7</text><text x="180" y="404" fill="#1e2340">탕린 입구</text>
-        </g>
-      </svg>
-      <p class="sbgcap">간단하게 그린 지도예요. 정확한 지도는 아래 공식 지도를 보세요.</p>
+      <figure class="sbgfig"><img class="sbgmapimg zoomable" src="img/sbg-map.svg" alt="보타닉 가든 지도: 부킷티마 입구에서 탕린 입구까지 걷는 순서 1~7"><figcaption>누르면 크게 볼 수 있어요. 대략 그린 지도라 정확한 건 공식 지도를 보세요.</figcaption></figure>
       <h3>알아두기</h3>
       <ul class="sbgtips">
         <li>🚻 화장실은 두 입구와 오키드 가든 입구에 있어요.</li>
@@ -2348,7 +2326,9 @@ d.querySelector(".popclose").addEventListener("click",function(){d.close();});d.
 .sbgcap{margin:0;font-size:14px;color:var(--muted);text-align:center}
 .sbgbtn{display:flex;justify-content:space-between;align-items:center;gap:12px;text-decoration:none;background:#e3f4ef;border:1px solid #8fd0bd;border-radius:14px;padding:12px 16px;color:#0d4d40;font-size:22px}
 .sbgbtn b{font-size:17px;color:#0d4d40}.sbgbtn small{display:block;font-size:14px;color:#2f6f60}
-@media (min-width:1080px){#sbgPop{width:min(720px,calc(100vw - 40px))}}
+.sbgfig{margin:4px 0;display:grid;gap:6px;justify-items:center}.sbgmapimg{width:100%;max-width:440px;height:auto;border-radius:14px;border:1px solid var(--line);cursor:zoom-in}.sbgfig figcaption{font-size:14px;color:var(--muted);text-align:center}
+#sbgPop{width:min(1040px,calc(100vw - 24px))}
+@media (min-width:1080px){#sbgPop{width:min(1440px,calc(100vw - 40px))}#sbgPop .card{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start}#sbgPop .card>*{grid-column:1}#sbgPop .card>.sbgfig{grid-column:2;grid-row:1 / span 12;position:sticky;top:0}.sbgmapimg{max-width:520px}}
 </style>
 <style id="mrecss">
 .mealday,.mealday>ul{align-content:start!important}
@@ -2376,7 +2356,7 @@ d.querySelector(".popclose").addEventListener("click",function(){d.close();});d.
 <style>#updBar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;gap:12px;background:#1e2340;color:#fff;border-radius:999px;padding:10px 12px 10px 20px;font-weight:700;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,.3);max-width:calc(100vw - 32px)}#updBar[hidden]{display:none}#updBar button{font:inherit;border:0;border-radius:999px;padding:8px 16px;background:#f0c64a;color:#2a2200;cursor:pointer}</style>
 <script>
 (function(){
-  var V="f88cedf26e"; if(V.indexOf("BUILD")>=0||location.protocol==="file:") return;
+  var V="6d47b1cbff"; if(V.indexOf("BUILD")>=0||location.protocol==="file:") return;
   var bar=document.getElementById("updBar"), K="sgUpdScroll";
   try{var sv=JSON.parse(sessionStorage.getItem(K)||"null");if(sv&&sv.h===location.hash){sessionStorage.removeItem(K);addEventListener("load",function(){setTimeout(function(){scrollTo(0,sv.y);},150);});}}catch(e){}
   function busy(){var a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return true;if(document.querySelector("dialog[open]"))return true;var f=document.getElementById("lgForm");if(f&&(f.amt.value||f.place.value||f.item.value))return true;return false;}
